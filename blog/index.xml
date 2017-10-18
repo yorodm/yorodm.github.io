@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on /home/yorodm</title>
-    <link>http://yorodm.github.io/blog/</link>
+    <link>https://yorodm.github.io/blog/</link>
     <description>Recent content in Blogs on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Mon, 16 Oct 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Nuevo blog</title>
-      <link>http://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</link>
+      <link>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</link>
       <pubDate>Mon, 16 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</guid>
+      <guid>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</guid>
       <description>¡Hola! ¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y actualizar regularmente) un blog. En esta ocasión decidí alejarme de plataformas más complejas para probar GitHub Pages, Hugo como generador de sitios estáticos, Markdown y claro está Emacs.
 Como siempre hablaré de temas relacionados con el desarrollo de software, software libre, lenguajes de programación y mis experiencias (buenas o malas) interactuando con el mundo del software.</description>
     </item>
