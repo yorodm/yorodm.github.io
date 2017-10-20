@@ -3,47 +3,82 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</loc>
+    <loc>https://yorodb.github.io/blog/hugo-y-emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yorodb.github.io/blog/creando-un-nuevo-blog-con-hugo/</loc>
     <lastmod>2017-10-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/projects/</loc>
+    <loc>https://yorodb.github.io/projects/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/</loc>
-    <lastmod>2017-10-16T00:00:00+00:00</lastmod>
+    <loc>https://yorodb.github.io/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/blog/</loc>
-    <lastmod>2017-10-16T00:00:00+00:00</lastmod>
+    <loc>https://yorodb.github.io/tags/blog/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/categories/</loc>
+    <loc>https://yorodb.github.io/blog/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/tags/projects/</loc>
+    <loc>https://yorodb.github.io/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodb.github.io/tags/emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodb.github.io/categories/emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodb.github.io/tags/herramientas/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodb.github.io/categories/hugo/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodb.github.io/tags/projects/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/categories/projects/</loc>
+    <loc>https://yorodb.github.io/categories/projects/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/tags/</loc>
-    <lastmod>2017-06-16T00:00:00+00:00</lastmod>
+    <loc>https://yorodb.github.io/tags/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   

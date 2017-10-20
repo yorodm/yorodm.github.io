@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yoandy Rodriguez Martinez" />
+        <meta name="description" content="My takes on software development and life in general">
+        <link rel="shortcut icon" type="image/x-icon" href="https://yorodb.github.io/img/favicon.ico">
+        <title>Hugo y Emacs</title>
+        <meta name="generator" content="Hugo 0.24-DEV" />
+        <link rel="stylesheet" type="text/css" href="https://yorodb.github.io/css/bootstrap.min.css" />
+        <link rel="stylesheet" type="text/css" href="https://yorodb.github.io/css/fa-min.css" />
+        <link rel="stylesheet" type="text/css" href="https://yorodb.github.io/css/main.css" />
+        
+        <!--[if lt IE 9]>
+                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+
+        
+    </head>
+
+<body>
+    <div id="wrap">
+
+        
+        <nav class="navbar navbar-default">
+  <div class="container">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="https://yorodb.github.io/"><pre>/home/yorodm</pre></a>
+    </div>
+    <div id="navbar">
+      <ul class="nav navbar-nav navbar-right">
+      
+        
+          <li><a href="/blog/"><pre>blog</pre></a></li>
+        
+          <li><a href="/projects/"><pre>projects</pre></a></li>
+        
+      
+      </ul>
+    </div>
+  </div>
+</nav>
+
+        
+        <div class="container">
+            <div class="blog-post">
+                <h3>
+                    <strong><a href="https://yorodb.github.io/blog/hugo-y-emacs/">Hugo y Emacs</a></strong>
+                </h3>
+            </div>
+            <div class="blog-title">
+                <h4>
+                    October 19, 2017
+                    &nbsp;&nbsp;
+                    
+                    <span class="label label-success">emacs</span>
+                    
+                    <span class="label label-success">blog</span>
+                    
+                    <span class="label label-success">herramientas</span>
+                    
+                </h4>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="blogpost">
+                        
+
+<h1 id="hugo-emacs-y-el-nuevo-blog">Hugo, Emacs y el nuevo blog</h1>
+
+<p>Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las
+bondades de <a href="https://pages.github.com/">Github Pages</a> y
+<a href="http://gohugo.io">Hugo</a> como generador de sitios estático. En lo que a
+generador de sitios estáticos se refiere <code>Hugo</code> es bastante sencillo de operar,
+por lo que inicialmente pensé en hacerme unos scripts para organizar el
+<em>workflow</em> de trabajo de la siguiente manera:</p>
+
+<ol>
+<li>Hacer nuevo post.</li>
+<li>Previsualizar.</li>
+<li>Subir a GitHub.</li>
+</ol>
+
+<p>Todo esto organizado, claro está, en una rama <em>develop</em> para trabajar y una
+<em>master</em> tanto para el repositorio donde guardo las fuentes del sitio como para
+el que queda publicado.</p>
+
+<p>Estaba muy emocionado escribiendo código en <code>Python</code> cuando recordé que <code>Emacs</code>
+trae <strong>su propio servidor http</strong> en <code>simple-httpd.el</code> y unos cuantos paquetes
+para interactuar con <code>Git</code>. Así surgió <code>hugo-blog-mode.el</code></p>
+
+<h2 id="hugo-en-modo-sencillo">Hugo en modo sencillo</h2>
+
+<p>Antes de arrancar a escribir <code>Emacs Lisp</code> me puse a revisar <code>MELPA</code> a ver si
+alguien había tenido la misma idea que yo y encontré a <code>easy-hugo.el</code>, que está
+genial, pero viene pensado para personas super publicadoras que tienen varios
+blogs y los actualizan con mucha frecuencia o algo así. En fin, que tiene un
+público objetivo en el cual no me incluyo. La idea siempre fue trasladar el
+flujo de trabajo que ya tenía en mente a dos o tres comanditos, ponerle dos o
+tres atajos de teclado y utilizar <code>Magit</code> lo menos posible en el proceso.</p>
+
+<p>El resultado quedo en un archivito de unas 200 líneas de código con tres comandos.</p>
+
+<ol>
+<li><code>hugo-new-post</code>, que se explica solito.</li>
+<li><code>hugo-blog-preview</code>, que mueve todo lo que esté haciendo a la rama <em>develop</em>,
+regenera el sitio utilizando una URL local y lanza el navegador para ver como
+va quedando.</li>
+<li><code>hugo-blog-publish</code>, que regenra el sitio utilizando la URL final, hace
+<em>commit</em> en <em>develop</em> y me mezcla todo en master.</li>
+</ol>
+
+<p>Como estoy utilizando submódulos de <code>Git</code> para mantener los repositorios asi:</p>
+
+<pre><code>sitio/ (fuentes del sitio)
+   |--- content/
+   |--- data/
+   |--- static/
+   |--- themes/
+   |--- public/ (submódulo yorodm.guthub.io)
+</code></pre>
+
+<p><code>hugo-blog-publish</code> se encarga de hacer los <em>commits</em> y los <em>merges</em> y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).</p>
+
+                        <hr>
+                        <div class="related-posts">
+                            <h5>Relacionados</h5>
+                            
+                        </div>
+                    </div>
+                </div>
+                <hr>
+            </div>
+        </div>
+        
+    </div>
+
+    
+    <footer>
+  <div id="footer">
+    <div class="container">
+        <p class="text-muted">&copy; Yoandy Rodríguez Martínez. Generado con <a href="https://gohugo.io/">Hugo</a> y <a href="">GNU Emacs</a></p>
+    </div>
+  </div>
+</footer>
+<div class="footer"></div>
+
+
+<script src="https://yorodb.github.io/js/jquery.min.js"></script>
+<script src="https://yorodb.github.io/js/bootstrap.min.js"></script>
+<script src="https://yorodb.github.io/js/docs.min.js"></script>
+<script src="https://yorodb.github.io/js/main.js"></script>
+
+<script src="https://yorodb.github.io/js/ie10-viewport-bug-workaround.js"></script>
+
+
+
+</body>
+</html>
