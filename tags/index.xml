@@ -39,11 +39,38 @@
     </item>
     
     <item>
+      <title>Linux</title>
+      <link>http://localhost:8080/tags/linux/</link>
+      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
+      
+      <guid>http://localhost:8080/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Projects</title>
       <link>http://localhost:8080/tags/projects/</link>
       <pubDate>Fri, 16 Jun 2017 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:8080/tags/projects/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Proxmox</title>
+      <link>http://localhost:8080/tags/proxmox/</link>
+      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
+      
+      <guid>http://localhost:8080/tags/proxmox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Zfs</title>
+      <link>http://localhost:8080/tags/zfs/</link>
+      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
+      
+      <guid>http://localhost:8080/tags/zfs/</guid>
       <description></description>
     </item>
     

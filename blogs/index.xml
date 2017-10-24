@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on /home/yorodm</title>
+    <link>http://localhost:8080/blogs/</link>
+    <description>Recent content in Blogs on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Tue, 24 Oct 2017 10:55:56 -0400</lastBuildDate>
+    
+	<atom:link href="http://localhost:8080/blogs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>ZFS y el problema de la memoria</title>
+      <link>http://localhost:8080/blogs/zfs-y-la-memoria/</link>
+      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
+      
+      <guid>http://localhost:8080/blogs/zfs-y-la-memoria/</guid>
+      <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y al menos entre los sysadmins que conozco (bueno, una parte, otros se fueron a Brtfs)</description>
+    </item>
+    
+  </channel>
+</rss>
