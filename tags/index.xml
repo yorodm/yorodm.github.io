@@ -23,9 +23,27 @@
     <item>
       <title>Emacs</title>
       <link>http://localhost:8080/tags/emacs/</link>
-      <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
+      <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
       <guid>http://localhost:8080/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>http://localhost:8080/tags/go/</link>
+      <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
+      
+      <guid>http://localhost:8080/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Golang</title>
+      <link>http://localhost:8080/tags/golang/</link>
+      <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
+      
+      <guid>http://localhost:8080/tags/golang/</guid>
       <description></description>
     </item>
     

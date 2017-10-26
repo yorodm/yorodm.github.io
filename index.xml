@@ -6,10 +6,20 @@
     <description>Recent content on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 24 Oct 2017 10:55:56 -0400</lastBuildDate>
+    <lastBuildDate>Thu, 26 Oct 2017 15:04:13 -0400</lastBuildDate>
     
 	<atom:link href="http://localhost:8080/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Desarrollando con Emacs y Go</title>
+      <link>http://localhost:8080/blog/desarrollo-emacs-go/</link>
+      <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
+      
+      <guid>http://localhost:8080/blog/desarrollo-emacs-go/</guid>
+      <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
+Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
+    </item>
     
     <item>
       <title>ZFS y el problema de la memoria</title>
