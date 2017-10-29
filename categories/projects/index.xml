@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Projects on /home/yorodm</title>
-    <link>http://localhost:8000/categories/projects/</link>
+    <link>https://yorodm.github.io/categories/projects/</link>
     <description>Recent content in Projects on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Fri, 16 Jun 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://localhost:8000/categories/projects/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yorodm.github.io/categories/projects/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Projects</title>
-      <link>http://localhost:8000/projects/</link>
+      <link>https://yorodm.github.io/projects/</link>
       <pubDate>Fri, 16 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:8000/projects/</guid>
+      <guid>https://yorodm.github.io/projects/</guid>
       <description></description>
     </item>
     

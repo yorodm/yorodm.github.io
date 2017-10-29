@@ -3,121 +3,121 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://localhost:8000/blog/desarrollo-emacs-go/</loc>
+    <loc>https://yorodm.github.io/blog/desarrollo-emacs-go/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:8000/blog/zfs-problema-memoria/</loc>
+    <loc>https://yorodm.github.io/blog/zfs-problema-memoria/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:8000/blog/hugo-y-emacs/</loc>
+    <loc>https://yorodm.github.io/blog/hugo-y-emacs/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:8000/blog/creando-un-nuevo-blog-con-hugo/</loc>
+    <loc>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</loc>
     <lastmod>2017-10-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:8000/projects/</loc>
+    <loc>https://yorodm.github.io/projects/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>http://localhost:8000/</loc>
+    <loc>https://yorodm.github.io/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/blog/</loc>
+    <loc>https://yorodm.github.io/blog/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/blog/</loc>
+    <loc>https://yorodm.github.io/tags/blog/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/categories/</loc>
+    <loc>https://yorodm.github.io/categories/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/emacs/</loc>
+    <loc>https://yorodm.github.io/tags/emacs/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/categories/emacs/</loc>
+    <loc>https://yorodm.github.io/categories/emacs/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/go/</loc>
+    <loc>https://yorodm.github.io/tags/go/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/golang/</loc>
+    <loc>https://yorodm.github.io/tags/golang/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/herramientas/</loc>
+    <loc>https://yorodm.github.io/tags/herramientas/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/categories/hugo/</loc>
+    <loc>https://yorodm.github.io/categories/hugo/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/linux/</loc>
+    <loc>https://yorodm.github.io/tags/linux/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/projects/</loc>
+    <loc>https://yorodm.github.io/tags/projects/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/categories/projects/</loc>
+    <loc>https://yorodm.github.io/categories/projects/</loc>
     <lastmod>2017-06-16T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/proxmox/</loc>
+    <loc>https://yorodm.github.io/tags/proxmox/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/</loc>
+    <loc>https://yorodm.github.io/tags/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>http://localhost:8000/tags/zfs/</loc>
+    <loc>https://yorodm.github.io/tags/zfs/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
   </url>
