@@ -927,3 +927,13 @@ a.symbol:hover {
 .page-tags .tags:hover a {
     color: #5694f1;
 }
+
+/*
+* Code
+*/
+
+.highlight code{
+    line-height: 1.45;
+    font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    font-height: 85%;
+}

@@ -1,26 +1,26 @@
     <!DOCTYPE html>
 <html lang="en-US">
-	<head>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="Yoandy Rodríguez Martínez">
-		<meta name="description" content="Software, la vida y todo lo demás">
-		<meta name="generator" content="Hugo 0.24-DEV" />
-		<title>Desarrollando con Emacs y Go &middot; /home/yorodm</title>
-		<link rel="shortcut icon" href="http://yorodm.github.io/images/favicon.ico">
-		<link rel="stylesheet" href="http://yorodm.github.io/css/style.css">
-		<link rel="stylesheet" href="http://yorodm.github.io/css/highlight.css">
-		
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yoandy Rodríguez Martínez">
+        <meta name="description" content="Software, la vida y todo lo demás">
+        <meta name="generator" content="Hugo 0.30.2" />
+        <title>Desarrollando con Emacs y Go &middot; /home/yorodm</title>
+        <link rel="shortcut icon" href="http://yorodm.github.io/images/favicon.ico">
+        <link rel="stylesheet" href="http://yorodm.github.io/css/style.css">
+        <link rel="stylesheet" href="http://yorodm.github.io/css/syntax.css">
+        
 
-		
-		<link rel="stylesheet" href="http://yorodm.github.io/css/font-awesome.min.css">
-		
+        
+        <link rel="stylesheet" href="http://yorodm.github.io/css/font-awesome.min.css">
+        
 
-		
-		<link href="http://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
-		
-	</head>
+        
+        <link href="http://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+        
+    </head>
 
     <body>
        <nav class="main-nav">
@@ -135,29 +135,25 @@ campiones, solo queda:</p>
 una tarea trivial. Si eres relativamente nuevo en <strong>Emacs</strong> hay grandes
 posibilidades de que no sepas como hacer lo segundo, no importa, aquí va mi
 configuración (sin atajos de teclado, que ya eso es cosa muy personal).</p>
-
-<pre><code>;; Si estás utilizando correctamente tu gestor de paquetes en Emacs
-;; no tienes que adicionar las lineas de los  'require'
-;; Adicionar el backend de Go a company
-(require 'company)
-(add-to-list 'company-backends 'company-go)
-;; Activamos go-mode
-(require 'go-mode)
-;; y toda la familia
-(require 'go-guru)
-(require 'go-errcheck)
-(require 'go-projectile)
-;; Añadimos un hook para que cuando se active el modo se configuren todas
-;; estas cosas
-(add-hook 'go-mode-hook (lambda ()
-                         (company-mode)
-                         (projectile-mode)
-                         (go-eldoc-setup)
-                         (add-hook 'before-save-hook 'gofmt-before-save)
-                         (setq gofmt-command &quot;goimports&quot;)))
-
-</code></pre>
-
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; Si estás utilizando correctamente tu gestor de paquetes en Emacs</span>
+<span class="c1">;; no tienes que adicionar las lineas de los  &#39;require&#39;</span>
+<span class="c1">;; Adicionar el backend de Go a company</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;company</span><span class="p">)</span>
+<span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;company-backends</span> <span class="ss">&#39;company-go</span><span class="p">)</span>
+<span class="c1">;; Activamos go-mode</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-mode</span><span class="p">)</span>
+<span class="c1">;; y toda la familia</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-guru</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-errcheck</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-projectile</span><span class="p">)</span>
+<span class="c1">;; Añadimos un hook para que cuando se active el modo se configuren todas</span>
+<span class="c1">;; estas cosas</span>
+<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+                         <span class="p">(</span><span class="nv">company-mode</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">projectile-mode</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">go-eldoc-setup</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;before-save-hook</span> <span class="ss">&#39;gofmt-before-save</span><span class="p">)</span>
+                         <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;goimports&#34;</span><span class="p">)))</span></code></pre></div>
 <p>Y&hellip;ya está. Hemos creado un <strong>IDE</strong> para trabajar en <strong>Go</strong> sin salir de la
 comodidad de nuestro editor favorito.</p>
 
@@ -194,12 +190,13 @@ comodidad de nuestro editor favorito.</p>
 
     
     <p class="small">
-    
-       © Copyright 2017 <i class="fa fa-heart" aria-hidden="true"></i> Yoandy Rodríguez Martínez
-    
+        
+        © Copyright 2017 Yoandy Rodríguez Martínez
+        
     </p>
+
     <p class="small">
-        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+        Powered by  <a href="http://www.gnu.org/software/emacs">GNU Emacs</a> <i class="fa fa-heart" aria-hidden="true"></i> and <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
     </p>
 </footer>
 
@@ -207,8 +204,6 @@ comodidad de nuestro editor favorito.</p>
 
         <script src="http://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
 <script src="http://yorodm.github.io/js/main.js"></script>
-<script src="http://yorodm.github.io/js/highlight.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
 
 
 

@@ -1,83 +1,75 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Yoandy Rodriguez Martinez" />
-        <meta name="description" content="My takes on software development and life in general">
-        <link rel="shortcut icon" type="image/x-icon" href="http://localhost:8080/img/favicon.ico">
-        <title>Proxmox a Docker</title>
-        <meta name="generator" content="Hugo 0.24-DEV" />
-        <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/fa-min.css" />
-        <link rel="stylesheet" type="text/css" href="http://localhost:8080/css/main.css" />
-        
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Yoandy Rodríguez Martínez">
+		<meta name="description" content="Software, la vida y todo lo demás">
+		<meta name="generator" content="Hugo 0.30.2" />
+		<title>Proxmox a Docker &middot; /home/yorodm</title>
+		<link rel="shortcut icon" href="https://yorodm.gthub.io/images/favicon.ico">
+		<link rel="stylesheet" href="https://yorodm.gthub.io/css/style.css">
+		<link rel="stylesheet" href="https://yorodm.gthub.io/css/highlight.css">
+		
 
-        
-    </head>
+		
+		<link rel="stylesheet" href="https://yorodm.gthub.io/css/font-awesome.min.css">
+		
 
-<body>
-    <div id="wrap">
+		
+		<link href="https://yorodm.gthub.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+		
+	</head>
 
-        
-        <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="http://localhost:8080/"><pre>/home/yorodm</pre></a>
-    </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-      
-        
-          <li><a href="/blog/"><pre>blog</pre></a></li>
-        
-          <li><a href="/projects/"><pre>projects</pre></a></li>
-        
-      
-      </ul>
-    </div>
-  </div>
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='https://yorodm.gthub.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='https://yorodm.gthub.io/blog'>archivo</a>
+    <a href='https://yorodm.gthub.io/tags'>etiquetas</a>
+    <a href='https://yorodm.gthub.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="https://yorodm.gthub.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
 </nav>
 
-        
-        <div class="container">
-            <div class="blog-post">
-                <h3>
-                    <strong><a href="http://localhost:8080/blog/proxmox-a-docker/">Proxmox a Docker</a></strong>
-                </h3>
-            </div>
-            <div class="blog-title">
-                <h4>
-                    October 19, 2017
-                    &nbsp;&nbsp;
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Proxmox a Docker
+                    </h1>
+                    <h2 class="headline">
+                        2 de Nov 2017
+                    · 732 palabras 
+                    · 4 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://yorodm.gthub.io/tags/docker">docker</a>
+                          
+                              <a href="https://yorodm.gthub.io/tags/proxmox">proxmox</a>
+                          
+                              <a href="https://yorodm.gthub.io/tags/linux">linux</a>
+                          
+                              <a href="https://yorodm.gthub.io/tags/archlinux">archlinux</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
                     
-                    <span class="label">
-                        <a href='/tags/docker'>docker</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/proxmox'>proxmox</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/linux'>linux</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/archlinux'>archlinux</a>
-                    </span>
-                    
-                </h4>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="blogpost">
-                        
 
 <h1 id="proxmox-a-docker">Proxmox a Docker</h1>
 
@@ -85,50 +77,48 @@
 de mover la mayoría de los servicios que ahora tenemos en
 <a href="http://www.proxmox.com">Proxmox</a> hacia <a href="http://docker.com">Docker</a> exceptuando
 alguna que otra máquina virtual ejecutando sabrá dios cuanta cantidad de
-software legado de las que no podemos deshacernos (¡todavía!). Después de pensar
+software legado de la que no podemos deshacernos. Después de pensar
 unos 20 minutos acerca del tema (esto fue a las 7:15 am y no había tomado café)
 y sopesar los pro y los contra se me ocurrió este post. Ahí va.</p>
 
 <h2 id="el-problema-o-como-cambiar-de-lxc-a-docker">El problema (o como cambiar de LXC a Docker).</h2>
 
 <p>Antes de empezar vamos a dejar algo claro: no hay manera de migrar las máquinas
-virtuales a <code>docker</code>. Aunque a algunas personas esto les parece obvio (VM !=
+virtuales a <strong>docker</strong>. Aunque a algunas personas esto les parece obvio (VM !=
 container) he encontrado sysadmins que oyen <em>virtualización</em> y ya no escuchan
-más nada. Si bien la versión de docker para <a href="http://www.microsoft.com">ese sistema
-operativo</a> tiene posibilidades de virtualización real
-gracias a que utiliza <code>Hyper-V</code> para ejecutar los contenedores, la idea es tan
+más nada. Si bien la versión de docker para <a href="http://www.microsoft.com">ese sistema operativo</a> tiene posibilidades de virtualización real
+gracias a que utiliza <strong>Hyper-V</strong> para ejecutar los contenedores, la idea es tan
 cercana al sacrilégio que la vamos a descartar enseguida. Resumiendo, máquinas
 virtuales no.</p>
 
 <p>Con las VM&rsquo;s fuera del camino la mayoría analizemos ahora las posibilidades de ambos productos.</p>
 
-<h2 id="proxmox-y-lxc">Proxmox y LXC</h2>
+<h2 id="proxmox-y-lxc">Proxmox y LXC.</h2>
 
-<p><code>Proxmox</code> basa sus contenedores en <code>LXC</code> (si tienes <code>OpenVZ</code> estás utilizando
+<p><strong>Proxmox</strong> basa sus contenedores en <strong>LXC</strong> (si tienes <strong>OpenVZ</strong> estás utilizando
 una versión muy vieja y necesitas actualizarte). Para crear un nuevo contenedor
 simplemente entras por la interfaz web, elijes una plantilla, llenas unos
-cuantos espacios en blanco y ¡BAM!, tienes un contenedor.</p>
+cuantos espacios en blanco y ¡BAM!, listo.</p>
 
-<p>Bueno, todavía no <em>tienes</em> un contenedor, ahora toca conectarse de forma remota
-(hay varios modos, virt-viewer me viene a la mente) instalar y configurar
-servicios, etc. Dado que muchos (entre los que me incluyo) consideran todo esto
-un verdadero incordio, la mayoría de las plantillas vienen con <code>ssh</code> configurado
-para simplificar el proceso (y utilizar <code>ansible</code>). Sea cual sea el método en
-alrededor de unos 5 minutos (con buena conexión o un repositorio local) es
-posible levantar el webmail para que el resto de los mortales envíen
-presentaciones con gaticos, unicornios, arcoiris y frases sacadas de novelas
-baratas de los 70.</p>
+<p>Bueno, no <em>listo, listo</em>, ahora toca conectarse de forma remota (hay varios modos,
+virt-viewer me viene a la mente) instalar y configurar servicios, etc. Dado que
+muchos (entre los que me incluyo) consideran todo esto un verdadero incordio, la
+mayoría de las plantillas vienen con <strong>ssh</strong> configurado para simplificar el
+proceso (y utilizar <strong>ansible</strong>). Sea cual sea el método en alrededor de unos 5
+minutos (con buena conexión o un repositorio local) es posible levantar el
+<em>webmail</em> para que el resto de los mortales envíen presentaciones con gaticos,
+unicornios, arcoiris y frases sacadas de novelas baratas de los 70.</p>
 
-<p><code>Proxmox</code>incluye además.</p>
+<p><strong>Proxmox</strong> incluye además.</p>
 
 <ol>
 <li>Un cluster que permite migrar los contenedores entre servidores.</li>
 <li>Soporte para varias tecnologias de almacenamiento compartido.</li>
-<li>Backups, orquestación y monitoreo <strong>de los contenedores</strong></li>
+<li>Backups, orquestación y monitoreo <em>de los contenedores</em>.</li>
 <li>Una interfaz web llena de comodidades a la hora de configurar ciertos
-parámetros como la <code>RAM</code>, el espacio en disco interfaces de red, etc.</li>
-<li>Consolas <code>VNC</code> y <code>SPICE</code> integradas desde la web, por si no te gusta el
-<code>ssh</code>.</li>
+parámetros como la <strong>RAM</strong>, el espacio en disco interfaces de red, etc.</li>
+<li>Consolas <strong>VNC</strong> y <strong>SPICE</strong> integradas desde la web, por si no te gusta el
+<strong>ssh</strong>.</li>
 <li>Super sistema de control de acceso (también en la web).</li>
 <li>Configuración del firewall (adivinen donde).</li>
 </ol>
@@ -138,19 +128,19 @@ parámetros como la <code>RAM</code>, el espacio en disco interfaces de red, etc
 <ol>
 <li>Cinco minutos (en el mejor de los casos) para poner un servicio en marcha
 puede ser demasiado tiempo.</li>
-<li>Cada contenedor <code>LXC</code> es su propio universo aislado. Comunicarse con y desde
+<li>Cada contenedor <strong>LXC</strong> es su propio universo aislado. Comunicarse con y desde
 el host debe ser configurado mediante servicios.</li>
-<li>La orquestación y monitoreo <strong>de los servicios</strong> require un poquito más de
+<li>La orquestación y monitoreo <em>de los servicios</em> require un poquito más de
 configuración e instalación.</li>
 </ol>
 
-<h2 id="docker-o-la-ballena-azul">Docker (o la ballena azul)</h2>
+<h2 id="docker">Docker.</h2>
 
-<p>Una de las diferencias más importantes entre <code>LXC</code> y <code>Docker</code> es el acercamiento
-que tienen al concepto de contenedor. En <code>LXC</code> (y por ende <code>Proxmox</code>) los
-contenedores inician toda clase de servicios de apoyo como <code>systemd</code> y <code>ssh</code> y
-es usual utilizar cosas como <code>NFS</code> y <code>SAMBA</code>. <code>Docker</code> utiliza un enfoque un
-poco más ligero y eso en cierto sentido altera su uso. Veamos sus ventajas:</p>
+<p>Una de las diferencias más importantes entre <strong>LXC</strong> y <strong>Docker</strong> es el acercamiento
+que tienen al concepto de contenedor. En <strong>LXC</strong> (y por ende <strong>Proxmox</strong>) los
+contenedores inician toda clase de servicios de apoyo como <strong>systemd</strong>, <strong>ssh</strong>,
+<strong>NFS</strong> y <strong>SAMBA</strong>. <strong>Docker</strong> utiliza un enfoque un poco más ligero y eso en cierto
+sentido altera su uso. Veamos sus ventajas:</p>
 
 <ol>
 <li>En cada contenedor se ejecuta un servicio (casi siempre) esto ayuda mucho al
@@ -160,54 +150,81 @@ monitoreo y orquestación.</li>
 <li>Las imágenes incluyen ya todo lo necesario para arrancar el servicio.</li>
 <li>Construir imágenes a partir de nuevas es extremadamente sencillo y no
 requiere de muchos conocimientos técnicos.</li>
-<li>Desplegar un nuevo servicio toma 2 minutos <strong>en una PC de prestaciones medias
-o bajas</strong>.</li>
-<li>Puedes correr <code>docker</code> en algo que no sea <code>Debian</code>.</li>
+<li>Las imágenes son versionables.</li>
+<li>Desplegar un nuevo servicio &lt; 2 minutos <em>en una PC de prestaciones medias o
+bajas</em> (de nuevo, en mejores condiciones).</li>
+<li>Puedes correr <strong>docker</strong> en algo que no sea <strong>Debian</strong>.</li>
 </ol>
 
 <p>Ahora, tanta simplicidad no viene sin un costo:</p>
 
 <ol>
-<li>Ya no hay <em>UI</em> que resuelva las cosas a click.</li>
+<li>Ya no hay <em>UI</em> que resuelva las cosas a click (existen herramientas para terceros).</li>
 <li>Si quieres ejecutar en un mismo host varios servicios del mismo tipo (ej. dos
 sitios web) tienes que aplicar un poco de creatividad con las interfaces de
-red.</li>
+red (<strong>docker-composer</strong> ayuda mucho).</li>
 <li>Backups, almacenamiento compartido, parámetros de ejecución del contenedor;
-toca hacerlos manualmente (o con un script, como todo el mundo).</li>
+toca hacerlos manualmente (igual que arriba).</li>
+<li>Es recomentable tener un registro privado. Eso lleva a montarse otro servidor
+o tener un contenedor dedicado, es decir, gastar recursos (depende de la
+cantidad de imágenes que mantengas).</li>
 </ol>
 
-                        <hr>
-                        <div class="related-posts">
-                            <h5>Relacionados</h5>
-                            
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-        </div>
-        
-    </div>
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
 
     
-    <footer>
-  <div id="footer">
-    <div class="container">
-        <p class="text-muted">&copy; Yoandy Rodríguez Martínez. Generado con <a href="https://gohugo.io/">Hugo</a> y <a href="">GNU Emacs</a></p>
-    </div>
-  </div>
+    <p class="small">
+        
+        © Copyright 2017 Yoandy Rodríguez Martínez
+        
+    </p>
+
+    <p class="small">
+        Powered by  <a href="http://www.gnu.org/software/emacs">GNU Emacs</a> <i class="fa fa-heart" aria-hidden="true"></i> and <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
 </footer>
-<div class="footer"></div>
+
+        </section>
+
+        <script src="https://yorodm.gthub.io/js/jquery-2.2.4.min.js"></script>
+<script src="https://yorodm.gthub.io/js/main.js"></script>
+<script src="https://yorodm.gthub.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 
-<script src="http://localhost:8080/js/jquery.min.js"></script>
-<script src="http://localhost:8080/js/bootstrap.min.js"></script>
-<script src="http://localhost:8080/js/docs.min.js"></script>
-<script src="http://localhost:8080/js/main.js"></script>
-
-<script src="http://localhost:8080/js/ie10-viewport-bug-workaround.js"></script>
 
 
 
-</body>
+
+
+    </body>
 </html>
