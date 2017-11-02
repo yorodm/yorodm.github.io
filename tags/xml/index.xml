@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Xml on /home/yorodm</title>
+    <link>http://yorodm.github.io/tags/xml/</link>
+    <description>Recent content in Xml on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 01 Nov 2017 13:09:08 -0400</lastBuildDate>
+    
+	<atom:link href="http://yorodm.github.io/tags/xml/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Parser SAX en Golang</title>
+      <link>http://yorodm.github.io/blog/golang-xml-sax/</link>
+      <pubDate>Wed, 01 Nov 2017 13:09:08 -0400</pubDate>
+      
+      <guid>http://yorodm.github.io/blog/golang-xml-sax/</guid>
+      <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
+Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej.</description>
+    </item>
+    
+  </channel>
+</rss>

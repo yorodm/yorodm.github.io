@@ -1,0 +1,243 @@
+    <!DOCTYPE html>
+<html lang="en-US">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Yoandy Rodríguez Martínez">
+		<meta name="description" content="Software, la vida y todo lo demás">
+		<meta name="generator" content="Hugo 0.24-DEV" />
+		<title>Parser SAX en Golang &middot; /home/yorodm</title>
+		<link rel="shortcut icon" href="http://yorodm.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="http://yorodm.github.io/css/style.css">
+		<link rel="stylesheet" href="http://yorodm.github.io/css/highlight.css">
+		
+
+		
+		<link rel="stylesheet" href="http://yorodm.github.io/css/font-awesome.min.css">
+		
+
+		
+		<link href="http://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+		
+	</head>
+
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='http://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='http://yorodm.github.io/blog'>archivo</a>
+    <a href='http://yorodm.github.io/tags'>etiquetas</a>
+    <a href='http://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="http://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Parser SAX en Golang
+                    </h1>
+                    <h2 class="headline">
+                        1 de Nov 2017
+                    · 519 palabras 
+                    · 3 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="http://yorodm.github.io/tags/go">go</a>
+                          
+                              <a href="http://yorodm.github.io/tags/golang">golang</a>
+                          
+                              <a href="http://yorodm.github.io/tags/xml">xml</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
+                    
+
+<h1 id="parser-tipo-sax-para-golang">Parser tipo SAX para Golang</h1>
+
+<h2 id="el-problema">El problema</h2>
+
+<p>Tratando de migrar unas cosas del trabajo a <strong>Go</strong> me tropecé con la necesidad de
+procesar unos archivos <strong>XML</strong> (cada día doy más gracias por <strong>TOML</strong> y <strong>JSON</strong>) de
+tamaño considerable.</p>
+
+<p>Una mirada por encima a <code>encoding/xml</code> me dejo bien claro que no existía un
+parser tipo <code>xml.dom.minidom</code> (el de la biblioteca estándar de <strong>Python</strong>) o algo
+como <strong>Expat</strong>. Las principales funciones (ej. las que salen en los ejemplos)
+están orientadas más hacia la serialización y deserialización de <strong>XML</strong> que a
+andar recorriendo documentos.</p>
+
+<p>Sin otro remedio a mano acudí al <a href="http://google.com">Gran Oráculo</a> para
+investigar mis posibilidades y lo más cercano que encontré fue una biblioteca
+llamada <a href="https://github.com/kokardy/saxlike">saxlike</a> que no luce nada mal pero
+no era exactamente lo que buscaba (hay que implementar toda una interfaz).</p>
+
+<h2 id="la-solución">La solución.</h2>
+
+<p>El método <code>Token</code> de <code>*xml.Decoder</code> opera leyendo de un <code>*io.Reader</code> y retornando
+el próximo token <strong>XML</strong> que encuentra. La función retorna <code>(Token, error)</code> donde
+<strong>Token</strong> es uno de los siguientes tipos:</p>
+
+<ol>
+<li><code>xml.StartElement</code> (comienzo de un elemento)</li>
+<li><code>xml.EndElement</code> (final de un elemento, funciona incluso para etiquetas  como
+<code>&lt;esta/&gt;</code>)</li>
+<li><code>xml.Directive</code> (directivas especiales)</li>
+<li><code>xml.Comment</code> (comentarios)</li>
+<li><code>xml.Chardata</code> (contenido de los elementos)</li>
+<li><code>xml.ProcInst</code> (instrucciones de procesamiento)</li>
+</ol>
+
+<p>Esto es bastante parecido a <strong>SAX</strong> es decir, podríamos hacer una interfaz
+<strong>Handler</strong> con un método por cada tipo y una función (o método de otra clase) que
+recibiera algo que implementara a handler y llamara a cada uno de los métodos.</p>
+
+<pre><code>// En este caso hipotético Parser tiene embebido un xml.Decoder
+func (self *Parser) Parse(document io.Reader, handler Handler) error {
+    for {
+        token, err := self.Token()
+        if err == io.EOF {
+         return nil
+        } else if err != nil {
+          return err
+        }
+        switch token.(type){
+        case xml.StartElement:
+            handler.StartElement(token)
+        // mas de lo mismo
+        }
+    }
+    return nil
+}
+</code></pre>
+
+<p>Para utilizar este método necesitamos implementar la interfaz <strong>SAX</strong> con 6
+métodos para los elemento y otro más para manejo de errores o verificar el valor
+de retorno del método.</p>
+
+<p>Peeeero, la idea de implementar 7 métodos (aunque algunos queden en blanco) y de
+utilizar callbacks para manejar eventos&hellip;.. ya para eso tengo <strong>Java</strong>. Los
+eventos en <strong>Go</strong> se manejan mejor utilizando canales:</p>
+
+<pre><code>// En ambos casos se puede exportar una función en lugar
+// de hacer un método
+
+// Como las interfaces en Go son implícitas, estas estructura
+// implementa xml.Token
+type ParserError struct{}
+
+func parse(document io.Reader, elm chan&lt;- xml.Token) {
+    defer close(elm)
+    decoder := xml.NewDecoder(document)
+    for {
+        // DefaultDecoder es un *xml.Decoder
+        token, err := decoder.Token()
+        if err == io.EOF {
+            return
+        } else if err != nil {
+            elm &lt;- ParserError{}
+            return
+        }
+        elm &lt;- token
+    }
+}
+
+// Ejemplo de uso
+
+func main() {
+    fd, err := os.Open(&quot;settings.xml&quot;)
+    if err != nil {
+        panic(err)
+    }
+    ch := make(chan xml.Token)
+    go parse(fd, ch)
+    for element := range ch {
+        switch element := element.(type) {
+        case xml.StartElement:
+            fmt.Println(element.Name)
+        case xml.EndElement:
+            fmt.Println(&quot;&lt;&quot; + element.Name.Local)
+        case ParserError:
+            fmt.Println(&quot;Errroooooooooor&quot;)
+        }
+    }
+}
+</code></pre>
+
+<p>Esta versión no solo es mucho más corta sino que además utilizamos una
+<em>gorutina</em> para procesar el <strong>XML</strong> y un canal para la comunicación entre el
+productor y el consumidor de los eventos.</p>
+
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+    
+       © Copyright 2017 <i class="fa fa-heart" aria-hidden="true"></i> Yoandy Rodríguez Martínez
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="http://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
+<script src="http://yorodm.github.io/js/main.js"></script>
+<script src="http://yorodm.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+    </body>
+</html>

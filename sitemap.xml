@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>http://yorodm.github.io/blog/golang-xml-sax/</loc>
+    <lastmod>2017-11-01T13:09:08-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://yorodm.github.io/blog/desarrollo-emacs-go/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
   </url>
@@ -23,19 +28,18 @@
   </url>
   
   <url>
-    <loc>http://yorodm.github.io/projects/</loc>
-    <lastmod>2017-06-16T00:00:00+00:00</lastmod>
+    <loc>http://yorodm.github.io/about/</loc>
   </url>
   
   <url>
     <loc>http://yorodm.github.io/</loc>
-    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
+    <lastmod>2017-11-01T13:09:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://yorodm.github.io/blog/</loc>
-    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
+    <lastmod>2017-11-01T13:09:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -64,13 +68,13 @@
   
   <url>
     <loc>http://yorodm.github.io/tags/go/</loc>
-    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
+    <lastmod>2017-11-01T13:09:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>http://yorodm.github.io/tags/golang/</loc>
-    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
+    <lastmod>2017-11-01T13:09:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -93,18 +97,6 @@
   </url>
   
   <url>
-    <loc>http://yorodm.github.io/tags/projects/</loc>
-    <lastmod>2017-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://yorodm.github.io/categories/projects/</loc>
-    <lastmod>2017-06-16T00:00:00+00:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>http://yorodm.github.io/tags/proxmox/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
@@ -113,6 +105,12 @@
   <url>
     <loc>http://yorodm.github.io/tags/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://yorodm.github.io/tags/xml/</loc>
+    <lastmod>2017-11-01T13:09:08-04:00</lastmod>
     <priority>0</priority>
   </url>
   

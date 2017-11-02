@@ -1,4 +1,4 @@
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-US">
 	<head>
 		<meta charset="utf-8">
@@ -7,7 +7,7 @@
 		<meta name="author" content="Yoandy Rodríguez Martínez">
 		<meta name="description" content="Software, la vida y todo lo demás">
 		<meta name="generator" content="Hugo 0.24-DEV" />
-		<title>Emacs &middot; /home/yorodm</title>
+		<title>Tags &middot; /home/yorodm</title>
 		<link rel="shortcut icon" href="http://yorodm.github.io/images/favicon.ico">
 		<link rel="stylesheet" href="http://yorodm.github.io/css/style.css">
 		<link rel="stylesheet" href="http://yorodm.github.io/css/highlight.css">
@@ -22,8 +22,8 @@
 		
 	</head>
 
-    <body>
-    <nav class="main-nav">
+   <body>
+      <nav class="main-nav">
     
     
         <a href='http://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
@@ -39,7 +39,7 @@
     
 </nav>
 
-    <div class="profile">
+      <div class="profile">
     <section id="wrapper">
         <header id="header">
             <a href='http://yorodm.github.io/about'>
@@ -52,23 +52,48 @@
 </div>
 
 
-    <section id="wrapper" class="home">
-        
-        <div class="archive">
-            <h3>2017</h3>
-            <ul>
-                    
-                    <div class="post-item">
-                        <div class="post-time">19 Oct</div>
-                        <a href="http://yorodm.github.io/blog/hugo-y-emacs/" class="post-link">
-                            Hugo y Emacs
-                        </a>
-                    </div>
-                    
-            </ul>
-        </div>
-        
-        <footer id="footer">
+
+       <section id="wrapper" class="tags">
+           <div class="page-tags" id="tags">
+               
+                <span class="tags">
+                    <a href="/tags/blog" rel="1">blog(1)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/emacs" rel="2">emacs(2)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/go" rel="2">go(2)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/golang" rel="2">golang(2)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/herramientas" rel="1">herramientas(1)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/linux" rel="1">linux(1)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/proxmox" rel="1">proxmox(1)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/xml" rel="1">xml(1)</a>
+                </span>
+               
+                <span class="tags">
+                    <a href="/tags/zfs" rel="1">zfs(1)</a>
+                </span>
+               
+           </div>
+           <footer id="footer">
     
         <div id="social">
 
@@ -101,12 +126,9 @@
     </p>
 </footer>
 
-    </section>
+       </section>
 
-    <div class="dd">
-    </div>
-
-    <script src="http://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
+       <script src="http://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
 <script src="http://yorodm.github.io/js/main.js"></script>
 <script src="http://yorodm.github.io/js/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
@@ -117,5 +139,17 @@
 
 
 
-    </body>
+       <script src="http://yorodm.github.io/js/jquery.tagcloud.js"></script>
+<script type="text/javascript">
+$.fn.tagcloud.defaults = {
+  size: {start: 10, end: 16, unit: 'pt'},
+  color: {start: '#bbb', end: '#f52'}
+};
+
+$(function () {
+  $('#tags a').tagcloud();
+});
+</script>
+
+   </body>
 </html>

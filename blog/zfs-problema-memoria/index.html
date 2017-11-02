@@ -1,104 +1,98 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Yoandy Rodriguez Martinez" />
-        <meta name="description" content="My takes on software development and life in general">
-        <link rel="shortcut icon" type="image/x-icon" href="http://yorodm.github.io/img/favicon.ico">
-        <title>ZFS y el problema de la memoria</title>
-        <meta name="generator" content="Hugo 0.24-DEV" />
-        <link rel="stylesheet" type="text/css" href="http://yorodm.github.io/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="http://yorodm.github.io/css/fa-min.css" />
-        <link rel="stylesheet" type="text/css" href="http://yorodm.github.io/css/main.css" />
-        
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Yoandy Rodríguez Martínez">
+		<meta name="description" content="Software, la vida y todo lo demás">
+		<meta name="generator" content="Hugo 0.24-DEV" />
+		<title>ZFS y el problema de la memoria &middot; /home/yorodm</title>
+		<link rel="shortcut icon" href="http://yorodm.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="http://yorodm.github.io/css/style.css">
+		<link rel="stylesheet" href="http://yorodm.github.io/css/highlight.css">
+		
 
-        
-    </head>
+		
+		<link rel="stylesheet" href="http://yorodm.github.io/css/font-awesome.min.css">
+		
 
-<body>
-    <div id="wrap">
+		
+		<link href="http://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+		
+	</head>
 
-        
-        <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="http://yorodm.github.io/"><pre>/home/yorodm</pre></a>
-    </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-      
-        
-          <li><a href="/blog/"><pre>blog</pre></a></li>
-        
-          <li><a href="/projects/"><pre>projects</pre></a></li>
-        
-      
-      </ul>
-    </div>
-  </div>
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='http://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='http://yorodm.github.io/blog'>archivo</a>
+    <a href='http://yorodm.github.io/tags'>etiquetas</a>
+    <a href='http://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="http://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
 </nav>
 
-        
-        <div class="container">
-            <div class="blog-post">
-                <h3>
-                    <strong><a href="http://yorodm.github.io/blog/zfs-problema-memoria/">ZFS y el problema de la memoria</a></strong>
-                </h3>
-            </div>
-            <div class="blog-title">
-                <h4>
-                    2017-10-24
-                    &nbsp;&nbsp;
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        ZFS y el problema de la memoria
+                    </h1>
+                    <h2 class="headline">
+                        24 de Oct 2017
+                    · 538 palabras 
+                    · 3 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="http://yorodm.github.io/tags/zfs">zfs</a>
+                          
+                              <a href="http://yorodm.github.io/tags/linux">linux</a>
+                          
+                              <a href="http://yorodm.github.io/tags/proxmox">proxmox</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
                     
-                    <span class="label">
-                        <a href='/tags/zfs'>zfs</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/linux'>linux</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/proxmox'>proxmox</a>
-                    </span>
-                    
-                </h4>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="blogpost">
-                        
 
 <h1 id="zfs-y-el-problema-de-la-memoria">ZFS y el problema de la memoria</h1>
 
-<p><code>ZFS</code> lleva ya unos años en tierras de <a href="http://www.open-zfs.org/">Linux</a> y cada
+<p><strong>ZFS</strong> lleva ya unos años en tierras de <a href="http://www.open-zfs.org/">Linux</a> y cada
 vez que tengo un chance lo recomiendo a alguno de mis amigos <em>sysadmins</em> junto
 con un grupito de notas que he tomado acerca de como trabajar con el
 <em>filesystem</em>, optimizar alguna que otra <em>feature</em> y algunos casos de estudio.</p>
 
 <p>Después de notar que en la mayoría de los casos, los aconsejados regresaban al
-castigo de <code>LVM</code> me dediqué a investigar las causas del rechazo y como
+castigo de <strong>LVM</strong> me dediqué a investigar las causas del rechazo y como
 enmendarlas.</p>
 
 <h1 id="pero-cuál-es-el-problema">Pero ¿cuál es el problema?</h1>
 
 <p>Descartado el factor &ldquo;resistencia al cambio&rdquo; (los linuxeros solo temen a cambiar
-de distribución) la mayoría de los problemas relacionados con <code>ZFS</code> (entre las
+de distribución) la mayoría de los problemas relacionados con <strong>ZFS</strong> (entre las
 personas a las que le pregunté) están relacionados con uso y/o configuracíon
 incorrecta (también conocido como: &ldquo;No leiste las notas&rdquo;). Los 4 más comúnes
 fueron:</p>
 
 <ol>
-<li>Poner <code>/boot</code> o la <code>swap</code> en un volumen <code>ZFS</code>.</li>
-<li>No entender la diferencia entre <code>clone</code> y <code>snapshot</code>.</li>
+<li>Poner <strong>/boot</strong> o la <strong>swap</strong> en un volumen <strong>ZFS</strong>.</li>
+<li>No entender la diferencia entre <strong>clone</strong> y <strong>snapshot</strong>.</li>
 <li>El consumo de memoria.</li>
-<li>Problemas con <code>RAID</code> (tanto el de hardware como <code>RAIDZ</code>).</li>
+<li>Problemas con <strong>RAID</strong> (tanto el de hardware como <strong>RAIDZ</strong>).</li>
 </ol>
 
 <p>Comparando mis problemas locales con los globales (gracias a <a href="http://trends.google.com">Google
@@ -108,7 +102,7 @@ ranking y me dije: &ldquo;Esto va al blog&rdquo;.</p>
 <h1 id="como-hacer-que-zfs-se-porte-bien">Como hacer que ZFS se porte bien.</h1>
 
 <p>Lo primero que le recomiendo a todo el mundo es que se lea un buen tutorial. Si
-vienes de el mundo <code>ext4</code> + <code>LVM</code>, la filosofía de <code>ZFS</code> te puede parecer
+vienes de el mundo <strong>ext4</strong> + <strong>LVM</strong>, la filosofía de <strong>ZFS</strong> te puede parecer
 extraña y deberías tener una idea de las semejanzas y diferencias en el modo de
 operar con cada uno. En dependencia del nivel de inglés de cada cual
 <a href="http://www.open-zfs.org/wiki/Performance_tuning">aquí</a> hay una buena
@@ -116,18 +110,18 @@ referencia sobre todos los parámetros de optimización e incluso casos de
 estudio.</p>
 
 <p>El &ldquo;problema&rdquo; del uso de memoria no es nada más que el método de caché utilizado
-en <code>ZFS</code>. La mayoría de los <em>filesystems</em> utilizan alguna variante de <code>LRU</code>, que
-en este caso fue sustituido por el <em>Adaptive Replacement Cache</em> o <code>ARC</code>. El
-<code>ARC</code> mejora mucho el rendimiento, pero consume <em>cantidades masivas</em> de <code>RAM</code>. A
+en <strong>ZFS</strong>. La mayoría de los <em>filesystems</em> utilizan alguna variante de <strong>LRU</strong>, que
+en este caso fue sustituido por el <em>Adaptive Replacement Cache</em> o <strong>ARC</strong>. El
+<strong>ARC</strong> mejora mucho el rendimiento, pero consume <em>cantidades masivas</em> de <strong>RAM</strong>. A
 pesar de esto raras veces es <strong>necesario</strong> configurar algo de aquí, aunque la
-memoria se muestra como ocupada (por ejemplo al utilizar <code>free</code>) es un caché y
+memoria se muestra como ocupada (por ejemplo al utilizar <strong>free</strong>) es un caché y
 si existiera la necesidad sería liberada por el kernel. En caso de que no sepas
-como está configurado tu <code>ARC</code> puedes simplemente:</p>
+como está configurado tu <strong>ARC</strong> puedes simplemente:</p>
 
 <pre><code>cat /sys/module/zfs/parameters/zfs_arc_max
 </code></pre>
 
-<p>Un valor de 0 indica que la mitad de la <code>RAM</code> disponible se utilizará para
+<p>Un valor de 0 indica que la mitad de la <strong>RAM</strong> disponible se utilizará para
 caché. Para cambiar este valor puedes hacer lo siguiente:</p>
 
 <pre><code># Configura la cantidad de memoria máxima disponible para ARC
@@ -136,12 +130,12 @@ echo &lt;numero en bytes&gt; &gt;&gt; /sys/module/zfs/parameters/zfs_arc_max
 echo 3 &gt; /proc/sys/vm/drop_caches
 </code></pre>
 
-<p>Por último y no por ello menos importante, <code>RAID</code>. <code>RAIDZ</code> es una implementación
-de <code>RAID</code> basada en software. Si estás utilizando <code>ZFS</code> es recomendable que
-utilices <code>RAIDZ</code> en vez de una solución por hardware. Si tu servidor require que
-tengas <code>RAID</code> por hardware crea X unidades <code>RAID0</code> y añádelas a un <code>zpool</code>
-configurado con <code>RAIDZ</code>. Recuerda: <strong>nunca</strong> pongas <code>RAIDZ</code> sobre discos que
-tienen <code>RAID</code> mayor que 0. Repito: <strong>NUNCA</strong>.</p>
+<p>Por último y no por ello menos importante, <strong>RAID</strong>. <strong>RAIDZ</strong> es una implementación
+de <strong>RAID</strong> basada en software. Si estás utilizando <strong>ZFS</strong> es recomendable que
+utilices <strong>RAIDZ</strong> en vez de una solución por hardware. Si tu servidor require que
+tengas <strong>RAID</strong> por hardware crea X unidades <strong>RAID0</strong> y añádelas a un <strong>zpool</strong>
+configurado con <strong>RAIDZ</strong>. Recuerda: <strong>nunca</strong> pongas <strong>RAIDZ</strong> sobre discos que
+tienen <strong>RAID</strong> mayor que 0. Repito: <strong>NUNCA</strong>.</p>
 
 <h1 id="para-ir-empezando-con-zfs">Para ir empezando con ZFS.</h1>
 
@@ -153,38 +147,60 @@ tienen <code>RAID</code> mayor que 0. Repito: <strong>NUNCA</strong>.</p>
 <li><a href="https://wiki.gentoo.org/wiki/ZFS">Wiki de Gentoo sobre ZFS</a></li>
 </ol>
 
-                        <hr>
-                        <div class="related-posts">
-                            <h5>Relacionados</h5>
-                            
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-        </div>
-        
-    </div>
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
 
     
-    <footer>
-  <div id="footer">
-    <div class="container">
-        <p class="text-muted">&copy; Yoandy Rodríguez Martínez. Generado con <a href="https://gohugo.io/">Hugo</a> y <a href="">GNU Emacs</a></p>
-    </div>
-  </div>
+    <p class="small">
+    
+       © Copyright 2017 <i class="fa fa-heart" aria-hidden="true"></i> Yoandy Rodríguez Martínez
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
 </footer>
-<div class="footer"></div>
 
+        </section>
 
-<script src="http://yorodm.github.io/js/jquery.min.js"></script>
-<script src="http://yorodm.github.io/js/bootstrap.min.js"></script>
-<script src="http://yorodm.github.io/js/docs.min.js"></script>
+        <script src="http://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
 <script src="http://yorodm.github.io/js/main.js"></script>
+<script src="http://yorodm.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
-<script src="http://yorodm.github.io/js/ie10-viewport-bug-workaround.js"></script>
 
 
 
-</body>
+
+
+
+    </body>
 </html>

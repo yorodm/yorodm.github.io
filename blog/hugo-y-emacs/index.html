@@ -1,86 +1,80 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en-US">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="author" content="Yoandy Rodriguez Martinez" />
-        <meta name="description" content="My takes on software development and life in general">
-        <link rel="shortcut icon" type="image/x-icon" href="http://yorodm.github.io/img/favicon.ico">
-        <title>Hugo y Emacs</title>
-        <meta name="generator" content="Hugo 0.24-DEV" />
-        <link rel="stylesheet" type="text/css" href="http://yorodm.github.io/css/bootstrap.min.css" />
-        <link rel="stylesheet" type="text/css" href="http://yorodm.github.io/css/fa-min.css" />
-        <link rel="stylesheet" type="text/css" href="http://yorodm.github.io/css/main.css" />
-        
-        <!--[if lt IE 9]>
-                <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-                <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-            <![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="author" content="Yoandy Rodríguez Martínez">
+		<meta name="description" content="Software, la vida y todo lo demás">
+		<meta name="generator" content="Hugo 0.24-DEV" />
+		<title>Hugo y Emacs &middot; /home/yorodm</title>
+		<link rel="shortcut icon" href="http://yorodm.github.io/images/favicon.ico">
+		<link rel="stylesheet" href="http://yorodm.github.io/css/style.css">
+		<link rel="stylesheet" href="http://yorodm.github.io/css/highlight.css">
+		
 
-        
-    </head>
+		
+		<link rel="stylesheet" href="http://yorodm.github.io/css/font-awesome.min.css">
+		
 
-<body>
-    <div id="wrap">
+		
+		<link href="http://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+		
+	</head>
 
-        
-        <nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-        <a class="navbar-brand" href="http://yorodm.github.io/"><pre>/home/yorodm</pre></a>
-    </div>
-    <div id="navbar">
-      <ul class="nav navbar-nav navbar-right">
-      
-        
-          <li><a href="/blog/"><pre>blog</pre></a></li>
-        
-          <li><a href="/projects/"><pre>projects</pre></a></li>
-        
-      
-      </ul>
-    </div>
-  </div>
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='http://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='http://yorodm.github.io/blog'>archivo</a>
+    <a href='http://yorodm.github.io/tags'>etiquetas</a>
+    <a href='http://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="http://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
 </nav>
 
-        
-        <div class="container">
-            <div class="blog-post">
-                <h3>
-                    <strong><a href="http://yorodm.github.io/blog/hugo-y-emacs/">Hugo y Emacs</a></strong>
-                </h3>
-            </div>
-            <div class="blog-title">
-                <h4>
-                    2017-10-19
-                    &nbsp;&nbsp;
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Hugo y Emacs
+                    </h1>
+                    <h2 class="headline">
+                        19 de Oct 2017
+                    · 362 palabras 
+                    · 2 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="http://yorodm.github.io/tags/emacs">emacs</a>
+                          
+                              <a href="http://yorodm.github.io/tags/blog">blog</a>
+                          
+                              <a href="http://yorodm.github.io/tags/herramientas">herramientas</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                <section id="post-body">
                     
-                    <span class="label">
-                        <a href='/tags/emacs'>emacs</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/blog'>blog</a>
-                    </span>
-                    
-                    <span class="label">
-                        <a href='/tags/herramientas'>herramientas</a>
-                    </span>
-                    
-                </h4>
-            </div>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="blogpost">
-                        
 
 <h1 id="hugo-emacs-y-el-nuevo-blog">Hugo, Emacs y el nuevo blog</h1>
 
 <p>Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las
 bondades de <a href="https://pages.github.com/">Github Pages</a> y
 <a href="http://gohugo.io">Hugo</a> como generador de sitios estático. En lo que a
-generador de sitios estáticos se refiere <code>Hugo</code> es bastante sencillo de operar,
+generador de sitios estáticos se refiere <strong>Hugo</strong> es bastante sencillo de operar,
 por lo que inicialmente pensé en hacerme unos scripts para organizar el
 <em>workflow</em> de trabajo de la siguiente manera:</p>
 
@@ -94,32 +88,32 @@ por lo que inicialmente pensé en hacerme unos scripts para organizar el
 <em>master</em> tanto para el repositorio donde guardo las fuentes del sitio como para
 el que queda publicado.</p>
 
-<p>Estaba muy emocionado escribiendo código en <code>Python</code> cuando recordé que <code>Emacs</code>
-trae <strong>su propio servidor http</strong> en <code>simple-httpd.el</code> y unos cuantos paquetes
-para interactuar con <code>Git</code>. Así surgió <code>hugo-blog-mode.el</code></p>
+<p>Estaba muy emocionado escribiendo código en <strong>Python</strong> cuando recordé que <strong>Emacs</strong>
+trae <em>su propio servidor http</em> en <strong>simple-httpd.el</strong> y unos cuantos paquetes
+para interactuar con <strong>Git</strong>. Así surgió <em>hugo-blog-mode.el</em></p>
 
 <h2 id="hugo-en-modo-sencillo">Hugo en modo sencillo</h2>
 
-<p>Antes de arrancar a escribir <code>Emacs Lisp</code> me puse a revisar <code>MELPA</code> a ver si
-alguien había tenido la misma idea que yo y encontré a <code>easy-hugo.el</code>, que está
+<p>Antes de arrancar a escribir <strong>Emacs Lisp</strong> me puse a revisar <strong>MELPA</strong> a ver si
+alguien había tenido la misma idea que yo y encontré a <em>easy-hugo.el</em>, que está
 genial, pero viene pensado para personas super publicadoras que tienen varios
 blogs y los actualizan con mucha frecuencia o algo así. En fin, que tiene un
 público objetivo en el cual no me incluyo. La idea siempre fue trasladar el
 flujo de trabajo que ya tenía en mente a dos o tres comanditos, ponerle dos o
-tres atajos de teclado y utilizar <code>Magit</code> lo menos posible en el proceso.</p>
+tres atajos de teclado y utilizar <strong>Magit</strong> lo menos posible en el proceso.</p>
 
 <p>El resultado quedo en un archivito de unas 200 líneas de código con tres comandos.</p>
 
 <ol>
-<li><code>hugo-new-post</code>, que se explica solito.</li>
-<li><code>hugo-blog-preview</code>, que mueve todo lo que esté haciendo a la rama <em>develop</em>,
+<li><strong>hugo-new-post</strong>, que se explica solito.</li>
+<li><strong>hugo-blog-preview</strong>, que mueve todo lo que esté haciendo a la rama <em>develop</em>,
 regenera el sitio utilizando una URL local y lanza el navegador para ver como
 va quedando.</li>
-<li><code>hugo-blog-publish</code>, que regenra el sitio utilizando la URL final, hace
+<li><strong>hugo-blog-publish</strong>, que regenra el sitio utilizando la URL final, hace
 <em>commit</em> en <em>develop</em> y me mezcla todo en master.</li>
 </ol>
 
-<p>Como estoy utilizando submódulos de <code>Git</code> para mantener los repositorios asi:</p>
+<p>Como estoy utilizando submódulos de <strong>Git</strong> para mantener los repositorios así:</p>
 
 <pre><code>sitio/ (fuentes del sitio)
    |--- content/
@@ -129,53 +123,62 @@ va quedando.</li>
    |--- public/ (submódulo yorodm.guthub.io)
 </code></pre>
 
-<p><code>hugo-blog-publish</code> se encarga de hacer los <em>commits</em> y los <em>merges</em> y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).</p>
+<p><strong>hugo-blog-publish</strong> se encarga de hacer los <em>commits</em> y los <em>merges</em> y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).</p>
 
-                        <hr>
-                        <div class="related-posts">
-                            <h5>Relacionados</h5>
-                            
-                            <div class="row">
-                                <div class="col-sm-4 col-md-4 col-lg-4">
-                                    <h6 style="text-align: right">
-                                        2017-10-26
-                                    </h6>
-                                </div>
-                                <div class="col-sm-8 col-md-8 col-lg-8">
-                                    <h6 style="text-align: left">
-                                        <strong><a href="/blog/desarrollo-emacs-go/">Desarrollando con Emacs y Go</a></strong>
-                                    </h6>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-                <hr>
-            </div>
-        </div>
-        
-    </div>
+                </section>
+            </article>
+
+            
+
+            
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
 
     
-    <footer>
-  <div id="footer">
-    <div class="container">
-        <p class="text-muted">&copy; Yoandy Rodríguez Martínez. Generado con <a href="https://gohugo.io/">Hugo</a> y <a href="">GNU Emacs</a></p>
-    </div>
-  </div>
+    <p class="small">
+    
+       © Copyright 2017 <i class="fa fa-heart" aria-hidden="true"></i> Yoandy Rodríguez Martínez
+    
+    </p>
+    <p class="small">
+        Powered by <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
 </footer>
-<div class="footer"></div>
 
+        </section>
 
-<script src="http://yorodm.github.io/js/jquery.min.js"></script>
-<script src="http://yorodm.github.io/js/bootstrap.min.js"></script>
-<script src="http://yorodm.github.io/js/docs.min.js"></script>
+        <script src="http://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
 <script src="http://yorodm.github.io/js/main.js"></script>
+<script src="http://yorodm.github.io/js/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
-<script src="http://yorodm.github.io/js/ie10-viewport-bug-workaround.js"></script>
 
 
 
-</body>
+
+
+
+    </body>
 </html>
