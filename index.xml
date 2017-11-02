@@ -2,61 +2,61 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>/home/yorodm</title>
-    <link>http://yorodm.github.io/</link>
+    <link>https://yorodm.github.io/</link>
     <description>Recent content on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 02 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="http://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Parser SAX en Golang</title>
-      <link>http://yorodm.github.io/blog/golang-xml-sax/</link>
+      <link>https://yorodm.github.io/blog/golang-xml-sax/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://yorodm.github.io/blog/golang-xml-sax/</guid>
+      <guid>https://yorodm.github.io/blog/golang-xml-sax/</guid>
       <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej.</description>
     </item>
     
     <item>
       <title>Desarrollando con Emacs y Go</title>
-      <link>http://yorodm.github.io/blog/desarrollo-emacs-go/</link>
+      <link>https://yorodm.github.io/blog/desarrollo-emacs-go/</link>
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
-      <guid>http://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
+      <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
       <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
     
     <item>
       <title>ZFS y el problema de la memoria</title>
-      <link>http://yorodm.github.io/blog/zfs-problema-memoria/</link>
+      <link>https://yorodm.github.io/blog/zfs-problema-memoria/</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>http://yorodm.github.io/blog/zfs-problema-memoria/</guid>
+      <guid>https://yorodm.github.io/blog/zfs-problema-memoria/</guid>
       <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
 Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
     </item>
     
     <item>
       <title>Hugo y Emacs</title>
-      <link>http://yorodm.github.io/blog/hugo-y-emacs/</link>
+      <link>https://yorodm.github.io/blog/hugo-y-emacs/</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>http://yorodm.github.io/blog/hugo-y-emacs/</guid>
+      <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
       <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
  Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
     </item>
     
     <item>
       <title>Nuevo blog</title>
-      <link>http://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</link>
+      <link>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</link>
       <pubDate>Mon, 16 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>http://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</guid>
+      <guid>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</guid>
       <description>¡Hola! ¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y actualizar regularmente) un blog. En esta ocasión decidí alejarme de plataformas más complejas para probar GitHub Pages, Hugo como generador de sitios estáticos, Markdown y claro está Emacs.
 Como siempre hablaré de temas relacionados con el desarrollo de software, software libre, lenguajes de programación y mis experiencias (buenas o malas) interactuando con el mundo del software.</description>
     </item>
