@@ -8,17 +8,17 @@
         <meta name="description" content="Software, la vida y todo lo demás">
         <meta name="generator" content="Hugo 0.30.2" />
         <title>Desarrollando con Emacs y Go &middot; /home/yorodm</title>
-        <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
-        <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
-        <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+        <link rel="shortcut icon" href="https://yorodm.gthub.io/images/favicon.ico">
+        <link rel="stylesheet" href="https://yorodm.gthub.io/css/style.css">
+        <link rel="stylesheet" href="https://yorodm.gthub.io/css/syntax.css">
         
 
         
-        <link rel="stylesheet" href="https://yorodm.github.io/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://yorodm.gthub.io/css/font-awesome.min.css">
         
 
         
-        <link href="https://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+        <link href="https://yorodm.gthub.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
         
     </head>
 
@@ -26,16 +26,16 @@
        <nav class="main-nav">
     
     
-        <a href='https://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+        <a href='https://yorodm.gthub.io/'> <span class="arrow">←</span>inicio</a>
     
-    <a href='https://yorodm.github.io/blog'>archivo</a>
-    <a href='https://yorodm.github.io/tags'>etiquetas</a>
-    <a href='https://yorodm.github.io/about'>acerca de</a>
+    <a href='https://yorodm.gthub.io/blog'>archivo</a>
+    <a href='https://yorodm.gthub.io/tags'>etiquetas</a>
+    <a href='https://yorodm.gthub.io/about'>acerca de</a>
 
     
 
     
-        <a class="symbol" href="https://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+        <a class="symbol" href="https://yorodm.gthub.io/index.xml"><i class="fa fa-rss"></i> </a>
     
 </nav>
 
@@ -48,17 +48,17 @@
                     </h1>
                     <h2 class="headline">
                         26 de Oct 2017
-                    · 461 palabras 
+                    · 459 palabras 
                     · 3 minutos apróx. 
                       <span class="tags">
                       
                       
                           
-                              <a href="https://yorodm.github.io/tags/emacs">emacs</a>
+                              <a href="https://yorodm.gthub.io/tags/emacs">emacs</a>
                           
-                              <a href="https://yorodm.github.io/tags/go">go</a>
+                              <a href="https://yorodm.gthub.io/tags/go">go</a>
                           
-                              <a href="https://yorodm.github.io/tags/golang">golang</a>
+                              <a href="https://yorodm.gthub.io/tags/golang">golang</a>
                           
                       
                       
@@ -103,9 +103,8 @@ un modo sencillo.</p>
 
 <h3 id="el-lado-de-emacs">El lado de Emacs</h3>
 
-<p>En mi lista de paquetes (uso nada más que <a href="http://melpa.org/packages/">Melpa
-estable</a>) hay cerca de 15 paquetes que tienen que
-ver con desarrollo en <strong>Go</strong>. En lo personal no necesito mucho para trabajar en un
+<p>En mi lista de paquetes (uso nada más que <a href="http://melpa.org/packages/">Melpa estable</a>) hay cerca de 15 paquetes que tienen que ver con
+desarrollo en <strong>Go</strong>. En lo personal no necesito mucho para trabajar en un
 lenguaje. Las funcionalidades que adiciono son:</p>
 
 <ol>
@@ -117,9 +116,7 @@ lenguaje. Las funcionalidades que adiciono son:</p>
 <li>Integración con <strong>projectile</strong> vía <strong>go-projectile</strong></li>
 </ol>
 
-<p>Todos los paquetes es recomendable instalarlos vía <strong>package-install</strong> con la
-excepción de <strong>company-go</strong> que está incluido en los fuentes de la herramienta
-<strong>gocode</strong> y lo cargo desde ahí para evitar conflictos de versiones.</p>
+<p>Todos los paquetes es recomendable instalarlos vía <strong>package-install</strong> con la excepción de <strong>company-go</strong> que está incluido en los fuentes de la herramienta <strong>gocode</strong> y lo cargo desde ahí para evitar conflictos de versiones.</p>
 
 <h3 id="paso-final">Paso final.</h3>
 
@@ -135,7 +132,7 @@ campiones, solo queda:</p>
 una tarea trivial. Si eres relativamente nuevo en <strong>Emacs</strong> hay grandes
 posibilidades de que no sepas como hacer lo segundo, no importa, aquí va mi
 configuración (sin atajos de teclado, que ya eso es cosa muy personal).</p>
-<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; Si estás utilizando correctamente tu gestor de paquetes en Emacs</span>
+<div class="highlight"><pre class="chroma"><code class="language-emacs-lisp" data-lang="emacs-lisp"><span class="c1">;; Si estás utilizando correctamente tu gestor de paquetes</span>
 <span class="c1">;; no tienes que adicionar las lineas de los  &#39;require&#39;</span>
 <span class="c1">;; Adicionar el backend de Go a company</span>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;company</span><span class="p">)</span>
@@ -146,14 +143,15 @@ configuración (sin atajos de teclado, que ya eso es cosa muy personal).</p>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-guru</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-errcheck</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;go-projectile</span><span class="p">)</span>
-<span class="c1">;; Añadimos un hook para que cuando se active el modo se configuren todas</span>
-<span class="c1">;; estas cosas</span>
-<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
-                         <span class="p">(</span><span class="nv">company-mode</span><span class="p">)</span>
-                         <span class="p">(</span><span class="nv">projectile-mode</span><span class="p">)</span>
-                         <span class="p">(</span><span class="nv">go-eldoc-setup</span><span class="p">)</span>
-                         <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;before-save-hook</span> <span class="ss">&#39;gofmt-before-save</span><span class="p">)</span>
-                         <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;goimports&#34;</span><span class="p">)))</span></code></pre></div>
+<span class="c1">;; Añadimos un hook para que cuando se active el modo</span>
+<span class="c1">;; se configuren todas estas cosas</span>
+<span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span>
+    <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+        <span class="p">(</span><span class="nv">company-mode</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">projectile-mode</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">go-eldoc-setup</span><span class="p">)</span>
+        <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;before-save-hook</span> <span class="ss">&#39;gofmt-before-save</span><span class="p">)</span>
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;goimports&#34;</span><span class="p">)))</span></code></pre></div>
 <p>Y&hellip;ya está. Hemos creado un <strong>IDE</strong> para trabajar en <strong>Go</strong> sin salir de la
 comodidad de nuestro editor favorito.</p>
 
@@ -202,8 +200,8 @@ comodidad de nuestro editor favorito.</p>
 
         </section>
 
-        <script src="https://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
-<script src="https://yorodm.github.io/js/main.js"></script>
+        <script src="https://yorodm.gthub.io/js/jquery-2.2.4.min.js"></script>
+<script src="https://yorodm.gthub.io/js/main.js"></script>
 
 
 

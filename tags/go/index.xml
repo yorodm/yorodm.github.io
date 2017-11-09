@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Go on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/go/</link>
+    <link>https://yorodm.gthub.io/tags/go/</link>
     <description>Recent content in Go on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 02 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://yorodm.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://yorodm.gthub.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Parser SAX en Golang</title>
-      <link>https://yorodm.github.io/blog/golang-xml-sax/</link>
+      <link>https://yorodm.gthub.io/blog/golang-xml-sax/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/golang-xml-sax/</guid>
+      <guid>https://yorodm.gthub.io/blog/golang-xml-sax/</guid>
       <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej.</description>
     </item>
     
     <item>
       <title>Desarrollando con Emacs y Go</title>
-      <link>https://yorodm.github.io/blog/desarrollo-emacs-go/</link>
+      <link>https://yorodm.gthub.io/blog/desarrollo-emacs-go/</link>
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
+      <guid>https://yorodm.gthub.io/blog/desarrollo-emacs-go/</guid>
       <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
