@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Zfs on /home/yorodm</title>
-    <link>https://yorodm.gthub.io/tags/zfs/</link>
+    <link>https://yorodm.gthub.io/tags/zfs.html</link>
     <description>Recent content in Zfs on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>ZFS y el problema de la memoria</title>
-      <link>https://yorodm.gthub.io/blog/zfs-problema-memoria/</link>
+      <link>https://yorodm.gthub.io/blog/zfs-problema-memoria.html</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/blog/zfs-problema-memoria/</guid>
+      <guid>https://yorodm.gthub.io/blog/zfs-problema-memoria.html</guid>
       <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
 Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
     </item>

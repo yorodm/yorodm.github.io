@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on /home/yorodm</title>
-    <link>https://yorodm.gthub.io/tags/</link>
+    <link>https://yorodm.gthub.io/tags.html</link>
     <description>Recent content in Tags on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,109 +13,109 @@
     
     <item>
       <title>Blog</title>
-      <link>https://yorodm.gthub.io/tags/blog/</link>
+      <link>https://yorodm.gthub.io/tags/blog.html</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/blog/</guid>
+      <guid>https://yorodm.gthub.io/tags/blog.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Emacs</title>
-      <link>https://yorodm.gthub.io/tags/emacs/</link>
+      <link>https://yorodm.gthub.io/tags/emacs.html</link>
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/emacs/</guid>
+      <guid>https://yorodm.gthub.io/tags/emacs.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Go</title>
-      <link>https://yorodm.gthub.io/tags/go/</link>
+      <link>https://yorodm.gthub.io/tags/go.html</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/go/</guid>
+      <guid>https://yorodm.gthub.io/tags/go.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Golang</title>
-      <link>https://yorodm.gthub.io/tags/golang/</link>
+      <link>https://yorodm.gthub.io/tags/golang.html</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/golang/</guid>
+      <guid>https://yorodm.gthub.io/tags/golang.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Herramientas</title>
-      <link>https://yorodm.gthub.io/tags/herramientas/</link>
+      <link>https://yorodm.gthub.io/tags/herramientas.html</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/herramientas/</guid>
+      <guid>https://yorodm.gthub.io/tags/herramientas.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Linux</title>
-      <link>https://yorodm.gthub.io/tags/linux/</link>
+      <link>https://yorodm.gthub.io/tags/linux.html</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/linux/</guid>
+      <guid>https://yorodm.gthub.io/tags/linux.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Microservicios</title>
-      <link>https://yorodm.gthub.io/tags/microservicios/</link>
+      <link>https://yorodm.gthub.io/tags/microservicios.html</link>
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/microservicios/</guid>
+      <guid>https://yorodm.gthub.io/tags/microservicios.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Nameko</title>
-      <link>https://yorodm.gthub.io/tags/nameko/</link>
+      <link>https://yorodm.gthub.io/tags/nameko.html</link>
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/nameko/</guid>
+      <guid>https://yorodm.gthub.io/tags/nameko.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Proxmox</title>
-      <link>https://yorodm.gthub.io/tags/proxmox/</link>
+      <link>https://yorodm.gthub.io/tags/proxmox.html</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/proxmox/</guid>
+      <guid>https://yorodm.gthub.io/tags/proxmox.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Python</title>
-      <link>https://yorodm.gthub.io/tags/python/</link>
+      <link>https://yorodm.gthub.io/tags/python.html</link>
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/python/</guid>
+      <guid>https://yorodm.gthub.io/tags/python.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Xml</title>
-      <link>https://yorodm.gthub.io/tags/xml/</link>
+      <link>https://yorodm.gthub.io/tags/xml.html</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/xml/</guid>
+      <guid>https://yorodm.gthub.io/tags/xml.html</guid>
       <description></description>
     </item>
     
     <item>
       <title>Zfs</title>
-      <link>https://yorodm.gthub.io/tags/zfs/</link>
+      <link>https://yorodm.gthub.io/tags/zfs.html</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/tags/zfs/</guid>
+      <guid>https://yorodm.gthub.io/tags/zfs.html</guid>
       <description></description>
     </item>
     
