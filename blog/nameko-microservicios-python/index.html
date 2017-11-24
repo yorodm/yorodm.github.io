@@ -158,17 +158,17 @@ podemos utilizar los servicios desde, por ejemplo, un modelo en <strong>Odoo</st
 
 <span class="c1"># Todas las cosas del modelo....</span>
     <span class="nd">@api.multi</span>
-        <span class="k">def</span> <span class="nf">action_suma</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="n">val1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">campo_1</span>
-            <span class="n">val2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">campo_2</span>
-            <span class="k">with</span> <span class="n">ClusterRpcProxy</span><span class="p">(</span><span class="n">BROKER</span><span class="p">)</span> <span class="k">as</span> <span class="n">rpc</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">val3</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">val1</span><span class="p">,</span><span class="n">val2</span><span class="p">)</span></code></pre></div>
+    <span class="k">def</span> <span class="nf">action_suma</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">val1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">campo_1</span>
+        <span class="n">val2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">campo_2</span>
+        <span class="k">with</span> <span class="n">ClusterRpcProxy</span><span class="p">(</span><span class="n">BROKER</span><span class="p">)</span> <span class="k">as</span> <span class="n">rpc</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">val3</span> <span class="o">=</span> <span class="n">rpc</span><span class="o">.</span><span class="n">compute</span><span class="o">.</span><span class="n">method</span><span class="p">(</span><span class="n">val1</span><span class="p">,</span><span class="n">val2</span><span class="p">)</span></code></pre></div>
 <p>Gracias a que <strong>RabbitMQ</strong> actúa como <em>broker</em> y registro de los servicios,
 podemos desplegar tantos como queramos, el consumidor no necesita saber donde
 están localizados, ni cuantos son, como un plus, los servicios se pueden añadir
 dinámicamente a al <em>cluster</em></p>
 
-<h2 id="adicionanco-un-hearbeat">Adicionanco un hearbeat.</h2>
+<h2 id="adicionando-un-hearbeat">Adicionando un hearbeat.</h2>
 
 <p>Nuestros servicios funcionan, es hora de desplegarlos en producción, pero el
 sysadmin se queja de que no tiene forma de monitorear el estado de los mismos.

@@ -3,43 +3,43 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://yorodm.gthub.io/blog/nameko-microservicios-python.html</loc>
+    <loc>https://yorodm.gthub.io/blog/nameko-microservicios-python/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/blog/golang-xml-sax.html</loc>
+    <loc>https://yorodm.gthub.io/blog/golang-xml-sax/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/blog/desarrollo-emacs-go.html</loc>
+    <loc>https://yorodm.gthub.io/blog/desarrollo-emacs-go/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/blog/zfs-problema-memoria.html</loc>
+    <loc>https://yorodm.gthub.io/blog/zfs-problema-memoria/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/blog/hugo-y-emacs.html</loc>
+    <loc>https://yorodm.gthub.io/blog/hugo-y-emacs/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/blog/creando-un-nuevo-blog-con-hugo.html</loc>
+    <loc>https://yorodm.gthub.io/blog/creando-un-nuevo-blog-con-hugo/</loc>
     <lastmod>2017-10-16T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/categories.html</loc>
+    <loc>https://yorodm.gthub.io/categories/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/about.html</loc>
+    <loc>https://yorodm.gthub.io/about/</loc>
   </url>
   
   <url>
@@ -49,103 +49,103 @@
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/blog.html</loc>
+    <loc>https://yorodm.gthub.io/blog/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/blog.html</loc>
+    <loc>https://yorodm.gthub.io/tags/blog/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/categories.html</loc>
+    <loc>https://yorodm.gthub.io/categories/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/emacs.html</loc>
+    <loc>https://yorodm.gthub.io/tags/emacs/</loc>
     <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/categories/emacs.html</loc>
+    <loc>https://yorodm.gthub.io/categories/emacs/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/go.html</loc>
+    <loc>https://yorodm.gthub.io/tags/go/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/golang.html</loc>
+    <loc>https://yorodm.gthub.io/tags/golang/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/herramientas.html</loc>
+    <loc>https://yorodm.gthub.io/tags/herramientas/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/categories/hugo.html</loc>
+    <loc>https://yorodm.gthub.io/categories/hugo/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/linux.html</loc>
+    <loc>https://yorodm.gthub.io/tags/linux/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/microservicios.html</loc>
+    <loc>https://yorodm.gthub.io/tags/microservicios/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/nameko.html</loc>
+    <loc>https://yorodm.gthub.io/tags/nameko/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/proxmox.html</loc>
+    <loc>https://yorodm.gthub.io/tags/proxmox/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/python.html</loc>
+    <loc>https://yorodm.gthub.io/tags/python/</loc>
     <lastmod>2017-11-09T11:13:09-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags.html</loc>
+    <loc>https://yorodm.gthub.io/tags/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/xml.html</loc>
+    <loc>https://yorodm.gthub.io/tags/xml/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.gthub.io/tags/zfs.html</loc>
+    <loc>https://yorodm.gthub.io/tags/zfs/</loc>
     <lastmod>2017-10-24T10:55:56-04:00</lastmod>
     <priority>0</priority>
   </url>

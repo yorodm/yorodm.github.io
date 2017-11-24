@@ -2,7 +2,7 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Herramientas on /home/yorodm</title>
-    <link>https://yorodm.gthub.io/tags/herramientas.html</link>
+    <link>https://yorodm.gthub.io/tags/herramientas/</link>
     <description>Recent content in Herramientas on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
@@ -13,10 +13,10 @@
     
     <item>
       <title>Hugo y Emacs</title>
-      <link>https://yorodm.gthub.io/blog/hugo-y-emacs.html</link>
+      <link>https://yorodm.gthub.io/blog/hugo-y-emacs/</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>https://yorodm.gthub.io/blog/hugo-y-emacs.html</guid>
+      <guid>https://yorodm.gthub.io/blog/hugo-y-emacs/</guid>
       <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
  Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
     </item>
