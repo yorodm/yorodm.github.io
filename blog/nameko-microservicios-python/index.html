@@ -115,6 +115,7 @@ protocolos.</p>
 <span class="k">class</span> <span class="nc">Notify</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span><span class="sa"></span><span class="s2">&#34;notify&#34;</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
     <span class="nd">@rpc</span>
     <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">message</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span></code></pre></div>
