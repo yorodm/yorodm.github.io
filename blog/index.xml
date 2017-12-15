@@ -6,10 +6,20 @@
     <description>Recent content in Blog on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 13 Dec 2017 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Fri, 15 Dec 2017 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Generadores y referencias</title>
+      <link>https://yorodm.github.io/blog/generadores-referencias-python/</link>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/generadores-referencias-python/</guid>
+      <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
+def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.</description>
+    </item>
     
     <item>
       <title>Pruebas funcionales con factory_boy y faker</title>
