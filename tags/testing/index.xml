@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Testing on /home/yorodm</title>
+    <link>https://yorodm.github.io/tags/testing/</link>
+    <description>Recent content in Testing on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 13 Dec 2017 00:00:00 -0500</lastBuildDate>
+    
+	<atom:link href="https://yorodm.github.io/tags/testing/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Pruebas funcionales con factory_boy y faker</title>
+      <link>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</guid>
+      <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
+    </item>
+    
+  </channel>
+</rss>
