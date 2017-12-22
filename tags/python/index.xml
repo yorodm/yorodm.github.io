@@ -6,10 +6,19 @@
     <description>Recent content in Python on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 15 Dec 2017 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Tue, 19 Dec 2017 21:34:22 -0500</lastBuildDate>
     
 	<atom:link href="https://yorodm.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Acciones automáticas en Odoo</title>
+      <link>https://yorodm.github.io/blog/acciones-automaticas-odoo/</link>
+      <pubDate>Tue, 19 Dec 2017 21:34:22 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/acciones-automaticas-odoo/</guid>
+      <description>Acciones automáticas en Odoo. Odoo permite a los desarrolladores la posibilidad de ejecutar acciones automáticas</description>
+    </item>
     
     <item>
       <title>Generadores y referencias</title>

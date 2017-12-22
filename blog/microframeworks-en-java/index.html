@@ -64,8 +64,8 @@
                     </h2>
                 </header>
                 
-                <section id="post-body">
-                    
+                    <section id="post-body">
+                        
 
 <h1 id="microframeworks-que-deberías-revisar">Microframeworks que deberías revisar.</h1>
 
@@ -243,16 +243,29 @@ $ java -jar rapidoid-example-0.0.1-SNAPSHOT.jar profiles=dev,default</code></pre
 <p>Después de unos cuantos logs tenemos el servicio disponible en <a href="http://localhost:8080/tickets">nuestro
 host</a> junto con el <a href="http://localhost:8080/_">dashboard de administración</a>.</p>
 
-                </section>
+                    </section>
             </article>
 
-            
-
-            
-                
-            
-
-            
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "home-yorodm" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
             <footer id="footer">
     
