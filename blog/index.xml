@@ -6,10 +6,20 @@
     <description>Recent content in Blog on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 15 Dec 2017 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Sat, 23 Dec 2017 10:14:28 -0500</lastBuildDate>
     
 	<atom:link href="https://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Comentarios vía disqus y felices fiestas</title>
+      <link>https://yorodm.github.io/blog/comentarios-via-disqus/</link>
+      <pubDate>Sat, 23 Dec 2017 10:14:28 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/comentarios-via-disqus/</guid>
+      <description>Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
+En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
+    </item>
     
     <item>
       <title>Generadores y referencias</title>
