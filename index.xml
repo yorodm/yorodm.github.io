@@ -6,10 +6,20 @@
     <description>Recent content on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sat, 23 Dec 2017 10:14:28 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 -0500</lastBuildDate>
     
 	<atom:link href="https://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Creando widgets para Odoo (Parte 1)</title>
+      <link>https://yorodm.github.io/blog/creando-widgets-odoo/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
+      <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de Odoo 10, como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
+En este artículo vamos a crear un nuevo widget para manejar campos enteros y de coma flotante en la vista (la parte V de MV*).</description>
+    </item>
     
     <item>
       <title>Comentarios vía disqus y felices fiestas</title>
