@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.30.2" />
+        <meta name="generator" content="Hugo 0.38-DEV" />
         <title>Creando widgets para Odoo (Parte 1) &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -129,13 +129,15 @@ resto de nuestros <em>addons</em> y ahí exportamos una función <em>check_int</
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">check_int</span><span class="o">:</span> <span class="nx">check_int</span>
     <span class="p">};</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span>
+</code></pre></div>
 <p>En otro <em>addon</em> (o simplemente otro módulo) tendríamos algo parecido a:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">odoo</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">otro_addon</span><span class="p">.</span><span class="nx">otro_servicio</span><span class="s1">&#39;, function(require){
 </span><span class="s1">
 </span><span class="s1">    valida_enteros = require(&#39;</span><span class="nx">web_validar</span><span class="p">.</span><span class="nx">enteros</span><span class="err">&#39;</span><span class="p">).</span><span class="nx">check_int</span><span class="p">;</span>
     <span class="c1">// Resto del código
-</span><span class="c1"></span><span class="p">});</span></code></pre></div>
+</span><span class="c1"></span><span class="p">});</span>
+</code></pre></div>
 <p>Si eres más de <em>backend</em> piensa en todo esto como:</p>
 
 <ol>
@@ -184,7 +186,8 @@ utilizar <em>this._super()</em> para acceder a la implementación original.</li>
   <span class="nx">swingSword</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
- <span class="p">});</span></code></pre></div>
+ <span class="p">});</span>
+</code></pre></div>
 <p>Siguiendo este modelo, cada <em>widget</em> es una clase que hereda de <em>web.Widget</em>
 y algún que otro <em>mixin</em>.</p>
 
@@ -222,7 +225,8 @@ archivo <em>static/src/js/widget_slider.js</em> con el siguiente contenido.</p>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">FieldSlider</span> <span class="o">:</span> <span class="nx">FieldSlider</span>
     <span class="p">};</span>
-<span class="p">});</span></code></pre></div>
+<span class="p">});</span>
+</code></pre></div>
 <p>Ahora modifiquemos nuestra plantilla de <em>assets</em> para que cargue este archivo.</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#34;text/javascript&#34;</span>
                 <span class="na">src=</span><span class="s">&#34;/widget-slider/static/src/js/widget-slider.js&#34;</span><span class="nt">/&gt;</span></code></pre></div>

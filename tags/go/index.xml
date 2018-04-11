@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Thu, 02 Nov 2017 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://yorodm.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://yorodm.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,8 +17,115 @@
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/golang-xml-sax/</guid>
-      <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
-Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej.</description>
+      <description>
+
+&lt;h1 id=&#34;parser-tipo-sax-para-golang&#34;&gt;Parser tipo SAX para Golang&lt;/h1&gt;
+
+&lt;h2 id=&#34;el-problema&#34;&gt;El problema&lt;/h2&gt;
+
+&lt;p&gt;Tratando de migrar unas cosas del trabajo a &lt;strong&gt;Go&lt;/strong&gt; me tropecé con la necesidad de
+procesar unos archivos &lt;strong&gt;XML&lt;/strong&gt; (cada día doy más gracias por &lt;strong&gt;TOML&lt;/strong&gt; y &lt;strong&gt;JSON&lt;/strong&gt;) de
+tamaño considerable.&lt;/p&gt;
+
+&lt;p&gt;Una mirada por encima a &lt;code&gt;encoding/xml&lt;/code&gt; me dejo bien claro que no existía un
+parser tipo &lt;code&gt;xml.dom.minidom&lt;/code&gt; (el de la biblioteca estándar de &lt;strong&gt;Python&lt;/strong&gt;) o algo
+como &lt;strong&gt;Expat&lt;/strong&gt;. Las principales funciones (ej. las que salen en los ejemplos)
+están orientadas más hacia la serialización y deserialización de &lt;strong&gt;XML&lt;/strong&gt; que a
+andar recorriendo documentos.&lt;/p&gt;
+
+&lt;p&gt;Sin otro remedio a mano acudí al &lt;a href=&#34;http://google.com&#34;&gt;Gran Oráculo&lt;/a&gt; para
+investigar mis posibilidades y lo más cercano que encontré fue una biblioteca
+llamada &lt;a href=&#34;https://github.com/kokardy/saxlike&#34;&gt;saxlike&lt;/a&gt; que no luce nada mal pero
+no era exactamente lo que buscaba (hay que implementar toda una interfaz).&lt;/p&gt;
+
+&lt;h2 id=&#34;la-solución&#34;&gt;La solución.&lt;/h2&gt;
+
+&lt;p&gt;El método &lt;code&gt;Token&lt;/code&gt; de &lt;code&gt;*xml.Decoder&lt;/code&gt; opera leyendo de un &lt;code&gt;*io.Reader&lt;/code&gt; y retornando
+el próximo token &lt;strong&gt;XML&lt;/strong&gt; que encuentra. La función retorna &lt;code&gt;(Token, error)&lt;/code&gt; donde
+&lt;strong&gt;Token&lt;/strong&gt; es uno de los siguientes tipos:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;xml.StartElement&lt;/code&gt; (comienzo de un elemento)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.EndElement&lt;/code&gt; (final de un elemento, funciona incluso para etiquetas  como
+&lt;code&gt;&amp;lt;esta/&amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.Directive&lt;/code&gt; (directivas especiales)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.Comment&lt;/code&gt; (comentarios)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.Chardata&lt;/code&gt; (contenido de los elementos)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.ProcInst&lt;/code&gt; (instrucciones de procesamiento)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Esto es bastante parecido a &lt;strong&gt;SAX&lt;/strong&gt; es decir, podríamos hacer una interfaz
+&lt;strong&gt;Handler&lt;/strong&gt; con un método por cada tipo y una función (o método de otra clase) que
+recibiera algo que implementara a handler y llamara a cada uno de los métodos.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// En este caso hipotético Parser tiene embebido un xml.Decoder
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;document&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;handler&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Handler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;EOF&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+         &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+          &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;handler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// mas de lo mismo
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para utilizar este método necesitamos implementar la interfaz &lt;strong&gt;SAX&lt;/strong&gt; con 6
+métodos para los elemento y otro más para manejo de errores o verificar el valor
+de retorno de &lt;code&gt;Parse&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Peeeero, la idea de implementar 7 métodos y utilizar callbacks para manejar
+eventos&amp;hellip;.. ya para eso tengo &lt;strong&gt;Java&lt;/strong&gt;. Mucho menos cuando voy a tener que
+escribir métodos vacíos para &lt;code&gt;xml.Comment&lt;/code&gt; y &lt;code&gt;xml.Directive&lt;/code&gt; porque no me
+interesa procesarlos pero son necesarios para la interfaz.&lt;/p&gt;
+
+&lt;p&gt;Por razones como esta, los eventos en &lt;strong&gt;Go&lt;/strong&gt; se manejan mejor utilizando
+canales:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParserError&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;document&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;decoder&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;NewDecoder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// DefaultDecoder es un *xml.Decoder
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;decoder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;EOF&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParserError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Esta versión no solo es mucho más corta sino que además utilizamos una
+&lt;em&gt;gorutina&lt;/em&gt; para procesar el &lt;strong&gt;XML&lt;/strong&gt; y un canal para la comunicación entre el
+productor y el consumidor de los eventos. El consumidor puede elegir que eventos
+le resultan interesantes y descartar el resto&lt;/p&gt;
+
+&lt;p&gt;Veamos un ejemplo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;settings.xml&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nb&#34;&gt;panic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;ch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;range&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;EndElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&amp;lt;/&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Local&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParserError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Errroooooooooor&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -27,8 +134,94 @@ Una mirada por encima a encoding/xml me dejo bien claro que no existía un parse
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
-      <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
-Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
+      <description>
+
+&lt;h1 id=&#34;desarrollando-con-emacs-y-go&#34;&gt;Desarrollando con Emacs y Go.&lt;/h1&gt;
+
+&lt;p&gt;Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso
+revisar el correo) así que cuando me decidí a iniciar algunos proyectos en
+&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para
+el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se
+arme la casa a su manera.&lt;/p&gt;
+
+&lt;h2 id=&#34;haciendo-un-ide-en-tres-pasos&#34;&gt;Haciendo un IDE en tres pasos.&lt;/h2&gt;
+
+&lt;p&gt;Convertir &lt;strong&gt;Emacs&lt;/strong&gt; en un entorno de desarrollo para &lt;strong&gt;Go&lt;/strong&gt; es una tarea bastante
+sencilla. Vamos a separarla en tres pasos.&lt;/p&gt;
+
+&lt;h3 id=&#34;instalar-las-herramientas-necesarias&#34;&gt;Instalar las herramientas necesarias.&lt;/h3&gt;
+
+&lt;p&gt;Despúes de tener &lt;strong&gt;Go&lt;/strong&gt; y &lt;strong&gt;Git&lt;/strong&gt; instalado, necesitamos un conjunto de herramientas
+(oficiales y de terceros) que nos hacen la vida mucho más sencilla.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/kisielk/errcheck&#34;&gt;errcheck&lt;/a&gt;: verificar errores de compilación.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.com/x/tools/cmd/guru&#34;&gt;Guru&lt;/a&gt;: obtener información acerca del código.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/nsf/gocode&#34;&gt;Gocode&lt;/a&gt;: completamiento&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/x/tools/cmd/gorename&#34;&gt;Gorename&lt;/a&gt;: refactorizacíon a cierto
+nivel.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/x/tools/cmd/goimports&#34;&gt;Goimports&lt;/a&gt;: ayuda a adicionar o
+eliminar paquetes importados (también formatea código).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Estas herramientas por si solas no nos son de mucha utilidad, están diseñadas
+para que cualquier editor de texto que soporte extensiones pueda integrarlas de
+un modo sencillo.&lt;/p&gt;
+
+&lt;h3 id=&#34;el-lado-de-emacs&#34;&gt;El lado de Emacs&lt;/h3&gt;
+
+&lt;p&gt;En mi lista de paquetes (uso nada más que &lt;a href=&#34;http://melpa.org/packages/&#34;&gt;Melpa estable&lt;/a&gt;) hay cerca de 15 paquetes que tienen que ver con
+desarrollo en &lt;strong&gt;Go&lt;/strong&gt;. En lo personal no necesito mucho para trabajar en un
+lenguaje. Las funcionalidades que adiciono son:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Lenguaje y completaminto con &lt;strong&gt;go-mode&lt;/strong&gt; y &lt;strong&gt;company-go&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Verificacíon de errores con &lt;strong&gt;go-errcheck&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Ayuda interactiva con &lt;strong&gt;go-eldoc&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Refactorización con &lt;strong&gt;go-rename&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Inspección de código con &lt;strong&gt;go-guru&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Integración con &lt;strong&gt;projectile&lt;/strong&gt; vía &lt;strong&gt;go-projectile&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Todos los paquetes es recomendable instalarlos vía &lt;strong&gt;package-install&lt;/strong&gt; con la excepción de &lt;strong&gt;company-go&lt;/strong&gt; que está incluido en los fuentes de la herramienta &lt;strong&gt;gocode&lt;/strong&gt; y lo cargo desde ahí para evitar conflictos de versiones.&lt;/p&gt;
+
+&lt;h3 id=&#34;paso-final&#34;&gt;Paso final.&lt;/h3&gt;
+
+&lt;p&gt;Con todos los ingredientes estamos a solo 2 minutos de programar en &lt;strong&gt;Go&lt;/strong&gt; como
+campiones, solo queda:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Añadir &lt;code&gt;$GOPATH/bin&lt;/code&gt; al &lt;code&gt;$PATH&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Modificar el &lt;strong&gt;init.el&lt;/strong&gt; para personalizar los paquetes de &lt;strong&gt;Emacs&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Lo primero depende del sistema operativo donde estés, pero de todas formas es
+una tarea trivial. Si eres relativamente nuevo en &lt;strong&gt;Emacs&lt;/strong&gt; hay grandes
+posibilidades de que no sepas como hacer lo segundo, no importa, aquí va mi
+configuración (sin atajos de teclado, que ya eso es cosa muy personal).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;; Si estás utilizando correctamente tu gestor de paquetes&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; no tienes que adicionar las lineas de los  &amp;#39;require&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; Adicionar el backend de Go a company&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-to-list&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; Activamos go-mode&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; y toda la familia&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-guru&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-errcheck&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-projectile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; Añadimos un hook para que cuando se active el modo&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; se configuren todas estas cosas&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;projectile-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;go-eldoc-setup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;gofmt-before-save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gofmt-command&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;goimports&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y&amp;hellip;ya está. Hemos creado un &lt;strong&gt;IDE&lt;/strong&gt; para trabajar en &lt;strong&gt;Go&lt;/strong&gt; sin salir de la
+comodidad de nuestro editor favorito.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

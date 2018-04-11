@@ -6,10 +6,37 @@
     <description>Recent content on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 11 Apr 2018 14:56:57 -0400</lastBuildDate>
     
-	<atom:link href="https://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>De vuelta, cambios y anuncios</title>
+      <link>https://yorodm.github.io/blog/cambios-plantilla-blog/</link>
+      <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/cambios-plantilla-blog/</guid>
+      <description>
+
+&lt;h1 id=&#34;de-vuelta-cambios-y-anuncios&#34;&gt;De vuelta, cambios y anuncios.&lt;/h1&gt;
+
+&lt;p&gt;Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de
+vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido
+completo) y sindicaciones para &lt;a href=&#34;https://dev.to/yorodm&#34;&gt;dev&lt;/a&gt; y pronto en
+&lt;a href=&#34;http://medium.com&#34;&gt;Medium&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Les dejo un &lt;em&gt;roadmap&lt;/em&gt; de los próximos temas que pienso tratar en el blog:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Emacs&lt;/em&gt; para desarrolladores de &lt;em&gt;frontend&lt;/em&gt; (Vue, Angular, Typescript).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Emacs&lt;/em&gt; para desarrolladores de &lt;em&gt;backend&lt;/em&gt; (SQL, Python, Ruby, PHP).&lt;/li&gt;
+&lt;li&gt;Integrando &lt;em&gt;Odoo&lt;/em&gt; a las redes sociales.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Saludos y mantenganse enlazados.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Creando widgets para Odoo (Parte 1)</title>
@@ -17,8 +44,186 @@
       <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
-      <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de Odoo 10, como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
-En este artículo vamos a crear un nuevo widget para manejar campos enteros y de coma flotante en la vista (la parte V de MV*).</description>
+      <description>
+
+&lt;h1 id=&#34;creando-widgets-para-odoo-parte-1&#34;&gt;Creando widgets para Odoo (Parte 1).&lt;/h1&gt;
+
+&lt;p&gt;Después de semanas de inactividad regreso con una de &lt;a href=&#34;http://www.odoo.com&#34;&gt;Odoo 10&lt;/a&gt;, como ya hay bastantes sitios por ahí dedicados a explicar
+causas y razones de lo que se puede hacer con &lt;strong&gt;Python&lt;/strong&gt; desde el &lt;em&gt;backend&lt;/em&gt; voy
+a centrarme en el trabajo con &lt;strong&gt;Javascript&lt;/strong&gt; y el &lt;em&gt;frontend&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;En este artículo vamos a crear un nuevo &lt;em&gt;widget&lt;/em&gt; para manejar campos enteros y
+de coma flotante en la vista (la parte V de MV*). Aunque pueda parecer un
+ejemplo simple, surgió de la necesidad real de proveer campos numéricos limitados
+en un rango de una forma explicita, sencilla y agradable para el usuario.&lt;/p&gt;
+
+&lt;h2 id=&#34;comenzando-el-proyecto&#34;&gt;Comenzando el proyecto.&lt;/h2&gt;
+
+&lt;p&gt;Para poder reutilizar el &lt;em&gt;widget&lt;/em&gt;, vamos a crear un &lt;em&gt;addon&lt;/em&gt; que contenga las
+bibliotecas y el código necesario para hacerlo funcionar. Empecemos creando el
+esqueleto del módulo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ odoo-bin scaffold widget-slider&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Añadimos la descripción del &lt;em&gt;addon&lt;/em&gt;, lo definimos como instalable, ponemos una
+categoría válida e incluimos *&lt;em&gt;web&lt;/em&gt; como dependencia. Continuando.&lt;/p&gt;
+
+&lt;h2 id=&#34;bibliotecas-externas&#34;&gt;Bibliotecas externas&lt;/h2&gt;
+
+&lt;p&gt;Nuestro &lt;em&gt;widget&lt;/em&gt; tiene una sola dependencia externa: &lt;a href=&#34;https://github.com/seiyria/bootstrap-slider/&#34;&gt;Bootstrap Slider&lt;/a&gt;. Normalmente utilizaríamos
+&lt;strong&gt;Bower&lt;/strong&gt; o &lt;strong&gt;NPM&lt;/strong&gt; para manejar las dependencias de proyectos &lt;strong&gt;Javascript&lt;/strong&gt;,
+pero para algo tan pequeño no es necesario, basta con descargar el &lt;em&gt;release&lt;/em&gt; de
+la biblioteca y los archivos para &lt;em&gt;static/lib&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Para hacer estos archivos disponibles en el &lt;em&gt;backend&lt;/em&gt; extenderemos la plantilla
+&lt;em&gt;web.assets_backend&lt;/em&gt;. Modifiquemos el archivo autogenerado &lt;em&gt;templates.xml&lt;/em&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;   &lt;span class=&#34;nt&#34;&gt;&amp;lt;template&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;assets_backend&amp;#34;&lt;/span&gt;
+       &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;web_widget_slider_assets&amp;#34;&lt;/span&gt;
+       &lt;span class=&#34;na&#34;&gt;inherit_id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;web.assets_backend&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;xpath&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;expr=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;.&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;position=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;inside&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;nt&#34;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;rel=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt;
+                &lt;span class=&#34;na&#34;&gt;href=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/widget-slider/static/lib/css/bootstrap-slider.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;nt&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;
+                &lt;span class=&#34;na&#34;&gt;src=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/widget-slider/static/lib/js/bootstrap-slider.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/xpath&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;javascript-dentro-de-odoo-para-novatos&#34;&gt;Javascript dentro de Odoo (para novatos).&lt;/h2&gt;
+
+&lt;p&gt;Ya tenemos lo necesario para comenzar con nuestro &lt;em&gt;widget&lt;/em&gt; ahora solo queda
+escribir el código necesario para inicializar el plugin.&lt;/p&gt;
+
+&lt;p&gt;Lo primero que debes saber para trabajar con &lt;strong&gt;Javascript&lt;/strong&gt; en &lt;strong&gt;Odoo&lt;/strong&gt; es que a
+la versión 10 utiliza un concepto de módulos muy parecido a &lt;strong&gt;requirejs&lt;/strong&gt;.
+Supongamos que tenemos un módulo &lt;em&gt;validar&lt;/em&gt; donde incluimos utilitarios para el
+resto de nuestros &lt;em&gt;addons&lt;/em&gt; y ahí exportamos una función &lt;em&gt;check_int&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;nx&#34;&gt;odoo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;define&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;validar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;enteros&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;s2&#34;&gt;&amp;#34;use strict&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;Number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isInteger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)){&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;TypeError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;El valor no es entero&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;En otro &lt;em&gt;addon&lt;/em&gt; (o simplemente otro módulo) tendríamos algo parecido a:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;nx&#34;&gt;odoo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;define&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;otro_addon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;otro_servicio&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;, function(require){
+&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;    valida_enteros = require(&amp;#39;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;web_validar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;enteros&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// Resto del código
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si eres más de &lt;em&gt;backend&lt;/em&gt; piensa en todo esto como:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Una versíon &lt;strong&gt;Javascript&lt;/strong&gt; de &lt;em&gt;self.env[&amp;ldquo;modelo&amp;rdquo;]&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;Una forma fiable de declarar dependencias sin importar el orden en que
+carguen los archivos.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;La desventaja de este sistema es que es la única forma de acceder a los
+componentes que brinda el &lt;em&gt;framework&lt;/em&gt;, lo que lleva a muchas veces tener que
+crear &lt;em&gt;wrappers&lt;/em&gt; aún alrededor de funcionalidades sencillas.&lt;/p&gt;
+
+&lt;h2 id=&#34;clases-herencia-widgets&#34;&gt;Clases, herencia, widgets&lt;/h2&gt;
+
+&lt;p&gt;Otro punto a tener en cuenta es la programación orientada a objetos. Conceptos
+tan familiares como clases, objetos y herencia tienen un enfoque &amp;ldquo;alternativo&amp;rdquo;
+en &lt;strong&gt;Javascript&lt;/strong&gt;. Los desarrolladores de &lt;strong&gt;Odoo&lt;/strong&gt; siguieron la idea de
+&lt;strong&gt;BackboneJS&lt;/strong&gt; de implementar el modelo de &lt;a href=&#34;http://ejohn.org/&#34;&gt;herencia de John Resig&lt;/a&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Las clases se definen heredando de &lt;em&gt;Class&lt;/em&gt; o de alguna de sus hijas.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;extend()&lt;/em&gt; se utiliza para heredar de una clase, como parámetro acepta
+objetos (o diccionarios que es lo mismo).&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;init()&lt;/em&gt; actúa como constructor.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;include()&lt;/em&gt; permite modificar clases (a lo &lt;em&gt;monkey patch&lt;/em&gt;)&lt;/li&gt;
+&lt;li&gt;Cuando utilizamos &lt;em&gt;extend()&lt;/em&gt; o &lt;em&gt;include()&lt;/em&gt;, cada método que se redefina puede
+utilizar &lt;em&gt;this._super()&lt;/em&gt; para acceder a la implementación original.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Tomando un ejemplo del código de Odoo&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Definimos una clase Person
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Class&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isDancing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+     &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dancing&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;isDancing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;dance&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+     &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dancing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;// Y ahora una clase Ninja
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Ninja&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+  &lt;span class=&#34;nx&#34;&gt;swingSword&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+ &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Siguiendo este modelo, cada &lt;em&gt;widget&lt;/em&gt; es una clase que hereda de &lt;em&gt;web.Widget&lt;/em&gt;
+y algún que otro &lt;em&gt;mixin&lt;/em&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;creando-un-slider-para-valores-enteros&#34;&gt;Creando un slider para valores enteros.&lt;/h2&gt;
+
+&lt;p&gt;En vez de crear nuestro &lt;em&gt;slider&lt;/em&gt; desde el inicio, aprovechemos que existe una
+clase encargada de manejar campos numéricos y heredemos de ella. Creemos el
+archivo &lt;em&gt;static/src/js/widget_slider.js&lt;/em&gt; con el siguiente contenido.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;nx&#34;&gt;odoo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;define&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;web_slider.form&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+    &lt;span class=&#34;s2&#34;&gt;&amp;#34;use strict&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;core&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;web.core&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldFloat&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;web.form_widgets&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FieldFloat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;c1&#34;&gt;// Heredamos de esta clase para aprovechar toda la
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// maquinaria de inicialización.
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldFloat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;({&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// Método que se invoca cuando se va a mostrar
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;c1&#34;&gt;// el widget
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;initialize_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(){&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;();&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wrapped&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$el&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;c1&#34;&gt;// Desabilitar el slider si está en modo
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;c1&#34;&gt;// solo lectura
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;effective_readonly&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)){&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wrapped&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;disable&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;},&lt;/span&gt;
+
+    &lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;// Registramos nuestro widget como disponible para
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// las vistas de formulario
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;core&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;form_widget_registry&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;slider&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;};&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ahora modifiquemos nuestra plantilla de &lt;em&gt;assets&lt;/em&gt; para que cargue este archivo.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;
+                &lt;span class=&#34;na&#34;&gt;src=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/widget-slider/static/src/js/widget-slider.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Instalemos el addon, activemos el modo desarrollador y probemos cambiar
+cualquier campo de una vista formulario añadiendo &lt;em&gt;widget=slider&lt;/em&gt; a la
+declaración.&lt;/p&gt;
+
+&lt;h2 id=&#34;resumiendo&#34;&gt;Resumiendo.&lt;/h2&gt;
+
+&lt;p&gt;Crear un nuevo &lt;em&gt;widget&lt;/em&gt; no es un proceso complejo, cada componente del
+&lt;em&gt;framework&lt;/em&gt; está diseñado de modo en que extender, modificar o añadir
+funcionalidades sea un proceso sencillo para cualquiera con conocimientos de
+&lt;strong&gt;Javascript&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Dicho esto, a pesar de que existe &lt;a href=&#34;http://www.odoo.com/documentation/10.0/index.html&#34;&gt;una guía oficial&lt;/a&gt;, no es para nada completa y
+en la mayoría de los casos la única solución a la pregunta &amp;ldquo;qué es lo que hace
+esto&amp;rdquo; es recurrir al código fuente del hasta dar con lo que buscamos.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -27,8 +232,15 @@ En este artículo vamos a crear un nuevo widget para manejar campos enteros y de
       <pubDate>Sat, 23 Dec 2017 10:14:28 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/comentarios-via-disqus/</guid>
-      <description>Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
-En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
+      <description>
+
+&lt;h1 id=&#34;comentarios-vía-disqus-y-felices-fiestas&#34;&gt;Comentarios vía Disqus y Felices Fiestas&lt;/h1&gt;
+
+&lt;p&gt;Ya están habilitados los comentarios en el blog. Un poco complicado porque ya
+saben, el bloqueo y etc. Espero tener más &lt;em&gt;feedback&lt;/em&gt; ahora.&lt;/p&gt;
+
+&lt;p&gt;En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -37,8 +249,104 @@ En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
       <pubDate>Fri, 15 Dec 2017 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/generadores-referencias-python/</guid>
-      <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
-def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.</description>
+      <description>
+
+&lt;h1 id=&#34;generadores-y-referencias&#34;&gt;Generadores y referencias&lt;/h1&gt;
+
+&lt;p&gt;Las referencias en &lt;strong&gt;Python&lt;/strong&gt; son un tema que a menudo se pasa por alto, incluso
+por los que ya no somos &lt;a href=&#34;https://stackoverflow.com/questions/47552529/obscure-iterator-behavior-in-python&#34;&gt;tan novatos&lt;/a&gt;.
+Hagamos un experimento, toma a diez desarrolladores que conozcas y
+pregúntales qué hay de malo en esta función.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vale, es una pregunta con truco y la respuesta es &lt;strong&gt;todo&lt;/strong&gt; o &lt;strong&gt;nada&lt;/strong&gt; en
+dependencia de como utilices la función generadora. Si no sabes que es una
+función generadora porque no has llegado a ese capítulo en el libro o no te has
+leído la &lt;a href=&#34;https://www.python.org/dev/peps/pep-0255&#34;&gt;PEP 255&lt;/a&gt; no importa. Aquí
+tienes la versión &lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Los funciones generadoras son aquellas que usan &lt;strong&gt;yield&lt;/strong&gt; en vez de &lt;strong&gt;return&lt;/strong&gt;
+para devolver valores.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Cuando llamas una función generadora obtienes un &lt;em&gt;generador&lt;/em&gt;, el cual puedes
+utilizar para seguir obteniendo valores de la función, haciendo llamadas que
+retornarán nuevos valores mientras encuentren &lt;strong&gt;yield&lt;/strong&gt; (como dije antes
+&lt;strong&gt;TL;DR&lt;/strong&gt; o mejor &lt;strong&gt;TL;DW&lt;/strong&gt;). Los generadores son iterables así que generalmente
+se utilizan en ciclos &lt;strong&gt;for .. in&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;generator&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;at&lt;/span&gt; &lt;span class=&#34;mh&#34;&gt;0x00000000061D98B8&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;....&lt;/span&gt;    &lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Hasta aquí parece todo bien, &lt;strong&gt;funcionx&lt;/strong&gt; retorna un objeto de tipo generador y
+podemos iterar sobre los resultados. Pero por alguna razón no pasa esta sencilla
+prueba unitaria.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;TestFuncionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;unittest&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;TestCase&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_returns_generator&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertTrue&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;isinstance&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;4&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;collections&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Iterable&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;test_yields_context&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;l&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertEqual&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;# ¡¡Fatal!!&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;assertEqual&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;l&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,[{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}])&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;¿Cómo es posible?. Obviamente algo está fallando en la prueba unitaria, verifiquemos manualmente.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;len&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,)))&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;
+&lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;list&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,))&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;[{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;},&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Mmmmm&amp;hellip;¿qúe?&amp;hellip;mmmm. Calma, miremos de cerca la función, especialmente la parte en que hace:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;    &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;¿Recuerdas que &lt;strong&gt;ctx&lt;/strong&gt; es un diccionario? ¿Recuerdas que los diccionarios en &lt;strong&gt;Python&lt;/strong&gt; son referencias?&lt;/p&gt;
+
+&lt;p&gt;En cada ejecución del generador estamos devolviendo la &lt;strong&gt;misma&lt;/strong&gt; referencia con
+valores modificados. Cuando utilizas la función en el ciclo &lt;strong&gt;for&amp;hellip;in&lt;/strong&gt;
+utilizamos el valor de &lt;strong&gt;ctx&lt;/strong&gt; y lo descartamos enseguida, como no guardamos el
+resultado no notamos que el próximo valor que obtenemos es la misma referencia
+modificada.&lt;/p&gt;
+
+
+&lt;figure&gt;
+    
+        &lt;img src=&#34;https://yorodm.github.io/images/generadores-referencias-python/yield-con-ciclo-for.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;La prueba unitaria falla porque, cada invocación del generador modifica las
+referencias que tenemos guardadas.&lt;/p&gt;
+
+
+&lt;figure&gt;
+    
+        &lt;img src=&#34;https://yorodm.github.io/images/generadores-referencias-python/yield-con-list.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;p&gt;En este caso obtendremos una lista de &lt;em&gt;n&lt;/em&gt; elementos que tienen el último valor
+de &lt;strong&gt;ctx&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;Por suerte el problema tiene soluciones sencillas, podemos retornar una nueva
+instancia en cada invocación o simplemente crear una copia:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;funcionx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;run&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;dict&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;ctx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y listo, no más valores extraños ni pruebas que fallan.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -47,7 +355,135 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
       <pubDate>Wed, 13 Dec 2017 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</guid>
-      <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
+      <description>
+
+&lt;h1 id=&#34;pruebas-funcionales-con-factory-boy&#34;&gt;Pruebas funcionales con factory_boy.&lt;/h1&gt;
+
+&lt;p&gt;Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales
+(allá en los lejanos tiempos de la &lt;a href=&#34;http://www.uci.cu&#34;&gt;universidad&lt;/a&gt;) fue la
+necesidad de crear juegos de datos con el mayor nivel de realidad posible. En
+ese entonces era práctica común entre compañeros de equipo guardar un archivo
+&lt;strong&gt;CSV&lt;/strong&gt; con nuestra información personal (nombre, número de identidad, etc) e
+incluso hubo alguna que otra base de datos llena de información ficticia creada
+por los más minuciosos.&lt;/p&gt;
+
+&lt;p&gt;No era una solución perfecta, estábamos solo a un paso por encima de utilizar
+nombres como &lt;strong&gt;&amp;ldquo;Persona 1&amp;rdquo;&lt;/strong&gt; con número telefónico &lt;strong&gt;11-111-111&lt;/strong&gt; y cosas
+parecidas. Por desgracia en aquel momento (en el lejano 2004) no teníamos acceso
+a herramientas que nos facilitaran el proceso. Por eso hoy les voy a hablar de
+&lt;strong&gt;factory_boy&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;python-factory-boy-y-faker&#34;&gt;Python, factory_boy y faker.&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/FactoryBoy/factory_boy&#34;&gt;Factory boy&lt;/a&gt; es una biblioteca
+inspirada en &lt;a href=&#34;https://github.com/thoughtbot/factory_girl&#34;&gt;Factory Girl&lt;/a&gt; (punto
+para &lt;strong&gt;Ruby&lt;/strong&gt;) que nos permite crear juegos de datos (o &lt;em&gt;fixtures&lt;/em&gt; que hay que
+hablar idiomas) de manera sencilla. Desde hace unas cuantas versiones se integra
+con otra biblioteca llamada &lt;a href=&#34;https://github.com/joke2k/faker&#34;&gt;faker&lt;/a&gt; que provee
+datos aleatorios (de nuevo, basada en algo del mundo &lt;strong&gt;Ruby&lt;/strong&gt;). Veamos un
+ejemplo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;    Modelo persona de toda la vida
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;    &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lastname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;lastname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lastname&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@property&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;fullname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullname&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;PersonFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Factory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;    ¡¡¡La fábrica de personas!!!
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;    &amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Meta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Person&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Faker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;first_name&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;lastname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Faker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;last_name&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Pues tenemos una clase &lt;strong&gt;Person&lt;/strong&gt; y una clase &lt;strong&gt;PersonFactory&lt;/strong&gt;
+(¿&lt;strong&gt;PeopleFactory&lt;/strong&gt;?), vamos a utilizarlas para crear 9 nombres.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullname&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_batch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;PersonFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;9&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Keith Best&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Michelle Wilson&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;David Stewart&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Robert Garza&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Sharon Brandt&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Erica Joseph&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Katelyn Washington&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Stacy Byrd&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Jeanne Harrison&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Vale, funciona. Vamos a extender la idea y hacer un catálogo de frases famosas que incluya
+el nombre del autor&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Quote&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;author&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;author&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;author&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;QuoteFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Factory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Meta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Quote&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;text&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Faker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;sentence&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;author&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;SubFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y de nuevo hacemos una prueba de concepto: tres citas famosas con sus autores.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;text&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;author&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;fullname&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;build_batch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;QuoteFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;3&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;[(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Voluptas fugit culpa libero.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Terri Clements&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Molestiae perspiciatis eius odit.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Betty Clark&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;),&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Exercitationem voluptates corrupti nihil.&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;Eric Hernandez&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;soporte-para-orms&#34;&gt;Soporte para ORMs.&lt;/h2&gt;
+
+&lt;p&gt;Si las &lt;em&gt;factories&lt;/em&gt; te recuerdan a algo, con su clase &lt;strong&gt;Meta&lt;/strong&gt; incluida y sus
+descriptores para los campos, no es casualidad. Esta biblioteca fue pensada
+originalmente para ser utilizada con &lt;strong&gt;Django&lt;/strong&gt;. Con el tiempo los
+desarrolladores decidieron extender el soporte a otros de los &lt;strong&gt;ORM&lt;/strong&gt; más
+populares y separar las funcionalidades en clases específicas.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;factory.django.DjangoModelFactory&lt;/strong&gt; para &lt;a href=&#34;http://www.djangoproject.com&#34;&gt;Django&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;factory.mongo.MongoFactory&lt;/strong&gt; para &lt;a href=&#34;https://github.com/joshmarshall/mogo&#34;&gt;Mongo&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;factory.mongoengine.MongoEngineFactory&lt;/strong&gt; para &lt;a href=&#34;http://mongoengine.org&#34;&gt;MongoEngine&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;factory.alchemy.SQLAlchemyFactory&lt;/strong&gt; para &lt;a href=&#34;http://sqlalchemy.org&#34;&gt;SQLAlchemy&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Cada clase incluye además facilidades para interactuar con el &lt;strong&gt;ORM&lt;/strong&gt;. Vean una
+versión de &lt;strong&gt;Person&lt;/strong&gt; llevada a &lt;strong&gt;SQLAlchemy&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sqlalchemy&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Unicode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;create_engine&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sqlalchemy.ext.declarative&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;declarative_base&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sqlalchmey.orm&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scoped_seesion&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;sessionmaker&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;factory&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;factory.alchemy&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;SQLAlchemyFactory&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Factory&lt;/span&gt;
+
+&lt;span class=&#34;n&#34;&gt;engine&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;create_engine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;sqlite://&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;session&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;scoped_session&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sessionmaker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;bind&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;engine&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;Base&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;declarative_base&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Base&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;# Para el ejemplo&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Integer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(),&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;primary_key&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;True&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Unicode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;lastname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Column&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Unicode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;30&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;PersonFactory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Factory&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Meta&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;model&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Person&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;# El objeto session que vamos a utilizar&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;sqlalchemy_session&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;session&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;id&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Sequence&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;n&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;firstname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Faker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;first_name&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;lastname&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;factory&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Faker&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;last_name&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;puntos-finales&#34;&gt;Puntos finales.&lt;/h2&gt;
+
+&lt;p&gt;Un solo artículo no alcanza para describir todas las funcionalidades de esta
+biblioteca. Si les ha picado la curiosidad les recomiendo que vean la
+&lt;a href=&#34;https://factoryboy.readthedocs.io&#34;&gt;documentación oficial&lt;/a&gt; y exploren los casos
+de uso comunes expuestos por el equipo de desarrollo.&lt;/p&gt;
+
+&lt;p&gt;Características que no exploré en este artículo:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Atributos definidos por secuencias numéricas.&lt;/li&gt;
+&lt;li&gt;Atributos &lt;em&gt;lazy&lt;/em&gt;.&lt;/li&gt;
+&lt;li&gt;Atributos específicos para &lt;strong&gt;ORMs&lt;/strong&gt; (ej. campos &lt;strong&gt;FileField&lt;/strong&gt; de &lt;strong&gt;Django&lt;/strong&gt;)&lt;/li&gt;
+&lt;li&gt;Logs (muy útiles para el &lt;em&gt;debugging&lt;/em&gt;).&lt;/li&gt;
+&lt;li&gt;Estrategias de creación de modelos.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
     </item>
     
     <item>
@@ -56,8 +492,184 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
       <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/microframeworks-en-java/</guid>
-      <description>Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
-Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor Web basado en Netty y un DSL para manejar rutas (muy a lo Rack+ Sinatra) y una fuerte integración con Groovy .</description>
+      <description>
+
+&lt;h1 id=&#34;microframeworks-que-deberías-revisar&#34;&gt;Microframeworks que deberías revisar.&lt;/h1&gt;
+
+&lt;p&gt;¡Hola! Después de unas semanas de inactivdad continúo con el tema de los
+frameworks para microservicios, ahora con &lt;strong&gt;Java&lt;/strong&gt; que es otro de mis lengajes
+favoritos. Ya que todo el mundo conoce a los jugadores fuertes como
+&lt;a href=&#34;http://www.dropwizard.io&#34;&gt;Dropwizard&lt;/a&gt;,
+&lt;a href=&#34;https://projects.spring.io/spring-boot/&#34;&gt;Spring&lt;/a&gt; y &lt;a href=&#34;wildfly-swarm.io/&#34;&gt;Swarm&lt;/a&gt;
+voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.&lt;/p&gt;
+
+&lt;h2 id=&#34;ratpack-http-www-ratpack-io&#34;&gt;&lt;a href=&#34;http://www.ratpack.io&#34;&gt;Ratpack&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;En primer lugar tenemos &lt;a href=&#34;http://www.ratpack.io&#34;&gt;Ratpack&lt;/a&gt;, que nos brinda
+basicamente un servidor Web basado en &lt;strong&gt;Netty&lt;/strong&gt; y un &lt;em&gt;DSL&lt;/em&gt; para manejar rutas
+(muy a lo &lt;a href=&#34;http://rack.github.io&#34;&gt;Rack&lt;/a&gt;+ &lt;a href=&#34;http://sinatrarb.com/&#34;&gt;Sinatra&lt;/a&gt;) y
+una fuerte integración con &lt;a href=&#34;http://groovy-lang.org/&#34;&gt;Groovy&lt;/a&gt; . Como un plus
+podemos utilizar &lt;a href=&#34;https://github.com/pledbrook/lazybones&#34;&gt;Lazybones&lt;/a&gt; para
+generar esqueletos de aplicaciones.&lt;/p&gt;
+
+&lt;p&gt;Aparte del &lt;em&gt;core&lt;/em&gt; del framework, existen componentes para:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Utilizar &lt;strong&gt;Guice&lt;/strong&gt; como contenedor de inyección de dependencias.&lt;/li&gt;
+&lt;li&gt;Métricas de uso.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Thymleaf&lt;/strong&gt; y &lt;strong&gt;Handlebars&lt;/strong&gt; como motores de plantillas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.consul.io&#34;&gt;Consul&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Spring Boot&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Pruebas unitarias utilizando &lt;a href=&#34;http://spockframework.org/&#34;&gt;Spock&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;bootique-http-bootique-io&#34;&gt;&lt;a href=&#34;http://bootique.io&#34;&gt;Bootique&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Bootique&lt;/strong&gt; nos invita a crear aplicaciones modulares utilizando &lt;strong&gt;Guice&lt;/strong&gt;. A
+diferencia de &lt;strong&gt;Ratpack&lt;/strong&gt;, su estilo de programación es mas de utilizar
+anotaciones aunque también hace uso de interfaces fluidas y clausuras. El uso de
+&lt;strong&gt;Guice&lt;/strong&gt; le da también un sabor particular a la forma en que creamos
+aplicaciones o extendemos el framework. En fin, esta es la lista de
+características fuertes de &lt;strong&gt;Bootique&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Soporte para migraciones con &lt;a href=&#34;http://flyway.orge&#34;&gt;Flyway&lt;/a&gt; o
+&lt;a href=&#34;http://www.liquibase.org/&#34;&gt;LiquidBase&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Integración con otros frameworks vía &lt;strong&gt;Guice&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Métricas.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Swagger&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Componentes para &lt;strong&gt;Rabbitmq&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Posibilidad de desarrollar utilizando &lt;a href=&#34;http://kotlinlang.org/&#34;&gt;Kotlin&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;rapidoid-http-www-rapidoid-org&#34;&gt;&lt;a href=&#34;http://www.rapidoid.org/&#34;&gt;Rapidoid&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Como su nombre lo indica, &lt;strong&gt;Rapidoid&lt;/strong&gt; se centra en la velocidad. Podemos crear
+no solo microservicios sino aplicaciones completas en muy poco tiempo. De los
+frameworks presentados acá es el único que incluye un componente para &lt;strong&gt;UI&lt;/strong&gt; y
+su propio motor de plantillas a lo &lt;strong&gt;Mustache&lt;/strong&gt;. Cosas que me impresionaron:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Interfaz de automática administración para las entidades a lo &lt;strong&gt;Django&lt;/strong&gt; o
+&lt;strong&gt;JHipster&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Motor de plantillas integrado.&lt;/li&gt;
+&lt;li&gt;Soporte para &lt;strong&gt;Guice&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Rapidez + Funcionalidad&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Como es el que más me gusta voy a poner un ejemplo de como crear una &lt;strong&gt;Web API&lt;/strong&gt;
+simple que nos permita adicionar, consultar y eliminar solicitudes de servicio
+(lo que toda la vida hemos llamado tickets)&lt;/p&gt;
+
+&lt;h3 id=&#34;paso-1-configurar-maven&#34;&gt;Paso 1. Configurar Maven.&lt;/h3&gt;
+
+&lt;p&gt;Como soy usuario de &lt;strong&gt;Maven&lt;/strong&gt; y &lt;strong&gt;Eclipse&lt;/strong&gt; me voy a crear un nuevo proyecto y
+adicionar la siguiente dependencia&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.rapidoid&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;rapidoid-quick&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;5.4.6&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;paso-2-crear-mis-entidades&#34;&gt;Paso 2. Crear mis entidades.&lt;/h3&gt;
+
+&lt;p&gt;&lt;strong&gt;Rapidoid Quick&lt;/strong&gt; incluye &lt;strong&gt;Hibernate&lt;/strong&gt;, &lt;strong&gt;JPA&lt;/strong&gt; preconfigurados, así que no
+necesitamos mucho para crear entidades&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;com.github.yorodm.rapidoid_example.models&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.persistence.Entity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.persistence.GeneratedValue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.persistence.Id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.validation.constraints.NotNull&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+&lt;span class=&#34;nd&#34;&gt;@Entity&lt;/span&gt;
+&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Ticket&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@Id&lt;/span&gt;
+    &lt;span class=&#34;nd&#34;&gt;@GeneratedValue&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;long&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@NotNull&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@NotNull&lt;/span&gt;
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;paso-3-creando-mi-aplicación-y-rutas&#34;&gt;Paso 3. Creando mi aplicación y rutas&lt;/h3&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Main&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+
+    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;bootstrap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;jpa&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;adminCenter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;();&lt;/span&gt;
+
+        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(()&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;).&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;all&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;());&lt;/span&gt;
+
+        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;@Valid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;put&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets/{id}&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nd&#34;&gt;@Valid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+                &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;));&lt;/span&gt;
+
+        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets/{id}&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;((&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;);&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
+        &lt;span class=&#34;o&#34;&gt;});&lt;/span&gt;
+    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
+
+&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;paso-4-configurando&#34;&gt;Paso 4. Configurando.&lt;/h3&gt;
+
+&lt;p&gt;Para la configuracion utilizamos &lt;strong&gt;YAML&lt;/strong&gt; en &lt;code&gt;src/resources/config.yml&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;users&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;root&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;roles&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;administrator&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;owner&lt;span class=&#34;w&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;password&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;root&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;paso-5-creando-un-jar-para-despliegue&#34;&gt;Paso 5. Creando un jar para despliegue.&lt;/h3&gt;
+
+&lt;p&gt;Vamos a configurar el plugin &lt;code&gt;shade&lt;/code&gt; de &lt;strong&gt;Maven&lt;/strong&gt; para crear un &lt;em&gt;uberjar&lt;/em&gt; y
+hacernos la vida más fácil.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;build&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugins&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugin&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&amp;gt;&lt;/span&gt;org.apache.maven.plugins&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&amp;gt;&lt;/span&gt;maven-shade-plugin&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&amp;gt;&lt;/span&gt;3.1.0&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;configuration&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;transformers&amp;gt;&lt;/span&gt;
+          &lt;span class=&#34;nt&#34;&gt;&amp;lt;transformer&lt;/span&gt;
+              &lt;span class=&#34;na&#34;&gt;implementation=&lt;/span&gt;
+              &lt;span class=&#34;s&#34;&gt;&amp;#34;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;nt&#34;&gt;&amp;lt;mainClass&amp;gt;&lt;/span&gt;
+                com.github.yorodm.rapidoid_example.Main
+            &lt;span class=&#34;nt&#34;&gt;&amp;lt;/mainClass&amp;gt;&lt;/span&gt;
+          &lt;span class=&#34;nt&#34;&gt;&amp;lt;/transformer&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/transformers&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;executions&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;execution&amp;gt;&lt;/span&gt;
+          &lt;span class=&#34;nt&#34;&gt;&amp;lt;phase&amp;gt;&lt;/span&gt;package&lt;span class=&#34;nt&#34;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
+          &lt;span class=&#34;nt&#34;&gt;&amp;lt;goals&amp;gt;&lt;/span&gt;
+            &lt;span class=&#34;nt&#34;&gt;&amp;lt;goal&amp;gt;&lt;/span&gt;shade&lt;span class=&#34;nt&#34;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
+          &lt;span class=&#34;nt&#34;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
+        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
+      &lt;span class=&#34;nt&#34;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
+    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
+  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;
+&lt;span class=&#34;nt&#34;&gt;&amp;lt;/build&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h3 id=&#34;paso-6-ejecutando-la-aplicación&#34;&gt;Paso 6. Ejecutando la aplicación&lt;/h3&gt;
+
+&lt;p&gt;Empaquetamos y ejecutamos:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ mvn package
+$ cd target
+$ java -jar rapidoid-example-0.0.1-SNAPSHOT.jar profiles=dev,default&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Después de unos cuantos logs tenemos el servicio disponible en &lt;a href=&#34;http://localhost:8080/tickets&#34;&gt;nuestro
+host&lt;/a&gt; junto con el &lt;a href=&#34;http://localhost:8080/_&#34;&gt;dashboard de administración&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -66,9 +678,136 @@ Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor 
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/nameko-microservicios-python/</guid>
-      <description>Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
-Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
- Python 2 (creo que no hay versiones para Python 3).</description>
+      <description>
+
+&lt;h1 id=&#34;desarrollando-microservicios-con-nameko&#34;&gt;Desarrollando microservicios con Nameko&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://github.com/nameko/nameko&#34;&gt;Nameko&lt;/a&gt; es una biblioteca para el desarrollo
+de microservicios en &lt;strong&gt;Python&lt;/strong&gt;. A diferencia de otros &lt;strong&gt;frameworks&lt;/strong&gt; como
+&lt;a href=&#34;https://www.djangoproject.com&#34;&gt;Django&lt;/a&gt;, &lt;a href=&#34;http://flask.pocoo.org&#34;&gt;Flask&lt;/a&gt; y
+&lt;a href=&#34;http://www.hug.rest&#34;&gt;Hug&lt;/a&gt; que tienen como principal objetivo utilizar &lt;strong&gt;HTTP&lt;/strong&gt;
+para la comunicación con los clientes, &lt;strong&gt;Nameko&lt;/strong&gt; viene con soporte integrado
+para &lt;strong&gt;AMQP&lt;/strong&gt; y &lt;strong&gt;Websockets&lt;/strong&gt; y nos permite adicionar nuestros propios
+protocolos.&lt;/p&gt;
+
+&lt;h2 id=&#34;manos-a-la-obra&#34;&gt;Manos a la obra.&lt;/h2&gt;
+
+&lt;p&gt;Para hacer servicios con &lt;strong&gt;Nameko&lt;/strong&gt; necesitamos algunas cosas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Python 2&lt;/strong&gt; (creo que no hay versiones para &lt;strong&gt;Python 3&lt;/strong&gt;).&lt;/li&gt;
+&lt;li&gt;Un entorno virtual (&lt;code&gt;virtualenv&lt;/code&gt;).&lt;/li&gt;
+&lt;li&gt;La biblioteca (vía &lt;code&gt;pip&lt;/code&gt; para garantizar las dependencias).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RabbitMQ&lt;/strong&gt; u otro servidor de mensajería que soporte &lt;strong&gt;AMQP&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Emacs&lt;/strong&gt; (o tu editor favorito).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Creemos dos servicios:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Servicio que hace una operación intensiva (sumar dos números) al que llamamos
+&lt;code&gt;Calculate&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Servicio que nos notifica cuando &lt;code&gt;Calculate&lt;/code&gt; termina, al que llamamos &lt;code&gt;Notify&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nameko.rpc&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RpcProxy&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;logging&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Compute&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;compute&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;notify&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;RpcProxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;notify&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@rpc&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;value2&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;notify&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;call_async&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;Operation completed &lt;/span&gt;&lt;span class=&#34;si&#34;&gt;%s&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;%&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;a&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Notify&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;notify&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;logger&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;logging&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;getLogger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@rpc&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;send&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;logger&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;info&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;message&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Salvemos el archivo como &lt;code&gt;services.py&lt;/code&gt; y ya estamos listos para ejecutar los servicios&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;$ nameko run --broker pyamqp://guest:guest@localhost services&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si accedemos a la consola web de &lt;strong&gt;RabbitMQ&lt;/strong&gt; podemos ver las colas de mensaje
+creadas para los servicios. Eso confirma que se están funcionando correctamente.&lt;/p&gt;
+
+
+&lt;figure&gt;
+    
+        &lt;img src=&#34;https://yorodm.github.io/images/nameko-microservicios/rabbit-queues.png&#34; /&gt;
+    
+    
+&lt;/figure&gt;
+
+
+&lt;h2 id=&#34;accediendo-a-los-servicios&#34;&gt;Accediendo a los servicios.&lt;/h2&gt;
+
+&lt;p&gt;Antes de desplegar nuestros servicios en producción, probemos que funcionan
+correctamente. Desafortunadamente fuimos demasiado rápido y no creamos pruebas
+unitarias (muy mal de nuestra parte) así que necesitamos alguna forma de
+verificar que las interfaces hagan lo planeado (este concepto de suma es
+aparentemente muy complicado).&lt;/p&gt;
+
+&lt;p&gt;Por suerte &lt;strong&gt;Nameko&lt;/strong&gt; nos proporciona un &lt;strong&gt;REPL&lt;/strong&gt; mediante el comando &lt;code&gt;shell&lt;/code&gt;
+que nos permite interactuar con los servicios desde código &lt;strong&gt;Python&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-terminal&#34; data-lang=&#34;terminal&#34;&gt;nameko shell --broker  pyamqp://guest:guest@192.168.184.142
+Nameko Python 2.7.13 [MSC v.1500 64 bit (AMD64)] shell
+Broker: pyamqp://guest:guest@192.168.184.142
+&amp;gt;&amp;gt;&amp;gt; n.rpc.compute.method(99999,99999)
+199998
+    &amp;gt;&amp;gt;&amp;gt; reply=n.rpc.compute.method.call_async(99999,99999)
+&amp;gt;&amp;gt;&amp;gt; reply.result()
+199998
+&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Perfecto, funcionan tanto las llamadas síncronas como las asíncronas, con esto en mano
+podemos utilizar los servicios desde, por ejemplo, un modelo en &lt;strong&gt;Odoo&lt;/strong&gt;.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nameko.standalone.rpc&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ClusterRpcProxy&lt;/span&gt;
+&lt;span class=&#34;n&#34;&gt;BROKER&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;pyamqp://guest:guest@192.168.184.142&amp;#39;&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;# Todas las cosas del modelo....&lt;/span&gt;
+    &lt;span class=&#34;nd&#34;&gt;@api.multi&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;action_suma&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;val1&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;campo_1&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;val2&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;campo_2&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ClusterRpcProxy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BROKER&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rpc&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;val3&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;rpc&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;compute&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;method&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;val1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;val2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Gracias a que &lt;strong&gt;RabbitMQ&lt;/strong&gt; actúa como &lt;em&gt;broker&lt;/em&gt; y registro de los servicios,
+podemos desplegar tantos como queramos, el consumidor no necesita saber donde
+están localizados, ni cuantos son, como un plus, los servicios se pueden añadir
+dinámicamente a al &lt;em&gt;cluster&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;adicionando-un-hearbeat&#34;&gt;Adicionando un hearbeat.&lt;/h2&gt;
+
+&lt;p&gt;Nuestros servicios funcionan, es hora de desplegarlos en producción, pero el
+sysadmin se queja de que no tiene forma de monitorear el estado de los mismos.
+Aunque estamos absolutamente seguros de que nuestros servicios tienen un 100% de
+disponibilidad, para complacerlos adicionamos un &lt;strong&gt;hearbeat&lt;/strong&gt; que se ejecute
+cada un tiempo configurable en cada una de las instancias.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;nameko.timer&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;timer&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# Método ficticio que envía un mensaje a la plataforma&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;# de monitoreo.&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;monitoring&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;ping&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Heartbear&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;object&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;name&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;heartbeat&amp;#34;&lt;/span&gt;
+
+    &lt;span class=&#34;nd&#34;&gt;@timer&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;beat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;ping&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;más-de-nameko&#34;&gt;Más de Nameko.&lt;/h2&gt;
+
+&lt;p&gt;Además de &lt;strong&gt;RPC&lt;/strong&gt; vía &lt;strong&gt;AMQP&lt;/strong&gt;, &lt;strong&gt;Nameko&lt;/strong&gt; proporciona facilidades para crear
+&lt;strong&gt;Web APIs&lt;/strong&gt;, notificación de eventos entre servicios, integración con
+&lt;strong&gt;Django&lt;/strong&gt;, &lt;strong&gt;Flask&lt;/strong&gt;, &lt;strong&gt;SQLAlchemy&lt;/strong&gt; y permite crear nuestros propios puntos de
+entrada para servicio (ya hemos visto &lt;code&gt;@rpc y @timer&lt;/code&gt;). En lo particular lo
+considero una alternativa interesante y rápida que necesita pocas dependencias
+tanto para desarrollo como para despliegue. Si estás interesado puedes consultar
+la &lt;a href=&#34;http://nameko.readthedocs.io/en/stable/&#34;&gt;documentación oficial&lt;/a&gt;.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -77,8 +816,115 @@ Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/golang-xml-sax/</guid>
-      <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
-Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej.</description>
+      <description>
+
+&lt;h1 id=&#34;parser-tipo-sax-para-golang&#34;&gt;Parser tipo SAX para Golang&lt;/h1&gt;
+
+&lt;h2 id=&#34;el-problema&#34;&gt;El problema&lt;/h2&gt;
+
+&lt;p&gt;Tratando de migrar unas cosas del trabajo a &lt;strong&gt;Go&lt;/strong&gt; me tropecé con la necesidad de
+procesar unos archivos &lt;strong&gt;XML&lt;/strong&gt; (cada día doy más gracias por &lt;strong&gt;TOML&lt;/strong&gt; y &lt;strong&gt;JSON&lt;/strong&gt;) de
+tamaño considerable.&lt;/p&gt;
+
+&lt;p&gt;Una mirada por encima a &lt;code&gt;encoding/xml&lt;/code&gt; me dejo bien claro que no existía un
+parser tipo &lt;code&gt;xml.dom.minidom&lt;/code&gt; (el de la biblioteca estándar de &lt;strong&gt;Python&lt;/strong&gt;) o algo
+como &lt;strong&gt;Expat&lt;/strong&gt;. Las principales funciones (ej. las que salen en los ejemplos)
+están orientadas más hacia la serialización y deserialización de &lt;strong&gt;XML&lt;/strong&gt; que a
+andar recorriendo documentos.&lt;/p&gt;
+
+&lt;p&gt;Sin otro remedio a mano acudí al &lt;a href=&#34;http://google.com&#34;&gt;Gran Oráculo&lt;/a&gt; para
+investigar mis posibilidades y lo más cercano que encontré fue una biblioteca
+llamada &lt;a href=&#34;https://github.com/kokardy/saxlike&#34;&gt;saxlike&lt;/a&gt; que no luce nada mal pero
+no era exactamente lo que buscaba (hay que implementar toda una interfaz).&lt;/p&gt;
+
+&lt;h2 id=&#34;la-solución&#34;&gt;La solución.&lt;/h2&gt;
+
+&lt;p&gt;El método &lt;code&gt;Token&lt;/code&gt; de &lt;code&gt;*xml.Decoder&lt;/code&gt; opera leyendo de un &lt;code&gt;*io.Reader&lt;/code&gt; y retornando
+el próximo token &lt;strong&gt;XML&lt;/strong&gt; que encuentra. La función retorna &lt;code&gt;(Token, error)&lt;/code&gt; donde
+&lt;strong&gt;Token&lt;/strong&gt; es uno de los siguientes tipos:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;xml.StartElement&lt;/code&gt; (comienzo de un elemento)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.EndElement&lt;/code&gt; (final de un elemento, funciona incluso para etiquetas  como
+&lt;code&gt;&amp;lt;esta/&amp;gt;&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.Directive&lt;/code&gt; (directivas especiales)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.Comment&lt;/code&gt; (comentarios)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.Chardata&lt;/code&gt; (contenido de los elementos)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xml.ProcInst&lt;/code&gt; (instrucciones de procesamiento)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Esto es bastante parecido a &lt;strong&gt;SAX&lt;/strong&gt; es decir, podríamos hacer una interfaz
+&lt;strong&gt;Handler&lt;/strong&gt; con un método por cada tipo y una función (o método de otra clase) que
+recibiera algo que implementara a handler y llamara a cada uno de los métodos.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// En este caso hipotético Parser tiene embebido un xml.Decoder
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Parser&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;document&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;handler&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Handler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;error&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;EOF&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+         &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+          &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;){&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;handler&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// mas de lo mismo
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para utilizar este método necesitamos implementar la interfaz &lt;strong&gt;SAX&lt;/strong&gt; con 6
+métodos para los elemento y otro más para manejo de errores o verificar el valor
+de retorno de &lt;code&gt;Parse&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Peeeero, la idea de implementar 7 métodos y utilizar callbacks para manejar
+eventos&amp;hellip;.. ya para eso tengo &lt;strong&gt;Java&lt;/strong&gt;. Mucho menos cuando voy a tener que
+escribir métodos vacíos para &lt;code&gt;xml.Comment&lt;/code&gt; y &lt;code&gt;xml.Directive&lt;/code&gt; porque no me
+interesa procesarlos pero son necesarios para la interfaz.&lt;/p&gt;
+
+&lt;p&gt;Por razones como esta, los eventos en &lt;strong&gt;Go&lt;/strong&gt; se manejan mejor utilizando
+canales:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParserError&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;struct&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+
+&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;document&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Reader&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;decoder&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;NewDecoder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;document&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;c1&#34;&gt;// DefaultDecoder es un *xml.Decoder
+&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;decoder&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;io&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;EOF&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParserError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{}&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+        &lt;span class=&#34;nx&#34;&gt;elm&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;token&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Esta versión no solo es mucho más corta sino que además utilizamos una
+&lt;em&gt;gorutina&lt;/em&gt; para procesar el &lt;strong&gt;XML&lt;/strong&gt; y un canal para la comunicación entre el
+productor y el consumidor de los eventos. El consumidor puede elegir que eventos
+le resultan interesantes y descartar el resto&lt;/p&gt;
+
+&lt;p&gt;Veamos un ejemplo:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span class=&#34;kd&#34;&gt;func&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;settings.xml&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;!=&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;nil&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;nb&#34;&gt;panic&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;nx&#34;&gt;ch&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;make&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;chan&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Token&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;go&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;parse&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;fd&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ch&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;range&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ch&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;switch&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.(&lt;/span&gt;&lt;span class=&#34;kd&#34;&gt;type&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;StartElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;xml&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;EndElement&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&amp;lt;/&amp;#34;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;+&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Local&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;case&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;ParserError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;nx&#34;&gt;fmt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;Println&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;Errroooooooooor&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
     <item>
@@ -87,8 +933,94 @@ Una mirada por encima a encoding/xml me dejo bien claro que no existía un parse
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
-      <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
-Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
+      <description>
+
+&lt;h1 id=&#34;desarrollando-con-emacs-y-go&#34;&gt;Desarrollando con Emacs y Go.&lt;/h1&gt;
+
+&lt;p&gt;Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso
+revisar el correo) así que cuando me decidí a iniciar algunos proyectos en
+&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para
+el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se
+arme la casa a su manera.&lt;/p&gt;
+
+&lt;h2 id=&#34;haciendo-un-ide-en-tres-pasos&#34;&gt;Haciendo un IDE en tres pasos.&lt;/h2&gt;
+
+&lt;p&gt;Convertir &lt;strong&gt;Emacs&lt;/strong&gt; en un entorno de desarrollo para &lt;strong&gt;Go&lt;/strong&gt; es una tarea bastante
+sencilla. Vamos a separarla en tres pasos.&lt;/p&gt;
+
+&lt;h3 id=&#34;instalar-las-herramientas-necesarias&#34;&gt;Instalar las herramientas necesarias.&lt;/h3&gt;
+
+&lt;p&gt;Despúes de tener &lt;strong&gt;Go&lt;/strong&gt; y &lt;strong&gt;Git&lt;/strong&gt; instalado, necesitamos un conjunto de herramientas
+(oficiales y de terceros) que nos hacen la vida mucho más sencilla.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/kisielk/errcheck&#34;&gt;errcheck&lt;/a&gt;: verificar errores de compilación.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.com/x/tools/cmd/guru&#34;&gt;Guru&lt;/a&gt;: obtener información acerca del código.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://github.com/nsf/gocode&#34;&gt;Gocode&lt;/a&gt;: completamiento&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/x/tools/cmd/gorename&#34;&gt;Gorename&lt;/a&gt;: refactorizacíon a cierto
+nivel.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://golang.org/x/tools/cmd/goimports&#34;&gt;Goimports&lt;/a&gt;: ayuda a adicionar o
+eliminar paquetes importados (también formatea código).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Estas herramientas por si solas no nos son de mucha utilidad, están diseñadas
+para que cualquier editor de texto que soporte extensiones pueda integrarlas de
+un modo sencillo.&lt;/p&gt;
+
+&lt;h3 id=&#34;el-lado-de-emacs&#34;&gt;El lado de Emacs&lt;/h3&gt;
+
+&lt;p&gt;En mi lista de paquetes (uso nada más que &lt;a href=&#34;http://melpa.org/packages/&#34;&gt;Melpa estable&lt;/a&gt;) hay cerca de 15 paquetes que tienen que ver con
+desarrollo en &lt;strong&gt;Go&lt;/strong&gt;. En lo personal no necesito mucho para trabajar en un
+lenguaje. Las funcionalidades que adiciono son:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Lenguaje y completaminto con &lt;strong&gt;go-mode&lt;/strong&gt; y &lt;strong&gt;company-go&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Verificacíon de errores con &lt;strong&gt;go-errcheck&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Ayuda interactiva con &lt;strong&gt;go-eldoc&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Refactorización con &lt;strong&gt;go-rename&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Inspección de código con &lt;strong&gt;go-guru&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Integración con &lt;strong&gt;projectile&lt;/strong&gt; vía &lt;strong&gt;go-projectile&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Todos los paquetes es recomendable instalarlos vía &lt;strong&gt;package-install&lt;/strong&gt; con la excepción de &lt;strong&gt;company-go&lt;/strong&gt; que está incluido en los fuentes de la herramienta &lt;strong&gt;gocode&lt;/strong&gt; y lo cargo desde ahí para evitar conflictos de versiones.&lt;/p&gt;
+
+&lt;h3 id=&#34;paso-final&#34;&gt;Paso final.&lt;/h3&gt;
+
+&lt;p&gt;Con todos los ingredientes estamos a solo 2 minutos de programar en &lt;strong&gt;Go&lt;/strong&gt; como
+campiones, solo queda:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Añadir &lt;code&gt;$GOPATH/bin&lt;/code&gt; al &lt;code&gt;$PATH&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Modificar el &lt;strong&gt;init.el&lt;/strong&gt; para personalizar los paquetes de &lt;strong&gt;Emacs&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Lo primero depende del sistema operativo donde estés, pero de todas formas es
+una tarea trivial. Si eres relativamente nuevo en &lt;strong&gt;Emacs&lt;/strong&gt; hay grandes
+posibilidades de que no sepas como hacer lo segundo, no importa, aquí va mi
+configuración (sin atajos de teclado, que ya eso es cosa muy personal).&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;; Si estás utilizando correctamente tu gestor de paquetes&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; no tienes que adicionar las lineas de los  &amp;#39;require&amp;#39;&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; Adicionar el backend de Go a company&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-to-list&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; Activamos go-mode&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; y toda la familia&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-guru&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-errcheck&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-projectile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; Añadimos un hook para que cuando se active el modo&lt;/span&gt;
+&lt;span class=&#34;c1&#34;&gt;;; se configuren todas estas cosas&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;projectile-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;go-eldoc-setup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;gofmt-before-save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gofmt-command&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;goimports&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Y&amp;hellip;ya está. Hemos creado un &lt;strong&gt;IDE&lt;/strong&gt; para trabajar en &lt;strong&gt;Go&lt;/strong&gt; sin salir de la
+comodidad de nuestro editor favorito.&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -97,8 +1029,86 @@ Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para 
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/zfs-problema-memoria/</guid>
-      <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
-Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
+      <description>
+
+&lt;h1 id=&#34;zfs-y-el-problema-de-la-memoria&#34;&gt;ZFS y el problema de la memoria&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;ZFS&lt;/strong&gt; lleva ya unos años en tierras de &lt;a href=&#34;http://www.open-zfs.org/&#34;&gt;Linux&lt;/a&gt; y cada
+vez que tengo un chance lo recomiendo a alguno de mis amigos &lt;em&gt;sysadmins&lt;/em&gt; junto
+con un grupito de notas que he tomado acerca de como trabajar con el
+&lt;em&gt;filesystem&lt;/em&gt;, optimizar alguna que otra &lt;em&gt;feature&lt;/em&gt; y algunos casos de estudio.&lt;/p&gt;
+
+&lt;p&gt;Después de notar que en la mayoría de los casos, los aconsejados regresaban al
+castigo de &lt;strong&gt;LVM&lt;/strong&gt; me dediqué a investigar las causas del rechazo y como
+enmendarlas.&lt;/p&gt;
+
+&lt;h1 id=&#34;pero-cuál-es-el-problema&#34;&gt;Pero ¿cuál es el problema?&lt;/h1&gt;
+
+&lt;p&gt;Descartado el factor &amp;ldquo;resistencia al cambio&amp;rdquo; (los linuxeros solo temen a cambiar
+de distribución) la mayoría de los problemas relacionados con &lt;strong&gt;ZFS&lt;/strong&gt; (entre las
+personas a las que le pregunté) están relacionados con uso y/o configuracíon
+incorrecta (también conocido como: &amp;ldquo;No leiste las notas&amp;rdquo;). Los 4 más comúnes
+fueron:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Poner &lt;strong&gt;/boot&lt;/strong&gt; o la &lt;strong&gt;swap&lt;/strong&gt; en un volumen &lt;strong&gt;ZFS&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;No entender la diferencia entre &lt;strong&gt;clone&lt;/strong&gt; y &lt;strong&gt;snapshot&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;El consumo de memoria.&lt;/li&gt;
+&lt;li&gt;Problemas con &lt;strong&gt;RAID&lt;/strong&gt; (tanto el de hardware como &lt;strong&gt;RAIDZ&lt;/strong&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Comparando mis problemas locales con los globales (gracias a &lt;a href=&#34;http://trends.google.com&#34;&gt;Google
+Trends&lt;/a&gt; ) veo que los puntos 3 y 4 tienen buen
+ranking y me dije: &amp;ldquo;Esto va al blog&amp;rdquo;.&lt;/p&gt;
+
+&lt;h1 id=&#34;como-hacer-que-zfs-se-porte-bien&#34;&gt;Como hacer que ZFS se porte bien.&lt;/h1&gt;
+
+&lt;p&gt;Lo primero que le recomiendo a todo el mundo es que se lea un buen tutorial. Si
+vienes de el mundo &lt;strong&gt;ext4&lt;/strong&gt; + &lt;strong&gt;LVM&lt;/strong&gt;, la filosofía de &lt;strong&gt;ZFS&lt;/strong&gt; te puede parecer
+extraña y deberías tener una idea de las semejanzas y diferencias en el modo de
+operar con cada uno. En dependencia del nivel de inglés de cada cual
+&lt;a href=&#34;http://www.open-zfs.org/wiki/Performance_tuning&#34;&gt;aquí&lt;/a&gt; hay una buena
+referencia sobre todos los parámetros de optimización e incluso casos de
+estudio.&lt;/p&gt;
+
+&lt;p&gt;El &amp;ldquo;problema&amp;rdquo; del uso de memoria no es nada más que el método de caché utilizado
+en &lt;strong&gt;ZFS&lt;/strong&gt;. La mayoría de los &lt;em&gt;filesystems&lt;/em&gt; utilizan alguna variante de &lt;strong&gt;LRU&lt;/strong&gt;, que
+en este caso fue sustituido por el &lt;em&gt;Adaptive Replacement Cache&lt;/em&gt; o &lt;strong&gt;ARC&lt;/strong&gt;. El
+&lt;strong&gt;ARC&lt;/strong&gt; mejora mucho el rendimiento, pero consume &lt;em&gt;cantidades masivas&lt;/em&gt; de &lt;strong&gt;RAM&lt;/strong&gt;. A
+pesar de esto raras veces es &lt;strong&gt;necesario&lt;/strong&gt; configurar algo de aquí, aunque la
+memoria se muestra como ocupada (por ejemplo al utilizar &lt;strong&gt;free&lt;/strong&gt;) es un caché y
+si existiera la necesidad sería liberada por el kernel. En caso de que no sepas
+como está configurado tu &lt;strong&gt;ARC&lt;/strong&gt; puedes simplemente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /sys/module/zfs/parameters/zfs_arc_max
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Un valor de 0 indica que la mitad de la &lt;strong&gt;RAM&lt;/strong&gt; disponible se utilizará para
+caché. Para cambiar este valor puedes hacer lo siguiente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Configura la cantidad de memoria máxima disponible para ARC
+echo &amp;lt;numero en bytes&amp;gt; &amp;gt;&amp;gt; /sys/module/zfs/parameters/zfs_arc_max
+# fuerza al kernel a vaciar la información de caché
+echo 3 &amp;gt; /proc/sys/vm/drop_caches
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Por último y no por ello menos importante, &lt;strong&gt;RAID&lt;/strong&gt;. &lt;strong&gt;RAIDZ&lt;/strong&gt; es una implementación
+de &lt;strong&gt;RAID&lt;/strong&gt; basada en software. Si estás utilizando &lt;strong&gt;ZFS&lt;/strong&gt; es recomendable que
+utilices &lt;strong&gt;RAIDZ&lt;/strong&gt; en vez de una solución por hardware. Si tu servidor require que
+tengas &lt;strong&gt;RAID&lt;/strong&gt; por hardware crea X unidades &lt;strong&gt;RAID0&lt;/strong&gt; y añádelas a un &lt;strong&gt;zpool&lt;/strong&gt;
+configurado con &lt;strong&gt;RAIDZ&lt;/strong&gt;. Recuerda: &lt;strong&gt;nunca&lt;/strong&gt; pongas &lt;strong&gt;RAIDZ&lt;/strong&gt; sobre discos que
+tienen &lt;strong&gt;RAID&lt;/strong&gt; mayor que 0. Repito: &lt;strong&gt;NUNCA&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;para-ir-empezando-con-zfs&#34;&gt;Para ir empezando con ZFS.&lt;/h1&gt;
+
+&lt;p&gt;Estos tres links me sirven cada vez que tengo que refrescar algo del tema.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://jjmora.es/zfs_aprendiendo_zfs_en_12_pasos/&#34;&gt;ZFS en 12 pasos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.open-zfs.org/wiki/Main_Page&#34;&gt;Open-ZFS Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.gentoo.org/wiki/ZFS&#34;&gt;Wiki de Gentoo sobre ZFS&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
     </item>
     
     <item>
@@ -107,8 +1117,64 @@ Después de notar que en la mayoría de los casos, los aconsejados regresaban al
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
-      <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
- Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
+      <description>
+
+&lt;h1 id=&#34;hugo-emacs-y-el-nuevo-blog&#34;&gt;Hugo, Emacs y el nuevo blog&lt;/h1&gt;
+
+&lt;p&gt;Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las
+bondades de &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github Pages&lt;/a&gt; y
+&lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; como generador de sitios estático. En lo que a
+generador de sitios estáticos se refiere &lt;strong&gt;Hugo&lt;/strong&gt; es bastante sencillo de operar,
+por lo que inicialmente pensé en hacerme unos scripts para organizar el
+&lt;em&gt;workflow&lt;/em&gt; de trabajo de la siguiente manera:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Hacer nuevo post.&lt;/li&gt;
+&lt;li&gt;Previsualizar.&lt;/li&gt;
+&lt;li&gt;Subir a GitHub.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Todo esto organizado, claro está, en una rama &lt;em&gt;develop&lt;/em&gt; para trabajar y una
+&lt;em&gt;master&lt;/em&gt; tanto para el repositorio donde guardo las fuentes del sitio como para
+el que queda publicado.&lt;/p&gt;
+
+&lt;p&gt;Estaba muy emocionado escribiendo código en &lt;strong&gt;Python&lt;/strong&gt; cuando recordé que &lt;strong&gt;Emacs&lt;/strong&gt;
+trae &lt;em&gt;su propio servidor http&lt;/em&gt; en &lt;strong&gt;simple-httpd.el&lt;/strong&gt; y unos cuantos paquetes
+para interactuar con &lt;strong&gt;Git&lt;/strong&gt;. Así surgió &lt;em&gt;hugo-blog-mode.el&lt;/em&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;hugo-en-modo-sencillo&#34;&gt;Hugo en modo sencillo&lt;/h2&gt;
+
+&lt;p&gt;Antes de arrancar a escribir &lt;strong&gt;Emacs Lisp&lt;/strong&gt; me puse a revisar &lt;strong&gt;MELPA&lt;/strong&gt; a ver si
+alguien había tenido la misma idea que yo y encontré a &lt;em&gt;easy-hugo.el&lt;/em&gt;, que está
+genial, pero viene pensado para personas super publicadoras que tienen varios
+blogs y los actualizan con mucha frecuencia o algo así. En fin, que tiene un
+público objetivo en el cual no me incluyo. La idea siempre fue trasladar el
+flujo de trabajo que ya tenía en mente a dos o tres comanditos, ponerle dos o
+tres atajos de teclado y utilizar &lt;strong&gt;Magit&lt;/strong&gt; lo menos posible en el proceso.&lt;/p&gt;
+
+&lt;p&gt;El resultado quedo en un archivito de unas 200 líneas de código con tres comandos.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;hugo-new-post&lt;/strong&gt;, que se explica solito.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hugo-blog-preview&lt;/strong&gt;, que mueve todo lo que esté haciendo a la rama &lt;em&gt;develop&lt;/em&gt;,
+regenera el sitio utilizando una URL local y lanza el navegador para ver como
+va quedando.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt;, que regenra el sitio utilizando la URL final, hace
+&lt;em&gt;commit&lt;/em&gt; en &lt;em&gt;develop&lt;/em&gt; y me mezcla todo en master.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Como estoy utilizando submódulos de &lt;strong&gt;Git&lt;/strong&gt; para mantener los repositorios así:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;sitio/ (fuentes del sitio)
+   |--- content/
+   |--- data/
+   |--- static/
+   |--- themes/
+   |--- public/ (submódulo yorodm.guthub.io)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt; se encarga de hacer los &lt;em&gt;commits&lt;/em&gt; y los &lt;em&gt;merges&lt;/em&gt; y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).&lt;/p&gt;
+</description>
     </item>
     
     <item>
@@ -117,8 +1183,22 @@ Después de notar que en la mayoría de los casos, los aconsejados regresaban al
       <pubDate>Mon, 16 Oct 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</guid>
-      <description>¡Hola! ¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y actualizar regularmente) un blog. En esta ocasión decidí alejarme de plataformas más complejas para probar GitHub Pages, Hugo como generador de sitios estáticos, Markdown y claro está Emacs.
-Como siempre hablaré de temas relacionados con el desarrollo de software, software libre, lenguajes de programación y mis experiencias (buenas o malas) interactuando con el mundo del software.</description>
+      <description>
+
+&lt;h3 id=&#34;hola&#34;&gt;&lt;strong&gt;¡Hola!&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y
+actualizar regularmente) un blog. En esta ocasión decidí alejarme
+de &lt;a href=&#34;http://wordpress.com&#34;&gt;plataformas más complejas&lt;/a&gt; para
+probar
+&lt;a href=&#34;https://pages.github.io&#34;&gt;GitHub Pages&lt;/a&gt;, &lt;a href=&#34;https://github.com/gohugoio&#34;&gt;Hugo&lt;/a&gt;
+como generador de sitios estáticos, Markdown y claro
+está &lt;a href=&#34;https://www.gnu.org/software/emacs/&#34;&gt;Emacs&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Como siempre hablaré de temas relacionados con el desarrollo de software,
+software libre, lenguajes de programación y mis experiencias (buenas o malas)
+interactuando con el mundo del software.&lt;/p&gt;
+</description>
     </item>
     
   </channel>

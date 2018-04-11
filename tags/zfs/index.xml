@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Tue, 24 Oct 2017 10:55:56 -0400</lastBuildDate>
     
-	<atom:link href="https://yorodm.github.io/tags/zfs/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://yorodm.github.io/tags/zfs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -17,8 +17,86 @@
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/zfs-problema-memoria/</guid>
-      <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
-Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
+      <description>
+
+&lt;h1 id=&#34;zfs-y-el-problema-de-la-memoria&#34;&gt;ZFS y el problema de la memoria&lt;/h1&gt;
+
+&lt;p&gt;&lt;strong&gt;ZFS&lt;/strong&gt; lleva ya unos años en tierras de &lt;a href=&#34;http://www.open-zfs.org/&#34;&gt;Linux&lt;/a&gt; y cada
+vez que tengo un chance lo recomiendo a alguno de mis amigos &lt;em&gt;sysadmins&lt;/em&gt; junto
+con un grupito de notas que he tomado acerca de como trabajar con el
+&lt;em&gt;filesystem&lt;/em&gt;, optimizar alguna que otra &lt;em&gt;feature&lt;/em&gt; y algunos casos de estudio.&lt;/p&gt;
+
+&lt;p&gt;Después de notar que en la mayoría de los casos, los aconsejados regresaban al
+castigo de &lt;strong&gt;LVM&lt;/strong&gt; me dediqué a investigar las causas del rechazo y como
+enmendarlas.&lt;/p&gt;
+
+&lt;h1 id=&#34;pero-cuál-es-el-problema&#34;&gt;Pero ¿cuál es el problema?&lt;/h1&gt;
+
+&lt;p&gt;Descartado el factor &amp;ldquo;resistencia al cambio&amp;rdquo; (los linuxeros solo temen a cambiar
+de distribución) la mayoría de los problemas relacionados con &lt;strong&gt;ZFS&lt;/strong&gt; (entre las
+personas a las que le pregunté) están relacionados con uso y/o configuracíon
+incorrecta (también conocido como: &amp;ldquo;No leiste las notas&amp;rdquo;). Los 4 más comúnes
+fueron:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Poner &lt;strong&gt;/boot&lt;/strong&gt; o la &lt;strong&gt;swap&lt;/strong&gt; en un volumen &lt;strong&gt;ZFS&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;No entender la diferencia entre &lt;strong&gt;clone&lt;/strong&gt; y &lt;strong&gt;snapshot&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;El consumo de memoria.&lt;/li&gt;
+&lt;li&gt;Problemas con &lt;strong&gt;RAID&lt;/strong&gt; (tanto el de hardware como &lt;strong&gt;RAIDZ&lt;/strong&gt;).&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Comparando mis problemas locales con los globales (gracias a &lt;a href=&#34;http://trends.google.com&#34;&gt;Google
+Trends&lt;/a&gt; ) veo que los puntos 3 y 4 tienen buen
+ranking y me dije: &amp;ldquo;Esto va al blog&amp;rdquo;.&lt;/p&gt;
+
+&lt;h1 id=&#34;como-hacer-que-zfs-se-porte-bien&#34;&gt;Como hacer que ZFS se porte bien.&lt;/h1&gt;
+
+&lt;p&gt;Lo primero que le recomiendo a todo el mundo es que se lea un buen tutorial. Si
+vienes de el mundo &lt;strong&gt;ext4&lt;/strong&gt; + &lt;strong&gt;LVM&lt;/strong&gt;, la filosofía de &lt;strong&gt;ZFS&lt;/strong&gt; te puede parecer
+extraña y deberías tener una idea de las semejanzas y diferencias en el modo de
+operar con cada uno. En dependencia del nivel de inglés de cada cual
+&lt;a href=&#34;http://www.open-zfs.org/wiki/Performance_tuning&#34;&gt;aquí&lt;/a&gt; hay una buena
+referencia sobre todos los parámetros de optimización e incluso casos de
+estudio.&lt;/p&gt;
+
+&lt;p&gt;El &amp;ldquo;problema&amp;rdquo; del uso de memoria no es nada más que el método de caché utilizado
+en &lt;strong&gt;ZFS&lt;/strong&gt;. La mayoría de los &lt;em&gt;filesystems&lt;/em&gt; utilizan alguna variante de &lt;strong&gt;LRU&lt;/strong&gt;, que
+en este caso fue sustituido por el &lt;em&gt;Adaptive Replacement Cache&lt;/em&gt; o &lt;strong&gt;ARC&lt;/strong&gt;. El
+&lt;strong&gt;ARC&lt;/strong&gt; mejora mucho el rendimiento, pero consume &lt;em&gt;cantidades masivas&lt;/em&gt; de &lt;strong&gt;RAM&lt;/strong&gt;. A
+pesar de esto raras veces es &lt;strong&gt;necesario&lt;/strong&gt; configurar algo de aquí, aunque la
+memoria se muestra como ocupada (por ejemplo al utilizar &lt;strong&gt;free&lt;/strong&gt;) es un caché y
+si existiera la necesidad sería liberada por el kernel. En caso de que no sepas
+como está configurado tu &lt;strong&gt;ARC&lt;/strong&gt; puedes simplemente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;cat /sys/module/zfs/parameters/zfs_arc_max
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Un valor de 0 indica que la mitad de la &lt;strong&gt;RAM&lt;/strong&gt; disponible se utilizará para
+caché. Para cambiar este valor puedes hacer lo siguiente:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# Configura la cantidad de memoria máxima disponible para ARC
+echo &amp;lt;numero en bytes&amp;gt; &amp;gt;&amp;gt; /sys/module/zfs/parameters/zfs_arc_max
+# fuerza al kernel a vaciar la información de caché
+echo 3 &amp;gt; /proc/sys/vm/drop_caches
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Por último y no por ello menos importante, &lt;strong&gt;RAID&lt;/strong&gt;. &lt;strong&gt;RAIDZ&lt;/strong&gt; es una implementación
+de &lt;strong&gt;RAID&lt;/strong&gt; basada en software. Si estás utilizando &lt;strong&gt;ZFS&lt;/strong&gt; es recomendable que
+utilices &lt;strong&gt;RAIDZ&lt;/strong&gt; en vez de una solución por hardware. Si tu servidor require que
+tengas &lt;strong&gt;RAID&lt;/strong&gt; por hardware crea X unidades &lt;strong&gt;RAID0&lt;/strong&gt; y añádelas a un &lt;strong&gt;zpool&lt;/strong&gt;
+configurado con &lt;strong&gt;RAIDZ&lt;/strong&gt;. Recuerda: &lt;strong&gt;nunca&lt;/strong&gt; pongas &lt;strong&gt;RAIDZ&lt;/strong&gt; sobre discos que
+tienen &lt;strong&gt;RAID&lt;/strong&gt; mayor que 0. Repito: &lt;strong&gt;NUNCA&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h1 id=&#34;para-ir-empezando-con-zfs&#34;&gt;Para ir empezando con ZFS.&lt;/h1&gt;
+
+&lt;p&gt;Estos tres links me sirven cada vez que tengo que refrescar algo del tema.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://jjmora.es/zfs_aprendiendo_zfs_en_12_pasos/&#34;&gt;ZFS en 12 pasos&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://www.open-zfs.org/wiki/Main_Page&#34;&gt;Open-ZFS Wiki&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://wiki.gentoo.org/wiki/ZFS&#34;&gt;Wiki de Gentoo sobre ZFS&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
     </item>
     
   </channel>
