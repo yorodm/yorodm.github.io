@@ -75,6 +75,15 @@
     </item>
     
     <item>
+      <title>Libros</title>
+      <link>https://yorodm.github.io/tags/libros/</link>
+      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/libros/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Linux</title>
       <link>https://yorodm.github.io/tags/linux/</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
@@ -134,6 +143,24 @@
       <pubDate>Fri, 15 Dec 2017 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rails</title>
+      <link>https://yorodm.github.io/tags/rails/</link>
+      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ruby</title>
+      <link>https://yorodm.github.io/tags/ruby/</link>
+      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/ruby/</guid>
       <description></description>
     </item>
     
