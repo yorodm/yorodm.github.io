@@ -1,0 +1,247 @@
+    <!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yoandy Rodríguez Martínez">
+        <meta name="description" content="Software, la vida y todo lo demás">
+        <meta name="generator" content="Hugo 0.38-DEV" />
+        <title>Implementando JSON-RPC en Go &middot; /home/yorodm</title>
+        <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+        
+
+        
+        <link rel="stylesheet" href="https://yorodm.github.io/css/font-awesome.min.css">
+        
+
+        
+        <link href="https://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+        
+    </head>
+
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='https://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='https://yorodm.github.io/blog'>archivo</a>
+    <a href='https://yorodm.github.io/tags'>etiquetas</a>
+    <a href='https://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="https://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Implementando JSON-RPC en Go
+                    </h1>
+                    <h2 class="headline">
+                        9 de May 2018
+                    · 355 palabras 
+                    · 2 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://yorodm.github.io/tags/golang">golang</a>
+                          
+                              <a href="https://yorodm.github.io/tags/jsonrpc">jsonrpc</a>
+                          
+                              <a href="https://yorodm.github.io/tags/snippets">snippets</a>
+                          
+                              <a href="https://yorodm.github.io/tags/desaf%C3%ADo">desafío</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                    <section id="post-body">
+                        
+
+<h1 id="implementando-json-rpc-en-go">Implementando JSON-RPC en Go</h1>
+
+<p><strong>JSON-RPC</strong> es mi método favorito para comunicarme con
+<a href="http://www.odoo.com">Odoo</a> desde el &ldquo;exterior&rdquo;, en estos días estaba
+experimentando para enviar información desde un servicio desarrollado en
+<a href="http://golang.org">Go</a> hacia el <strong>ERP</strong> y utilizar <strong>Odoo</strong> como <em>dashboard</em> y
+me di cuenta que hacerlo con el paquete <strong>net/rpc/jsonrpc</strong> era todo un dolor de
+cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia
+implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+    <span class="s">&#34;errors&#34;</span>
+    <span class="s">&#34;fmt&#34;</span>
+    <span class="s">&#34;io/ioutil&#34;</span>
+    <span class="s">&#34;net/http&#34;</span>
+    <span class="s">&#34;net/rpc&#34;</span>
+    <span class="s">&#34;net/url&#34;</span>
+    <span class="s">&#34;reflect&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">JsonCodec</span> <span class="kd">struct</span> <span class="p">{</span>
+    <span class="nx">url</span>        <span class="o">*</span><span class="nx">url</span><span class="p">.</span><span class="nx">URL</span>
+    <span class="nx">httpClient</span> <span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Client</span>
+    <span class="nx">responses</span>  <span class="kd">map</span><span class="p">[</span><span class="kt">uint64</span><span class="p">]</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span>
+    <span class="nx">response</span>   <span class="o">*</span><span class="nx">Response</span>
+    <span class="nx">ready</span>      <span class="kd">chan</span> <span class="kt">uint64</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">WriteRequest</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">args</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">request</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">NewRequest</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">String</span><span class="p">(),</span> <span class="nx">req</span><span class="p">.</span><span class="nx">ServiceMethod</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Seq</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">err</span>
+    <span class="p">}</span>
+
+    <span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">Do</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">err</span>
+    <span class="p">}</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">responses</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">Seq</span><span class="p">]</span> <span class="p">=</span> <span class="nx">response</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">ready</span> <span class="o">&lt;-</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Seq</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">ReadResponseHeader</span><span class="p">(</span><span class="nx">resp</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Response</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">seq</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">self</span><span class="p">.</span><span class="nx">ready</span>
+    <span class="nx">response</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">responses</span><span class="p">[</span><span class="nx">seq</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="p">&lt;</span> <span class="mi">200</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="o">&gt;=</span> <span class="mi">300</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&#34;request error: %d&#34;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">err</span>
+    <span class="p">}</span>
+    <span class="nx">_</span> <span class="p">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">NewResponse</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">err</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Failed</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">resp</span><span class="p">.</span><span class="nx">Error</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Err</span><span class="p">())</span>
+    <span class="p">}</span>
+    <span class="nx">self</span><span class="p">.</span><span class="nx">response</span> <span class="p">=</span> <span class="nx">r</span>
+    <span class="nx">resp</span><span class="p">.</span><span class="nx">Seq</span> <span class="p">=</span> <span class="nx">seq</span>
+    <span class="nb">delete</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">responses</span><span class="p">,</span> <span class="nx">seq</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">ReadResponseBody</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="nx">v</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="kc">nil</span>
+    <span class="p">}</span>
+    <span class="nx">value</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">value</span><span class="p">.</span><span class="nx">Kind</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Ptr</span> <span class="o">||</span> <span class="nx">value</span><span class="p">.</span><span class="nx">IsNil</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&#34;Called with non ptr or nil&#34;</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">value</span> <span class="p">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">Elem</span><span class="p">()</span>
+    <span class="nx">value</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="o">*</span><span class="nx">self</span><span class="p">.</span><span class="nx">response</span><span class="p">))</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">Close</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">transport</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">Transport</span><span class="p">.(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Transport</span><span class="p">)</span>
+    <span class="nx">transport</span><span class="p">.</span><span class="nx">CloseIdleConnections</span><span class="p">()</span>
+    <span class="k">return</span> <span class="kc">nil</span>
+<span class="p">}</span></code></pre></div>
+<p>Como pueden ver utilizo la biblioteca estándar para crear un nuevo <em>codec</em> que
+pueda utilizarse con <strong>net/rpc</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">codec</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">JsonCodec</span><span class="p">{</span>
+        <span class="nx">url</span><span class="p">:</span>        <span class="nx">u</span><span class="p">,</span> <span class="o">/</span><span class="nx">net</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">Url</span>
+        <span class="nx">httpClient</span><span class="p">:</span> <span class="nx">httpClient</span><span class="p">,</span> <span class="c1">// net.http.Client
+</span><span class="c1"></span>        <span class="nx">ready</span><span class="p">:</span>      <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">),</span>
+        <span class="nx">responses</span><span class="p">:</span>  <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">uint64</span><span class="p">]</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">),</span>
+    <span class="p">}</span>
+<span class="nx">client</span> <span class="o">:=</span> <span class="nx">rpc</span><span class="p">.</span><span class="nx">NewClientWithCodec</span><span class="p">(</span><span class="nx">codec</span><span class="p">)</span></code></pre></div>
+<p>Gran parte de la simpleza de la implementación responde al trato que reciben las
+interfaces en <a href="http://golang.org">Go</a>. Si no estás familiarizado con el tema te
+recomiendo que leas.</p>
+
+<ol>
+<li><a href="https://gobyexample.com/interfaces">Go by Example: Interfaces</a></li>
+<li><a href="https://dev.to/deanveloper/the-problem-with-interfaces-and-how-go-fixed-it">The Problem with Interfaces, and how Go Fixed it</a></li>
+<li><a href="https://dev.to/loderunner/hacking-go-interfaces">Haking go interfaces</a></li>
+</ol>
+
+                    </section>
+            </article>
+
+            <div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "home-yorodm" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+        
+        © Copyright 2018 Yoandy Rodríguez Martínez
+        
+    </p>
+
+    <p class="small">
+        Powered by  <a href="http://www.gnu.org/software/emacs">GNU Emacs</a> <i class="fa fa-heart" aria-hidden="true"></i> and <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
+<script src="https://yorodm.github.io/js/main.js"></script>
+
+
+
+
+
+
+
+    </body>
+</html>

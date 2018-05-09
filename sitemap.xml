@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yorodm.github.io/blog/json-rpc-golang/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</loc>
     <lastmod>2018-04-25T11:37:30-04:00</lastmod>
   </url>
@@ -69,7 +74,7 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -79,13 +84,13 @@
   
   <url>
     <loc>https://yorodm.github.io/</loc>
-    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yorodm.github.io/blog/</loc>
-    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -97,7 +102,13 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/desaf%C3%ADo/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -121,7 +132,7 @@
   
   <url>
     <loc>https://yorodm.github.io/tags/golang/</loc>
-    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -146,6 +157,12 @@
   <url>
     <loc>https://yorodm.github.io/tags/javascript/</loc>
     <lastmod>2018-01-22T00:00:00-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/jsonrpc/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -206,6 +223,12 @@
   <url>
     <loc>https://yorodm.github.io/tags/ruby/</loc>
     <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/snippets/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
   </url>
   
