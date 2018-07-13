@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.38-DEV" />
+        <meta name="generator" content="Hugo 0.45-DEV" />
         <title>Desarrollando microservicios con Nameko &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -102,18 +102,18 @@ protocolos.</p>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="k">class</span> <span class="nc">Compute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span><span class="sa"></span><span class="s2">&#34;compute&#34;</span>
-    <span class="n">notify</span> <span class="o">=</span> <span class="n">RpcProxy</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;notify&#34;</span><span class="p">)</span>
+    <span class="n">name</span> <span class="o">=</span><span class="s2">&#34;compute&#34;</span>
+    <span class="n">notify</span> <span class="o">=</span> <span class="n">RpcProxy</span><span class="p">(</span><span class="s2">&#34;notify&#34;</span><span class="p">)</span>
 
     <span class="nd">@rpc</span>
     <span class="k">def</span> <span class="nf">method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">):</span>
         <span class="n">a</span> <span class="o">=</span> <span class="n">value1</span> <span class="o">+</span> <span class="n">value2</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="o">.</span><span class="n">send</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;Operation completed </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">notify</span><span class="o">.</span><span class="n">send</span><span class="o">.</span><span class="n">call_async</span><span class="p">(</span><span class="s2">&#34;Operation completed </span><span class="si">%s</span><span class="s2">&#34;</span> <span class="o">%</span> <span class="n">a</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">a</span>
 
 
 <span class="k">class</span> <span class="nc">Notify</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span><span class="sa"></span><span class="s2">&#34;notify&#34;</span>
+    <span class="n">name</span> <span class="o">=</span><span class="s2">&#34;notify&#34;</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
     <span class="nd">@rpc</span>
@@ -155,7 +155,7 @@ Broker: pyamqp://guest:guest@192.168.184.142
 <p>Perfecto, funcionan tanto las llamadas síncronas como las asíncronas, con esto en mano
 podemos utilizar los servicios desde, por ejemplo, un modelo en <strong>Odoo</strong>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.standalone.rpc</span> <span class="kn">import</span> <span class="n">ClusterRpcProxy</span>
-<span class="n">BROKER</span> <span class="o">=</span><span class="sa"></span><span class="s1">&#39;pyamqp://guest:guest@192.168.184.142&#39;</span>
+<span class="n">BROKER</span> <span class="o">=</span><span class="s1">&#39;pyamqp://guest:guest@192.168.184.142&#39;</span>
 
 <span class="c1"># Todas las cosas del modelo....</span>
     <span class="nd">@api.multi</span>
@@ -182,7 +182,7 @@ cada un tiempo configurable en cada una de las instancias.</p>
 <span class="kn">from</span> <span class="nn">monitoring</span> <span class="kn">import</span> <span class="n">ping</span>
 
 <span class="k">class</span> <span class="nc">Heartbear</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="n">name</span><span class="o">=</span><span class="sa"></span><span class="s2">&#34;heartbeat&#34;</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&#34;heartbeat&#34;</span>
 
     <span class="nd">@timer</span>
     <span class="k">def</span> <span class="nf">beat</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>

@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.38-DEV" />
+        <meta name="generator" content="Hugo 0.45-DEV" />
         <title>Pruebas funcionales con factory_boy y faker &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -93,7 +93,7 @@ con otra biblioteca llamada <a href="https://github.com/joke2k/faker">faker</a> 
 datos aleatorios (de nuevo, basada en algo del mundo <strong>Ruby</strong>). Veamos un
 ejemplo:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;
+    <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    Modelo persona de toda la vida
 </span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">firstname</span><span class="p">,</span> <span class="n">lastname</span><span class="p">):</span>
@@ -102,22 +102,22 @@ ejemplo:</p>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">fullname</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span> <span class="o">+</span> <span class="sa"></span><span class="s2">&#34; &#34;</span> <span class="bp">self</span><span class="o">.</span><span class="n">fullname</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span> <span class="o">+</span> <span class="s2">&#34; &#34;</span> <span class="bp">self</span><span class="o">.</span><span class="n">fullname</span>
 
 <span class="k">class</span> <span class="nc">PersonFactory</span><span class="p">(</span><span class="n">factory</span><span class="o">.</span><span class="n">Factory</span><span class="p">):</span>
-    <span class="sa"></span><span class="s2">&#34;&#34;&#34;
+    <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    ¡¡¡La fábrica de personas!!!
 </span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Person</span>
-    <span class="n">firstname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;first_name&#39;</span><span class="p">)</span>
-    <span class="n">lastname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span></code></pre></div>
+    <span class="n">firstname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">)</span>
+    <span class="n">lastname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span></code></pre></div>
 <p>Pues tenemos una clase <strong>Person</strong> y una clase <strong>PersonFactory</strong>
 (¿<strong>PeopleFactory</strong>?), vamos a utilizarlas para crear 9 nombres.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">fullname</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">factory</span><span class="o">.</span><span class="n">build_batch</span><span class="p">(</span><span class="n">PersonFactory</span><span class="p">,</span><span class="mi">9</span><span class="p">)]</span>
-<span class="p">[</span><span class="sa"></span><span class="s1">&#39;Keith Best&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Michelle Wilson&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;David Stewart&#39;</span><span class="p">,</span>
-<span class="sa"></span><span class="s1">&#39;Robert Garza&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Sharon Brandt&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Erica Joseph&#39;</span><span class="p">,</span>
-<span class="sa"></span><span class="s1">&#39;Katelyn Washington&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Stacy Byrd&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Jeanne Harrison&#39;</span><span class="p">]</span></code></pre></div>
+<span class="p">[</span><span class="s1">&#39;Keith Best&#39;</span><span class="p">,</span> <span class="s1">&#39;Michelle Wilson&#39;</span><span class="p">,</span> <span class="s1">&#39;David Stewart&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Robert Garza&#39;</span><span class="p">,</span> <span class="s1">&#39;Sharon Brandt&#39;</span><span class="p">,</span> <span class="s1">&#39;Erica Joseph&#39;</span><span class="p">,</span>
+<span class="s1">&#39;Katelyn Washington&#39;</span><span class="p">,</span> <span class="s1">&#39;Stacy Byrd&#39;</span><span class="p">,</span> <span class="s1">&#39;Jeanne Harrison&#39;</span><span class="p">]</span></code></pre></div>
 <p>Vale, funciona. Vamos a extender la idea y hacer un catálogo de frases famosas que incluya
 el nombre del autor</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Quote</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -128,14 +128,14 @@ el nombre del autor</p>
 <span class="k">class</span> <span class="nc">QuoteFactory</span><span class="p">(</span><span class="n">factory</span><span class="o">.</span><span class="n">Factory</span><span class="p">):</span>
     <span class="k">class</span> <span class="nc">Meta</span><span class="p">:</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">Quote</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;sentence&#34;</span><span class="p">)</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s2">&#34;sentence&#34;</span><span class="p">)</span>
     <span class="n">author</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">SubFactory</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span></code></pre></div>
 <p>Y de nuevo hacemos una prueba de concepto: tres citas famosas con sus autores.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">fullname</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">factory</span><span class="o">.</span><span class="n">build_batch</span><span class="p">(</span><span class="n">QuoteFactory</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
-<span class="p">[(</span><span class="sa"></span><span class="s1">&#39;Voluptas fugit culpa libero.&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Terri Clements&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="sa"></span><span class="s1">&#39;Molestiae perspiciatis eius odit.&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Betty Clark&#39;</span><span class="p">),</span>
-<span class="p">(</span><span class="sa"></span><span class="s1">&#39;Exercitationem voluptates corrupti nihil.&#39;</span><span class="p">,</span> <span class="sa"></span><span class="s1">&#39;Eric Hernandez&#39;</span><span class="p">)]</span></code></pre></div>
+<span class="p">[(</span><span class="s1">&#39;Voluptas fugit culpa libero.&#39;</span><span class="p">,</span> <span class="s1">&#39;Terri Clements&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Molestiae perspiciatis eius odit.&#39;</span><span class="p">,</span> <span class="s1">&#39;Betty Clark&#39;</span><span class="p">),</span>
+<span class="p">(</span><span class="s1">&#39;Exercitationem voluptates corrupti nihil.&#39;</span><span class="p">,</span> <span class="s1">&#39;Eric Hernandez&#39;</span><span class="p">)]</span></code></pre></div>
 <h2 id="soporte-para-orms">Soporte para ORMs.</h2>
 
 <p>Si las <em>factories</em> te recuerdan a algo, con su clase <strong>Meta</strong> incluida y sus
@@ -159,7 +159,7 @@ versión de <strong>Person</strong> llevada a <strong>SQLAlchemy</strong></p>
 <span class="kn">import</span> <span class="nn">factory</span>
 <span class="kn">from</span> <span class="nn">factory.alchemy</span> <span class="kn">import</span> <span class="n">SQLAlchemyFactory</span> <span class="k">as</span> <span class="n">Factory</span>
 
-<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;sqlite://&#34;</span><span class="p">)</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="s2">&#34;sqlite://&#34;</span><span class="p">)</span>
 <span class="n">session</span> <span class="o">=</span> <span class="n">scoped_session</span><span class="p">(</span><span class="n">sessionmaker</span><span class="p">(</span><span class="n">bind</span><span class="o">=</span><span class="n">engine</span><span class="p">))</span>
 <span class="n">Base</span> <span class="o">=</span> <span class="n">declarative_base</span><span class="p">()</span>
 
@@ -175,8 +175,8 @@ versión de <strong>Person</strong> llevada a <strong>SQLAlchemy</strong></p>
         <span class="c1"># El objeto session que vamos a utilizar</span>
         <span class="n">sqlalchemy_session</span> <span class="o">=</span> <span class="n">session</span>
     <span class="nb">id</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Sequence</span><span class="p">(</span><span class="k">lambda</span> <span class="n">n</span><span class="p">:</span> <span class="n">n</span><span class="p">)</span>
-    <span class="n">firstname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;first_name&#39;</span><span class="p">)</span>
-    <span class="n">lastname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span></code></pre></div>
+    <span class="n">firstname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s1">&#39;first_name&#39;</span><span class="p">)</span>
+    <span class="n">lastname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span></code></pre></div>
 <h2 id="puntos-finales">Puntos finales.</h2>
 
 <p>Un solo artículo no alcanza para describir todas las funcionalidades de esta

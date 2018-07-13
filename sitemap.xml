@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yorodm.github.io/blog/practicas-serverless-framework/</loc>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yorodm.github.io/blog/json-rpc-golang/</loc>
     <lastmod>2018-05-09T11:45:31-04:00</lastmod>
   </url>
@@ -84,13 +89,13 @@
   
   <url>
     <loc>https://yorodm.github.io/</loc>
-    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yorodm.github.io/blog/</loc>
-    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -113,14 +118,14 @@
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/tags/emacs/</loc>
-    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
+    <loc>https://yorodm.github.io/categories/emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/categories/emacs/</loc>
-    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <loc>https://yorodm.github.io/tags/emacs/</loc>
+    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -227,6 +232,12 @@
   </url>
   
   <url>
+    <loc>https://yorodm.github.io/tags/serverless/</loc>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://yorodm.github.io/tags/snippets/</loc>
     <lastmod>2018-05-09T11:45:31-04:00</lastmod>
     <priority>0</priority>
@@ -247,6 +258,12 @@
   <url>
     <loc>https://yorodm.github.io/tags/xml/</loc>
     <lastmod>2017-11-02T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/yaml/</loc>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
     <priority>0</priority>
   </url>
   
