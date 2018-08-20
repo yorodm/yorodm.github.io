@@ -6,10 +6,69 @@
     <description>Recent content on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 13 Jul 2018 14:44:56 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 20 Aug 2018 10:50:39 -0400</lastBuildDate>
     
         <atom:link href="https://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cementerio Proyectos Github</title>
+      <link>https://yorodm.github.io/blog/cementerio-proyectos-github/</link>
+      <pubDate>Mon, 20 Aug 2018 10:50:39 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/cementerio-proyectos-github/</guid>
+      <description>
+
+&lt;p&gt;Siguiendo uno de los trending topics aquí en &lt;a href=&#34;http://dev.to&#34;&gt;DEV&lt;/a&gt; voy a publicar
+mi propio listado de proyectos difuntos en &lt;a href=&#34;http://github.com/yorodm&#34;&gt;Github&lt;/a&gt;.
+Para ver los otros listados puedes seguir el &lt;a href=&#34;http://dev.to/t/graveyard&#34;&gt;tag&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&#34;cl-rx-http-github-com-yorodm-cl-rx&#34;&gt;&lt;a href=&#34;http://github.com/yorodm/cl-rx&#34;&gt;CL-Rx&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Lenguaje:&lt;/strong&gt; Common Lisp&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resúmen:&lt;/strong&gt; Mi propia implementación de
+&lt;a href=&#34;http://reactivex.io&#34;&gt;reactive&lt;/a&gt; para Common Lisp.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Estado&lt;/strong&gt;: Zombie&lt;/p&gt;
+
+&lt;p&gt;En el momento estaba empezando a utilizar
+&lt;a href=&#34;http://github.com/ReactiveX/RxJava&#34;&gt;RxJava&lt;/a&gt; y alguno de los conceptos no me
+quedaron claros así que decidí hacerme mi propia implementación a ver como
+funcionaba.&lt;/p&gt;
+
+&lt;h2 id=&#34;odoo-addons-https-github-com-yorodm-odoo-addons&#34;&gt;&lt;a href=&#34;https://github.com/yorodm/odoo-addons&#34;&gt;Odoo Addons&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Lenguaje:&lt;/strong&gt; Python&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resumen:&lt;/strong&gt; Addons para &lt;a href=&#34;http://www.odoo.com&#34;&gt;Odoo ERP&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Estado:&lt;/strong&gt;: Zombie&lt;/p&gt;
+
+&lt;p&gt;Me pareció buena idea mantener un repositorio con varios addons que he
+desarrollado para &lt;a href=&#34;http://www.odoo.com&#34;&gt;Odoo&lt;/a&gt;, el feedback que obtuve no fue
+positivo y decidí no continuar. Cabe la posibilidad que en el futuro libere
+algunos más.&lt;/p&gt;
+
+&lt;h2 id=&#34;jupyter-notebooks-https-github-com-yorodm-jupyter-notebooks&#34;&gt;&lt;a href=&#34;https://github.com/yorodm/jupyter-notebooks&#34;&gt;Jupyter Notebooks&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Lenguaje:&lt;/strong&gt; Python&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resumen:&lt;/strong&gt; Notebooks con algunas cosas que he utilizado para trabajar.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Estado:&lt;/strong&gt; Zombie.&lt;/p&gt;
+
+&lt;p&gt;Jupyter es una de mis herramientas favoritas y hago notebooks de casi todo lo
+que me ayuda en mi trabajo. El proyecto murió cuando mi empleador me sugirió
+afectuosamente que consultara las políticas de la empresa acerca de &amp;ldquo;regalar el
+código en internet&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;Tengo además 2 intentos de libros que mi orgullo se niega a reconocer como
+zombies y asegura que &amp;ldquo;para el año que viene los va a terminar&amp;rdquo; y reconozco
+haber eliminado algún que otro proyecto (después de un tiempo te miran a la cara
+culpándote por no haberlos terminado).&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Buenas prácticas con Serverless</title>
