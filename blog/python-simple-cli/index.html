@@ -1,0 +1,245 @@
+    <!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yoandy Rodríguez Martínez">
+        <meta name="description" content="Software, la vida y todo lo demás">
+        <meta name="generator" content="Hugo 0.49-DEV" />
+        <title>Interfaces de comandos con Python &middot; /home/yorodm</title>
+        <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+        
+
+        
+        <link rel="stylesheet" href="https://yorodm.github.io/css/font-awesome.min.css">
+        
+
+        
+        <link href="https://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+        
+    </head>
+
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='https://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='https://yorodm.github.io/blog'>archivo</a>
+    <a href='https://yorodm.github.io/tags'>etiquetas</a>
+    <a href='https://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="https://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Interfaces de comandos con Python
+                    </h1>
+                    <h2 class="headline">
+                        29 de Oct 2018
+                    · 364 palabras 
+                    · 2 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://yorodm.github.io/tags/python">python</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                </header>
+                
+                    <section id="post-body">
+                        
+
+<h1 id="interfaces-de-comandos-sencillas-con-python">Interfaces de comandos sencillas con Python.</h1>
+
+<p>Entre las muchas cosas para las que uso <a href="https://python.org">Python</a> está
+escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a
+día (especialmente cuando toca trabajar de <strong>devops</strong>). Aunque en la biblioteca
+estándar existe <code>argparse</code> y muchos están contentos con eso, personalmente me
+gustan alternativas que me hagan la vida más fácil.</p>
+
+<h2 id="docopt">Docopt.</h2>
+
+<p><a href="http://docopt.org/" title="Docopt">Docopt</a> Es (en mi opinión) uno de los mejores
+frameworks para crear herramientas de líneas de comandos que existe y tiene
+además la ventaja de no ser exclusiva de <strong>Python</strong>, para utilizarla solo tienes
+que documentar el módulo o función que va a obtener los argumentos de la línea
+de comandos. Veamos un ejemplo de una herramienta que utilizo para subscribir
+ahorrarme tener que subscribir a un conjunto de usuarios cuando creo un
+repositorio.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;Subscriber.
+</span><span class="s2">
+</span><span class="s2">Usage:
+</span><span class="s2">  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;
+</span><span class="s2">
+</span><span class="s2">&#34;&#34;&#34;</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
+    <span class="n">repo_name</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;&lt;reponame&gt;&#39;</span><span class="p">)</span>
+    <span class="n">group_name</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;&lt;groupname&gt;&#39;</span><span class="p">)</span>
+    <span class="c1"># El resto va aqui</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">arguments</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+
+<span class="s2">&#34;&#34;&#34;</span></code></pre></div>
+<p>Al invocar la herramienta sin parámetros obtenemos el siguiente mensaje de ayuda:</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ python subscriber.py
+Usage:
+  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;</code></pre></div>
+<p>Para utilizarla simplemente podemos</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ python subscriber.py repo https://my.repo.cu group developers</code></pre></div>
+<p>Ventajas:</p>
+
+<ol>
+<li>El código extra es mínimo (casi todo es documentación).</li>
+<li>Ganas la documentación de gratis.</li>
+<li>El minilenguaje de las cli es extremadamente poderoso.</li>
+</ol>
+
+<p>Desventajas:</p>
+
+<ol>
+<li>Tienes que aprender el minilenguaje.</li>
+</ol>
+
+<h2 id="lazycli">Lazycli.</h2>
+
+<p><a href="https://github.com/ninjaaron/lazycli" title="Lazycli">Lazycli</a> es un framework <strong>muy
+nuevo</strong> pero de una simpleza y claridad que dan ganas de usarlo. En lugar de
+documentación utilizamos decoradores para declarar nuestra <strong>CLI</strong>. El autor nos
+muestra como ejemplo un clon de <code>cp</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+<span class="kn">import</span> <span class="nn">lazycli</span>
+<span class="kn">import</span> <span class="nn">shutil</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="nd">@lazycli.script</span>
+<span class="k">def</span> <span class="nf">cp</span><span class="p">(</span><span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+    <span class="s2">&#34;&#34;&#34;copy around files&#34;&#34;&#34;</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+        <span class="k">except</span> <span class="n">IsADirectoryError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">recursive</span><span class="p">:</span>
+                <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></div>
+<p>Si invocamos la herramienta obtenemos lo siguiente:</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ python cp.py -h
+usage: cp.py [-h] [-r] [src [src ...]] dst
+
+copy around files
+
+positional arguments:
+  src
+  dst
+
+optional arguments:
+  -h, --help       show this help message and exit
+  -r, --recursive</code></pre></div>
+<p>Ventajas:</p>
+
+<ol>
+<li>Casi 0 código extra (ejecutar el objeto que devuelve el decorador).</li>
+<li>Convención sobre configuración.</li>
+</ol>
+
+<p>Desventajas:</p>
+
+<ol>
+<li>No es tán versátil como <code>docopt</code>.</li>
+</ol>
+
+                    </section>
+            </article>
+
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "home-yorodm" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+        
+        © Copyright 2018 Yoandy Rodríguez Martínez
+        
+    </p>
+
+    <p class="small">
+        Powered by  <a href="http://www.gnu.org/software/emacs">GNU Emacs</a> <i class="fa fa-heart" aria-hidden="true"></i> and <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
+<script src="https://yorodm.github.io/js/main.js"></script>
+
+
+
+
+
+
+
+    </body>
+</html>

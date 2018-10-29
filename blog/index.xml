@@ -6,10 +6,127 @@
     <description>Recent content in Blog on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Thu, 25 Oct 2018 12:45:05 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 29 Oct 2018 09:45:07 -0400</lastBuildDate>
     
         <atom:link href="https://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Interfaces de comandos con Python</title>
+      <link>https://yorodm.github.io/blog/python-simple-cli/</link>
+      <pubDate>Mon, 29 Oct 2018 09:45:07 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/python-simple-cli/</guid>
+      <description>
+
+&lt;h1 id=&#34;interfaces-de-comandos-sencillas-con-python&#34;&gt;Interfaces de comandos sencillas con Python.&lt;/h1&gt;
+
+&lt;p&gt;Entre las muchas cosas para las que uso &lt;a href=&#34;https://python.org&#34;&gt;Python&lt;/a&gt; está
+escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a
+día (especialmente cuando toca trabajar de &lt;strong&gt;devops&lt;/strong&gt;). Aunque en la biblioteca
+estándar existe &lt;code&gt;argparse&lt;/code&gt; y muchos están contentos con eso, personalmente me
+gustan alternativas que me hagan la vida más fácil.&lt;/p&gt;
+
+&lt;h2 id=&#34;docopt&#34;&gt;Docopt.&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;http://docopt.org/&#34; title=&#34;Docopt&#34;&gt;Docopt&lt;/a&gt; Es (en mi opinión) uno de los mejores
+frameworks para crear herramientas de líneas de comandos que existe y tiene
+además la ventaja de no ser exclusiva de &lt;strong&gt;Python&lt;/strong&gt;, para utilizarla solo tienes
+que documentar el módulo o función que va a obtener los argumentos de la línea
+de comandos. Veamos un ejemplo de una herramienta que utilizo para subscribir
+ahorrarme tener que subscribir a un conjunto de usuarios cuando creo un
+repositorio.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;Subscriber.
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;Usage:
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;  subscriber.py repo &amp;lt;reponame&amp;gt; group &amp;lt;groupname&amp;gt;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;
+&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;repo_name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;reponame&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;group_name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&amp;lt;groupname&amp;gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;c1&#34;&gt;# El resto va aqui&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;docopt&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;vm&#34;&gt;__doc__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;arguments&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Al invocar la herramienta sin parámetros obtenemos el siguiente mensaje de ayuda:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ python subscriber.py
+Usage:
+  subscriber.py repo &amp;lt;reponame&amp;gt; group &amp;lt;groupname&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Para utilizarla simplemente podemos&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ python subscriber.py repo https://my.repo.cu group developers&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ventajas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;El código extra es mínimo (casi todo es documentación).&lt;/li&gt;
+&lt;li&gt;Ganas la documentación de gratis.&lt;/li&gt;
+&lt;li&gt;El minilenguaje de las cli es extremadamente poderoso.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Desventajas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Tienes que aprender el minilenguaje.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;lazycli&#34;&gt;Lazycli.&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ninjaaron/lazycli&#34; title=&#34;Lazycli&#34;&gt;Lazycli&lt;/a&gt; es un framework &lt;strong&gt;muy
+nuevo&lt;/strong&gt; pero de una simpleza y claridad que dan ganas de usarlo. En lugar de
+documentación utilizamos decoradores para declarar nuestra &lt;strong&gt;CLI&lt;/strong&gt;. El autor nos
+muestra como ejemplo un clon de &lt;code&gt;cp&lt;/code&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;ch&#34;&gt;#!/usr/bin/env python3&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;lazycli&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;shutil&lt;/span&gt;
+&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;sys&lt;/span&gt;
+
+
+&lt;span class=&#34;nd&#34;&gt;@lazycli.script&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;cp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;recursive&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;False&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;s2&#34;&gt;&amp;#34;&amp;#34;&amp;#34;copy around files&amp;#34;&amp;#34;&amp;#34;&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;path&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;try&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;n&#34;&gt;shutil&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;copy2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+        &lt;span class=&#34;k&#34;&gt;except&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;IsADirectoryError&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;recursive&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+                &lt;span class=&#34;n&#34;&gt;shutil&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;copytree&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;path&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;dst&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+            &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+                &lt;span class=&#34;k&#34;&gt;print&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;err&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;sys&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;stderr&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+
+&lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;vm&#34;&gt;__name__&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;s1&#34;&gt;&amp;#39;__main__&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;cp&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si invocamos la herramienta obtenemos lo siguiente:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ python cp.py -h
+usage: cp.py [-h] [-r] [src [src ...]] dst
+
+copy around files
+
+positional arguments:
+  src
+  dst
+
+optional arguments:
+  -h, --help       show this help message and exit
+  -r, --recursive&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Ventajas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Casi 0 código extra (ejecutar el objeto que devuelve el decorador).&lt;/li&gt;
+&lt;li&gt;Convención sobre configuración.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Desventajas:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;No es tán versátil como &lt;code&gt;docopt&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Trucos con AWS Lambda. (Parte 1)</title>
