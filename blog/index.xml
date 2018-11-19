@@ -6,10 +6,76 @@
     <description>Recent content in Blog on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 29 Oct 2018 09:45:07 -0400</lastBuildDate>
+    <lastBuildDate>Sun, 18 Nov 2018 12:39:59 -0500</lastBuildDate>
     
         <atom:link href="https://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Trucos Aws Lambda (parte 2)</title>
+      <link>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</link>
+      <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</guid>
+      <description>
+
+&lt;h1 id=&#34;trucos-con-aws-lambda-ii&#34;&gt;Trucos con AWS Lambda (II).&lt;/h1&gt;
+
+&lt;h2 id=&#34;truco-1-utiliza-las-tags&#34;&gt;Truco 1. Utiliza las tags.&lt;/h2&gt;
+
+&lt;p&gt;Los tags en AWS nos permiten:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Tener asociados un máximo de 50 a cada recurso.&lt;/li&gt;
+&lt;li&gt;Llaves de hasta 128 caracteres Unicode.&lt;/li&gt;
+&lt;li&gt;Valores de hasta 256 caracteres Unicode.&lt;/li&gt;
+&lt;li&gt;Distinción entre mayúsculas y minúsculas para llaves y valores.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Basicamente todo lo que necesitamos para hacernos un caché:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;n&#34;&gt;lambda_cient&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;boto3&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;client&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;lambda&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;save_cache&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# tags is a dict of string:string&lt;/span&gt;
+    &lt;span class=&#34;n&#34;&gt;lambda_client&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tag_resource&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Resource&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;self_arn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# get it from handler context&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Tags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dumps&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;tags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;get_cache&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;():&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lambda_client&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;list_tags&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Resource&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;self_arn&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# get it from handler context&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;invalidate_cache&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;):&lt;/span&gt;
+    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;lambda_client&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;untag_resource&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Resource&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;self_arn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
+        &lt;span class=&#34;n&#34;&gt;Tags&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;dumps&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;keys&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;truco-2-desarrolla-tus-lambdas-en-otros-lenguajes&#34;&gt;Truco 2. Desarrolla tus Lambdas en otros lenguajes.&lt;/h2&gt;
+
+&lt;p&gt;Los lenguajes soportados oficialmente por AWS Lambda son (en el momento en que escribo este artículo):&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Javascript (Node.js).&lt;/li&gt;
+&lt;li&gt;Python (2 y 3).&lt;/li&gt;
+&lt;li&gt;Java.&lt;/li&gt;
+&lt;li&gt;C#.&lt;/li&gt;
+&lt;li&gt;Go.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;¿No está el lenguaje de tu preferencia? Pues no te preocupes, esa lista se puede extender a:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Kotlin, Groovy, Ruby Clojure y todo lo que soporte la JVM.&lt;/li&gt;
+&lt;li&gt;Cualquier lenguaje soportado por la plataforma .NET, incluido &lt;a href=&#34;https://www.peachpie.io&#34;&gt;PHP&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Rust sobre &lt;a href=&#34;https://github.com/softprops/lando&#34;&gt;lando&lt;/a&gt; o &lt;a href=&#34;https://github.com/ilianaw/rust-crowbar&#34;&gt;crowbar&lt;/a&gt; incluso con integración con &lt;a href=&#34;https://github.com/softprops/serverless-rust&#34;&gt;serverless&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://blog.scottlogic.com/2018/10/18/serverless-rust.html&#34;&gt;Cualquier cosa que genere WASM&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;más-trucos&#34;&gt;Más trucos&lt;/h2&gt;
+
+&lt;p&gt;¿Tienes algún otro que compartir? Deja tu comentario aquí o en &lt;a href=&#34;https://dev.to/yorodm&#34;&gt;DEV&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Interfaces de comandos con Python</title>
