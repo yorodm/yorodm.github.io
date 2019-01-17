@@ -937,3 +937,7 @@ a.symbol:hover {
     font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
     font-height: 85%;
 }
+
+div.highlight {
+    overflow: auto;
+}
