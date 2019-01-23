@@ -241,7 +241,10 @@ nav.main-nav a.cta {
 
 /* Typography */
 
-
+sup {
+    font-size: 65%;
+    vertical-align: super;
+}
 /*Accent color*/
 
 a, #title, #post-list a:hover, #title:hover {
