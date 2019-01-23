@@ -290,7 +290,7 @@ ul>li {
 }
 
 b, strong {
-    font-weight: 500;
+    font-weight: 600;
     color: #1E2025;
 }
 
@@ -940,4 +940,12 @@ a.symbol:hover {
 
 div.highlight {
     overflow: auto;
+}
+
+p > code {
+    border: #222 dashed 1px;
+    background: #def;
+    font-family: monospace;
+    padding-left: 2px;
+    padding-right: 2px;
 }
