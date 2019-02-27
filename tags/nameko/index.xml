@@ -74,12 +74,8 @@ protocolos.&lt;/p&gt;
 &lt;p&gt;Si accedemos a la consola web de &lt;strong&gt;RabbitMQ&lt;/strong&gt; podemos ver las colas de mensaje
 creadas para los servicios. Eso confirma que se están funcionando correctamente.&lt;/p&gt;
 
-
 &lt;figure&gt;
-    
-        &lt;img src=&#34;https://yorodm.github.io/images/nameko-microservicios/rabbit-queues.png&#34; /&gt;
-    
-    
+    &lt;img src=&#34;https://yorodm.github.io/images/nameko-microservicios/rabbit-queues.png&#34;/&gt; 
 &lt;/figure&gt;
 
 

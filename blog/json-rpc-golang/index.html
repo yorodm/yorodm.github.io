@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.49-DEV" />
+        <meta name="generator" content="Hugo 0.55.0-DEV" />
         <title>Implementando JSON-RPC en Go &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -66,6 +66,9 @@
                       
                       </span>
                     </h2>
+                    
+
+
                 </header>
                 
                     <section id="post-body">
@@ -98,13 +101,13 @@ implementación. La respuesta es 32 minutos (tuve que leer mucha documentación)
     <span class="nx">ready</span>      <span class="kd">chan</span> <span class="kt">uint64</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">WriteRequest</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">args</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
-    <span class="nx">request</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">NewRequest</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">String</span><span class="p">(),</span> <span class="nx">req</span><span class="p">.</span><span class="nx">ServiceMethod</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Seq</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nf">WriteRequest</span><span class="p">(</span><span class="nx">req</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Request</span><span class="p">,</span> <span class="nx">args</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+    <span class="nx">request</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">NewRequest</span><span class="p">(</span><span class="nx">self</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nf">String</span><span class="p">(),</span> <span class="nx">req</span><span class="p">.</span><span class="nx">ServiceMethod</span><span class="p">,</span> <span class="nx">req</span><span class="p">.</span><span class="nx">Seq</span><span class="p">,</span> <span class="nx">args</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">err</span>
     <span class="p">}</span>
 
-    <span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">Do</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
+    <span class="nx">response</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nf">Do</span><span class="p">(</span><span class="nx">request</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">err</span>
     <span class="p">}</span>
@@ -113,23 +116,23 @@ implementación. La respuesta es 32 minutos (tuve que leer mucha documentación)
     <span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">ReadResponseHeader</span><span class="p">(</span><span class="nx">resp</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Response</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nf">ReadResponseHeader</span><span class="p">(</span><span class="nx">resp</span> <span class="o">*</span><span class="nx">rpc</span><span class="p">.</span><span class="nx">Response</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="nx">seq</span> <span class="o">:=</span> <span class="o">&lt;-</span><span class="nx">self</span><span class="p">.</span><span class="nx">ready</span>
     <span class="nx">response</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">responses</span><span class="p">[</span><span class="nx">seq</span><span class="p">]</span>
     <span class="k">if</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="p">&lt;</span> <span class="mi">200</span> <span class="o">||</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span> <span class="o">&gt;=</span> <span class="mi">300</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Errorf</span><span class="p">(</span><span class="s">&#34;request error: %d&#34;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;request error: %d&#34;</span><span class="p">,</span> <span class="nx">response</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">)</span>
     <span class="p">}</span>
-    <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nx">ReadAll</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
+    <span class="nx">data</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">ioutil</span><span class="p">.</span><span class="nf">ReadAll</span><span class="p">(</span><span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">err</span>
     <span class="p">}</span>
-    <span class="nx">_</span> <span class="p">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nx">Close</span><span class="p">()</span>
-    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">NewResponse</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+    <span class="nx">_</span> <span class="p">=</span> <span class="nx">response</span><span class="p">.</span><span class="nx">Body</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+    <span class="nx">r</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nf">NewResponse</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nx">err</span>
     <span class="p">}</span>
-    <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Failed</span><span class="p">()</span> <span class="p">{</span>
-        <span class="nx">resp</span><span class="p">.</span><span class="nx">Error</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nx">Sprintf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nx">Err</span><span class="p">())</span>
+    <span class="k">if</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Failed</span><span class="p">()</span> <span class="p">{</span>
+        <span class="nx">resp</span><span class="p">.</span><span class="nx">Error</span> <span class="p">=</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%v&#34;</span><span class="p">,</span> <span class="nx">r</span><span class="p">.</span><span class="nf">Err</span><span class="p">())</span>
     <span class="p">}</span>
     <span class="nx">self</span><span class="p">.</span><span class="nx">response</span> <span class="p">=</span> <span class="nx">r</span>
     <span class="nx">resp</span><span class="p">.</span><span class="nx">Seq</span> <span class="p">=</span> <span class="nx">seq</span>
@@ -137,22 +140,22 @@ implementación. La respuesta es 32 minutos (tuve que leer mucha documentación)
     <span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">ReadResponseBody</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nf">ReadResponseBody</span><span class="p">(</span><span class="nx">v</span> <span class="kd">interface</span><span class="p">{})</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="k">if</span> <span class="nx">v</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="k">return</span> <span class="kc">nil</span>
     <span class="p">}</span>
-    <span class="nx">value</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
-    <span class="k">if</span> <span class="nx">value</span><span class="p">.</span><span class="nx">Kind</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Ptr</span> <span class="o">||</span> <span class="nx">value</span><span class="p">.</span><span class="nx">IsNil</span><span class="p">()</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nx">New</span><span class="p">(</span><span class="s">&#34;Called with non ptr or nil&#34;</span><span class="p">)</span>
+    <span class="nx">value</span> <span class="o">:=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="nx">v</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">value</span><span class="p">.</span><span class="nf">Kind</span><span class="p">()</span> <span class="o">!=</span> <span class="nx">reflect</span><span class="p">.</span><span class="nx">Ptr</span> <span class="o">||</span> <span class="nx">value</span><span class="p">.</span><span class="nf">IsNil</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nx">errors</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;Called with non ptr or nil&#34;</span><span class="p">)</span>
     <span class="p">}</span>
-    <span class="nx">value</span> <span class="p">=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">Elem</span><span class="p">()</span>
-    <span class="nx">value</span><span class="p">.</span><span class="nx">Set</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nx">ValueOf</span><span class="p">(</span><span class="o">*</span><span class="nx">self</span><span class="p">.</span><span class="nx">response</span><span class="p">))</span>
+    <span class="nx">value</span> <span class="p">=</span> <span class="nx">value</span><span class="p">.</span><span class="nf">Elem</span><span class="p">()</span>
+    <span class="nx">value</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="nx">reflect</span><span class="p">.</span><span class="nf">ValueOf</span><span class="p">(</span><span class="o">*</span><span class="nx">self</span><span class="p">.</span><span class="nx">response</span><span class="p">))</span>
     <span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span>
 
-<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nx">Close</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
+<span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">JsonCodec</span><span class="p">)</span> <span class="nf">Close</span><span class="p">()</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="nx">transport</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nx">httpClient</span><span class="p">.</span><span class="nx">Transport</span><span class="p">.(</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Transport</span><span class="p">)</span>
-    <span class="nx">transport</span><span class="p">.</span><span class="nx">CloseIdleConnections</span><span class="p">()</span>
+    <span class="nx">transport</span><span class="p">.</span><span class="nf">CloseIdleConnections</span><span class="p">()</span>
     <span class="k">return</span> <span class="kc">nil</span>
 <span class="p">}</span></code></pre></div>
 <p>Como pueden ver utilizo la biblioteca estándar para crear un nuevo <em>codec</em> que
@@ -163,7 +166,7 @@ pueda utilizarse con <strong>net/rpc</strong>.</p>
 </span><span class="c1"></span>        <span class="nx">ready</span><span class="p">:</span>      <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">),</span>
         <span class="nx">responses</span><span class="p">:</span>  <span class="nb">make</span><span class="p">(</span><span class="kd">map</span><span class="p">[</span><span class="kt">uint64</span><span class="p">]</span><span class="o">*</span><span class="nx">http</span><span class="p">.</span><span class="nx">Response</span><span class="p">),</span>
     <span class="p">}</span>
-<span class="nx">client</span> <span class="o">:=</span> <span class="nx">rpc</span><span class="p">.</span><span class="nx">NewClientWithCodec</span><span class="p">(</span><span class="nx">codec</span><span class="p">)</span></code></pre></div>
+<span class="nx">client</span> <span class="o">:=</span> <span class="nx">rpc</span><span class="p">.</span><span class="nf">NewClientWithCodec</span><span class="p">(</span><span class="nx">codec</span><span class="p">)</span></code></pre></div>
 <p>Gran parte de la simpleza de la implementación responde al trato que reciben las
 interfaces en <a href="http://golang.org">Go</a>. Si no estás familiarizado con el tema te
 recomiendo que leas.</p>
