@@ -3,11 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://yorodm.github.io/blog/simple-etl-python/</loc>
-    <lastmod>2019-02-18T22:57:22-05:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://yorodm.github.io/blog/decoradores-stdlib/</loc>
     <lastmod>2019-01-15T22:11:42-05:00</lastmod>
   </url>
@@ -114,7 +109,7 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2019-02-18T22:57:22-05:00</lastmod>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -124,7 +119,7 @@
   
   <url>
     <loc>https://yorodm.github.io/</loc>
-    <lastmod>2019-02-18T22:57:22-05:00</lastmod>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -136,7 +131,7 @@
   
   <url>
     <loc>https://yorodm.github.io/blog/</loc>
-    <lastmod>2019-02-18T22:57:22-05:00</lastmod>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -154,7 +149,7 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2019-02-18T22:57:22-05:00</lastmod>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -171,14 +166,14 @@
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/tags/emacs/</loc>
-    <lastmod>2018-11-20T17:28:59-05:00</lastmod>
+    <loc>https://yorodm.github.io/categories/emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://yorodm.github.io/categories/emacs/</loc>
-    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <loc>https://yorodm.github.io/tags/emacs/</loc>
+    <lastmod>2018-11-20T17:28:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -280,7 +275,7 @@
   
   <url>
     <loc>https://yorodm.github.io/tags/python/</loc>
-    <lastmod>2019-02-18T22:57:22-05:00</lastmod>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
     <priority>0</priority>
   </url>
   
