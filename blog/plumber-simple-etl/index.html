@@ -1,0 +1,270 @@
+    <!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yoandy Rodríguez Martínez">
+        <meta name="description" content="Software, la vida y todo lo demás">
+        <meta name="generator" content="Hugo 0.54.0" />
+        <title>Plumber: ETL simple para Python &middot; /home/yorodm</title>
+        <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+        
+
+        
+        <link rel="stylesheet" href="https://yorodm.github.io/css/font-awesome.min.css">
+        
+
+        
+        <link href="https://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+        
+    </head>
+
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='https://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='https://yorodm.github.io/blog'>archivo</a>
+    <a href='https://yorodm.github.io/tags'>etiquetas</a>
+    <a href='https://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="https://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Plumber: ETL simple para Python
+                    </h1>
+                    <h2 class="headline">
+                        12 de Mar 2019
+                    · 616 palabras 
+                    · 3 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://yorodm.github.io/tags/python">python</a>
+                          
+                              <a href="https://yorodm.github.io/tags/etl">etl</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                    
+
+
+                </header>
+                
+                    <section id="post-body">
+                        
+
+<p>Implementando una feature para uno de los proyectos en los que trabajo terminé
+necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X,
+las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.</p>
+
+<p>Ahora, si bien existen frameworks de excelente calidad como
+<a href="https://petl.readthedocs.io">petl</a> y <a href="https://www.bonobo-project.org">Bonobo</a>
+que cubren este campo, me encontré con los siguientes problemas:</p>
+
+<ol>
+<li>Existe mucho código <em>legacy</em> en  el proyecto.</li>
+<li>Exceptuando la parte de ETL, la complejidad de proceso es bastante alta,
+incrementarla no sería lo más adecuado.</li>
+<li>El componente ETL no se ejecutaría por si mismo sino como parte de una solución.</li>
+<li>La mayoría de los datos que agregamos usan formatos no convencionales.</li>
+</ol>
+
+<p>Aunque en apariencia sencillos, estos cuatro puntos me llevaron a crear mi
+propio <em>miniframework</em> para componentes ETL que es fácil de integrar con código
+existente y no hace ningún tipo de suposiciones con respecto a la forma de los
+datos, <a href="https://github.com/yorodm/plumber">plumber</a>.</p>
+
+<h2 id="características-de-plumber">Características de plumber.</h2>
+
+<p>Para el desarrollo del framework me basé mucho en mi experiencia anterior con
+<a href="https://www.kiba-etl.org">kiba</a>, una de esas joyas que siempre vienen desde la
+comunidad de Ruby. Kiba hace uso de las bondades de Ruby para crear DSL&rsquo;s
+dejando al desarrollador que se centre en los datos de la manera que considere
+correcta. En <a href="https://github.com/yorodm/plumber">plumber</a> esta idea está
+reflejada en cuatro conceptos:</p>
+
+<ol>
+<li>Extractors (que acceden al origen de datos).</li>
+<li>Transformers (que manipulan los datos obtenidos).</li>
+<li>Writers (que persisten los datos).</li>
+<li>Pipes (que controlan todo el proceso).</li>
+</ol>
+
+<h3 id="extractors">Extractors.</h3>
+
+<p>Un <strong>Extractor</strong> es una clase o función que emite datos para una tubería (pipe),
+los datos pueden tener cualquier origen y cualquier forma, los extractors son
+independientes del resto del proceso.</p>
+
+<p>Aunque es posible utilizar una función como extractor, lo recomendado en la
+mayoría de los casos es heredar de la clase <code>plumber.pipe.Extractor</code> e
+implementar los métodos <code>read</code>, <code>setup</code> y <code>cleanup</code>. Varios extractors se pueden
+unir para formar uno solo que emita una secuencia (tupla) con los valores de
+cada uno.</p>
+
+<h3 id="transformers">Transformers.</h3>
+
+<p>Un <strong>Transformer</strong> es cualquier función marcada con <code>@transformer</code> o una clase
+derivada de <code>plumber.pipe.Transformer</code>. Es posible unir varios transformers en
+una cadena de procesamiento</p>
+
+<h3 id="writer">Writer.</h3>
+
+<p>Finalmente los <strong>Writers</strong> heredan de <code>plumber.pipe.Writer</code>. Como generalmente
+acceden a recursos externos, es requerido que implementen los métodos <code>setup</code> y
+<code>cleanup</code> además de <code>write</code>.</p>
+
+<p>Todos los elementos usan anotaciones <a href="https://www.python.org/dev/peps/pep-0484/">PEP 484</a>.</p>
+
+<h2 id="un-ejemplo-sencillo">Un ejemplo sencillo:</h2>
+
+<p>Uno de los casos de uso que motivaron la creación del framework fue obtener una
+lista de registros de un archivo con formato propietario. El contenido del
+archivo es más o menos el siguiente:</p>
+
+<ol>
+<li>Campo identificador de cliente. Comienza en la posición 0, tiene longitud
+entre 1 y 20.</li>
+<li>Campo identificador de transacción. Comienza en la posición 22. Es numérico y tiene longitud 8.</li>
+<li>Campo identificador de transacción relacionada. Comienza en la posición 32.
+Tiene longitud 8, es opcional y de no estar se ponen espacios en blanco.</li>
+<li>Campo motivo de la transacción. Comienza en la posición 42 y longitud entre
+10 y 50. Es de tipo alfanumérico, incluye espacios, no tiene delimitaciones.</li>
+</ol>
+
+<p>Veamos un ejemplo de como procesar estos archivos:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">plumber</span> <span class="kn">import</span> <span class="n">pipe</span> <span class="c1"># API síncrona.</span>
+
+<span class="nd">@pipe.extractor</span>
+<span class="k">def</span> <span class="nf">read_file</span><span class="p">():</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FILENAME&#39;</span><span class="p">]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
+            <span class="k">yield</span> <span class="n">process_line</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="nd">@pipe.transformer</span>
+<span class="k">def</span> <span class="nf">csvfy</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
+    <span class="k">yield</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">element</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">SaveData</span><span class="p">(</span><span class="n">pipe</span><span class="o">.</span><span class="n">Writer</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">filename</span> <span class="o">=</span> <span class="n">filename</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="s1">&#39;w&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">cleanup</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">write</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="n">tuberia</span> <span class="o">=</span> <span class="n">pipe</span><span class="o">.</span><span class="n">Pipe</span><span class="p">(</span>
+    <span class="n">read_file</span><span class="p">,</span>
+    <span class="n">csvfy</span><span class="p">,</span>
+    <span class="n">SaveData</span><span class="p">(</span><span class="s2">&#34;prueba.csv&#34;</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">tuberia</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></div>
+<h2 id="qúe-queda-por-hacer">¿Qúe queda por hacer?</h2>
+
+<p>Ahora que <a href="https://github.com/yorodm/plumber">plumber</a> salió a la luz es hora de
+convertirlo en un framework ETL medianamente decente. Los próximos pasos son:</p>
+
+<ol>
+<li>Adicionar la posibilidad de hacer <strong>Writers</strong> como funciones con
+administración de contexto integrada.</li>
+<li>Poder inicializar los <strong>Extractors</strong> de manera sencilla.</li>
+<li>Mejorar el tratamiento de errores.</li>
+<li>Concurrencia y/o paralelismo.</li>
+</ol>
+
+                    </section>
+            </article>
+
+            <div id="disqus_thread"></div>
+<script type="application/javascript">
+    var disqus_config = function () {
+    
+    
+    
+    };
+    (function() {
+        if (["localhost", "127.0.0.1"].indexOf(window.location.hostname) != -1) {
+            document.getElementById('disqus_thread').innerHTML = 'Disqus comments not available by default when the website is previewed locally.';
+            return;
+        }
+        var d = document, s = d.createElement('script'); s.async = true;
+        s.src = '//' + "home-yorodm" + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="https://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+        
+        © Copyright 2019 Yoandy Rodríguez Martínez
+        
+    </p>
+
+    <p class="small">
+        Powered by  <a href="http://www.gnu.org/software/emacs">GNU Emacs</a> <i class="fa fa-heart" aria-hidden="true"></i> and <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
+<script src="https://yorodm.github.io/js/main.js"></script>
+
+
+
+
+
+
+
+    </body>
+</html>
