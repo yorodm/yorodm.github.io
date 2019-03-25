@@ -6,10 +6,114 @@
     <description>Recent content in Golang on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 09 May 2018 11:45:31 -0400</lastBuildDate>
+    <lastBuildDate>Mon, 25 Mar 2019 15:34:27 -0400</lastBuildDate>
     
         <atom:link href="https://yorodm.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Emacs &#43; Golang. Edición 2019</title>
+      <link>https://yorodm.github.io/blog/emacs-golang-setup-2019/</link>
+      <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/emacs-golang-setup-2019/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://blog.golang.org/go1.12&#34;&gt;Go 1.12&lt;/a&gt; fue lanzado hace un
+mes y entre los cambios más significativos se encuentran varias mejoras
+en el soporte para módulos (que va a ser el método por defecto en la
+versión 1.13).&lt;/p&gt;
+
+&lt;p&gt;Si eres usuario de &lt;a href=&#34;https://www.gnu.org/software/emacs&#34;&gt;Emacs&lt;/a&gt; y te
+interesa desarrollar utilizando Go, aquí tienes una guía sencilla de
+como habilitar el soporte para el lenguaje.&lt;/p&gt;
+
+&lt;h2 id=&#34;paso-1-language-server-protocol&#34;&gt;Paso 1. Language server protocol&lt;/h2&gt;
+
+&lt;p&gt;Si tienes una versión actualizada de
+&lt;a href=&#34;https://github.com/emacs-lsp/lsp-mode&#34;&gt;lsp-mode&lt;/a&gt; ya tienes soporte
+para &lt;a href=&#34;https://github.com/saibing/bingo&#34;&gt;bingo&lt;/a&gt;, una herramienta que
+provee un servidor de lenguajes para Go y que tiene soporte integrado
+para trabajar con módulos&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-mode&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;:commands&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;company-lsp&lt;/span&gt;
+    &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-to-list&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-lsp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;:hook&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp-mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;define-key&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-mode-map&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;remap&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;xref-find-definitions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp-ui-peek-find-definitions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;define-key&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-mode-map&lt;/span&gt;
+    &lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;remap&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;xref-find-references&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp-ui-peek-find-references&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-sideline-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;nil&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;lsp-ui-doc-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;lsp-ui-flycheck-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;nil&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;lsp-ui-imenu-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;
+        &lt;span class=&#34;nv&#34;&gt;lsp-ui-sideline-ignore-duplicate&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;paso-2-go-mode-y-utilidades&#34;&gt;Paso 2. Go mode y utilidades&lt;/h2&gt;
+
+&lt;p&gt;Como &lt;a href=&#34;https://github.com/emacs-lsp/lsp-mode&#34;&gt;lsp-mode&lt;/a&gt; es un &lt;em&gt;minor mode&lt;/em&gt; necesitamos
+el soporte para el lenguaje (font-lock entre otras cosas). Los pasos necesarios son:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Instalar &lt;a href=&#34;golang.org/x/tools/cmd/goimports&#34;&gt;goimports&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Instalar &lt;a href=&#34;https://github.com/golang/lint&#34;&gt;golint&lt;/a&gt; o
+&lt;a href=&#34;https://golang.org/cmd/gofmt/&#34;&gt;gofmt&lt;/a&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;flycheck&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;go-mode&lt;/span&gt;
+  &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;; Use goimports instead of go-fmt&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gofmt-command&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;goimports&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;flycheck-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;;; Call Gofmt before saving&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;gofmt-before-save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;flycheck-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+                 &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;local-set-key&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;kbd&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;C-c C-r&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-remove-unused-imports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+                 &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;local-set-key&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;kbd&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;C-c C-g&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-goto-imports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;make-local-variable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+                &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&#34;paso-3-comenzar-a-programar-en-go&#34;&gt;Paso 3. Comenzar a programar en Go.&lt;/h2&gt;
+
+&lt;p&gt;Con la configuración anterior puedes empezar a programar en Go&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Completamiento y referencias cruzadas&lt;/li&gt;
+&lt;li&gt;Revisión de código mientras escribes.&lt;/li&gt;
+&lt;li&gt;Formato automático al salvar.&lt;/li&gt;
+&lt;li&gt;Un efecto aprecido al &lt;em&gt;hover&lt;/em&gt; de &lt;a href=&#34;https://code.visualstudio.com/&#34;&gt;ese editor taaan popular&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;paso-4-compilar-y-debug&#34;&gt;Paso 4. Compilar y debug.&lt;/h2&gt;
+
+&lt;p&gt;Puedes configurar el comando de compilación por defecto que utilizas
+cuando editas archivos Go.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;; Adicionar en la sección :config de `go-mode`&lt;/span&gt;
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;setup-go-mode-compile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+
+&lt;span class=&#34;c1&#34;&gt;;; adicionar en el mismo archivo&lt;/span&gt;
+
+&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;defun&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;setup-go-mode-compile&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;()&lt;/span&gt;
+  &lt;span class=&#34;c1&#34;&gt;; Customize compile command to run go build&lt;/span&gt;
+  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;string-match&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;go&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;compile-command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;))&lt;/span&gt;
+      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;make-local-variable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;compile-command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+           &lt;span class=&#34;s&#34;&gt;&amp;#34;go build -v &amp;amp;&amp;amp; go test -v &amp;amp;&amp;amp; go vet&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)))&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Si prefieres los &lt;em&gt;debuggers&lt;/em&gt; interactivos debes instalar
+&lt;a href=&#34;https://github.com/go-delve/delve&#34;&gt;delve&lt;/a&gt; y añadir la siguiente línea
+en tu archivo de inicio de Emacs.&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;go-dlv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Los comandos &lt;code&gt;dlv&lt;/code&gt; y &lt;code&gt;dlv-current-func&lt;/code&gt; son los puntos de entrada al debugger.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Implementando JSON-RPC en Go</title>
