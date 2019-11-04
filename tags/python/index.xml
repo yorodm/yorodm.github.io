@@ -56,7 +56,7 @@ procesar más datos?&lt;/p&gt;
 termine &lt;strong&gt;después de procesar cualquier elemento pendiente&lt;/strong&gt;. En
 &lt;strong&gt;Python&lt;/strong&gt; a primera vista podemos cancelar la tarea creada en
 &lt;code&gt;worker_task&lt;/code&gt; pero eso nos deja con la posibilidad de que varias
-tareas se queden en la cola. Por otro lado, la corutina &lt;code&gt;join()&lt;/code&gt; the
+tareas se queden en la cola. Por otro lado, la corutina &lt;code&gt;join()&lt;/code&gt; de
 &lt;code&gt;asyncio.Queue&lt;/code&gt; nos permite esperar a que ya no existan elementos en
 la cola, aunque no garantiza que &lt;code&gt;worker&lt;/code&gt; se detenga.&lt;/p&gt;
 
