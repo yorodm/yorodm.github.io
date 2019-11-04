@@ -3,6 +3,16 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yorodm.github.io/blog/python-work-queue/</loc>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/blog/hugo-mode-emacs/</loc>
+    <lastmod>2019-07-07T11:03:33-04:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yorodm.github.io/blog/emacs-golang-setup-2019/</loc>
     <lastmod>2019-03-25T15:34:27-04:00</lastmod>
   </url>
@@ -119,7 +129,7 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -129,7 +139,13 @@
   
   <url>
     <loc>https://yorodm.github.io/</loc>
-    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/asyncio/</loc>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -141,7 +157,7 @@
   
   <url>
     <loc>https://yorodm.github.io/blog/</loc>
-    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -159,7 +175,7 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -177,7 +193,7 @@
   
   <url>
     <loc>https://yorodm.github.io/tags/emacs/</loc>
-    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+    <lastmod>2019-07-07T11:03:33-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -214,6 +230,12 @@
   <url>
     <loc>https://yorodm.github.io/tags/herramientas/</loc>
     <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/hugo/</loc>
+    <lastmod>2019-07-07T11:03:33-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -291,7 +313,7 @@
   
   <url>
     <loc>https://yorodm.github.io/tags/python/</loc>
-    <lastmod>2019-03-12T10:14:20-04:00</lastmod>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -327,7 +349,7 @@
   
   <url>
     <loc>https://yorodm.github.io/tags/</loc>
-    <lastmod>2018-11-18T12:39:59-05:00</lastmod>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
     <priority>0</priority>
   </url>
   

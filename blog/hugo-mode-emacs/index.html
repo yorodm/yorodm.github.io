@@ -7,7 +7,7 @@
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
         <meta name="generator" content="Hugo 0.54.0" />
-        <title>Nuevo blog &middot; /home/yorodm</title>
+        <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I) &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
         <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
@@ -44,13 +44,21 @@
             <article class="post">
                 <header>
                     <h1>
-                        Nuevo blog
+                        Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)
                     </h1>
                     <h2 class="headline">
-                        16 de Oct 2017
-                    · 70 palabras 
+                        7 de Jul 2019
+                    · 143 palabras 
                     · 1 minuto apróx. 
                       <span class="tags">
+                      
+                      
+                          
+                              <a href="https://yorodm.github.io/tags/emacs">emacs</a>
+                          
+                              <a href="https://yorodm.github.io/tags/hugo">hugo</a>
+                          
+                      
                       
                       </span>
                     </h2>
@@ -60,22 +68,42 @@
                 </header>
                 
                     <section id="post-body">
-                        
+                        <p>Este <a href="https://yorodm.github.io">blog</a> es creado con
+<a href="https://gohugo.io">Hugo</a> y publicado utilizando Github Pages. Cada
+artículo es creado utilizando <strong>Markdown</strong> y añadido a un
+<a href="https://github.com/yorodm/yorodm-site">repositorio</a> donde finalmente
+pasa a formar parte del sitio estático utilizando submódulos de <code>Git</code>.</p>
 
-<h3 id="hola"><strong>¡Hola!</strong></h3>
+<p>Todo este proceso implica utilizar 3 herramientas.</p>
 
-<p>¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y
-actualizar regularmente) un blog. En esta ocasión decidí alejarme
-de <a href="http://wordpress.com">plataformas más complejas</a> para
-probar
-<a href="https://pages.github.io">GitHub Pages</a>, <a href="https://github.com/gohugoio">Hugo</a>
-como generador de sitios estáticos, Markdown y claro
-está <a href="https://www.gnu.org/software/emacs/">Emacs</a>.</p>
+<ol>
+<li>La <strong>CLI</strong> de <code>hugo</code>.</li>
+<li>Un editor de texto (preferentemente con soporte para Markdown).</li>
+<li>Git.</li>
+</ol>
 
-<p>Como siempre hablaré de temas relacionados con el desarrollo de software,
-software libre, lenguajes de programación y mis experiencias (buenas o malas)
-interactuando con el mundo del software.</p>
+<p>Mis primeros intentos implicaron hacer uso de unos cuantos <em>scripts</em></p>
 
+<p>Uno para crear nuevos artículos</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># New article</span>
+<span class="nv">POST_NAME</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HUGO_BLOG_ROOT</span><span class="s2">/content/blog/</span><span class="nv">$1</span><span class="s2">&#34;</span>
+hugo new <span class="nv">$POST_NAME</span>
+emacsclient <span class="nv">$POST_NAME</span></code></pre></div>
+<p>Otro para salvarlos y publicar</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Save post and publish</span>
+<span class="nb">cd</span> <span class="nv">$HUGO_BLOG_ROOT</span>
+<span class="c1"># Remember to build the site</span>
+hugo --noChmod --noTimes --ignoreCase
+git commit -a -m <span class="s2">&#34;Update </span><span class="k">$(</span>date +%Y%M%d<span class="k">)</span><span class="s2">&#34;</span>
+<span class="nb">cd</span> <span class="nv">$HUGO_BLOG_ROOT</span>/publish
+git commit -a -m <span class="s2">&#34;Update </span><span class="k">$(</span>date +%Y%M%d<span class="k">)</span><span class="s2">&#34;</span>
+git push origin master
+<span class="nb">cd</span> ..
+git push origin master</code></pre></div>
+<p>Y finalmente uno para preview</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Run hugo in watch mode</span>
+<span class="nb">cd</span> <span class="nv">$HUGO_BLOG_ROOT</span>
+hugo serve</code></pre></div>
                     </section>
             </article>
 
