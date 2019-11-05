@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         4 de Nov 2019
-                    · 264 palabras 
+                    · 265 palabras 
                     · 2 minutos apróx. 
                       <span class="tags">
                       
@@ -93,6 +93,7 @@ necesitaba hacer una cola de tareas en <strong>Python</strong> utilizando
 <span class="n">async</span> <span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
     <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
         <span class="n">process</span><span class="p">(</span><span class="n">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+        <span class="n">queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
 
 <span class="c1"># Creamos la cola de mensajes</span>
 <span class="n">queue</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
