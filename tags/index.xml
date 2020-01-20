@@ -23,7 +23,7 @@
     <item>
       <title>Aws</title>
       <link>https://yorodm.github.io/tags/aws/</link>
-      <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
+      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
       <guid>https://yorodm.github.io/tags/aws/</guid>
       <description></description>
@@ -44,6 +44,15 @@
       <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
       
       <guid>https://yorodm.github.io/tags/builtins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cloudwatch Logs</title>
+      <link>https://yorodm.github.io/tags/cloudwatch-logs/</link>
+      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/cloudwatch-logs/</guid>
       <description></description>
     </item>
     
@@ -251,6 +260,15 @@
       <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
       
       <guid>https://yorodm.github.io/tags/ruby/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Rust</title>
+      <link>https://yorodm.github.io/tags/rust/</link>
+      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/rust/</guid>
       <description></description>
     </item>
     

@@ -7,7 +7,7 @@
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
         <meta name="generator" content="Hugo 0.54.0" />
-        <title>Comentarios vía disqus y felices fiestas &middot; /home/yorodm</title>
+        <title>awstail: AWS Logs a la vieja usanza &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
         <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
@@ -44,17 +44,21 @@
             <article class="post">
                 <header>
                     <h1>
-                        Comentarios vía disqus y felices fiestas
+                        awstail: AWS Logs a la vieja usanza
                     </h1>
                     <h2 class="headline">
-                        23 de Dic 2017
-                    · 40 palabras 
+                        20 de Ene 2020
+                    · 131 palabras 
                     · 1 minuto apróx. 
                       <span class="tags">
                       
                       
                           
-                              <a href="https://yorodm.github.io/tags/blog">blog</a>
+                              <a href="https://yorodm.github.io/tags/aws">aws</a>
+                          
+                              <a href="https://yorodm.github.io/tags/rust">rust</a>
+                          
+                              <a href="https://yorodm.github.io/tags/cloudwatch-logs">cloudwatch logs</a>
                           
                       
                       
@@ -66,14 +70,40 @@
                 </header>
                 
                     <section id="post-body">
-                        
+                        <p><code>awstail</code> es una herramienta muy simple que cumple dos funciones:</p>
 
-<h1 id="comentarios-vía-disqus-y-felices-fiestas">Comentarios vía Disqus y Felices Fiestas</h1>
+<ol>
+<li>Darme la excusa para aprender <strong>Rust</strong>.</li>
+<li>Monitorear un grupo de logs en <code>AWS Cloudwatch</code> desde la terminal.</li>
+</ol>
 
-<p>Ya están habilitados los comentarios en el blog. Un poco complicado porque ya
-saben, el bloqueo y etc. Espero tener más <em>feedback</em> ahora.</p>
+<p>Por el momento, estas son las opciones que permite la herramienta:</p>
+<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">awstail 0.3.0
+Yoandy Rodriguez &lt;yoandy.rmartinez@gmail.com&gt;
+like tail -f for AWS Cloudwatch
 
-<p>En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</p>
+USAGE:
+    awstail.exe [OPTIONS] &lt;LOG_GROUP&gt;
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+    -p &lt;PROFILE&gt;        Profile if using other than &#39;default&#39;
+    -r &lt;REGION&gt;         AWS region (defaults to us-east-1)
+    -s &lt;SINCE&gt;          Take logs since a given time (defaults to 5 minutes)
+    -w &lt;WATCH&gt;          Keep watching for new logs every n seconds (defaults to 10)
+
+ARGS:
+    &lt;LOG_GROUP&gt;    Log group name</code></pre></div>
+<p>Posibles opciones futuras:</p>
+
+<ol>
+<li>Agregar logs de más de un grupo.</li>
+<li>Color diferenciado para mensajes de error.</li>
+<li>Listar grupos de logs existentes.</li>
+</ol>
 
                     </section>
             </article>

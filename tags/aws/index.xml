@@ -6,10 +6,53 @@
     <description>Recent content in Aws on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 18 Nov 2018 12:39:59 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jan 2020 11:50:59 -0500</lastBuildDate>
     
         <atom:link href="https://yorodm.github.io/tags/aws/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>awstail: AWS Logs a la vieja usanza</title>
+      <link>https://yorodm.github.io/blog/awstail/</link>
+      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/awstail/</guid>
+      <description>&lt;p&gt;&lt;code&gt;awstail&lt;/code&gt; es una herramienta muy simple que cumple dos funciones:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Darme la excusa para aprender &lt;strong&gt;Rust&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Monitorear un grupo de logs en &lt;code&gt;AWS Cloudwatch&lt;/code&gt; desde la terminal.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Por el momento, estas son las opciones que permite la herramienta:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;awstail 0.3.0
+Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt;
+like tail -f for AWS Cloudwatch
+
+USAGE:
+    awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt;
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+    -p &amp;lt;PROFILE&amp;gt;        Profile if using other than &amp;#39;default&amp;#39;
+    -r &amp;lt;REGION&amp;gt;         AWS region (defaults to us-east-1)
+    -s &amp;lt;SINCE&amp;gt;          Take logs since a given time (defaults to 5 minutes)
+    -w &amp;lt;WATCH&amp;gt;          Keep watching for new logs every n seconds (defaults to 10)
+
+ARGS:
+    &amp;lt;LOG_GROUP&amp;gt;    Log group name&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Posibles opciones futuras:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Agregar logs de más de un grupo.&lt;/li&gt;
+&lt;li&gt;Color diferenciado para mensajes de error.&lt;/li&gt;
+&lt;li&gt;Listar grupos de logs existentes.&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
     
     <item>
       <title>Trucos Aws Lambda (parte 2)</title>

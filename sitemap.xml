@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://yorodm.github.io/blog/awstail/</loc>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://yorodm.github.io/blog/python-work-queue/</loc>
     <lastmod>2019-11-04T13:01:46-05:00</lastmod>
   </url>
@@ -129,7 +134,7 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -139,7 +144,7 @@
   
   <url>
     <loc>https://yorodm.github.io/</loc>
-    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -151,13 +156,13 @@
   
   <url>
     <loc>https://yorodm.github.io/tags/aws/</loc>
-    <lastmod>2018-11-18T12:39:59-05:00</lastmod>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://yorodm.github.io/blog/</loc>
-    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -175,7 +180,13 @@
   
   <url>
     <loc>https://yorodm.github.io/categories/</loc>
-    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/cloudwatch-logs/</loc>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -326,6 +337,12 @@
   <url>
     <loc>https://yorodm.github.io/tags/ruby/</loc>
     <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://yorodm.github.io/tags/rust/</loc>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
     <priority>0</priority>
   </url>
   
