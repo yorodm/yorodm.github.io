@@ -1,0 +1,254 @@
+    <!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Yoandy Rodríguez Martínez">
+        <meta name="description" content="Software, la vida y todo lo demás">
+        <meta name="generator" content="Hugo 0.54.0" />
+        <title>Microservicios en .NET Core 3.1 &middot; /home/yorodm</title>
+        <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
+        <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+        
+
+        
+        <link rel="stylesheet" href="https://yorodm.github.io/css/font-awesome.min.css">
+        
+
+        
+        <link href="https://yorodm.github.io/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
+        
+    </head>
+
+    <body>
+       <nav class="main-nav">
+    
+    
+        <a href='https://yorodm.github.io/'> <span class="arrow">←</span>inicio</a>
+    
+    <a href='https://yorodm.github.io/blog'>archivo</a>
+    <a href='https://yorodm.github.io/tags'>etiquetas</a>
+    <a href='https://yorodm.github.io/about'>acerca de</a>
+
+    
+
+    
+        <a class="symbol" href="https://yorodm.github.io/index.xml"><i class="fa fa-rss"></i> </a>
+    
+</nav>
+
+
+        <section id="wrapper">
+            <article class="post">
+                <header>
+                    <h1>
+                        Microservicios en .NET Core 3.1
+                    </h1>
+                    <h2 class="headline">
+                        6 de Mar 2020
+                    · 412 palabras 
+                    · 2 minutos apróx. 
+                      <span class="tags">
+                      
+                      
+                          
+                              <a href="https://yorodm.github.io/tags/dotnet-core">dotnet core</a>
+                          
+                              <a href="https://yorodm.github.io/tags/microservices">microservices</a>
+                          
+                              <a href="https://yorodm.github.io/tags/hostbuilder">hostbuilder</a>
+                          
+                      
+                      
+                      </span>
+                    </h2>
+                    
+
+
+                </header>
+                
+                    <section id="post-body">
+                        
+
+<p>La nueva versión LTS de .NET Core trae consigo muchas ventajas para el
+los desarrolladores de microservicios. Una de las más esperadas es la
+estabilización de la API para ejecutar servicios en segundo plano o
+<em>workers</em> utilizando <code>Microsoft.Extensions.Hosting</code></p>
+
+<h2 id="qué-son-los-workers">¿Qué son los workers?</h2>
+
+<p>Si eres desarrollador de ASP.NET Core debes estar familiarizado con el
+paquete <code>Microsoft.AspNetCore.Hosting</code> y las clases<code>WebHostBuilder</code> y
+<code>WebHost</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="na">[]</span> <span class="n">args</span><span class="p">)</span>
+    <span class="p">{</span>
+       <span class="kt">var</span> <span class="n">config</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ConfigurationBuilder</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">AddCommandLine</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">&#34;hosting.json&#34;</span><span class="p">,</span> <span class="n">optional</span><span class="p">:</span> <span class="k">true</span><span class="p">)</span>
+            <span class="p">.</span><span class="n">AddEnvironmentVariables</span><span class="p">()</span>
+            <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+      <span class="kt">var</span> <span class="n">host</span> <span class="p">=</span> <span class="k">new</span> <span class="n">WebHostBuilder</span><span class="p">()</span>
+           <span class="p">.</span><span class="n">UseKestrel</span><span class="p">()</span>
+           <span class="p">.</span><span class="n">UseContentRoot</span><span class="p">(</span><span class="n">Directory</span><span class="p">.</span><span class="n">GetCurrentDirectory</span><span class="p">())</span>
+           <span class="p">.</span><span class="n">UseConfiguration</span><span class="p">(</span><span class="n">config</span><span class="p">)</span>
+           <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+
+       <span class="n">host</span><span class="p">.</span><span class="n">Run</span><span class="p">();</span>
+    <span class="p">}</span>
+ <span class="p">}</span></code></pre></div>
+<p><code>WebHost</code> es responsable de iniciar la configuración, manejar el ciclo
+de vida de los servicios, mantener el contenedor de dependencias y
+comunicarse/iniciar el servidor web (Kestrel en este caso).</p>
+
+<p><code>WebHost</code> también nos brinda la posibilidad de iniciar servicios en
+segundo plano utilizando <code>IHostedService</code>.</p>
+
+<p>Si no estás familiarizado con el tema, puedes informarte más con <a href="https://www.stevejgordon.co.uk/asp-net-core-2-ihostedservice" title="Implementing IHostedService in ASP.NET Core 2.0">este excelente post</a></p>
+
+<h2 id="microservicios-en-aplicaciones-de-consola">Microservicios en aplicaciones de consola.</h2>
+
+<p>El nuevo host genérico (<code>HostBuilder</code>) no requiere de la maquinaria de
+ASP.NET Core, lo cual hace posible crear aplicaciones de consola que
+hagan uso de las bondades a las que estamos adaptados.</p>
+
+<p>Veamos un ejemplo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"> <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+    <span class="p">{</span>
+        <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="na">[]</span> <span class="n">args</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="k">try</span> <span class="p">{</span>
+            <span class="n">CreateHostBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">).</span><span class="n">Build</span><span class="p">().</span><span class="n">Run</span><span class="p">();</span>
+            <span class="p">}</span>
+            <span class="k">catch</span><span class="p">(</span><span class="n">OperationCanceledException</span> <span class="n">ex</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">Console</span><span class="p">.</span><span class="n">WriteLine</span><span class="p">(</span><span class="s">&#34;-----Terminating-----&#34;</span><span class="p">);</span>
+            <span class="p">}</span>
+        <span class="p">}</span>
+
+        <span class="k">public</span> <span class="k">static</span> <span class="n">IHostBuilder</span> <span class="n">CreateHostBuilder</span><span class="p">(</span><span class="kt">string</span><span class="na">[]</span> <span class="n">args</span><span class="p">)</span> <span class="p">=&gt;</span>
+            <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+                <span class="p">.</span><span class="n">ConfigureAppConfiguration</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">config</span><span class="p">)</span> <span class="p">=&gt;</span>
+                <span class="p">{</span>
+                    <span class="kt">var</span> <span class="n">env</span> <span class="p">=</span> <span class="n">hostingContext</span><span class="p">.</span><span class="n">HostingEnvironment</span><span class="p">.</span><span class="n">EnvironmentName</span><span class="p">;</span>
+                    <span class="kt">var</span> <span class="n">builder</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ConfigurationBuilder</span><span class="p">()</span>
+                            <span class="p">.</span><span class="n">SetBasePath</span><span class="p">(</span><span class="n">Directory</span><span class="p">.</span><span class="n">GetCurrentDirectory</span><span class="p">())</span>
+                            <span class="p">.</span><span class="n">AddJsonFile</span><span class="p">(</span><span class="s">&#34;settings.json&#34;</span><span class="p">)</span>
+                            <span class="p">.</span><span class="n">AddEnvironmentVariables</span><span class="p">()</span>
+                            <span class="p">.</span><span class="n">Build</span><span class="p">();</span>
+                <span class="p">})</span>
+                <span class="p">.</span><span class="n">ConfigureServices</span><span class="p">((</span><span class="n">hostingContext</span><span class="p">,</span> <span class="n">services</span><span class="p">)</span> <span class="p">=&gt;</span>
+                <span class="p">{</span>
+
+                    <span class="c1">// AWS Configuration
+</span><span class="c1"></span>                    <span class="kt">var</span> <span class="n">options</span> <span class="p">=</span> <span class="n">hostingContext</span><span class="p">.</span><span class="n">Configuration</span><span class="p">.</span><span class="n">GetAWSOptions</span><span class="p">();</span>
+                    <span class="n">services</span><span class="p">.</span><span class="n">AddDefaultAWSOptions</span><span class="p">(</span><span class="n">options</span><span class="p">);</span>
+                    <span class="n">services</span><span class="p">.</span><span class="n">AddAWSService</span><span class="p">&lt;</span><span class="n">IAmazonSQS</span><span class="p">&gt;();</span>
+
+                    <span class="c1">// Worker Service
+</span><span class="c1"></span>                    <span class="n">services</span><span class="p">.</span><span class="n">AddHostedService</span><span class="p">&lt;</span><span class="n">Worker</span><span class="p">&gt;();</span>
+                    <span class="n">services</span><span class="p">.</span><span class="n">AddLogging</span><span class="p">();</span>
+
+                <span class="p">}).</span><span class="n">ConfigureLogging</span><span class="p">((</span><span class="n">hostcontext</span><span class="p">,</span> <span class="n">configLogging</span><span class="p">)</span> <span class="p">=&gt;</span>
+                <span class="p">{</span>
+                    <span class="n">configLogging</span><span class="p">.</span><span class="n">AddConsole</span><span class="p">();</span>
+                    <span class="n">configLogging</span><span class="p">.</span><span class="n">AddDebug</span><span class="p">();</span>
+                <span class="p">});</span>
+    <span class="p">}</span></code></pre></div>
+<p>El programa anterios hace uso del host genérico para:</p>
+
+<ol>
+<li>Cargar la configuración externa (variables de entorno y archivo json).</li>
+<li>Inicializar un servicio para acceder a SQS.</li>
+<li>Configurar logs para la consola.</li>
+<li>Crear un servicio en segundo plano.</li>
+</ol>
+
+<p>La clase <code>Worker</code> hereda de <code>BackgroundService</code> y es la encargada de
+ejecutar la lógica de nuestro microservicio</p>
+<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Worker</span><span class="p">:</span> <span class="n">BackgroundService</span> <span class="p">{</span>
+
+     <span class="k">public</span> <span class="n">Worker</span><span class="p">(</span><span class="n">ILogger</span><span class="p">&lt;</span><span class="n">Worker</span><span class="p">&gt;</span> <span class="n">logger</span><span class="p">,</span> <span class="n">IAmazonSQS</span> <span class="n">sqs</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+            <span class="n">_sqs</span> <span class="p">=</span> <span class="n">sqs</span><span class="p">;</span>
+        <span class="p">}</span>
+
+     <span class="k">protected</span>  <span class="k">async</span> <span class="n">Task</span> <span class="n">ExecuteAsync</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">,</span> <span class="n">CancellationToken</span> <span class="n">cancel</span><span class="p">)</span>
+       <span class="p">{</span>
+            <span class="k">while</span> <span class="p">(!</span><span class="n">cancel</span><span class="p">.</span><span class="n">IsCancellationRequested</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="c1">// Procesar mensajes desde SQS
+</span><span class="c1"></span>            <span class="p">}</span>
+       <span class="p">}</span>
+<span class="p">}</span></code></pre></div>
+<h2 id="integración-con-el-sistema-operativo">Integración con el sistema operativo</h2>
+
+<p>Si desarrollas servicios monolíticos o para software legado, puedes
+hacer uso del host genérico para integrar tu aplicación al sistema
+operativo.</p>
+
+<p>Para integrarse como servicio a Windows se puede utilizar las
+extensiones en <code>Microsoft.Extensions.Hosting.WindowsService</code> para
+inicializar nuestro programa.</p>
+<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"> <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">UseWindowsService</span><span class="p">()</span></code></pre></div>
+<p>En el casos de Linux sólo están soportadas las distribuciones que incluyen
+<code>Systemd</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs">  <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">UseSystemd</span><span class="p">()</span></code></pre></div>
+                    </section>
+            </article>
+
+            
+
+            <footer id="footer">
+    
+        <div id="social">
+
+	
+	
+    <a class="symbol" href="http://github.com/yorodm">
+        <i class="fa fa-github"></i>
+    </a>
+    
+    <a class="symbol" href="http://stackoverflow.com/yorodm">
+        <i class="fa fa-stack-overflow"></i>
+    </a>
+    
+    <a class="symbol" href="http://twitter.com/yorodm">
+        <i class="fa fa-twitter"></i>
+    </a>
+    
+
+
+</div>
+
+    
+    <p class="small">
+        
+        © Copyright 2020 Yoandy Rodríguez Martínez
+        
+    </p>
+
+    <p class="small">
+        Powered by  <a href="http://www.gnu.org/software/emacs">GNU Emacs</a> <i class="fa fa-heart" aria-hidden="true"></i> and <a href="http://www.gohugo.io/">Hugo</a> Theme By <a href="https://github.com/nodejh/hugo-theme-cactus-plus">nodejh</a>
+    </p>
+</footer>
+
+        </section>
+
+        <script src="https://yorodm.github.io/js/jquery-2.2.4.min.js"></script>
+<script src="https://yorodm.github.io/js/main.js"></script>
+
+
+
+
+
+
+
+    </body>
+</html>
