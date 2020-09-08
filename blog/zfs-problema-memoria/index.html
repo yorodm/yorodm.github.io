@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>ZFS y el problema de la memoria &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -70,40 +70,30 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="zfs-y-el-problema-de-la-memoria">ZFS y el problema de la memoria</h1>
-
+                        <h1 id="zfs-y-el-problema-de-la-memoria">ZFS y el problema de la memoria</h1>
 <p><strong>ZFS</strong> lleva ya unos años en tierras de <a href="http://www.open-zfs.org/">Linux</a> y cada
 vez que tengo un chance lo recomiendo a alguno de mis amigos <em>sysadmins</em> junto
 con un grupito de notas que he tomado acerca de como trabajar con el
 <em>filesystem</em>, optimizar alguna que otra <em>feature</em> y algunos casos de estudio.</p>
-
 <p>Después de notar que en la mayoría de los casos, los aconsejados regresaban al
 castigo de <strong>LVM</strong> me dediqué a investigar las causas del rechazo y como
 enmendarlas.</p>
-
-<h1 id="pero-cuál-es-el-problema">Pero ¿cuál es el problema?</h1>
-
+<h1 id="pero-cul-es-el-problema">Pero ¿cuál es el problema?</h1>
 <p>Descartado el factor &ldquo;resistencia al cambio&rdquo; (los linuxeros solo temen a cambiar
 de distribución) la mayoría de los problemas relacionados con <strong>ZFS</strong> (entre las
 personas a las que le pregunté) están relacionados con uso y/o configuracíon
 incorrecta (también conocido como: &ldquo;No leiste las notas&rdquo;). Los 4 más comúnes
 fueron:</p>
-
 <ol>
 <li>Poner <strong>/boot</strong> o la <strong>swap</strong> en un volumen <strong>ZFS</strong>.</li>
 <li>No entender la diferencia entre <strong>clone</strong> y <strong>snapshot</strong>.</li>
 <li>El consumo de memoria.</li>
 <li>Problemas con <strong>RAID</strong> (tanto el de hardware como <strong>RAIDZ</strong>).</li>
 </ol>
-
 <p>Comparando mis problemas locales con los globales (gracias a <a href="http://trends.google.com">Google
 Trends</a> ) veo que los puntos 3 y 4 tienen buen
 ranking y me dije: &ldquo;Esto va al blog&rdquo;.</p>
-
 <h1 id="como-hacer-que-zfs-se-porte-bien">Como hacer que ZFS se porte bien.</h1>
-
 <p>Lo primero que le recomiendo a todo el mundo es que se lea un buen tutorial. Si
 vienes de el mundo <strong>ext4</strong> + <strong>LVM</strong>, la filosofía de <strong>ZFS</strong> te puede parecer
 extraña y deberías tener una idea de las semejanzas y diferencias en el modo de
@@ -111,7 +101,6 @@ operar con cada uno. En dependencia del nivel de inglés de cada cual
 <a href="http://www.open-zfs.org/wiki/Performance_tuning">aquí</a> hay una buena
 referencia sobre todos los parámetros de optimización e incluso casos de
 estudio.</p>
-
 <p>El &ldquo;problema&rdquo; del uso de memoria no es nada más que el método de caché utilizado
 en <strong>ZFS</strong>. La mayoría de los <em>filesystems</em> utilizan alguna variante de <strong>LRU</strong>, que
 en este caso fue sustituido por el <em>Adaptive Replacement Cache</em> o <strong>ARC</strong>. El
@@ -120,30 +109,21 @@ pesar de esto raras veces es <strong>necesario</strong> configurar algo de aquí
 memoria se muestra como ocupada (por ejemplo al utilizar <strong>free</strong>) es un caché y
 si existiera la necesidad sería liberada por el kernel. En caso de que no sepas
 como está configurado tu <strong>ARC</strong> puedes simplemente:</p>
-
 <pre><code>cat /sys/module/zfs/parameters/zfs_arc_max
-</code></pre>
-
-<p>Un valor de 0 indica que la mitad de la <strong>RAM</strong> disponible se utilizará para
+</code></pre><p>Un valor de 0 indica que la mitad de la <strong>RAM</strong> disponible se utilizará para
 caché. Para cambiar este valor puedes hacer lo siguiente:</p>
-
 <pre><code># Configura la cantidad de memoria máxima disponible para ARC
 echo &lt;numero en bytes&gt; &gt;&gt; /sys/module/zfs/parameters/zfs_arc_max
 # fuerza al kernel a vaciar la información de caché
 echo 3 &gt; /proc/sys/vm/drop_caches
-</code></pre>
-
-<p>Por último y no por ello menos importante, <strong>RAID</strong>. <strong>RAIDZ</strong> es una implementación
+</code></pre><p>Por último y no por ello menos importante, <strong>RAID</strong>. <strong>RAIDZ</strong> es una implementación
 de <strong>RAID</strong> basada en software. Si estás utilizando <strong>ZFS</strong> es recomendable que
 utilices <strong>RAIDZ</strong> en vez de una solución por hardware. Si tu servidor require que
 tengas <strong>RAID</strong> por hardware crea X unidades <strong>RAID0</strong> y añádelas a un <strong>zpool</strong>
 configurado con <strong>RAIDZ</strong>. Recuerda: <strong>nunca</strong> pongas <strong>RAIDZ</strong> sobre discos que
 tienen <strong>RAID</strong> mayor que 0. Repito: <strong>NUNCA</strong>.</p>
-
 <h1 id="para-ir-empezando-con-zfs">Para ir empezando con ZFS.</h1>
-
 <p>Estos tres links me sirven cada vez que tengo que refrescar algo del tema.</p>
-
 <ol>
 <li><a href="http://jjmora.es/zfs_aprendiendo_zfs_en_12_pasos/">ZFS en 12 pasos</a></li>
 <li><a href="http://www.open-zfs.org/wiki/Main_Page">Open-ZFS Wiki</a></li>

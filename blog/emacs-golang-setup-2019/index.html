@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Emacs &#43; Golang. Edición 2019 &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -68,19 +68,14 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<p><a href="https://blog.golang.org/go1.12">Go 1.12</a> fue lanzado hace un
+                        <p><a href="https://blog.golang.org/go1.12">Go 1.12</a> fue lanzado hace un
 mes y entre los cambios más significativos se encuentran varias mejoras
 en el soporte para módulos (que va a ser el método por defecto en la
 versión 1.13).</p>
-
 <p>Si eres usuario de <a href="https://www.gnu.org/software/emacs">Emacs</a> y te
 interesa desarrollar utilizando Go, aquí tienes una guía sencilla de
 como habilitar el soporte para el lenguaje.</p>
-
 <h2 id="paso-1-language-server-protocol">Paso 1. Language server protocol</h2>
-
 <p>Si tienes una versión actualizada de
 <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a> ya tienes soporte
 para <a href="https://github.com/saibing/bingo">bingo</a>, una herramienta que
@@ -91,25 +86,23 @@ para trabajar con módulos</p>
   <span class="nb">:config</span>
   <span class="p">(</span><span class="nb">use-package</span> <span class="nv">company-lsp</span>
     <span class="nb">:config</span>
-    <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;company-backends</span> <span class="ss">&#39;company-lsp</span><span class="p">)))</span>
+    <span class="p">(</span><span class="nv">add-to-list</span> <span class="ss">&#39;company-backends</span> <span class="ss">&#39;company-lsp</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
 
 <span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-ui</span>
   <span class="nb">:hook</span> <span class="p">(</span><span class="nv">lsp-mode</span> <span class="o">.</span> <span class="nv">lsp-ui-mode</span><span class="p">)</span>
   <span class="nb">:config</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">lsp-ui-mode-map</span>
-    <span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-definitions</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-definitions</span><span class="p">)</span>
+	<span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-definitions</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-definitions</span><span class="p">)</span>
   <span class="p">(</span><span class="nf">define-key</span> <span class="nv">lsp-ui-mode-map</span>
-    <span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-references</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-references</span><span class="p">)</span>
+	<span class="p">[</span><span class="nv">remap</span> <span class="nv">xref-find-references</span><span class="p">]</span> <span class="nf">#&#39;</span><span class="nv">lsp-ui-peek-find-references</span><span class="p">)</span>
   <span class="p">(</span><span class="nb">setq</span> <span class="nv">lsp-ui-sideline-enable</span> <span class="no">nil</span>
         <span class="nv">lsp-ui-doc-enable</span> <span class="no">t</span>
         <span class="nv">lsp-ui-flycheck-enable</span> <span class="no">nil</span>
         <span class="nv">lsp-ui-imenu-enable</span> <span class="no">t</span>
-        <span class="nv">lsp-ui-sideline-ignore-duplicate</span> <span class="no">t</span><span class="p">))</span></code></pre></div>
-<h2 id="paso-2-go-mode-y-utilidades">Paso 2. Go mode y utilidades</h2>
-
+		<span class="nv">lsp-ui-sideline-ignore-duplicate</span> <span class="no">t</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><h2 id="paso-2-go-mode-y-utilidades">Paso 2. Go mode y utilidades</h2>
 <p>Como <a href="https://github.com/emacs-lsp/lsp-mode">lsp-mode</a> es un <em>minor mode</em> necesitamos
 el soporte para el lenguaje (font-lock entre otras cosas). Los pasos necesarios son:</p>
-
 <ol>
 <li>Instalar <a href="golang.org/x/tools/cmd/goimports">goimports</a></li>
 <li>Instalar <a href="https://github.com/golang/lint">golint</a> o
@@ -119,33 +112,29 @@ el soporte para el lenguaje (font-lock entre otras cosas). Los pasos necesarios 
 <span class="p">(</span><span class="nb">use-package</span> <span class="nv">go-mode</span>
   <span class="nb">:config</span>
   <span class="c1">; Use goimports instead of go-fmt</span>
-  <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;goimports&#34;</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;</span><span class="s">goimports</span><span class="s">&#34;</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">flycheck-mode</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="ss">&#39;company-mode</span><span class="p">)</span>
   <span class="c1">;; Call Gofmt before saving</span>
   <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;before-save-hook</span> <span class="ss">&#39;gofmt-before-save</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">lsp</span><span class="p">)</span>
   <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">flycheck-mode</span><span class="p">)</span>
-  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
-                 <span class="p">(</span><span class="nv">local-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c C-r&#34;</span><span class="p">)</span> <span class="ss">&#39;go-remove-unused-imports</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
-                 <span class="p">(</span><span class="nv">local-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;C-c C-g&#34;</span><span class="p">)</span> <span class="ss">&#39;go-goto-imports</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
-                <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;company-backends</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-go</span><span class="p">))</span>
-                <span class="p">(</span><span class="nv">company-mode</span><span class="p">))))</span></code></pre></div>
-<h2 id="paso-3-comenzar-a-programar-en-go">Paso 3. Comenzar a programar en Go.</h2>
-
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
+			     <span class="p">(</span><span class="nv">local-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;</span><span class="s">C-c C-r</span><span class="s">&#34;</span><span class="p">)</span> <span class="ss">&#39;go-remove-unused-imports</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="o">&#39;</span><span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
+			     <span class="p">(</span><span class="nv">local-set-key</span> <span class="p">(</span><span class="nv">kbd</span> <span class="s">&#34;</span><span class="s">C-c C-g</span><span class="s">&#34;</span><span class="p">)</span> <span class="ss">&#39;go-goto-imports</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;company-backends</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">company-go</span><span class="p">)</span><span class="p">)</span>
+			    <span class="p">(</span><span class="nv">company-mode</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><h2 id="paso-3-comenzar-a-programar-en-go">Paso 3. Comenzar a programar en Go.</h2>
 <p>Con la configuración anterior puedes empezar a programar en Go</p>
-
 <ol>
 <li>Completamiento y referencias cruzadas</li>
 <li>Revisión de código mientras escribes.</li>
 <li>Formato automático al salvar.</li>
 <li>Un efecto aprecido al <em>hover</em> de <a href="https://code.visualstudio.com/">ese editor taaan popular</a></li>
 </ol>
-
 <h2 id="paso-4-compilar-y-debug">Paso 4. Compilar y debug.</h2>
-
 <p>Puedes configurar el comando de compilación por defecto que utilizas
 cuando editas archivos Go.</p>
 <div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="c1">;; Adicionar en la sección :config de `go-mode`</span>
@@ -153,16 +142,16 @@ cuando editas archivos Go.</p>
 
 <span class="c1">;; adicionar en el mismo archivo</span>
 
-<span class="p">(</span><span class="nb">defun</span> <span class="nv">setup-go-mode-compile</span> <span class="p">()</span>
+<span class="p">(</span><span class="nb">defun</span> <span class="nv">setup-go-mode-compile</span> <span class="p">(</span><span class="p">)</span>
   <span class="c1">; Customize compile command to run go build</span>
-  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;go&#34;</span> <span class="nv">compile-command</span><span class="p">))</span>
+  <span class="p">(</span><span class="nb">if</span> <span class="p">(</span><span class="nv">not</span> <span class="p">(</span><span class="nf">string-match</span> <span class="s">&#34;</span><span class="s">go</span><span class="s">&#34;</span> <span class="nv">compile-command</span><span class="p">)</span><span class="p">)</span>
       <span class="p">(</span><span class="nf">set</span> <span class="p">(</span><span class="nf">make-local-variable</span> <span class="ss">&#39;compile-command</span><span class="p">)</span>
-           <span class="s">&#34;go build -v &amp;&amp; go test -v &amp;&amp; go vet&#34;</span><span class="p">)))</span></code></pre></div>
-<p>Si prefieres los <em>debuggers</em> interactivos debes instalar
+           <span class="s">&#34;</span><span class="s">go build -v &amp;&amp; go test -v &amp;&amp; go vet</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><p>Si prefieres los <em>debuggers</em> interactivos debes instalar
 <a href="https://github.com/go-delve/delve">delve</a> y añadir la siguiente línea
 en tu archivo de inicio de Emacs.</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">go-dlv</span><span class="p">)</span></code></pre></div>
-<p>Los comandos <code>dlv</code> y <code>dlv-current-func</code> son los puntos de entrada al debugger.</p>
+<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">go-dlv</span><span class="p">)</span>
+</code></pre></div><p>Los comandos <code>dlv</code> y <code>dlv-current-func</code> son los puntos de entrada al debugger.</p>
 
                     </section>
             </article>

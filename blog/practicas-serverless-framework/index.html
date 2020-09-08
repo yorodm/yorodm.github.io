@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Buenas prácticas con Serverless &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -68,16 +68,11 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="algunas-buenas-practicas-para-serverless-framework">Algunas buenas practicas para Serverless Framework</h1>
-
+                        <h1 id="algunas-buenas-practicas-para-serverless-framework">Algunas buenas practicas para Serverless Framework</h1>
 <p>Aunque llevo poco tiempo utilizando <a href="http://serverless.com">Serverless</a> he
 intentado ir escribiendo un conjunto de prácticas para escribir plantillas.
 Las comparto aquí para los que como yo están empezando.</p>
-
 <h2 id="reducir-la-dependencia-de-valores-externos">Reducir la dependencia de valores externos.</h2>
-
 <p>En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es
 común utilizar referencias a valores externos por toda la plantilla.</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">functions<span class="p">:</span><span class="w">
@@ -86,49 +81,47 @@ común utilizar referencias a valores externos por toda la plantilla.</p>
 </span><span class="w">    </span>handler<span class="p">:</span><span class="w"> </span>handler.hello<span class="w">
 </span><span class="w">  </span>world<span class="p">:</span><span class="w">
 </span><span class="w">    </span>name<span class="p">:</span><span class="w"> </span>${env<span class="p">:</span>FUNC_PREFIX}-world<span class="w">
-</span><span class="w">    </span>handler<span class="p">:</span><span class="w"> </span>handler.world</code></pre></div>
-<p>Aunque esto no es una mala practica en si, hace que nuestras funciones dependan
+</span><span class="w">    </span>handler<span class="p">:</span><span class="w"> </span>handler.world<span class="w">
+</span></code></pre></div><p>Aunque esto no es una mala practica en si, hace que nuestras funciones dependan
 de un valor que <strong>solo</strong> vamos a obtener desde el entorno. ¿Qué tal si mañana
-decidimos que el valor venga <a href="https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs">de la salida de otro stack</a>?</p>
-
+decidimos que el valor venga [de la salida de otro stack]
+(<a href="https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs)?">https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs)?</a></p>
 <p>Por suerte para nosotros podemos hacer esto:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">custom<span class="p">:</span><span class="w">
 </span><span class="w">    </span>func_prefix<span class="p">:</span><span class="w"> </span><span class="c"># cualquier fuente para el valor</span><span class="w">
 </span><span class="w"></span>functions<span class="p">:</span><span class="w">
 </span><span class="w">    </span>hello<span class="p">:</span><span class="w">
-</span><span class="w">        </span>name<span class="p">:</span><span class="w"> </span>${self<span class="p">:</span>custom.func_prefix}</code></pre></div>
-<p>De esta manera la dependencia al valor externo ocurre en un solo punto y se
+</span><span class="w">        </span>name<span class="p">:</span><span class="w"> </span>${self<span class="p">:</span>custom.func_prefix}<span class="w">
+</span></code></pre></div><p>De esta manera la dependencia al valor externo ocurre en un solo punto y se
 propaga hacia el resto de la plantilla.</p>
-
 <h2 id="usar-plugins">Usar plugins.</h2>
-
-<p>Las plantillas pueden <a href="https://serverless.com/framework/docs/providers/aws/guide/plugins/">utilizar plugins</a> que
+<p>Las plantillas pueden [utilizar plugins]
+(<a href="https://serverless.com/framework/docs/providers/aws/guide/plugins/">https://serverless.com/framework/docs/providers/aws/guide/plugins/</a>) que
 adicionan funcionalidades que van desde nueva sintáxis para algunos aspectos a
 acceso a características especiales del proveedor que estemos utilizando. Antes
-de lanzarte a crear un script o <a href="https://en.wikipedia.org/wiki/Animal_sacrifice">lastimar a una cabra</a> deberías consultar si alguien a
+de lanzarte a crear un script o [lastimar a una cabra]
+(<a href="https://en.wikipedia.org/wiki/Animal_sacrifice">https://en.wikipedia.org/wiki/Animal_sacrifice</a>) deberías consultar si alguien a
 <a href="https://www.npmjs.com/search?q=serverless">creado un plugin</a></p>
-
-<h2 id="contenido-en-la-plantilla-según-condiciones">Contenido en la plantilla según condiciones.</h2>
-
+<h2 id="contenido-en-la-plantilla-segn-condiciones">Contenido en la plantilla según condiciones.</h2>
 <p>Serverless no tiene soporte para evaluación condicional de plantillas así que si
 pretendes crear contenido basado por ejemplo en el <strong>stage</strong> del despliegue
 puedes hacer algo como esto:</p>
 <div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-qa.yml</span><span class="w">
 </span><span class="w"></span>functions<span class="p">:</span><span class="w">
 </span><span class="w">    </span>qa_function<span class="p">:</span><span class="w">
-</span><span class="w">        </span>handler<span class="p">:</span><span class="w"> </span>MyQaHandler</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-prod.yml</span><span class="w">
+</span><span class="w">        </span>handler<span class="p">:</span><span class="w"> </span>MyQaHandler<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-prod.yml</span><span class="w">
 </span><span class="w"></span>functions<span class="p">:</span><span class="w">
 </span><span class="w">    </span>prod_function<span class="p">:</span><span class="w">
-</span><span class="w">        </span>handler<span class="p">:</span><span class="w"> </span>MyProdHandler</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># serverless.yml</span><span class="w">
+</span><span class="w">        </span>handler<span class="p">:</span><span class="w"> </span>MyProdHandler<span class="w">
+</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># serverless.yml</span><span class="w">
 </span><span class="w"></span>custom<span class="p">:</span><span class="w">
 </span><span class="w">    </span>stage<span class="p">:</span><span class="w"> </span>${opt<span class="p">:</span>stage<span class="p">,</span><span class="w"> </span><span class="s2">&#34;qa&#34;</span>}<span class="w">
-</span><span class="w"></span>functions<span class="p">:</span><span class="w"> </span>${file(stage_properties-${self<span class="p">:</span>custom.stage}.yml)<span class="p">:</span>functions}</code></pre></div>
-<p>Ahora tienes contenido en <code>functions</code> acorde al valor del <strong>stage</strong> si usas
+</span><span class="w"></span>functions<span class="p">:</span><span class="w"> </span>${file(stage_properties-${self<span class="p">:</span>custom.stage}.yml)<span class="p">:</span>functions}<span class="w">
+</span></code></pre></div><p>Ahora tienes contenido en <code>functions</code> acorde al valor del <strong>stage</strong> si usas
 varios entornos de configuración esta estructura te puede ahorrar mucho trabajo
 y posibles complicaciones.</p>
-
 <h2 id="otras-pistas-o-trucos">Otras pistas o trucos.</h2>
-
 <p>¿Tienes otras pistas o trucos? Por favor compartelas en los comentarios</p>
 
                     </section>

@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on /home/yorodm</title>
@@ -6,76 +5,22 @@
     <description>Recent content in Tags on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 04 Nov 2019 13:01:46 -0500</lastBuildDate>
+    <lastBuildDate>Mon, 07 Sep 2020 12:17:58 -0400</lastBuildDate>
     
         <atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>Asyncio</title>
-      <link>https://yorodm.github.io/tags/asyncio/</link>
-      <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
+      <title>cultura</title>
+      <link>https://yorodm.github.io/tags/cultura/</link>
+      <pubDate>Mon, 07 Sep 2020 12:17:58 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/tags/asyncio/</guid>
+      <guid>https://yorodm.github.io/tags/cultura/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Aws</title>
-      <link>https://yorodm.github.io/tags/aws/</link>
-      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/aws/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Blog</title>
-      <link>https://yorodm.github.io/tags/blog/</link>
-      <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/blog/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Builtins</title>
-      <link>https://yorodm.github.io/tags/builtins/</link>
-      <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/builtins/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Cloudwatch Logs</title>
-      <link>https://yorodm.github.io/tags/cloudwatch-logs/</link>
-      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/cloudwatch-logs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Decorators</title>
-      <link>https://yorodm.github.io/tags/decorators/</link>
-      <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/decorators/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Desafío</title>
-      <link>https://yorodm.github.io/tags/desaf%C3%ADo/</link>
-      <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/desaf%C3%ADo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Dotnet Core</title>
+      <title>dotnet core</title>
       <link>https://yorodm.github.io/tags/dotnet-core/</link>
       <pubDate>Fri, 06 Mar 2020 15:06:47 -0500</pubDate>
       
@@ -84,61 +29,7 @@
     </item>
     
     <item>
-      <title>Emacs</title>
-      <link>https://yorodm.github.io/tags/emacs/</link>
-      <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/emacs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Etl</title>
-      <link>https://yorodm.github.io/tags/etl/</link>
-      <pubDate>Tue, 12 Mar 2019 10:14:20 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/etl/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Gaveyard</title>
-      <link>https://yorodm.github.io/tags/gaveyard/</link>
-      <pubDate>Mon, 20 Aug 2018 10:50:39 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/gaveyard/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://yorodm.github.io/tags/go/</link>
-      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/go/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Golang</title>
-      <link>https://yorodm.github.io/tags/golang/</link>
-      <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/golang/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Herramientas</title>
-      <link>https://yorodm.github.io/tags/herramientas/</link>
-      <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/herramientas/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Hostbuilder</title>
+      <title>hostbuilder</title>
       <link>https://yorodm.github.io/tags/hostbuilder/</link>
       <pubDate>Fri, 06 Mar 2020 15:06:47 -0500</pubDate>
       
@@ -147,79 +38,7 @@
     </item>
     
     <item>
-      <title>Hugo</title>
-      <link>https://yorodm.github.io/tags/hugo/</link>
-      <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/hugo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Java</title>
-      <link>https://yorodm.github.io/tags/java/</link>
-      <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/java/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Javascript</title>
-      <link>https://yorodm.github.io/tags/javascript/</link>
-      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/javascript/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Jsonrpc</title>
-      <link>https://yorodm.github.io/tags/jsonrpc/</link>
-      <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/jsonrpc/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Lambda</title>
-      <link>https://yorodm.github.io/tags/lambda/</link>
-      <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/lambda/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Libros</title>
-      <link>https://yorodm.github.io/tags/libros/</link>
-      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/libros/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://yorodm.github.io/tags/linux/</link>
-      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Microframeworks</title>
-      <link>https://yorodm.github.io/tags/microframeworks/</link>
-      <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/microframeworks/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Microservices</title>
+      <title>microservices</title>
       <link>https://yorodm.github.io/tags/microservices/</link>
       <pubDate>Fri, 06 Mar 2020 15:06:47 -0500</pubDate>
       
@@ -228,70 +47,25 @@
     </item>
     
     <item>
-      <title>Microservicios</title>
-      <link>https://yorodm.github.io/tags/microservicios/</link>
-      <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
+      <title>aws</title>
+      <link>https://yorodm.github.io/tags/aws/</link>
+      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/tags/microservicios/</guid>
+      <guid>https://yorodm.github.io/tags/aws/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Nameko</title>
-      <link>https://yorodm.github.io/tags/nameko/</link>
-      <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
+      <title>cloudwatch logs</title>
+      <link>https://yorodm.github.io/tags/cloudwatch-logs/</link>
+      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/tags/nameko/</guid>
+      <guid>https://yorodm.github.io/tags/cloudwatch-logs/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Odoo</title>
-      <link>https://yorodm.github.io/tags/odoo/</link>
-      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/odoo/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Proxmox</title>
-      <link>https://yorodm.github.io/tags/proxmox/</link>
-      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/proxmox/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Python</title>
-      <link>https://yorodm.github.io/tags/python/</link>
-      <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rails</title>
-      <link>https://yorodm.github.io/tags/rails/</link>
-      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/rails/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Ruby</title>
-      <link>https://yorodm.github.io/tags/ruby/</link>
-      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/ruby/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Rust</title>
+      <title>rust</title>
       <link>https://yorodm.github.io/tags/rust/</link>
       <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
@@ -300,7 +74,79 @@
     </item>
     
     <item>
-      <title>Scrapper</title>
+      <title>asyncio</title>
+      <link>https://yorodm.github.io/tags/asyncio/</link>
+      <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/asyncio/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://yorodm.github.io/tags/python/</link>
+      <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>emacs</title>
+      <link>https://yorodm.github.io/tags/emacs/</link>
+      <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/emacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>hugo</title>
+      <link>https://yorodm.github.io/tags/hugo/</link>
+      <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>golang</title>
+      <link>https://yorodm.github.io/tags/golang/</link>
+      <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/golang/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>etl</title>
+      <link>https://yorodm.github.io/tags/etl/</link>
+      <pubDate>Tue, 12 Mar 2019 10:14:20 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/etl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>builtins</title>
+      <link>https://yorodm.github.io/tags/builtins/</link>
+      <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/builtins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>decorators</title>
+      <link>https://yorodm.github.io/tags/decorators/</link>
+      <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/decorators/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scrapper</title>
       <link>https://yorodm.github.io/tags/scrapper/</link>
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
@@ -309,7 +155,25 @@
     </item>
     
     <item>
-      <title>Serverless</title>
+      <title>lambda</title>
+      <link>https://yorodm.github.io/tags/lambda/</link>
+      <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>gaveyard</title>
+      <link>https://yorodm.github.io/tags/gaveyard/</link>
+      <pubDate>Mon, 20 Aug 2018 10:50:39 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/gaveyard/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>serverless</title>
       <link>https://yorodm.github.io/tags/serverless/</link>
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
@@ -318,34 +182,7 @@
     </item>
     
     <item>
-      <title>Snippets</title>
-      <link>https://yorodm.github.io/tags/snippets/</link>
-      <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/snippets/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Testing</title>
-      <link>https://yorodm.github.io/tags/testing/</link>
-      <pubDate>Wed, 13 Dec 2017 00:00:00 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/testing/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Xml</title>
-      <link>https://yorodm.github.io/tags/xml/</link>
-      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/xml/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Yaml</title>
+      <title>yaml</title>
       <link>https://yorodm.github.io/tags/yaml/</link>
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
@@ -354,11 +191,182 @@
     </item>
     
     <item>
-      <title>Zfs</title>
+      <title>desafío</title>
+      <link>https://yorodm.github.io/tags/desaf%C3%ADo/</link>
+      <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/desaf%C3%ADo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jsonrpc</title>
+      <link>https://yorodm.github.io/tags/jsonrpc/</link>
+      <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/jsonrpc/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>snippets</title>
+      <link>https://yorodm.github.io/tags/snippets/</link>
+      <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/snippets/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>libros</title>
+      <link>https://yorodm.github.io/tags/libros/</link>
+      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/libros/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rails</title>
+      <link>https://yorodm.github.io/tags/rails/</link>
+      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/rails/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>ruby</title>
+      <link>https://yorodm.github.io/tags/ruby/</link>
+      <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/ruby/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>blog</title>
+      <link>https://yorodm.github.io/tags/blog/</link>
+      <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/blog/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://yorodm.github.io/tags/javascript/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>odoo</title>
+      <link>https://yorodm.github.io/tags/odoo/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/odoo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>https://yorodm.github.io/tags/testing/</link>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/testing/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>java</title>
+      <link>https://yorodm.github.io/tags/java/</link>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>microframeworks</title>
+      <link>https://yorodm.github.io/tags/microframeworks/</link>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/microframeworks/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>microservicios</title>
+      <link>https://yorodm.github.io/tags/microservicios/</link>
+      <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/microservicios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>nameko</title>
+      <link>https://yorodm.github.io/tags/nameko/</link>
+      <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/nameko/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>go</title>
+      <link>https://yorodm.github.io/tags/go/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>xml</title>
+      <link>https://yorodm.github.io/tags/xml/</link>
+      <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/xml/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://yorodm.github.io/tags/linux/</link>
+      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>proxmox</title>
+      <link>https://yorodm.github.io/tags/proxmox/</link>
+      <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/proxmox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>zfs</title>
       <link>https://yorodm.github.io/tags/zfs/</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
       <guid>https://yorodm.github.io/tags/zfs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>herramientas</title>
+      <link>https://yorodm.github.io/tags/herramientas/</link>
+      <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/herramientas/</guid>
       <description></description>
     </item>
     

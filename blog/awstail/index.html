@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>awstail: AWS Logs a la vieja usanza &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -71,14 +71,12 @@
                 
                     <section id="post-body">
                         <p><a href="https://github.com/yorodm/awstail">awstail</a> es una herramienta muy simple que cumple dos funciones:</p>
-
 <ol>
 <li>Darme la excusa para aprender <strong>Rust</strong>.</li>
 <li>Monitorear un grupo de logs en <code>AWS Cloudwatch</code> desde la terminal.</li>
 </ol>
-
 <p>Por el momento, estas son las opciones que permite la herramienta:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">awstail 0.3.0
+<pre><code class="language-console" data-lang="console">awstail 0.3.0
 Yoandy Rodriguez &lt;yoandy.rmartinez@gmail.com&gt;
 like tail -f for AWS Cloudwatch
 
@@ -90,15 +88,14 @@ FLAGS:
     -V, --version    Prints version information
 
 OPTIONS:
-    -p &lt;PROFILE&gt;        Profile if using other than &#39;default&#39;
+    -p &lt;PROFILE&gt;        Profile if using other than 'default'
     -r &lt;REGION&gt;         AWS region (defaults to us-east-1)
     -s &lt;SINCE&gt;          Take logs since a given time (defaults to 5 minutes)
     -w &lt;WATCH&gt;          Keep watching for new logs every n seconds (defaults to 10)
 
 ARGS:
-    &lt;LOG_GROUP&gt;    Log group name</code></pre></div>
-<p>Posibles opciones futuras:</p>
-
+    &lt;LOG_GROUP&gt;    Log group name
+</code></pre><p>Posibles opciones futuras:</p>
 <ol>
 <li>Agregar logs de más de un grupo.</li>
 <li>Color diferenciado para mensajes de error.</li>

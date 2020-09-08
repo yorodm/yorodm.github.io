@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Scrapper para DEV desde Emacs &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -68,17 +68,13 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="scrapper-para-dev-desde-emacs">Scrapper para DEV desde Emacs.</h1>
-
+                        <h1 id="scrapper-para-dev-desde-emacs">Scrapper para DEV desde Emacs.</h1>
 <p>Recién publiqué en
 <a href="https://dev.to/yorodm/scrapping-dev-with-common-lisp-6j0">DEV</a> un artículo
 acerca de como hacer un <a href="https://es.wikipedia.org/wiki/Web_scraping">scrapper</a>
 para obtener los títulos del <a href="https://dev.to">feed principal</a>. El artículo
 surgió de una discusión amistosa acerca de la relevancia de Common Lisp como
 tecnología en la actualidad y quedé muy satisfecho con el resultado.</p>
-
 <p>Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que
 decidí ver si había una para Emacs Lisp y&hellip; TL;DR, aquí está el scrapper 😍.</p>
 <div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="c1">;;; Eval this in the scratch buffer, first make sure to get</span>
@@ -86,12 +82,13 @@ decidí ver si había una para Emacs Lisp y&hellip; TL;DR, aquí está el scrapp
 <span class="c1">;;; Eval this in a buffer and get the headlines in *another* buffer</span>
 <span class="c1">;;; named *dev*</span>
 <span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;elquery</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">let</span> <span class="p">((</span><span class="nv">dev-buffer</span> <span class="p">(</span><span class="nv">generate-new-buffer</span> <span class="s">&#34;*dev*&#34;</span><span class="p">)))</span>
-  <span class="p">(</span><span class="nb">with-current-buffer</span> <span class="p">(</span><span class="nv">url-retrieve-synchronously</span> <span class="s">&#34;https://dev.to&#34;</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">let</span> <span class="p">(</span><span class="p">(</span><span class="nv">dev-buffer</span> <span class="p">(</span><span class="nv">generate-new-buffer</span> <span class="s">&#34;</span><span class="s">*dev*</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">with-current-buffer</span> <span class="p">(</span><span class="nv">url-retrieve-synchronously</span> <span class="s">&#34;</span><span class="s">https://dev.to</span><span class="s">&#34;</span><span class="p">)</span>
     <span class="c1">;; Feel free to hate this</span>
-    <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nf">elt</span> <span class="p">(</span><span class="nf">mapcar</span> <span class="ss">&#39;elquery-text</span> <span class="p">(</span><span class="nv">elquery-$</span> <span class="s">&#34;div.single-article h3&#34;</span>
-                                                  <span class="p">(</span><span class="nv">elquery-read-string</span> <span class="p">(</span><span class="nf">buffer-string</span><span class="p">)))))</span>
-      <span class="p">(</span><span class="nb">with-current-buffer</span> <span class="nv">dev-buffer</span> <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span> <span class="nf">elt</span> <span class="s">&#34;\n&#34;</span><span class="p">))))))</span></code></pre></div>
+    <span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nf">elt</span> <span class="p">(</span><span class="nf">mapcar</span> <span class="ss">&#39;elquery-text</span> <span class="p">(</span><span class="nv">elquery-$</span> <span class="s">&#34;</span><span class="s">div.single-article h3</span><span class="s">&#34;</span>
+                                                  <span class="p">(</span><span class="nv">elquery-read-string</span> <span class="p">(</span><span class="nf">buffer-string</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">with-current-buffer</span> <span class="nv">dev-buffer</span> <span class="p">(</span><span class="nf">insert</span> <span class="p">(</span><span class="nf">concat</span> <span class="nf">elt</span> <span class="s">&#34;</span><span class="s">\n</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div>
                     </section>
             </article>
 

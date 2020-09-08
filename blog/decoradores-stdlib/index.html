@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Python: Decoradores estándar y su uso &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         15 de Ene 2019
-                    · 651 palabras 
+                    · 649 palabras 
                     · 4 minutos apróx. 
                       <span class="tags">
                       
@@ -70,62 +70,53 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<p>Entre las <em>baterías includas</em> de Python, vienen varios decoradores que nos
+                        <p>Entre las <em>baterías includas</em> de Python, vienen varios decoradores que nos
 facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su
 uso.</p>
-
 <h2 id="decoradores-para-oop">Decoradores para OOP</h2>
-
 <h3 id="property">property</h3>
-
 <p>Uno de los más usados. Convierte un conjunto de métodos en un <strong>descriptor</strong> que
 hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de
 lógica a propiedades de la clase.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="bp">None</span>
 
-    <span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;http://mydata.com/x&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">getx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="ow">or</span> <span class="n">request</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">http://mydata.com/x</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setx</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_x</span> <span class="o">=</span> <span class="n">value</span>
-        <span class="n">request</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;http://mydata.com/x&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">http://mydata.com/x</span><span class="s1">&#39;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">x</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">delx</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">delx</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
         <span class="k">del</span> <span class="bp">self</span><span class="o">.</span><span class="n">_x</span>
-        <span class="n">request</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;http://mydata.com/x&#39;</span><span class="p">)</span>
+        <span class="n">request</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">http://mydata.com/x</span><span class="s1">&#39;</span><span class="p">)</span>
 
-    <span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">delx</span><span class="p">,</span> <span class="s2">&#34;x como proxy a servicio REST.&#34;</span><span class="p">)</span></code></pre></div>
-<h3 id="staticmethod">staticmethod</h3>
-
-<p>Define métodos estáticos<sup class="footnote-ref" id="fnref:1"><a href="#fn:1">1</a></sup>. Pueden ser llamados tanto desde la clase o una de sus instancias</p>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">delx</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">x como proxy a servicio REST.</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></div><h3 id="staticmethod">staticmethod</h3>
+<p>Define métodos estáticos<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Pueden ser llamados tanto desde la clase o una de sus instancias</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
 
     <span class="nd">@staticmethod</span>
-    <span class="k">def</span> <span class="nf">calculo_externo</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val2</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">val</span> <span class="o">+</span> <span class="n">val2</span></code></pre></div>
-<p>Nótese la falta del parámetro implicito inicial.</p>
-
+    <span class="k">def</span> <span class="nf">calculo_externo</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val2</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">val</span> <span class="o">+</span> <span class="n">val2</span>
+</code></pre></div><p>Nótese la falta del parámetro implicito inicial.</p>
 <h3 id="classmethod">classmethod</h3>
-
 <p>Convierte un método normal a un método de clase. Los métodos de clase reciben la
 clase como parámetro implícito en vez de una de las instancias. Uno de los casos
 de uso más comunes es crear formas alternativas de instanciar la clase.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">,</span><span class="n">z</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="p">,</span><span class="n">z</span><span class="p">)</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">z</span> <span class="o">=</span> <span class="n">z</span>
 
     <span class="nd">@classmethod</span>
-    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span></code></pre></div>
-<h3 id="abc-abstractmethod">abc.abstractmethod</h3>
-
+    <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="p">,</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="p">)</span>
+</code></pre></div><h3 id="abcabstractmethod">abc.abstractmethod</h3>
 <p>Métodos que tienen que ser implementados <strong>obligatoriamente</strong> por las subclases.
 El equivalente a <em>interfaces</em> o <em>clases abstractas</em> que tanto encuentras en
 otros lenguajes.</p>
@@ -134,44 +125,41 @@ otros lenguajes.</p>
 <span class="k">class</span> <span class="nc">Animal</span><span class="p">:</span>
 
     <span class="nd">@abc.abstractmethod</span>
-    <span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
         <span class="k">pass</span>
 
-<span class="k">class</span> <span class="nc">Perro</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Perro</span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Ladrido&#34;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Ladrido</span><span class="s2">&#34;</span><span class="p">)</span>
 
-<span class="k">class</span> <span class="nc">Vaca</span><span class="p">(</span><span class="n">Animal</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">Vaca</span><span class="p">(</span><span class="n">Animal</span><span class="p">)</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Mugido&#34;</span><span class="p">)</span></code></pre></div>
-<p>Se puede utilizar en conjunción con <em>@property</em> o <em>staticmethod</em> para crear
+    <span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Mugido</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></div><p>Se puede utilizar en conjunción con <em>@property</em> o <em>staticmethod</em> para crear
 propiedades o métodos estáticos abstractos.</p>
-
-<h3 id="functools-total-ordering">functools.total_ordering</h3>
-
+<h3 id="functoolstotal-ordering">functools.total_ordering</h3>
 <p>Nos permite crear clases que soporten operadores de comparación. Solo tenemos
 que proveer el método <em><strong>eq</strong></em> y uno de los seis métodos predefinidos de orden.
 La documentación de la bilioteca estándar advierte que este decorador puede
 tener impactos en el rendimiento.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="nd">@total_ordering</span>
 <span class="k">class</span> <span class="nc">Student</span><span class="p">:</span>
-    <span class="k">def</span> <span class="nf">_is_valid_operand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">&#34;lastname&#34;</span><span class="p">)</span> <span class="ow">and</span>
-                <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="s2">&#34;firstname&#34;</span><span class="p">))</span>
-    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_operand</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">_is_valid_operand</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">(</span><span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">lastname</span><span class="s2">&#34;</span><span class="p">)</span> <span class="ow">and</span>
+                <span class="nb">hasattr</span><span class="p">(</span><span class="n">other</span><span class="p">,</span> <span class="sa"></span><span class="s2">&#34;</span><span class="s2">firstname</span><span class="s2">&#34;</span><span class="p">)</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_operand</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
-        <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="o">==</span>
-                <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
-    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_operand</span><span class="p">(</span><span class="n">other</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">)</span> <span class="o">==</span>
+                <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+    <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_is_valid_operand</span><span class="p">(</span><span class="n">other</span><span class="p">)</span><span class="p">:</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
-        <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="o">&lt;</span>
-                <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span></code></pre></div>
-<h3 id="dataclasses-dataclass">dataclasses.dataclass</h3>
-
+        <span class="k">return</span> <span class="p">(</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">)</span> <span class="o">&lt;</span>
+                <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">,</span> <span class="n">other</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+</code></pre></div><h3 id="dataclassesdataclass">dataclasses.dataclass</h3>
 <p>Nos permite omitir la declaración de <em><strong>init</strong></em> y <em><strong>repr</strong></em> en la declaración
 de clases en las que solo vamos a manejar datos. El uso puede ser extendido a
 subclases</p>
@@ -182,60 +170,54 @@ subclases</p>
     <span class="n">x</span><span class="p">:</span> <span class="nb">float</span>
     <span class="n">y</span><span class="p">:</span> <span class="nb">float</span>
 
-    <span class="k">def</span> <span class="nf">euclidian_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">euclidian_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">float</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-            <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+            <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span>
         <span class="p">)</span>
 
 <span class="nd">@dataclasses.dataclass</span>
-<span class="k">class</span> <span class="nc">ThreeDPoint</span><span class="p">(</span><span class="n">Point</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">ThreeDPoint</span><span class="p">(</span><span class="n">Point</span><span class="p">)</span><span class="p">:</span>
     <span class="n">z</span><span class="p">:</span> <span class="nb">float</span>
 
-    <span class="k">def</span> <span class="nf">euclidian_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-        <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
-        <span class="n">dz</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">def</span> <span class="nf">euclidian_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">:</span> <span class="n">Point</span><span class="p">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">x</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span>
+        <span class="n">dy</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span>
+        <span class="n">dz</span> <span class="o">=</span> <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="o">*</span><span class="mi">2</span>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
             <span class="n">dx</span><span class="o">+</span><span class="n">dy</span><span class="o">+</span><span class="n">dz</span>
-        <span class="p">)</span></code></pre></div>
-<h2 id="decoradores-para-funciones">Decoradores para funciones</h2>
-
-<h3 id="functools-lru-cache">functools.lru_cache</h3>
-
+        <span class="p">)</span>
+</code></pre></div><h2 id="decoradores-para-funciones">Decoradores para funciones</h2>
+<h3 id="functoolslru-cache">functools.lru_cache</h3>
 <p>Caché de las últimas <em>n</em> llamadas a una función. Los parametros tienen que poder
 ser utilizados como llaves de un diccionario.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 <span class="nd">@lru_cache</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">get_exchange</span><span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">foreign</span><span class="p">):</span>
-    <span class="n">exchange_service</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">foreign</span><span class="p">)</span></code></pre></div>
-<h3 id="asyncio-coroutine">asyncio.coroutine</h3>
-
+<span class="k">def</span> <span class="nf">get_exchange</span><span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">foreign</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">exchange_service</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">foreign</span><span class="p">)</span>
+</code></pre></div><h3 id="asynciocoroutine">asyncio.coroutine</h3>
 <p>Convierte corutinas basadas en generadores para que sean compatibles con el
 nuevo modelo <em>async/await</em>. Usar solamente en código que necesita ser portado</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">coroutine</span>
 
 <span class="nd">@coroutine</span>
-<span class="k">def</span> <span class="nf">render_view</span><span class="p">(</span><span class="n">view_name</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">render_view</span><span class="p">(</span><span class="n">view_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span><span class="p">:</span>
     <span class="n">template</span> <span class="o">=</span> <span class="n">Template</span><span class="p">(</span><span class="n">view_name</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
-    <span class="k">yield</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+    <span class="k">yield</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="p">)</span>
 
-<span class="n">async</span> <span class="k">def</span> <span class="nf">hanlde_get</span><span class="p">(</span><span class="n">route</span><span class="p">):</span>
-    <span class="n">await</span> <span class="n">render_view</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">params</span><span class="p">)</span></code></pre></div>
-<h3 id="contextlib-contextmanager">contextlib.contextmanager</h3>
-
+<span class="n">async</span> <span class="k">def</span> <span class="nf">hanlde_get</span><span class="p">(</span><span class="n">route</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">await</span> <span class="n">render_view</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
+</code></pre></div><h3 id="contextlibcontextmanager">contextlib.contextmanager</h3>
 <p>Convierte una función en un <em>contextmanager</em>. Puede ser usado de dos formas:</p>
-
 <ol>
 <li>Utilizando una sentencia <em>with</em></li>
 <li>Como un decorador.</li>
 </ol>
-
 <p>Personalmente para hacer decoradores que sean <em>contextmanagers</em> prefiero utilizar
 la clase <em>ContextDecorator</em>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
 
 <span class="nd">@contextmanager</span>
-<span class="k">def</span> <span class="nf">acquire_lock</span><span class="p">(</span><span class="n">key</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">acquire_lock</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="p">:</span>
     <span class="n">credentials</span> <span class="o">=</span> <span class="n">get_credentials</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
     <span class="n">lock</span> <span class="o">=</span> <span class="n">acquire_lock_using_credentials</span><span class="p">(</span><span class="n">credentials</span><span class="p">)</span>
     <span class="k">try</span><span class="p">:</span>
@@ -243,56 +225,54 @@ la clase <em>ContextDecorator</em>.</p>
     <span class="k">finally</span><span class="p">:</span>
         <span class="n">release_lock</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
 
-<span class="k">with</span> <span class="n">acquire_lock</span><span class="p">(</span><span class="s1">&#39;my secret api key&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">lock</span><span class="p">:</span>
-    <span class="n">use_critical_resource</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span></code></pre></div>
-<h2 id="decoradores-extra">Decoradores extra</h2>
-
-<h3 id="functools-wraps">functools.wraps</h3>
-
+<span class="k">with</span> <span class="n">acquire_lock</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">my secret api key</span><span class="s1">&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">lock</span><span class="p">:</span>
+    <span class="n">use_critical_resource</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
+</code></pre></div><h2 id="decoradores-extra">Decoradores extra</h2>
+<h3 id="functoolswraps">functools.wraps</h3>
 <p>Decorador para crear decoradores. Útil para hacer que las funciones conserven
 propiedades como <em><strong>name</strong></em> y <em><strong>doc</strong></em></p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
-<span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">my_decorator</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="p">:</span>
     <span class="nd">@wraps</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwds</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="o">*</span><span class="n">kwds</span><span class="p">)</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">*</span><span class="o">*</span><span class="n">kwds</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">wrapper</span>
 
 <span class="nd">@my_decorator</span>
-<span class="k">def</span> <span class="nf">funcion</span><span class="p">():</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Esta es la doc
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="k">pass</span></code></pre></div>
-<h3 id="functools-singledispatch">functools.singledispatch</h3>
-
+<span class="k">def</span> <span class="nf">funcion</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    Esta es la doc</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="k">pass</span>
+</code></pre></div><h3 id="functoolssingledispatch">functools.singledispatch</h3>
 <p>Permite crear funciones sobrecargadas a partir del tipo del primer parámetro.
 Hace uso de las anotaciones de tipos.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Perro</span><span class="p">:</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">
+<span class="k">class</span> <span class="nc">Perro</span><span class="p">:</span>
     <span class="k">pass</span>
 
 <span class="n">clas</span> <span class="n">Vaca</span><span class="p">:</span>
     <span class="k">pass</span>
 
 <span class="nd">@singledispatch</span>
-<span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="n">animal</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">sonido</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span><span class="p">:</span>
     <span class="k">pass</span>
 
 <span class="nd">@sonido.register</span><span class="p">(</span><span class="n">Perro</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">animal</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Ladra&#34;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Ladra</span><span class="s2">&#34;</span><span class="p">)</span>
 
 <span class="nd">@sonido.register</span><span class="p">(</span><span class="n">Vaca</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">animal</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Muge&#34;</span><span class="p">)</span></code></pre></div><div class="footnotes">
-
-<hr />
-
+<span class="k">def</span> <span class="nf">_</span><span class="p">(</span><span class="n">animal</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa"></span><span class="s2">&#34;</span><span class="s2">Muge</span><span class="s2">&#34;</span><span class="p">)</span>
+</code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn:1">No soy muy partidario de usar métodos estáticos en Python.
- <a class="footnote-return" href="#fnref:1"><sup>[return]</sup></a></li>
+<li id="fn:1" role="doc-endnote">
+<p>No soy muy partidario de usar métodos estáticos en Python. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
-</div>
+</section>
 
                     </section>
             </article>

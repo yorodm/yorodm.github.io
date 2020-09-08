@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Parser SAX en Golang &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -70,33 +70,24 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="parser-tipo-sax-para-golang">Parser tipo SAX para Golang</h1>
-
+                        <h1 id="parser-tipo-sax-para-golang">Parser tipo SAX para Golang</h1>
 <h2 id="el-problema">El problema</h2>
-
 <p>Tratando de migrar unas cosas del trabajo a <strong>Go</strong> me tropecé con la necesidad de
 procesar unos archivos <strong>XML</strong> (cada día doy más gracias por <strong>TOML</strong> y <strong>JSON</strong>) de
 tamaño considerable.</p>
-
 <p>Una mirada por encima a <code>encoding/xml</code> me dejo bien claro que no existía un
 parser tipo <code>xml.dom.minidom</code> (el de la biblioteca estándar de <strong>Python</strong>) o algo
 como <strong>Expat</strong>. Las principales funciones (ej. las que salen en los ejemplos)
 están orientadas más hacia la serialización y deserialización de <strong>XML</strong> que a
 andar recorriendo documentos.</p>
-
 <p>Sin otro remedio a mano acudí al <a href="http://google.com">Gran Oráculo</a> para
 investigar mis posibilidades y lo más cercano que encontré fue una biblioteca
 llamada <a href="https://github.com/kokardy/saxlike">saxlike</a> que no luce nada mal pero
 no era exactamente lo que buscaba (hay que implementar toda una interfaz).</p>
-
-<h2 id="la-solución">La solución.</h2>
-
+<h2 id="la-solucin">La solución.</h2>
 <p>El método <code>Token</code> de <code>*xml.Decoder</code> opera leyendo de un <code>*io.Reader</code> y retornando
 el próximo token <strong>XML</strong> que encuentra. La función retorna <code>(Token, error)</code> donde
 <strong>Token</strong> es uno de los siguientes tipos:</p>
-
 <ol>
 <li><code>xml.StartElement</code> (comienzo de un elemento)</li>
 <li><code>xml.EndElement</code> (final de un elemento, funciona incluso para etiquetas  como
@@ -106,62 +97,58 @@ el próximo token <strong>XML</strong> que encuentra. La función retorna <code>
 <li><code>xml.Chardata</code> (contenido de los elementos)</li>
 <li><code>xml.ProcInst</code> (instrucciones de procesamiento)</li>
 </ol>
-
 <p>Esto es bastante parecido a <strong>SAX</strong> es decir, podríamos hacer una interfaz
 <strong>Handler</strong> con un método por cada tipo y una función (o método de otra clase) que
 recibiera algo que implementara a handler y llamara a cada uno de los métodos.</p>
 <div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// En este caso hipotético Parser tiene embebido un xml.Decoder
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">Parser</span><span class="p">)</span> <span class="nf">Parse</span><span class="p">(</span><span class="nx">document</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span> <span class="nx">handler</span> <span class="nx">Handler</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">{</span>
-        <span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nf">Token</span><span class="p">()</span>
+        <span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nf">Token</span><span class="p">(</span><span class="p">)</span>
         <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="nx">io</span><span class="p">.</span><span class="nx">EOF</span> <span class="p">{</span>
          <span class="k">return</span> <span class="kc">nil</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
           <span class="k">return</span> <span class="nx">err</span>
         <span class="p">}</span>
-        <span class="k">switch</span> <span class="nx">token</span><span class="p">.(</span><span class="kd">type</span><span class="p">){</span>
+        <span class="k">switch</span> <span class="nx">token</span><span class="p">.</span><span class="p">(</span><span class="kd">type</span><span class="p">)</span><span class="p">{</span>
         <span class="k">case</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">StartElement</span><span class="p">:</span>
             <span class="nx">handler</span><span class="p">.</span><span class="nf">StartElement</span><span class="p">(</span><span class="nx">token</span><span class="p">)</span>
         <span class="c1">// mas de lo mismo
 </span><span class="c1"></span>        <span class="p">}</span>
     <span class="p">}</span>
     <span class="k">return</span> <span class="kc">nil</span>
-<span class="p">}</span></code></pre></div>
-<p>Para utilizar este método necesitamos implementar la interfaz <strong>SAX</strong> con 6
+<span class="p">}</span>
+</code></pre></div><p>Para utilizar este método necesitamos implementar la interfaz <strong>SAX</strong> con 6
 métodos para los elemento y otro más para manejo de errores o verificar el valor
 de retorno de <code>Parse</code>.</p>
-
 <p>Peeeero, la idea de implementar 7 métodos y utilizar callbacks para manejar
 eventos&hellip;.. ya para eso tengo <strong>Java</strong>. Mucho menos cuando voy a tener que
 escribir métodos vacíos para <code>xml.Comment</code> y <code>xml.Directive</code> porque no me
 interesa procesarlos pero son necesarios para la interfaz.</p>
-
 <p>Por razones como esta, los eventos en <strong>Go</strong> se manejan mejor utilizando
 canales:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">ParserError</span> <span class="kd">struct</span><span class="p">{}</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">ParserError</span> <span class="kd">struct</span><span class="p">{</span><span class="p">}</span>
 
 <span class="kd">func</span> <span class="nf">parse</span><span class="p">(</span><span class="nx">document</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span> <span class="nx">elm</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">Token</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">defer</span> <span class="nb">close</span><span class="p">(</span><span class="nx">elm</span><span class="p">)</span>
     <span class="nx">decoder</span> <span class="o">:=</span> <span class="nx">xml</span><span class="p">.</span><span class="nf">NewDecoder</span><span class="p">(</span><span class="nx">document</span><span class="p">)</span>
     <span class="k">for</span> <span class="p">{</span>
         <span class="c1">// DefaultDecoder es un *xml.Decoder
-</span><span class="c1"></span>        <span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">decoder</span><span class="p">.</span><span class="nf">Token</span><span class="p">()</span>
+</span><span class="c1"></span>        <span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">decoder</span><span class="p">.</span><span class="nf">Token</span><span class="p">(</span><span class="p">)</span>
         <span class="k">if</span> <span class="nx">err</span> <span class="o">==</span> <span class="nx">io</span><span class="p">.</span><span class="nx">EOF</span> <span class="p">{</span>
             <span class="k">return</span>
         <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-            <span class="nx">elm</span> <span class="o">&lt;-</span> <span class="nx">ParserError</span><span class="p">{}</span>
+            <span class="nx">elm</span> <span class="o">&lt;-</span> <span class="nx">ParserError</span><span class="p">{</span><span class="p">}</span>
             <span class="k">return</span>
         <span class="p">}</span>
         <span class="nx">elm</span> <span class="o">&lt;-</span> <span class="nx">token</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
-<p>Esta versión no solo es mucho más corta sino que además utilizamos una
+<span class="p">}</span>
+</code></pre></div><p>Esta versión no solo es mucho más corta sino que además utilizamos una
 <em>gorutina</em> para procesar el <strong>XML</strong> y un canal para la comunicación entre el
 productor y el consumidor de los eventos. El consumidor puede elegir que eventos
 le resultan interesantes y descartar el resto</p>
-
 <p>Veamos un ejemplo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">fd</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;settings.xml&#34;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
@@ -169,7 +156,7 @@ le resultan interesantes y descartar el resto</p>
     <span class="nx">ch</span> <span class="o">:=</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">Token</span><span class="p">)</span>
     <span class="k">go</span> <span class="nf">parse</span><span class="p">(</span><span class="nx">fd</span><span class="p">,</span> <span class="nx">ch</span><span class="p">)</span>
     <span class="k">for</span> <span class="nx">element</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">ch</span> <span class="p">{</span>
-        <span class="k">switch</span> <span class="nx">element</span> <span class="o">:=</span> <span class="nx">element</span><span class="p">.(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">switch</span> <span class="nx">element</span> <span class="o">:=</span> <span class="nx">element</span><span class="p">.</span><span class="p">(</span><span class="kd">type</span><span class="p">)</span> <span class="p">{</span>
         <span class="k">case</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">StartElement</span><span class="p">:</span>
             <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">element</span><span class="p">.</span><span class="nx">Name</span><span class="p">)</span>
         <span class="k">case</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">EndElement</span><span class="p">:</span>
@@ -178,7 +165,8 @@ le resultan interesantes y descartar el resto</p>
             <span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;Errroooooooooor&#34;</span><span class="p">)</span>
         <span class="p">}</span>
     <span class="p">}</span>
-<span class="p">}</span></code></pre></div>
+<span class="p">}</span>
+</code></pre></div>
                     </section>
             </article>
 

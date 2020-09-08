@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Herramientas on /home/yorodm</title>
+    <title>herramientas on /home/yorodm</title>
     <link>https://yorodm.github.io/tags/herramientas/</link>
-    <description>Recent content in Herramientas on /home/yorodm</description>
+    <description>Recent content in herramientas on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Thu, 19 Oct 2017 15:26:34 -0400</lastBuildDate>
@@ -17,33 +16,25 @@
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
-      <description>
-
-&lt;h1 id=&#34;hugo-emacs-y-el-nuevo-blog&#34;&gt;Hugo, Emacs y el nuevo blog&lt;/h1&gt;
-
+      <description>&lt;h1 id=&#34;hugo-emacs-y-el-nuevo-blog&#34;&gt;Hugo, Emacs y el nuevo blog&lt;/h1&gt;
 &lt;p&gt;Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las
 bondades de &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github Pages&lt;/a&gt; y
 &lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; como generador de sitios estático. En lo que a
 generador de sitios estáticos se refiere &lt;strong&gt;Hugo&lt;/strong&gt; es bastante sencillo de operar,
 por lo que inicialmente pensé en hacerme unos scripts para organizar el
 &lt;em&gt;workflow&lt;/em&gt; de trabajo de la siguiente manera:&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;Hacer nuevo post.&lt;/li&gt;
 &lt;li&gt;Previsualizar.&lt;/li&gt;
 &lt;li&gt;Subir a GitHub.&lt;/li&gt;
 &lt;/ol&gt;
-
 &lt;p&gt;Todo esto organizado, claro está, en una rama &lt;em&gt;develop&lt;/em&gt; para trabajar y una
 &lt;em&gt;master&lt;/em&gt; tanto para el repositorio donde guardo las fuentes del sitio como para
 el que queda publicado.&lt;/p&gt;
-
 &lt;p&gt;Estaba muy emocionado escribiendo código en &lt;strong&gt;Python&lt;/strong&gt; cuando recordé que &lt;strong&gt;Emacs&lt;/strong&gt;
 trae &lt;em&gt;su propio servidor http&lt;/em&gt; en &lt;strong&gt;simple-httpd.el&lt;/strong&gt; y unos cuantos paquetes
 para interactuar con &lt;strong&gt;Git&lt;/strong&gt;. Así surgió &lt;em&gt;hugo-blog-mode.el&lt;/em&gt;&lt;/p&gt;
-
 &lt;h2 id=&#34;hugo-en-modo-sencillo&#34;&gt;Hugo en modo sencillo&lt;/h2&gt;
-
 &lt;p&gt;Antes de arrancar a escribir &lt;strong&gt;Emacs Lisp&lt;/strong&gt; me puse a revisar &lt;strong&gt;MELPA&lt;/strong&gt; a ver si
 alguien había tenido la misma idea que yo y encontré a &lt;em&gt;easy-hugo.el&lt;/em&gt;, que está
 genial, pero viene pensado para personas super publicadoras que tienen varios
@@ -51,9 +42,7 @@ blogs y los actualizan con mucha frecuencia o algo así. En fin, que tiene un
 público objetivo en el cual no me incluyo. La idea siempre fue trasladar el
 flujo de trabajo que ya tenía en mente a dos o tres comanditos, ponerle dos o
 tres atajos de teclado y utilizar &lt;strong&gt;Magit&lt;/strong&gt; lo menos posible en el proceso.&lt;/p&gt;
-
 &lt;p&gt;El resultado quedo en un archivito de unas 200 líneas de código con tres comandos.&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;hugo-new-post&lt;/strong&gt;, que se explica solito.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;hugo-blog-preview&lt;/strong&gt;, que mueve todo lo que esté haciendo a la rama &lt;em&gt;develop&lt;/em&gt;,
@@ -62,18 +51,14 @@ va quedando.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt;, que regenra el sitio utilizando la URL final, hace
 &lt;em&gt;commit&lt;/em&gt; en &lt;em&gt;develop&lt;/em&gt; y me mezcla todo en master.&lt;/li&gt;
 &lt;/ol&gt;
-
 &lt;p&gt;Como estoy utilizando submódulos de &lt;strong&gt;Git&lt;/strong&gt; para mantener los repositorios así:&lt;/p&gt;
-
 &lt;pre&gt;&lt;code&gt;sitio/ (fuentes del sitio)
    |--- content/
    |--- data/
    |--- static/
    |--- themes/
    |--- public/ (submódulo yorodm.guthub.io)
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt; se encarga de hacer los &lt;em&gt;commits&lt;/em&gt; y los &lt;em&gt;merges&lt;/em&gt; y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt; se encarga de hacer los &lt;em&gt;commits&lt;/em&gt; y los &lt;em&gt;merges&lt;/em&gt; y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).&lt;/p&gt;
 </description>
     </item>
     

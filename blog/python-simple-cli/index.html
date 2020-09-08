@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Interfaces de comandos con Python &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         29 de Oct 2018
-                    · 363 palabras 
+                    · 360 palabras 
                     · 2 minutos apróx. 
                       <span class="tags">
                       
@@ -66,18 +66,13 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="interfaces-de-comandos-sencillas-con-python">Interfaces de comandos sencillas con Python.</h1>
-
+                        <h1 id="interfaces-de-comandos-sencillas-con-python">Interfaces de comandos sencillas con Python.</h1>
 <p>Entre las muchas cosas para las que uso <a href="https://python.org">Python</a> está
 escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a
 día (especialmente cuando toca trabajar de <strong>devops</strong>). Aunque en la biblioteca
 estándar existe <code>argparse</code> y muchos están contentos con eso, personalmente me
 gustan alternativas que me hagan la vida más fácil.</p>
-
 <h2 id="docopt">Docopt.</h2>
-
 <p><a href="http://docopt.org/" title="Docopt">Docopt</a> Es (en mi opinión) uno de los mejores
 frameworks para crear herramientas de líneas de comandos que existe y tiene
 además la ventaja de no ser exclusiva de <strong>Python</strong>, para utilizarla solo tienes
@@ -85,43 +80,39 @@ que documentar el módulo o función que va a obtener los argumentos de la líne
 de comandos. Veamos un ejemplo de una herramienta que utilizo para subscribir
 ahorrarme tener que subscribir a un conjunto de usuarios cuando creo un
 repositorio.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;Subscriber.
-</span><span class="s2">
-</span><span class="s2">Usage:
-</span><span class="s2">  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;
-</span><span class="s2">
-</span><span class="s2">&#34;&#34;&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">Subscriber.</span><span class="s2">
+</span><span class="s2"></span><span class="s2">
+</span><span class="s2"></span><span class="s2">Usage:</span><span class="s2">
+</span><span class="s2"></span><span class="s2">  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">
+</span><span class="s2"></span><span class="s2">&#34;&#34;&#34;</span>
 
-<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">):</span>
-    <span class="n">repo_name</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;&lt;reponame&gt;&#39;</span><span class="p">)</span>
-    <span class="n">group_name</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;&lt;groupname&gt;&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">repo_name</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&lt;reponame&gt;</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">group_name</span> <span class="o">=</span> <span class="n">arguments</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">&lt;groupname&gt;</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="c1"># El resto va aqui</span>
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
     <span class="n">arguments</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
-    <span class="n">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span></code></pre></div>
-<p>Al invocar la herramienta sin parámetros obtenemos el siguiente mensaje de ayuda:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ python subscriber.py
+    <span class="n">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
+</code></pre></div><p>Al invocar la herramienta sin parámetros obtenemos el siguiente mensaje de ayuda:</p>
+<pre><code class="language-console" data-lang="console">$ python subscriber.py
 Usage:
-  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;</code></pre></div>
-<p>Para utilizarla simplemente podemos</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ python subscriber.py repo https://my.repo.cu group developers</code></pre></div>
-<p>Ventajas:</p>
+  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;
 
+</code></pre><p>Para utilizarla simplemente podemos</p>
+<pre><code class="language-console" data-lang="console">$ python subscriber.py repo https://my.repo.cu group developers
+</code></pre><p>Ventajas:</p>
 <ol>
 <li>El código extra es mínimo (casi todo es documentación).</li>
 <li>Ganas la documentación de gratis.</li>
 <li>El minilenguaje de las cli es extremadamente poderoso.</li>
 </ol>
-
 <p>Desventajas:</p>
-
 <ol>
 <li>Tienes que aprender el minilenguaje.</li>
 </ol>
-
 <h2 id="lazycli">Lazycli.</h2>
-
 <p><a href="https://github.com/ninjaaron/lazycli" title="Lazycli">Lazycli</a> es un framework <strong>muy
 nuevo</strong> pero de una simpleza y claridad que dan ganas de usarlo. En lugar de
 documentación utilizamos decoradores para declarar nuestra <strong>CLI</strong>. El autor nos
@@ -133,8 +124,8 @@ muestra como ejemplo un clon de <code>cp</code></p>
 
 
 <span class="nd">@lazycli.script</span>
-<span class="k">def</span> <span class="nf">cp</span><span class="p">(</span><span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
-    <span class="s2">&#34;&#34;&#34;copy around files&#34;&#34;&#34;</span>
+<span class="k">def</span> <span class="nf">cp</span><span class="p">(</span><span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">copy around files</span><span class="s2">&#34;&#34;&#34;</span>
     <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
@@ -145,10 +136,10 @@ muestra como ejemplo un clon de <code>cp</code></p>
                 <span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
 
-<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
-    <span class="n">cp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span></code></pre></div>
-<p>Si invocamos la herramienta obtenemos lo siguiente:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ python cp.py -h
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">__main__</span><span class="s1">&#39;</span><span class="p">:</span>
+    <span class="n">cp</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="p">)</span>
+</code></pre></div><p>Si invocamos la herramienta obtenemos lo siguiente:</p>
+<pre><code class="language-console" data-lang="console">$ python cp.py -h
 usage: cp.py [-h] [-r] [src [src ...]] dst
 
 copy around files
@@ -159,16 +150,13 @@ positional arguments:
 
 optional arguments:
   -h, --help       show this help message and exit
-  -r, --recursive</code></pre></div>
-<p>Ventajas:</p>
-
+  -r, --recursive
+</code></pre><p>Ventajas:</p>
 <ol>
 <li>Casi 0 código extra (ejecutar el objeto que devuelve el decorador).</li>
 <li>Convención sobre configuración.</li>
 </ol>
-
 <p>Desventajas:</p>
-
 <ol>
 <li>No es tán versátil como <code>docopt</code>.</li>
 </ol>

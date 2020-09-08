@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Trucos Aws Lambda (parte 2) &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -68,43 +68,35 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="trucos-con-aws-lambda-ii">Trucos con AWS Lambda (II).</h1>
-
+                        <h1 id="trucos-con-aws-lambda-ii">Trucos con AWS Lambda (II).</h1>
 <h2 id="truco-1-utiliza-las-tags">Truco 1. Utiliza las tags.</h2>
-
 <p>Los tags en AWS nos permiten:</p>
-
 <ol>
 <li>Tener asociados un máximo de 50 a cada recurso.</li>
 <li>Llaves de hasta 128 caracteres Unicode.</li>
 <li>Valores de hasta 256 caracteres Unicode.</li>
 <li>Distinción entre mayúsculas y minúsculas para llaves y valores.</li>
 </ol>
-
 <p>Basicamente todo lo que necesitamos para hacernos un caché:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lambda_cient</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span>
-<span class="k">def</span> <span class="nf">save_cache</span><span class="p">(</span><span class="n">tags</span><span class="p">):</span> <span class="c1"># tags is a dict of string:string</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lambda_cient</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">lambda</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">save_cache</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span><span class="p">:</span> <span class="c1"># tags is a dict of string:string</span>
     <span class="n">lambda_client</span><span class="o">.</span><span class="n">tag_resource</span><span class="p">(</span>
         <span class="n">Resource</span><span class="o">=</span><span class="n">self_arn</span><span class="p">,</span> <span class="c1"># get it from handler context</span>
         <span class="n">Tags</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">tags</span><span class="p">)</span>
     <span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">get_cache</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">get_cache</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">lambda_client</span><span class="o">.</span><span class="n">list_tags</span><span class="p">(</span>
         <span class="n">Resource</span><span class="o">=</span><span class="n">self_arn</span> <span class="c1"># get it from handler context</span>
     <span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">invalidate_cache</span><span class="p">(</span><span class="n">keys</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">invalidate_cache</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">lambda_client</span><span class="o">.</span><span class="n">untag_resource</span><span class="p">(</span>
         <span class="n">Resource</span><span class="o">=</span><span class="n">self_arn</span><span class="p">,</span>
         <span class="n">Tags</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">keys</span><span class="p">)</span>
-    <span class="p">)</span></code></pre></div>
-<h2 id="truco-2-desarrolla-tus-lambdas-en-otros-lenguajes">Truco 2. Desarrolla tus Lambdas en otros lenguajes.</h2>
-
+    <span class="p">)</span>
+</code></pre></div><h2 id="truco-2-desarrolla-tus-lambdas-en-otros-lenguajes">Truco 2. Desarrolla tus Lambdas en otros lenguajes.</h2>
 <p>Los lenguajes soportados oficialmente por AWS Lambda son (en el momento en que escribo este artículo):</p>
-
 <ol>
 <li>Javascript (Node.js).</li>
 <li>Python (2 y 3).</li>
@@ -112,18 +104,14 @@
 <li>C#.</li>
 <li>Go.</li>
 </ol>
-
 <p>¿No está el lenguaje de tu preferencia? Pues no te preocupes, esa lista se puede extender a:</p>
-
 <ol>
 <li>Kotlin, Groovy, Ruby Clojure y todo lo que soporte la JVM.</li>
 <li>Cualquier lenguaje soportado por la plataforma .NET, incluido <a href="https://www.peachpie.io">PHP</a>.</li>
 <li>Rust sobre <a href="https://github.com/softprops/lando">lando</a> o <a href="https://github.com/ilianaw/rust-crowbar">crowbar</a> incluso con integración con <a href="https://github.com/softprops/serverless-rust">serverless</a>.</li>
 <li><a href="https://blog.scottlogic.com/2018/10/18/serverless-rust.html">Cualquier cosa que genere WASM</a></li>
 </ol>
-
-<h2 id="más-trucos">Más trucos</h2>
-
+<h2 id="ms-trucos">Más trucos</h2>
 <p>¿Tienes algún otro que compartir? Deja tu comentario aquí o en <a href="https://dev.to/yorodm">DEV</a>.</p>
 
                     </section>

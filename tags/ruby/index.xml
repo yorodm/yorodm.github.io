@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Ruby on /home/yorodm</title>
+    <title>ruby on /home/yorodm</title>
     <link>https://yorodm.github.io/tags/ruby/</link>
-    <description>Recent content in Ruby on /home/yorodm</description>
+    <description>Recent content in ruby on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <lastBuildDate>Wed, 25 Apr 2018 11:37:30 -0400</lastBuildDate>
@@ -17,23 +16,17 @@
       <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</guid>
-      <description>
-
-&lt;h1 id=&#34;libro-ruby-on-rails-for-professionals&#34;&gt;Libro: Ruby on Rails for Professionals&lt;/h1&gt;
-
+      <description>&lt;h1 id=&#34;libro-ruby-on-rails-for-professionals&#34;&gt;Libro: Ruby on Rails for Professionals&lt;/h1&gt;
 &lt;p&gt;Un excelente libro producto del trabajo y conocimiento de cientos de usuarios de
 &lt;a href=&#34;http://www.stackoverflow.com&#34;&gt;Stack Overflow&lt;/a&gt;. Como tantos otros libros disponibles en
 &lt;a href=&#34;http://goalkicker.com&#34;&gt;GoalKicker&lt;/a&gt; este es gratis, bajo licencia Creative Commons
 BY-SA y una de las cosas que debes leer si trabajas o estás interesado en
 aprender &lt;a href=&#34;http://rubyonrails.org&#34;&gt;Ruby On Rails&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde la
 instalación y arranque de un nuevo proyecto hasta el despliegue utilizando
 Docker. Si estás interesado puedes descargarlo
 &lt;a href=&#34;http://goalkicker.com/RubyOnRailsBook/&#34;&gt;aquí&lt;/a&gt;&lt;/p&gt;
-
 &lt;p&gt;También recomiendo que veas:&lt;/p&gt;
-
 &lt;ol&gt;
 &lt;li&gt;&lt;a href=&#34;http://goalkicker.com/PythonBook/&#34;&gt;Python Notes for Professionals&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&#34;http://goalkicker.com/RubyBook/&#34;&gt;Ruby Notes for Professionals&lt;/a&gt;&lt;/li&gt;

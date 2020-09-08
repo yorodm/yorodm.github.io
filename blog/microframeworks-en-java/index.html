@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Microframeworks en Java &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         4 de Dic 2017
-                    · 553 palabras 
+                    · 552 palabras 
                     · 3 minutos apróx. 
                       <span class="tags">
                       
@@ -68,28 +68,21 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="microframeworks-que-deberías-revisar">Microframeworks que deberías revisar.</h1>
-
+                        <h1 id="microframeworks-que-deberas-revisar">Microframeworks que deberías revisar.</h1>
 <p>¡Hola! Después de unas semanas de inactivdad continúo con el tema de los
 frameworks para microservicios, ahora con <strong>Java</strong> que es otro de mis lengajes
 favoritos. Ya que todo el mundo conoce a los jugadores fuertes como
 <a href="http://www.dropwizard.io">Dropwizard</a>,
 <a href="https://projects.spring.io/spring-boot/">Spring</a> y <a href="wildfly-swarm.io/">Swarm</a>
 voy a hablar de los llamados &ldquo;microframeworks&rdquo;.</p>
-
-<h2 id="ratpack-http-www-ratpack-io"><a href="http://www.ratpack.io">Ratpack</a></h2>
-
+<h2 id="ratpackhttpwwwratpackio-"><a href="http://www.ratpack.io">Ratpack</a></h2>
 <p>En primer lugar tenemos <a href="http://www.ratpack.io">Ratpack</a>, que nos brinda
 basicamente un servidor Web basado en <strong>Netty</strong> y un <em>DSL</em> para manejar rutas
 (muy a lo <a href="http://rack.github.io">Rack</a>+ <a href="http://sinatrarb.com/">Sinatra</a>) y
 una fuerte integración con <a href="http://groovy-lang.org/">Groovy</a> . Como un plus
 podemos utilizar <a href="https://github.com/pledbrook/lazybones">Lazybones</a> para
 generar esqueletos de aplicaciones.</p>
-
 <p>Aparte del <em>core</em> del framework, existen componentes para:</p>
-
 <ul>
 <li>Utilizar <strong>Guice</strong> como contenedor de inyección de dependencias.</li>
 <li>Métricas de uso.</li>
@@ -98,16 +91,13 @@ generar esqueletos de aplicaciones.</p>
 <li><strong>Spring Boot</strong></li>
 <li>Pruebas unitarias utilizando <a href="http://spockframework.org/">Spock</a></li>
 </ul>
-
-<h2 id="bootique-http-bootique-io"><a href="http://bootique.io">Bootique</a></h2>
-
+<h2 id="bootiquehttpbootiqueio-"><a href="http://bootique.io">Bootique</a></h2>
 <p><strong>Bootique</strong> nos invita a crear aplicaciones modulares utilizando <strong>Guice</strong>. A
 diferencia de <strong>Ratpack</strong>, su estilo de programación es mas de utilizar
 anotaciones aunque también hace uso de interfaces fluidas y clausuras. El uso de
 <strong>Guice</strong> le da también un sabor particular a la forma en que creamos
 aplicaciones o extendemos el framework. En fin, esta es la lista de
 características fuertes de <strong>Bootique</strong></p>
-
 <ul>
 <li>Soporte para migraciones con <a href="http://flyway.orge">Flyway</a> o
 <a href="http://www.liquibase.org/">LiquidBase</a>.</li>
@@ -117,14 +107,11 @@ características fuertes de <strong>Bootique</strong></p>
 <li>Componentes para <strong>Rabbitmq</strong></li>
 <li>Posibilidad de desarrollar utilizando <a href="http://kotlinlang.org/">Kotlin</a></li>
 </ul>
-
-<h2 id="rapidoid-http-www-rapidoid-org"><a href="http://www.rapidoid.org/">Rapidoid</a></h2>
-
+<h2 id="rapidoidhttpwwwrapidoidorg-"><a href="http://www.rapidoid.org/">Rapidoid</a></h2>
 <p>Como su nombre lo indica, <strong>Rapidoid</strong> se centra en la velocidad. Podemos crear
 no solo microservicios sino aplicaciones completas en muy poco tiempo. De los
 frameworks presentados acá es el único que incluye un componente para <strong>UI</strong> y
 su propio motor de plantillas a lo <strong>Mustache</strong>. Cosas que me impresionaron:</p>
-
 <ul>
 <li>Interfaz de automática administración para las entidades a lo <strong>Django</strong> o
 <strong>JHipster</strong>.</li>
@@ -132,22 +119,18 @@ su propio motor de plantillas a lo <strong>Mustache</strong>. Cosas que me impre
 <li>Soporte para <strong>Guice</strong></li>
 <li>Rapidez + Funcionalidad</li>
 </ul>
-
 <p>Como es el que más me gusta voy a poner un ejemplo de como crear una <strong>Web API</strong>
 simple que nos permita adicionar, consultar y eliminar solicitudes de servicio
 (lo que toda la vida hemos llamado tickets)</p>
-
 <h3 id="paso-1-configurar-maven">Paso 1. Configurar Maven.</h3>
-
 <p>Como soy usuario de <strong>Maven</strong> y <strong>Eclipse</strong> me voy a crear un nuevo proyecto y
 adicionar la siguiente dependencia</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
-    <span class="nt">&lt;groupId&gt;</span>org.rapidoid<span class="nt">&lt;/groupId&gt;</span>
-    <span class="nt">&lt;artifactId&gt;</span>rapidoid-quick<span class="nt">&lt;/artifactId&gt;</span>
-    <span class="nt">&lt;version&gt;</span>5.4.6<span class="nt">&lt;/version&gt;</span>
-<span class="nt">&lt;/dependency&gt;</span></code></pre></div>
-<h3 id="paso-2-crear-mis-entidades">Paso 2. Crear mis entidades.</h3>
-
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.rapidoid<span class="nt">&lt;/groupId&gt;</span>
+    <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>rapidoid-quick<span class="nt">&lt;/artifactId&gt;</span>
+    <span class="nt">&lt;version</span><span class="nt">&gt;</span>5.4.6<span class="nt">&lt;/version&gt;</span>
+<span class="nt">&lt;/dependency&gt;</span>
+</code></pre></div><h3 id="paso-2-crear-mis-entidades">Paso 2. Crear mis entidades.</h3>
 <p><strong>Rapidoid Quick</strong> incluye <strong>Hibernate</strong>, <strong>JPA</strong> preconfigurados, así que no
 necesitamos mucho para crear entidades</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.yorodm.rapidoid_example.models</span><span class="o">;</span>
@@ -169,81 +152,79 @@ necesitamos mucho para crear entidades</p>
 
     <span class="nd">@NotNull</span>
     <span class="kd">public</span> <span class="n">String</span> <span class="n">description</span><span class="o">;</span>
-<span class="o">}</span></code></pre></div>
-<h3 id="paso-3-creando-mi-aplicación-y-rutas">Paso 3. Creando mi aplicación y rutas</h3>
+<span class="o">}</span>
+</code></pre></div><h3 id="paso-3-creando-mi-aplicacin-y-rutas">Paso 3. Creando mi aplicación y rutas</h3>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">App</span><span class="o">.</span><span class="na">bootstrap</span><span class="o">(</span><span class="n">args</span><span class="o">).</span><span class="na">auth</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">jpa</span><span class="o">()</span>
-        <span class="o">.</span><span class="na">adminCenter</span><span class="o">();</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[</span><span class="o">]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">App</span><span class="o">.</span><span class="na">bootstrap</span><span class="o">(</span><span class="n">args</span><span class="o">)</span><span class="o">.</span><span class="na">auth</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">jpa</span><span class="o">(</span><span class="o">)</span>
+        <span class="o">.</span><span class="na">adminCenter</span><span class="o">(</span><span class="o">)</span><span class="o">;</span>
 
-        <span class="n">On</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;/tickets&#34;</span><span class="o">).</span><span class="na">json</span><span class="o">(()</span>
-            <span class="o">-&gt;</span> <span class="n">JPA</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Ticket</span><span class="o">.</span><span class="na">class</span><span class="o">).</span><span class="na">all</span><span class="o">());</span>
+        <span class="n">On</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="s">&#34;/tickets&#34;</span><span class="o">)</span><span class="o">.</span><span class="na">json</span><span class="o">(</span><span class="o">(</span><span class="o">)</span>
+            <span class="o">-</span><span class="o">&gt;</span> <span class="n">JPA</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">Ticket</span><span class="o">.</span><span class="na">class</span><span class="o">)</span><span class="o">.</span><span class="na">all</span><span class="o">(</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 
         <span class="n">On</span><span class="o">.</span><span class="na">post</span><span class="o">(</span><span class="s">&#34;/tickets&#34;</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">json</span><span class="o">((</span><span class="nd">@Valid</span> <span class="n">Ticket</span> <span class="n">t</span><span class="o">)</span>
-                <span class="o">-&gt;</span> <span class="n">JPA</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">t</span><span class="o">));</span>
+            <span class="o">.</span><span class="na">json</span><span class="o">(</span><span class="o">(</span><span class="nd">@Valid</span> <span class="n">Ticket</span> <span class="n">t</span><span class="o">)</span>
+                <span class="o">-</span><span class="o">&gt;</span> <span class="n">JPA</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">t</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
         <span class="n">On</span><span class="o">.</span><span class="na">put</span><span class="o">(</span><span class="s">&#34;/tickets/{id}&#34;</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">json</span><span class="o">((</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@Valid</span> <span class="n">Ticket</span> <span class="n">t</span><span class="o">)</span>
-                <span class="o">-&gt;</span> <span class="n">JPA</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">t</span><span class="o">));</span>
+            <span class="o">.</span><span class="na">json</span><span class="o">(</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">,</span> <span class="nd">@Valid</span> <span class="n">Ticket</span> <span class="n">t</span><span class="o">)</span>
+                <span class="o">-</span><span class="o">&gt;</span> <span class="n">JPA</span><span class="o">.</span><span class="na">update</span><span class="o">(</span><span class="n">t</span><span class="o">)</span><span class="o">)</span><span class="o">;</span>
 
         <span class="n">On</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="s">&#34;/tickets/{id}&#34;</span><span class="o">)</span>
-            <span class="o">.</span><span class="na">json</span><span class="o">((</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
-                <span class="n">JPA</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">Ticket</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">);</span>
+            <span class="o">.</span><span class="na">json</span><span class="o">(</span><span class="o">(</span><span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">-</span><span class="o">&gt;</span> <span class="o">{</span>
+                <span class="n">JPA</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">Ticket</span><span class="o">.</span><span class="na">class</span><span class="o">,</span> <span class="n">id</span><span class="o">)</span><span class="o">;</span>
                 <span class="k">return</span> <span class="kc">true</span><span class="o">;</span>
-        <span class="o">});</span>
+        <span class="o">}</span><span class="o">)</span><span class="o">;</span>
     <span class="o">}</span>
 
-<span class="o">}</span></code></pre></div>
-<h3 id="paso-4-configurando">Paso 4. Configurando.</h3>
-
+<span class="o">}</span>
+</code></pre></div><h3 id="paso-4-configurando">Paso 4. Configurando.</h3>
 <p>Para la configuracion utilizamos <strong>YAML</strong> en <code>src/resources/config.yml</code>.</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml">users<span class="p">:</span><span class="w">
 </span><span class="w">  </span>root<span class="p">:</span><span class="w">
 </span><span class="w">    </span>roles<span class="p">:</span><span class="w">
 </span><span class="w">      </span>-<span class="w"> </span>administrator<span class="w">
 </span><span class="w">      </span>-<span class="w"> </span>owner<span class="w">
-</span><span class="w">    </span>password<span class="p">:</span><span class="w"> </span>root</code></pre></div>
-<h3 id="paso-5-creando-un-jar-para-despliegue">Paso 5. Creando un jar para despliegue.</h3>
-
+</span><span class="w">    </span>password<span class="p">:</span><span class="w"> </span>root<span class="w">
+</span></code></pre></div><h3 id="paso-5-creando-un-jar-para-despliegue">Paso 5. Creando un jar para despliegue.</h3>
 <p>Vamos a configurar el plugin <code>shade</code> de <strong>Maven</strong> para crear un <em>uberjar</em> y
 hacernos la vida más fácil.</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;build&gt;</span>
-  <span class="nt">&lt;plugins&gt;</span>
-    <span class="nt">&lt;plugin&gt;</span>
-      <span class="nt">&lt;groupId&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
-      <span class="nt">&lt;artifactId&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId&gt;</span>
-      <span class="nt">&lt;version&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
-      <span class="nt">&lt;configuration&gt;</span>
-        <span class="nt">&lt;transformers&gt;</span>
+<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">
+<span class="nt">&lt;build</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;plugins</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;plugin</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;groupId</span><span class="nt">&gt;</span>org.apache.maven.plugins<span class="nt">&lt;/groupId&gt;</span>
+      <span class="nt">&lt;artifactId</span><span class="nt">&gt;</span>maven-shade-plugin<span class="nt">&lt;/artifactId&gt;</span>
+      <span class="nt">&lt;version</span><span class="nt">&gt;</span>3.1.0<span class="nt">&lt;/version&gt;</span>
+      <span class="nt">&lt;configuration</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;transformers</span><span class="nt">&gt;</span>
           <span class="nt">&lt;transformer</span>
               <span class="na">implementation=</span>
               <span class="s">&#34;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&#34;</span><span class="nt">&gt;</span>
-            <span class="nt">&lt;mainClass&gt;</span>
+            <span class="nt">&lt;mainClass</span><span class="nt">&gt;</span>
                 com.github.yorodm.rapidoid_example.Main
             <span class="nt">&lt;/mainClass&gt;</span>
           <span class="nt">&lt;/transformer&gt;</span>
         <span class="nt">&lt;/transformers&gt;</span>
       <span class="nt">&lt;/configuration&gt;</span>
-      <span class="nt">&lt;executions&gt;</span>
-        <span class="nt">&lt;execution&gt;</span>
-          <span class="nt">&lt;phase&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
-          <span class="nt">&lt;goals&gt;</span>
-            <span class="nt">&lt;goal&gt;</span>shade<span class="nt">&lt;/goal&gt;</span>
+      <span class="nt">&lt;executions</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;execution</span><span class="nt">&gt;</span>
+          <span class="nt">&lt;phase</span><span class="nt">&gt;</span>package<span class="nt">&lt;/phase&gt;</span>
+          <span class="nt">&lt;goals</span><span class="nt">&gt;</span>
+            <span class="nt">&lt;goal</span><span class="nt">&gt;</span>shade<span class="nt">&lt;/goal&gt;</span>
           <span class="nt">&lt;/goals&gt;</span>
         <span class="nt">&lt;/execution&gt;</span>
       <span class="nt">&lt;/executions&gt;</span>
     <span class="nt">&lt;/plugin&gt;</span>
   <span class="nt">&lt;/plugins&gt;</span>
-<span class="nt">&lt;/build&gt;</span></code></pre></div>
-<h3 id="paso-6-ejecutando-la-aplicación">Paso 6. Ejecutando la aplicación</h3>
-
+<span class="nt">&lt;/build&gt;</span>
+</code></pre></div><h3 id="paso-6-ejecutando-la-aplicacin">Paso 6. Ejecutando la aplicación</h3>
 <p>Empaquetamos y ejecutamos:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ mvn package
+<pre><code class="language-console" data-lang="console">$ mvn package
 $ cd target
-$ java -jar rapidoid-example-0.0.1-SNAPSHOT.jar profiles=dev,default</code></pre></div>
-<p>Después de unos cuantos logs tenemos el servicio disponible en <a href="http://localhost:8080/tickets">nuestro
+$ java -jar rapidoid-example-0.0.1-SNAPSHOT.jar profiles=dev,default
+</code></pre><p>Después de unos cuantos logs tenemos el servicio disponible en <a href="http://localhost:8080/tickets">nuestro
 host</a> junto con el <a href="http://localhost:8080/_">dashboard de administración</a>.</p>
 
                     </section>

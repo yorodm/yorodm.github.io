@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Creando widgets para Odoo (Parte 1) &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         22 de Ene 2018
-                    · 837 palabras 
+                    · 841 palabras 
                     · 4 minutos apróx. 
                       <span class="tags">
                       
@@ -68,35 +68,28 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="creando-widgets-para-odoo-parte-1">Creando widgets para Odoo (Parte 1).</h1>
-
-<p>Después de semanas de inactividad regreso con una de <a href="http://www.odoo.com">Odoo 10</a>, como ya hay bastantes sitios por ahí dedicados a explicar
+                        <h1 id="creando-widgets-para-odoo-parte-1">Creando widgets para Odoo (Parte 1).</h1>
+<p>Después de semanas de inactividad regreso con una de [Odoo 10]
+(<a href="http://www.odoo.com),">http://www.odoo.com),</a> como ya hay bastantes sitios por ahí dedicados a explicar
 causas y razones de lo que se puede hacer con <strong>Python</strong> desde el <em>backend</em> voy
 a centrarme en el trabajo con <strong>Javascript</strong> y el <em>frontend</em>.</p>
-
 <p>En este artículo vamos a crear un nuevo <em>widget</em> para manejar campos enteros y
 de coma flotante en la vista (la parte V de MV*). Aunque pueda parecer un
 ejemplo simple, surgió de la necesidad real de proveer campos numéricos limitados
 en un rango de una forma explicita, sencilla y agradable para el usuario.</p>
-
 <h2 id="comenzando-el-proyecto">Comenzando el proyecto.</h2>
-
 <p>Para poder reutilizar el <em>widget</em>, vamos a crear un <em>addon</em> que contenga las
 bibliotecas y el código necesario para hacerlo funcionar. Empecemos creando el
 esqueleto del módulo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-console" data-lang="console">$ odoo-bin scaffold widget-slider</code></pre></div>
-<p>Añadimos la descripción del <em>addon</em>, lo definimos como instalable, ponemos una
+<pre><code class="language-console" data-lang="console">$ odoo-bin scaffold widget-slider
+</code></pre><p>Añadimos la descripción del <em>addon</em>, lo definimos como instalable, ponemos una
 categoría válida e incluimos *<em>web</em> como dependencia. Continuando.</p>
-
 <h2 id="bibliotecas-externas">Bibliotecas externas</h2>
-
-<p>Nuestro <em>widget</em> tiene una sola dependencia externa: <a href="https://github.com/seiyria/bootstrap-slider/">Bootstrap Slider</a>. Normalmente utilizaríamos
+<p>Nuestro <em>widget</em> tiene una sola dependencia externa: [Bootstrap Slider]
+(<a href="https://github.com/seiyria/bootstrap-slider/)">https://github.com/seiyria/bootstrap-slider/)</a>. Normalmente utilizaríamos
 <strong>Bower</strong> o <strong>NPM</strong> para manejar las dependencias de proyectos <strong>Javascript</strong>,
 pero para algo tan pequeño no es necesario, basta con descargar el <em>release</em> de
 la biblioteca y los archivos para <em>static/lib</em>.</p>
-
 <p>Para hacer estos archivos disponibles en el <em>backend</em> extenderemos la plantilla
 <em>web.assets_backend</em>. Modifiquemos el archivo autogenerado <em>templates.xml</em></p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">   <span class="nt">&lt;template</span> <span class="na">id=</span><span class="s">&#34;assets_backend&#34;</span>
@@ -108,58 +101,50 @@ la biblioteca y los archivos para <em>static/lib</em>.</p>
             <span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#34;text/javascript&#34;</span>
                 <span class="na">src=</span><span class="s">&#34;/widget-slider/static/lib/js/bootstrap-slider.js&#34;</span><span class="nt">/&gt;</span>
         <span class="nt">&lt;/xpath&gt;</span>
-    <span class="nt">&lt;/template&gt;</span></code></pre></div>
-<h2 id="javascript-dentro-de-odoo-para-novatos">Javascript dentro de Odoo (para novatos).</h2>
-
+    <span class="nt">&lt;/template&gt;</span>
+</code></pre></div><h2 id="javascript-dentro-de-odoo-para-novatos">Javascript dentro de Odoo (para novatos).</h2>
 <p>Ya tenemos lo necesario para comenzar con nuestro <em>widget</em> ahora solo queda
 escribir el código necesario para inicializar el plugin.</p>
-
 <p>Lo primero que debes saber para trabajar con <strong>Javascript</strong> en <strong>Odoo</strong> es que a
 la versión 10 utiliza un concepto de módulos muy parecido a <strong>requirejs</strong>.
 Supongamos que tenemos un módulo <em>validar</em> donde incluimos utilitarios para el
 resto de nuestros <em>addons</em> y ahí exportamos una función <em>check_int</em>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">odoo</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">validar</span><span class="p">.</span><span class="nx">enteros</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">){</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">odoo</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="err">&#39;</span><span class="nx">validar</span><span class="p">.</span><span class="nx">enteros</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span><span class="p">{</span>
     <span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
 
-    <span class="kd">var</span> <span class="nx">check_int</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">){</span>
-        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="nx">val</span><span class="p">)){</span>
-            <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s2">&#34;El valor no es entero&#34;</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">check_int</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="nb">Number</span><span class="p">.</span><span class="nx">isInteger</span><span class="p">(</span><span class="nx">val</span><span class="p">)</span><span class="p">)</span><span class="p">{</span>
+            <span class="k">throw</span> <span class="k">new</span> <span class="nx">TypeError</span><span class="p">(</span><span class="s2">&#34;El valor no es entero&#34;</span><span class="p">)</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="k">else</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nx">val</span><span class="p">;</span>
         <span class="p">}</span>
-    <span class="p">};</span>
+    <span class="p">}</span><span class="p">;</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">check_int</span><span class="o">:</span> <span class="nx">check_int</span>
-    <span class="p">};</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>En otro <em>addon</em> (o simplemente otro módulo) tendríamos algo parecido a:</p>
+    <span class="p">}</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>En otro <em>addon</em> (o simplemente otro módulo) tendríamos algo parecido a:</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">odoo</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="nx">otro_addon</span><span class="p">.</span><span class="nx">otro_servicio</span><span class="s1">&#39;, function(require){
 </span><span class="s1">
-</span><span class="s1">    valida_enteros = require(&#39;</span><span class="nx">web_validar</span><span class="p">.</span><span class="nx">enteros</span><span class="err">&#39;</span><span class="p">).</span><span class="nx">check_int</span><span class="p">;</span>
+</span><span class="s1">    valida_enteros = require(&#39;</span><span class="nx">web_validar</span><span class="p">.</span><span class="nx">enteros</span><span class="err">&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">check_int</span><span class="p">;</span>
     <span class="c1">// Resto del código
-</span><span class="c1"></span><span class="p">});</span>
-</code></pre></div>
-<p>Si eres más de <em>backend</em> piensa en todo esto como:</p>
-
+</span><span class="c1"></span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>Si eres más de <em>backend</em> piensa en todo esto como:</p>
 <ol>
 <li>Una versíon <strong>Javascript</strong> de <em>self.env[&ldquo;modelo&rdquo;]</em></li>
 <li>Una forma fiable de declarar dependencias sin importar el orden en que
 carguen los archivos.</li>
 </ol>
-
 <p>La desventaja de este sistema es que es la única forma de acceder a los
 componentes que brinda el <em>framework</em>, lo que lleva a muchas veces tener que
 crear <em>wrappers</em> aún alrededor de funcionalidades sencillas.</p>
-
 <h2 id="clases-herencia-widgets">Clases, herencia, widgets</h2>
-
 <p>Otro punto a tener en cuenta es la programación orientada a objetos. Conceptos
 tan familiares como clases, objetos y herencia tienen un enfoque &ldquo;alternativo&rdquo;
 en <strong>Javascript</strong>. Los desarrolladores de <strong>Odoo</strong> siguieron la idea de
-<strong>BackboneJS</strong> de implementar el modelo de <a href="http://ejohn.org/">herencia de John Resig</a></p>
-
+<strong>BackboneJS</strong> de implementar el modelo de [herencia de John Resig]
+(<a href="http://ejohn.org/">http://ejohn.org/</a>)</p>
 <ol>
 <li>Las clases se definen heredando de <em>Class</em> o de alguna de sus hijas.</li>
 <li><em>extend()</em> se utiliza para heredar de una clase, como parámetro acepta
@@ -169,82 +154,75 @@ objetos (o diccionarios que es lo mismo).</li>
 <li>Cuando utilizamos <em>extend()</em> o <em>include()</em>, cada método que se redefina puede
 utilizar <em>this._super()</em> para acceder a la implementación original.</li>
 </ol>
-
 <p>Tomando un ejemplo del código de Odoo</p>
 <div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// Definimos una clase Person
-</span><span class="c1"></span> <span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">isDancing</span><span class="p">){</span>
+</span><span class="c1"></span> <span class="kd">var</span> <span class="nx">Person</span> <span class="o">=</span> <span class="nx">Class</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="p">{</span>
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">isDancing</span><span class="p">)</span><span class="p">{</span>
      <span class="k">this</span><span class="p">.</span><span class="nx">dancing</span> <span class="o">=</span> <span class="nx">isDancing</span><span class="p">;</span>
-    <span class="p">},</span>
-  <span class="nx">dance</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+    <span class="p">}</span><span class="p">,</span>
+  <span class="nx">dance</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
      <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">dancing</span><span class="p">;</span>
     <span class="p">}</span>
- <span class="p">});</span>
+ <span class="p">}</span><span class="p">)</span><span class="p">;</span>
 
 <span class="c1">// Y ahora una clase Ninja
-</span><span class="c1"></span> <span class="kd">var</span> <span class="nx">Ninja</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
-  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-    <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
-  <span class="p">},</span>
-  <span class="nx">swingSword</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
+</span><span class="c1"></span> <span class="kd">var</span> <span class="nx">Ninja</span> <span class="o">=</span> <span class="nx">Person</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="p">{</span>
+  <span class="nx">init</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="kc">false</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">swingSword</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
- <span class="p">});</span>
-</code></pre></div>
-<p>Siguiendo este modelo, cada <em>widget</em> es una clase que hereda de <em>web.Widget</em>
+ <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>Siguiendo este modelo, cada <em>widget</em> es una clase que hereda de <em>web.Widget</em>
 y algún que otro <em>mixin</em>.</p>
-
 <h2 id="creando-un-slider-para-valores-enteros">Creando un slider para valores enteros.</h2>
-
 <p>En vez de crear nuestro <em>slider</em> desde el inicio, aprovechemos que existe una
 clase encargada de manejar campos numéricos y heredemos de ella. Creemos el
 archivo <em>static/src/js/widget_slider.js</em> con el siguiente contenido.</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">odoo</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;web_slider.form&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">){</span>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">odoo</span><span class="p">.</span><span class="nx">define</span><span class="p">(</span><span class="s1">&#39;web_slider.form&#39;</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span><span class="p">{</span>
     <span class="s2">&#34;use strict&#34;</span><span class="p">;</span>
 
-    <span class="kd">var</span> <span class="nx">core</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web.core&#39;</span><span class="p">);</span>
-    <span class="kd">var</span> <span class="nx">FieldFloat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web.form_widgets&#39;</span><span class="p">).</span><span class="nx">FieldFloat</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">core</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web.core&#39;</span><span class="p">)</span><span class="p">;</span>
+    <span class="kd">var</span> <span class="nx">FieldFloat</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;web.form_widgets&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">FieldFloat</span><span class="p">;</span>
 
     <span class="c1">// Heredamos de esta clase para aprovechar toda la
 </span><span class="c1"></span>    <span class="c1">// maquinaria de inicialización.
-</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">FieldSlider</span> <span class="o">=</span> <span class="nx">FieldFloat</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span>
+</span><span class="c1"></span>    <span class="kd">var</span> <span class="nx">FieldSlider</span> <span class="o">=</span> <span class="nx">FieldFloat</span><span class="p">.</span><span class="nx">extend</span><span class="p">(</span><span class="p">{</span>
         <span class="c1">// Método que se invoca cuando se va a mostrar
 </span><span class="c1"></span>        <span class="c1">// el widget
-</span><span class="c1"></span>        <span class="nx">initialize_content</span><span class="o">:</span> <span class="kd">function</span><span class="p">(){</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">();</span>
-            <span class="k">this</span><span class="p">.</span><span class="nx">wrapped</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">slider</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">);</span>
+</span><span class="c1"></span>        <span class="nx">initialize_content</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">_super</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">wrapped</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">$el</span><span class="p">.</span><span class="nx">slider</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">options</span><span class="p">)</span><span class="p">;</span>
             <span class="c1">// Desabilitar el slider si está en modo
 </span><span class="c1"></span>            <span class="c1">// solo lectura
-</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;effective_readonly&#34;</span><span class="p">)){</span>
-                <span class="k">this</span><span class="p">.</span><span class="nx">wrapped</span><span class="p">.</span><span class="nx">slider</span><span class="p">(</span><span class="s2">&#34;disable&#34;</span><span class="p">);</span>
+</span><span class="c1"></span>            <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s2">&#34;effective_readonly&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">{</span>
+                <span class="k">this</span><span class="p">.</span><span class="nx">wrapped</span><span class="p">.</span><span class="nx">slider</span><span class="p">(</span><span class="s2">&#34;disable&#34;</span><span class="p">)</span><span class="p">;</span>
             <span class="p">}</span>
-        <span class="p">},</span>
+        <span class="p">}</span><span class="p">,</span>
 
-    <span class="p">});</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
     <span class="c1">// Registramos nuestro widget como disponible para
 </span><span class="c1"></span>    <span class="c1">// las vistas de formulario
 </span><span class="c1"></span>    <span class="nx">core</span><span class="p">.</span><span class="nx">form_widget_registry</span>
-        <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;slider&#39;</span><span class="p">,</span> <span class="nx">FieldSlider</span><span class="p">);</span>
+        <span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;slider&#39;</span><span class="p">,</span> <span class="nx">FieldSlider</span><span class="p">)</span><span class="p">;</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="nx">FieldSlider</span> <span class="o">:</span> <span class="nx">FieldSlider</span>
-    <span class="p">};</span>
-<span class="p">});</span>
-</code></pre></div>
-<p>Ahora modifiquemos nuestra plantilla de <em>assets</em> para que cargue este archivo.</p>
+    <span class="p">}</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span><span class="p">;</span>
+</code></pre></div><p>Ahora modifiquemos nuestra plantilla de <em>assets</em> para que cargue este archivo.</p>
 <div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;script</span> <span class="na">type=</span><span class="s">&#34;text/javascript&#34;</span>
-                <span class="na">src=</span><span class="s">&#34;/widget-slider/static/src/js/widget-slider.js&#34;</span><span class="nt">/&gt;</span></code></pre></div>
-<p>Instalemos el addon, activemos el modo desarrollador y probemos cambiar
+                <span class="na">src=</span><span class="s">&#34;/widget-slider/static/src/js/widget-slider.js&#34;</span><span class="nt">/&gt;</span>
+</code></pre></div><p>Instalemos el addon, activemos el modo desarrollador y probemos cambiar
 cualquier campo de una vista formulario añadiendo <em>widget=slider</em> a la
 declaración.</p>
-
 <h2 id="resumiendo">Resumiendo.</h2>
-
 <p>Crear un nuevo <em>widget</em> no es un proceso complejo, cada componente del
 <em>framework</em> está diseñado de modo en que extender, modificar o añadir
 funcionalidades sea un proceso sencillo para cualquiera con conocimientos de
 <strong>Javascript</strong>.</p>
-
-<p>Dicho esto, a pesar de que existe <a href="http://www.odoo.com/documentation/10.0/index.html">una guía oficial</a>, no es para nada completa y
+<p>Dicho esto, a pesar de que existe [una guía oficial]
+(<a href="http://www.odoo.com/documentation/10.0/index.html),">http://www.odoo.com/documentation/10.0/index.html),</a> no es para nada completa y
 en la mayoría de los casos la única solución a la pregunta &ldquo;qué es lo que hace
 esto&rdquo; es recurrir al código fuente del hasta dar con lo que buscamos.</p>
 

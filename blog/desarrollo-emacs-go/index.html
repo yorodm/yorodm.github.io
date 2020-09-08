@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Desarrollando con Emacs y Go &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         26 de Oct 2017
-                    · 459 palabras 
+                    · 461 palabras 
                     · 3 minutos apróx. 
                       <span class="tags">
                       
@@ -70,26 +70,18 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="desarrollando-con-emacs-y-go">Desarrollando con Emacs y Go.</h1>
-
+                        <h1 id="desarrollando-con-emacs-y-go">Desarrollando con Emacs y Go.</h1>
 <p>Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso
 revisar el correo) así que cuando me decidí a iniciar algunos proyectos en
 <a href="https://golang.org">Go</a> me alegró mucho que no existiera un IDE &ldquo;oficial&rdquo; para
 el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se
 arme la casa a su manera.</p>
-
 <h2 id="haciendo-un-ide-en-tres-pasos">Haciendo un IDE en tres pasos.</h2>
-
 <p>Convertir <strong>Emacs</strong> en un entorno de desarrollo para <strong>Go</strong> es una tarea bastante
 sencilla. Vamos a separarla en tres pasos.</p>
-
 <h3 id="instalar-las-herramientas-necesarias">Instalar las herramientas necesarias.</h3>
-
 <p>Despúes de tener <strong>Go</strong> y <strong>Git</strong> instalado, necesitamos un conjunto de herramientas
 (oficiales y de terceros) que nos hacen la vida mucho más sencilla.</p>
-
 <ol>
 <li><a href="http://github.com/kisielk/errcheck">errcheck</a>: verificar errores de compilación.</li>
 <li><a href="http://golang.com/x/tools/cmd/guru">Guru</a>: obtener información acerca del código.</li>
@@ -99,17 +91,14 @@ nivel.</li>
 <li><a href="http://golang.org/x/tools/cmd/goimports">Goimports</a>: ayuda a adicionar o
 eliminar paquetes importados (también formatea código).</li>
 </ol>
-
 <p>Estas herramientas por si solas no nos son de mucha utilidad, están diseñadas
 para que cualquier editor de texto que soporte extensiones pueda integrarlas de
 un modo sencillo.</p>
-
 <h3 id="el-lado-de-emacs">El lado de Emacs</h3>
-
-<p>En mi lista de paquetes (uso nada más que <a href="http://melpa.org/packages/">Melpa estable</a>) hay cerca de 15 paquetes que tienen que ver con
+<p>En mi lista de paquetes (uso nada más que [Melpa estable]
+(<a href="http://melpa.org/packages/">http://melpa.org/packages/</a> )) hay cerca de 15 paquetes que tienen que ver con
 desarrollo en <strong>Go</strong>. En lo personal no necesito mucho para trabajar en un
 lenguaje. Las funcionalidades que adiciono son:</p>
-
 <ol>
 <li>Lenguaje y completaminto con <strong>go-mode</strong> y <strong>company-go</strong>.</li>
 <li>Verificacíon de errores con <strong>go-errcheck</strong>.</li>
@@ -118,19 +107,14 @@ lenguaje. Las funcionalidades que adiciono son:</p>
 <li>Inspección de código con <strong>go-guru</strong>.</li>
 <li>Integración con <strong>projectile</strong> vía <strong>go-projectile</strong></li>
 </ol>
-
 <p>Todos los paquetes es recomendable instalarlos vía <strong>package-install</strong> con la excepción de <strong>company-go</strong> que está incluido en los fuentes de la herramienta <strong>gocode</strong> y lo cargo desde ahí para evitar conflictos de versiones.</p>
-
 <h3 id="paso-final">Paso final.</h3>
-
 <p>Con todos los ingredientes estamos a solo 2 minutos de programar en <strong>Go</strong> como
 campiones, solo queda:</p>
-
 <ol>
 <li>Añadir <code>$GOPATH/bin</code> al <code>$PATH</code></li>
 <li>Modificar el <strong>init.el</strong> para personalizar los paquetes de <strong>Emacs</strong>.</li>
 </ol>
-
 <p>Lo primero depende del sistema operativo donde estés, pero de todas formas es
 una tarea trivial. Si eres relativamente nuevo en <strong>Emacs</strong> hay grandes
 posibilidades de que no sepas como hacer lo segundo, no importa, aquí va mi
@@ -149,13 +133,14 @@ configuración (sin atajos de teclado, que ya eso es cosa muy personal).</p>
 <span class="c1">;; Añadimos un hook para que cuando se active el modo</span>
 <span class="c1">;; se configuren todas estas cosas</span>
 <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span>
-    <span class="p">(</span><span class="nb">lambda</span> <span class="p">()</span>
+    <span class="p">(</span><span class="nb">lambda</span> <span class="p">(</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">company-mode</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">projectile-mode</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">go-eldoc-setup</span><span class="p">)</span>
         <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;before-save-hook</span> <span class="ss">&#39;gofmt-before-save</span><span class="p">)</span>
-        <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;goimports&#34;</span><span class="p">)))</span></code></pre></div>
-<p>Y&hellip;ya está. Hemos creado un <strong>IDE</strong> para trabajar en <strong>Go</strong> sin salir de la
+        <span class="p">(</span><span class="nb">setq</span> <span class="nv">gofmt-command</span> <span class="s">&#34;</span><span class="s">goimports</span><span class="s">&#34;</span><span class="p">)</span><span class="p">)</span><span class="p">)</span>
+
+</code></pre></div><p>Y&hellip;ya está. Hemos creado un <strong>IDE</strong> para trabajar en <strong>Go</strong> sin salir de la
 comodidad de nuestro editor favorito.</p>
 
                     </section>

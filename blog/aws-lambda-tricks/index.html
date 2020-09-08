@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Trucos con AWS Lambda. (Parte 1) &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -48,7 +48,7 @@
                     </h1>
                     <h2 class="headline">
                         25 de Oct 2018
-                    · 205 palabras 
+                    · 203 palabras 
                     · 1 minuto apróx. 
                       <span class="tags">
                       
@@ -68,76 +68,70 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h2 id="truco-1-recursividad-asíncrona">Truco 1: Recursividad asíncrona.</h2>
-
+                        <h2 id="truco-1-recursividad-asncrona">Truco 1: Recursividad asíncrona.</h2>
 <p>A veces queremos garantizar que una lambda se ejecute siempre de forma
 asíncrona.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;async&#39;</span><span class="p">):</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">async</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
         <span class="n">invoke_self_async</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
         <span class="k">return</span>
 
-<span class="k">def</span> <span class="nf">invoke_self_async</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">invoke_self_async</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span><span class="p">:</span>
     <span class="n">new_event</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;async&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
-        <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">event</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">async</span><span class="s1">&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="sa"></span><span class="s1">&#39;</span><span class="s1">data</span><span class="s1">&#39;</span><span class="p">:</span> <span class="n">event</span>
     <span class="p">}</span>
-    <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">invoke_async</span><span class="p">(</span>
+    <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">lambda</span><span class="s1">&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">invoke_async</span><span class="p">(</span>
         <span class="n">FunctionName</span><span class="o">=</span><span class="n">context</span><span class="o">.</span><span class="n">invoked_function_arn</span><span class="p">,</span>
         <span class="n">InvokeArgs</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">new_event</span><span class="p">)</span>
-    <span class="p">)</span></code></pre></div>
-<p>Este truco es muy útil cuando no nos interesa el resultado de la ejecución o el
+    <span class="p">)</span>
+</code></pre></div><p>Este truco es muy útil cuando no nos interesa el resultado de la ejecución o el
 mismo es enviado por vías alternativas (ej. usando <strong>SNS</strong>)</p>
-
-<h2 id="truco-2-planificación-dinámica">Truco 2: Planificación dinámica.</h2>
-
+<h2 id="truco-2-planificacin-dinmica">Truco 2: Planificación dinámica.</h2>
 <p>A veces la planificación de un servicio debe ser alterada en dependencia de ciertas condiciones.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
-    <span class="n">reschedule_event</span><span class="p">()</span>
-    <span class="n">keep_working</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">reschedule_event</span><span class="p">(</span><span class="p">)</span>
+    <span class="n">keep_working</span><span class="p">(</span><span class="p">)</span>
 
-<span class="n">REGULAR_SCHEDULE</span> <span class="o">=</span> <span class="s1">&#39;rate(20 minutes)&#39;</span>
-<span class="n">WEEKEND_SHEDULE</span> <span class="o">=</span> <span class="s1">&#39;rate(1 hour)&#39;</span>
-<span class="n">RULE_NAME</span> <span class="o">=</span> <span class="s1">&#39;My Rule&#39;</span>
+<span class="n">REGULAR_SCHEDULE</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rate(20 minutes)</span><span class="s1">&#39;</span>
+<span class="n">WEEKEND_SHEDULE</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">rate(1 hour)</span><span class="s1">&#39;</span>
+<span class="n">RULE_NAME</span> <span class="o">=</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">My Rule</span><span class="s1">&#39;</span>
 
-<span class="k">def</span> <span class="nf">reschedule_event</span><span class="p">():</span>
-    <span class="s2">&#34;&#34;&#34;
-</span><span class="s2">    Cambia la planificación de la lambda, para que descanse los findes :D
-</span><span class="s2">    &#34;&#34;&#34;</span>
-    <span class="n">sched</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;events&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">reschedule_event</span><span class="p">(</span><span class="p">)</span><span class="p">:</span>
+    <span class="sa"></span><span class="s2">&#34;&#34;&#34;</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    Cambia la planificación de la lambda, para que descanse los findes :D</span><span class="s2">
+</span><span class="s2"></span><span class="s2">    </span><span class="s2">&#34;&#34;&#34;</span>
+    <span class="n">sched</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">events</span><span class="s1">&#39;</span><span class="p">)</span>
     <span class="n">current</span> <span class="o">=</span> <span class="n">sched</span><span class="o">.</span><span class="n">describe_rule</span><span class="p">(</span><span class="n">Name</span><span class="o">=</span><span class="n">RULE_NAME</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">is_weekend</span><span class="p">()</span> <span class="ow">and</span> <span class="s1">&#39;minutes&#39;</span> <span class="ow">in</span> <span class="n">current</span><span class="p">[</span><span class="s1">&#39;ScheduleExpression&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">is_weekend</span><span class="p">(</span><span class="p">)</span> <span class="ow">and</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">minutes</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">current</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">ScheduleExpression</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">:</span>
         <span class="n">sched</span><span class="o">.</span><span class="n">put_rule</span><span class="p">(</span>
             <span class="n">Name</span><span class="o">=</span><span class="n">RULE_NAME</span><span class="p">,</span>
             <span class="n">ScheduleExpression</span><span class="o">=</span><span class="n">WEEKEND_SCHEDULE</span><span class="p">,</span>
         <span class="p">)</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_weekend</span> <span class="ow">and</span> <span class="s1">&#39;hour&#39;</span> <span class="ow">in</span> <span class="n">current</span><span class="p">[</span><span class="s1">&#39;ScheduleExpression&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">is_weekend</span> <span class="ow">and</span> <span class="sa"></span><span class="s1">&#39;</span><span class="s1">hour</span><span class="s1">&#39;</span> <span class="ow">in</span> <span class="n">current</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">ScheduleExpression</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">:</span>
         <span class="n">sched</span><span class="o">.</span><span class="n">put_rule</span><span class="p">(</span>
             <span class="n">Name</span><span class="o">=</span><span class="n">RULE_NAME</span><span class="p">,</span>
             <span class="n">ScheduleExpression</span><span class="o">=</span><span class="n">REGULAR_SCHEDULE</span><span class="p">,</span>
-        <span class="p">)</span></code></pre></div>
-<h2 id="truco-3-flujos-de-negocio">Truco 3: Flujos de negocio</h2>
-
+        <span class="p">)</span>
+</code></pre></div><h2 id="truco-3-flujos-de-negocio">Truco 3: Flujos de negocio</h2>
 <p>Cuando vayas a usar <strong>StepFunctions</strong> recuerda:</p>
-
 <blockquote>
 <p>Nunca uses un cañón para matar un mosquito</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span><span class="p">:</span>
     <span class="k">return</span> <span class="n">dispatch_workflow</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
-<span class="k">def</span> <span class="nf">dispatch_workflow</span><span class="p">(</span><span class="n">activity</span><span class="p">):</span>
-    <span class="n">workflow_id</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;workflow_id&#39;</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">dispatch_workflow</span><span class="p">(</span><span class="n">activity</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">workflow_id</span> <span class="o">=</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">workflow_id</span><span class="s1">&#39;</span><span class="p">)</span><span class="p">:</span>
     <span class="k">if</span> <span class="n">workflow_id</span><span class="p">:</span>
         <span class="c1"># Retrieve the state from Dynamo</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="n">get_saved_state</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;workflow_id&#39;</span><span class="p">])</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="n">get_saved_state</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">workflow_id</span><span class="s1">&#39;</span><span class="p">]</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="n">workflow_id</span> <span class="o">=</span> <span class="n">create_workflow_id</span><span class="p">()</span> <span class="c1"># uuid maybe</span>
+        <span class="n">workflow_id</span> <span class="o">=</span> <span class="n">create_workflow_id</span><span class="p">(</span><span class="p">)</span> <span class="c1"># uuid maybe</span>
         <span class="n">state</span> <span class="o">=</span> <span class="bp">None</span>
     <span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">workflow_id</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">workflow</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">events</span><span class="p">)</span> <span class="c1"># Workflow is a callable</span></code></pre></div>
+    <span class="k">return</span> <span class="n">workflow</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">events</span><span class="p">)</span> <span class="c1"># Workflow is a callable</span>
+</code></pre></div>
                     </section>
             </article>
 

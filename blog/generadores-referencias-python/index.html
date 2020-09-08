@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="author" content="Yoandy Rodríguez Martínez">
         <meta name="description" content="Software, la vida y todo lo demás">
-        <meta name="generator" content="Hugo 0.54.0" />
+        <meta name="generator" content="Hugo 0.62.0" />
         <title>Generadores y referencias &middot; /home/yorodm</title>
         <link rel="shortcut icon" href="https://yorodm.github.io/images/favicon.ico">
         <link rel="stylesheet" href="https://yorodm.github.io/css/style.css">
@@ -66,95 +66,84 @@
                 </header>
                 
                     <section id="post-body">
-                        
-
-<h1 id="generadores-y-referencias">Generadores y referencias</h1>
-
+                        <h1 id="generadores-y-referencias">Generadores y referencias</h1>
 <p>Las referencias en <strong>Python</strong> son un tema que a menudo se pasa por alto, incluso
 por los que ya no somos <a href="https://stackoverflow.com/questions/47552529/obscure-iterator-behavior-in-python">tan novatos</a>.
 Hagamos un experimento, toma a diez desarrolladores que conozcas y
 pregúntales qué hay de malo en esta función.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">funcionx</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="n">ctx</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">funcionx</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">ctx</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        <span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="k">yield</span> <span class="n">ctx</span></code></pre></div>
-<p>Vale, es una pregunta con truco y la respuesta es <strong>todo</strong> o <strong>nada</strong> en
+        <span class="n">ctx</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">yield</span> <span class="n">ctx</span>
+</code></pre></div><p>Vale, es una pregunta con truco y la respuesta es <strong>todo</strong> o <strong>nada</strong> en
 dependencia de como utilices la función generadora. Si no sabes que es una
 función generadora porque no has llegado a ese capítulo en el libro o no te has
 leído la <a href="https://www.python.org/dev/peps/pep-0255">PEP 255</a> no importa. Aquí
 tienes la versión <strong>TL;DR</strong></p>
-
 <blockquote>
 <p>Los funciones generadoras son aquellas que usan <strong>yield</strong> en vez de <strong>return</strong>
 para devolver valores.</p>
 </blockquote>
-
 <p>Cuando llamas una función generadora obtienes un <em>generador</em>, el cual puedes
 utilizar para seguir obteniendo valores de la función, haciendo llamadas que
 retornarán nuevos valores mientras encuentren <strong>yield</strong> (como dije antes
 <strong>TL;DR</strong> o mejor <strong>TL;DW</strong>). Los generadores son iterables así que generalmente
 se utilizan en ciclos <strong>for .. in</strong>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
 <span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">funcionx</span> <span class="n">at</span> <span class="mh">0x00000000061D98B8</span><span class="o">&gt;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">):</span>
-<span class="o">....</span>    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="p">{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
-<span class="p">{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
-<span class="p">{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
-<span class="p">{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span></code></pre></div>
-<p>Hasta aquí parece todo bien, <strong>funcionx</strong> retorna un objeto de tipo generador y
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="p">:</span>
+<span class="o">.</span><span class="o">.</span><span class="o">.</span><span class="o">.</span>    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+</code></pre></div><p>Hasta aquí parece todo bien, <strong>funcionx</strong> retorna un objeto de tipo generador y
 podemos iterar sobre los resultados. Pero por alguna razón no pasa esta sencilla
 prueba unitaria.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">TestFuncionx</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">TestFuncionx</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">)</span><span class="p">:</span>
 
-    <span class="k">def</span> <span class="nf">test_returns_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span><span class="n">collections</span><span class="o">.</span><span class="n">Iterable</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">test_returns_generator</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertTrue</span><span class="p">(</span><span class="nb">isinstance</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="p">,</span><span class="n">collections</span><span class="o">.</span><span class="n">Iterable</span><span class="p">)</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">test_yields_context</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">),</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_yields_context</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span><span class="p">:</span>
+        <span class="n">l</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
         <span class="c1"># ¡¡Fatal!!</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">l</span><span class="p">,[{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}])</span></code></pre></div>
-<p>¿Cómo es posible?. Obviamente algo está fallando en la prueba unitaria, verifiquemos manualmente.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,)))</span> <span class="o">==</span> <span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="p">[</span><span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span><span class="p">]</span><span class="p">)</span>
+</code></pre></div><p>¿Cómo es posible?. Obviamente algo está fallando en la prueba unitaria, verifiquemos manualmente.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="p">)</span><span class="p">)</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
 <span class="bp">True</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,))</span>
-<span class="p">[{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;run&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}]</span></code></pre></div>
-<p>Mmmmm&hellip;¿qúe?&hellip;mmmm. Calma, miremos de cerca la función, especialmente la parte en que hace:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">    <span class="k">yield</span> <span class="n">ctx</span></code></pre></div>
-<p>¿Recuerdas que <strong>ctx</strong> es un diccionario? ¿Recuerdas que los diccionarios en <strong>Python</strong> son referencias?</p>
-
+<span class="o">&gt;&gt;</span><span class="o">&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">funcionx</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="p">)</span><span class="p">)</span>
+<span class="p">[</span><span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span><span class="p">,</span> <span class="p">{</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span><span class="p">]</span>
+</code></pre></div><p>Mmmmm&hellip;¿qúe?&hellip;mmmm. Calma, miremos de cerca la función, especialmente la parte en que hace:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python">   <span class="k">yield</span> <span class="n">ctx</span>
+</code></pre></div><p>¿Recuerdas que <strong>ctx</strong> es un diccionario? ¿Recuerdas que los diccionarios en <strong>Python</strong> son referencias?</p>
 <p>En cada ejecución del generador estamos devolviendo la <strong>misma</strong> referencia con
 valores modificados. Cuando utilizas la función en el ciclo <strong>for&hellip;in</strong>
 utilizamos el valor de <strong>ctx</strong> y lo descartamos enseguida, como no guardamos el
 resultado no notamos que el próximo valor que obtenemos es la misma referencia
 modificada.</p>
-
 <figure>
     <img src="/images/generadores-referencias-python/yield-con-ciclo-for.png"/> 
 </figure>
 
-
 <p>La prueba unitaria falla porque, cada invocación del generador modifica las
 referencias que tenemos guardadas.</p>
-
 <figure>
     <img src="/images/generadores-referencias-python/yield-con-list.png"/> 
 </figure>
 
-
 <p>En este caso obtendremos una lista de <em>n</em> elementos que tienen el último valor
 de <strong>ctx</strong>.</p>
-
 <p>Por suerte el problema tiene soluciones sencillas, podemos retornar una nueva
 instancia en cada invocación o simplemente crear una copia:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">funcionx</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
-    <span class="n">ctx</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">funcionx</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span><span class="p">:</span>
+    <span class="n">ctx</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
-        <span class="n">ctx</span><span class="p">[</span><span class="s1">&#39;run&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
-        <span class="k">yield</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span></code></pre></div>
-<p>Y listo, no más valores extraños ni pruebas que fallan.</p>
+        <span class="n">ctx</span><span class="p">[</span><span class="sa"></span><span class="s1">&#39;</span><span class="s1">run</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="k">yield</span> <span class="nb">dict</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</code></pre></div><p>Y listo, no más valores extraños ni pruebas que fallan.</p>
 
                     </section>
             </article>
