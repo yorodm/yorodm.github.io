@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>scrapper on /home/yorodm</title>
@@ -5,38 +6,15 @@
     <description>Recent content in scrapper on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 20 Nov 2018 17:28:59 -0500</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/scrapper/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 20 Nov 2018 17:28:59 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/scrapper/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scrapper para DEV desde Emacs</title>
       <link>https://yorodm.github.io/blog/web-scrapping-emacs/</link>
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/web-scrapping-emacs/</guid>
-      <description>&lt;h1 id=&#34;scrapper-para-dev-desde-emacs&#34;&gt;Scrapper para DEV desde Emacs.&lt;/h1&gt;
-&lt;p&gt;Recién publiqué en
-&lt;a href=&#34;https://dev.to/yorodm/scrapping-dev-with-common-lisp-6j0&#34;&gt;DEV&lt;/a&gt; un artículo
-acerca de como hacer un &lt;a href=&#34;https://es.wikipedia.org/wiki/Web_scraping&#34;&gt;scrapper&lt;/a&gt;
-para obtener los títulos del &lt;a href=&#34;https://dev.to&#34;&gt;feed principal&lt;/a&gt;. El artículo
-surgió de una discusión amistosa acerca de la relevancia de Common Lisp como
-tecnología en la actualidad y quedé muy satisfecho con el resultado.&lt;/p&gt;
-&lt;p&gt;Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que
-decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;;; Eval this in the scratch buffer, first make sure to get&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;;; `elquery&amp;#39; from MELPA.&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;;; Eval this in a buffer and get the headlines in *another* buffer&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;;; named *dev*&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;elquery&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dev-buffer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;generate-new-buffer&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;*dev*&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;with-current-buffer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;url-retrieve-synchronously&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;https://dev.to&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;;; Feel free to hate this&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;dolist&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;elt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mapcar&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;elquery-text&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;elquery-$&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;div.single-article h3&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;
-                                                  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;elquery-read-string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;buffer-string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;with-current-buffer&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dev-buffer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;concat&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;elt&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
+Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>
     
   </channel>

@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>microframeworks on /home/yorodm</title>
@@ -5,176 +6,15 @@
     <description>Recent content in microframeworks on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 04 Dec 2017 00:00:00 -0500</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/microframeworks/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 04 Dec 2017 00:00:00 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/microframeworks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microframeworks en Java</title>
       <link>https://yorodm.github.io/blog/microframeworks-en-java/</link>
       <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/microframeworks-en-java/</guid>
-      <description>&lt;h1 id=&#34;microframeworks-que-deberas-revisar&#34;&gt;Microframeworks que deberías revisar.&lt;/h1&gt;
-&lt;p&gt;¡Hola! Después de unas semanas de inactivdad continúo con el tema de los
-frameworks para microservicios, ahora con &lt;strong&gt;Java&lt;/strong&gt; que es otro de mis lengajes
-favoritos. Ya que todo el mundo conoce a los jugadores fuertes como
-&lt;a href=&#34;http://www.dropwizard.io&#34;&gt;Dropwizard&lt;/a&gt;,
-&lt;a href=&#34;https://projects.spring.io/spring-boot/&#34;&gt;Spring&lt;/a&gt; y &lt;a href=&#34;wildfly-swarm.io/&#34;&gt;Swarm&lt;/a&gt;
-voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.&lt;/p&gt;
-&lt;h2 id=&#34;ratpackhttpwwwratpackio-&#34;&gt;&lt;a href=&#34;http://www.ratpack.io&#34;&gt;Ratpack&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;En primer lugar tenemos &lt;a href=&#34;http://www.ratpack.io&#34;&gt;Ratpack&lt;/a&gt;, que nos brinda
-basicamente un servidor Web basado en &lt;strong&gt;Netty&lt;/strong&gt; y un &lt;em&gt;DSL&lt;/em&gt; para manejar rutas
-(muy a lo &lt;a href=&#34;http://rack.github.io&#34;&gt;Rack&lt;/a&gt;+ &lt;a href=&#34;http://sinatrarb.com/&#34;&gt;Sinatra&lt;/a&gt;) y
-una fuerte integración con &lt;a href=&#34;http://groovy-lang.org/&#34;&gt;Groovy&lt;/a&gt; . Como un plus
-podemos utilizar &lt;a href=&#34;https://github.com/pledbrook/lazybones&#34;&gt;Lazybones&lt;/a&gt; para
-generar esqueletos de aplicaciones.&lt;/p&gt;
-&lt;p&gt;Aparte del &lt;em&gt;core&lt;/em&gt; del framework, existen componentes para:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Utilizar &lt;strong&gt;Guice&lt;/strong&gt; como contenedor de inyección de dependencias.&lt;/li&gt;
-&lt;li&gt;Métricas de uso.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Thymleaf&lt;/strong&gt; y &lt;strong&gt;Handlebars&lt;/strong&gt; como motores de plantillas.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://www.consul.io&#34;&gt;Consul&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Spring Boot&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Pruebas unitarias utilizando &lt;a href=&#34;http://spockframework.org/&#34;&gt;Spock&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;bootiquehttpbootiqueio-&#34;&gt;&lt;a href=&#34;http://bootique.io&#34;&gt;Bootique&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Bootique&lt;/strong&gt; nos invita a crear aplicaciones modulares utilizando &lt;strong&gt;Guice&lt;/strong&gt;. A
-diferencia de &lt;strong&gt;Ratpack&lt;/strong&gt;, su estilo de programación es mas de utilizar
-anotaciones aunque también hace uso de interfaces fluidas y clausuras. El uso de
-&lt;strong&gt;Guice&lt;/strong&gt; le da también un sabor particular a la forma en que creamos
-aplicaciones o extendemos el framework. En fin, esta es la lista de
-características fuertes de &lt;strong&gt;Bootique&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Soporte para migraciones con &lt;a href=&#34;http://flyway.orge&#34;&gt;Flyway&lt;/a&gt; o
-&lt;a href=&#34;http://www.liquibase.org/&#34;&gt;LiquidBase&lt;/a&gt;.&lt;/li&gt;
-&lt;li&gt;Integración con otros frameworks vía &lt;strong&gt;Guice&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Métricas.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Swagger&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Componentes para &lt;strong&gt;Rabbitmq&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Posibilidad de desarrollar utilizando &lt;a href=&#34;http://kotlinlang.org/&#34;&gt;Kotlin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&#34;rapidoidhttpwwwrapidoidorg-&#34;&gt;&lt;a href=&#34;http://www.rapidoid.org/&#34;&gt;Rapidoid&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Como su nombre lo indica, &lt;strong&gt;Rapidoid&lt;/strong&gt; se centra en la velocidad. Podemos crear
-no solo microservicios sino aplicaciones completas en muy poco tiempo. De los
-frameworks presentados acá es el único que incluye un componente para &lt;strong&gt;UI&lt;/strong&gt; y
-su propio motor de plantillas a lo &lt;strong&gt;Mustache&lt;/strong&gt;. Cosas que me impresionaron:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Interfaz de automática administración para las entidades a lo &lt;strong&gt;Django&lt;/strong&gt; o
-&lt;strong&gt;JHipster&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Motor de plantillas integrado.&lt;/li&gt;
-&lt;li&gt;Soporte para &lt;strong&gt;Guice&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;Rapidez + Funcionalidad&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Como es el que más me gusta voy a poner un ejemplo de como crear una &lt;strong&gt;Web API&lt;/strong&gt;
-simple que nos permita adicionar, consultar y eliminar solicitudes de servicio
-(lo que toda la vida hemos llamado tickets)&lt;/p&gt;
-&lt;h3 id=&#34;paso-1-configurar-maven&#34;&gt;Paso 1. Configurar Maven.&lt;/h3&gt;
-&lt;p&gt;Como soy usuario de &lt;strong&gt;Maven&lt;/strong&gt; y &lt;strong&gt;Eclipse&lt;/strong&gt; me voy a crear un nuevo proyecto y
-adicionar la siguiente dependencia&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;dependency&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;org.rapidoid&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;rapidoid-quick&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;5.4.6&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/dependency&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paso-2-crear-mis-entidades&#34;&gt;Paso 2. Crear mis entidades.&lt;/h3&gt;
-&lt;p&gt;&lt;strong&gt;Rapidoid Quick&lt;/strong&gt; incluye &lt;strong&gt;Hibernate&lt;/strong&gt;, &lt;strong&gt;JPA&lt;/strong&gt; preconfigurados, así que no
-necesitamos mucho para crear entidades&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kn&#34;&gt;package&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;com.github.yorodm.rapidoid_example.models&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.persistence.Entity&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.persistence.GeneratedValue&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.persistence.Id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;javax.validation.constraints.NotNull&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-&lt;span class=&#34;nd&#34;&gt;@Entity&lt;/span&gt;
-&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Ticket&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-
-    &lt;span class=&#34;nd&#34;&gt;@Id&lt;/span&gt;
-    &lt;span class=&#34;nd&#34;&gt;@GeneratedValue&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;long&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;nd&#34;&gt;@NotNull&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;nd&#34;&gt;@NotNull&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;String&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;description&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paso-3-creando-mi-aplicacin-y-rutas&#34;&gt;Paso 3. Creando mi aplicación y rutas&lt;/h3&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-java&#34; data-lang=&#34;java&#34;&gt;&lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;Main&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-
-    &lt;span class=&#34;kd&#34;&gt;public&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;static&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;main&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;String&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;App&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;bootstrap&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;args&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;auth&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;jpa&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;adminCenter&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;of&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;all&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;post&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nd&#34;&gt;@Valid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-                &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;save&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;put&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets/{id}&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nd&#34;&gt;@Valid&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-                &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;update&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-
-        &lt;span class=&#34;n&#34;&gt;On&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/tickets/{id}&amp;#34;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;
-            &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;json&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Long&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;-&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;n&#34;&gt;JPA&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;delete&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Ticket&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;na&#34;&gt;class&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;id&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-
-&lt;span class=&#34;o&#34;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paso-4-configurando&#34;&gt;Paso 4. Configurando.&lt;/h3&gt;
-&lt;p&gt;Para la configuracion utilizamos &lt;strong&gt;YAML&lt;/strong&gt; en &lt;code&gt;src/resources/config.yml&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;users&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;root&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;roles&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;administrator&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;      &lt;/span&gt;-&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;owner&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;password&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;root&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paso-5-creando-un-jar-para-despliegue&#34;&gt;Paso 5. Creando un jar para despliegue.&lt;/h3&gt;
-&lt;p&gt;Vamos a configurar el plugin &lt;code&gt;shade&lt;/code&gt; de &lt;strong&gt;Maven&lt;/strong&gt; para crear un &lt;em&gt;uberjar&lt;/em&gt; y
-hacernos la vida más fácil.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;build&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-  &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugins&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;plugin&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;groupId&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;org.apache.maven.plugins&lt;span class=&#34;nt&#34;&gt;&amp;lt;/groupId&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;artifactId&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;maven-shade-plugin&lt;span class=&#34;nt&#34;&gt;&amp;lt;/artifactId&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;version&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;3.1.0&lt;span class=&#34;nt&#34;&gt;&amp;lt;/version&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;configuration&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;transformers&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&#34;nt&#34;&gt;&amp;lt;transformer&lt;/span&gt;
-              &lt;span class=&#34;na&#34;&gt;implementation=&lt;/span&gt;
-              &lt;span class=&#34;s&#34;&gt;&amp;#34;org.apache.maven.plugins.shade.resource.ManifestResourceTransformer&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;mainClass&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-                com.github.yorodm.rapidoid_example.Main
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;/mainClass&amp;gt;&lt;/span&gt;
-          &lt;span class=&#34;nt&#34;&gt;&amp;lt;/transformer&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/transformers&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;/configuration&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;executions&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;execution&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-          &lt;span class=&#34;nt&#34;&gt;&amp;lt;phase&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;package&lt;span class=&#34;nt&#34;&gt;&amp;lt;/phase&amp;gt;&lt;/span&gt;
-          &lt;span class=&#34;nt&#34;&gt;&amp;lt;goals&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;goal&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;shade&lt;span class=&#34;nt&#34;&gt;&amp;lt;/goal&amp;gt;&lt;/span&gt;
-          &lt;span class=&#34;nt&#34;&gt;&amp;lt;/goals&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/execution&amp;gt;&lt;/span&gt;
-      &lt;span class=&#34;nt&#34;&gt;&amp;lt;/executions&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugin&amp;gt;&lt;/span&gt;
-  &lt;span class=&#34;nt&#34;&gt;&amp;lt;/plugins&amp;gt;&lt;/span&gt;
-&lt;span class=&#34;nt&#34;&gt;&amp;lt;/build&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;paso-6-ejecutando-la-aplicacin&#34;&gt;Paso 6. Ejecutando la aplicación&lt;/h3&gt;
-&lt;p&gt;Empaquetamos y ejecutamos:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ mvn package
-$ cd target
-$ java -jar rapidoid-example-0.0.1-SNAPSHOT.jar profiles=dev,default
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Después de unos cuantos logs tenemos el servicio disponible en &lt;a href=&#34;http://localhost:8080/tickets&#34;&gt;nuestro
-host&lt;/a&gt; junto con el &lt;a href=&#34;http://localhost:8080/_&#34;&gt;dashboard de administración&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <description>Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
+Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor Web basado en Netty y un DSL para manejar rutas (muy a lo Rack+ Sinatra) y una fuerte integración con Groovy .</description>
     </item>
     
   </channel>

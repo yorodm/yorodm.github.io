@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>emacs on /home/yorodm</title>
@@ -5,50 +6,17 @@
     <description>Recent content in emacs on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Sun, 07 Jul 2019 11:03:33 -0400</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 07 Jul 2019 11:03:33 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)</title>
       <link>https://yorodm.github.io/blog/hugo-mode-emacs/</link>
       <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/hugo-mode-emacs/</guid>
-      <description>&lt;p&gt;Este &lt;a href=&#34;https://yorodm.github.io&#34;&gt;blog&lt;/a&gt; es creado con
-&lt;a href=&#34;https://gohugo.io&#34;&gt;Hugo&lt;/a&gt; y publicado utilizando Github Pages. Cada
-artículo es creado utilizando &lt;strong&gt;Markdown&lt;/strong&gt; y añadido a un
-&lt;a href=&#34;https://github.com/yorodm/yorodm-site&#34;&gt;repositorio&lt;/a&gt; donde finalmente
-pasa a formar parte del sitio estático utilizando submódulos de &lt;code&gt;Git&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Todo este proceso implica utilizar 3 herramientas.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;La &lt;strong&gt;CLI&lt;/strong&gt; de &lt;code&gt;hugo&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;Un editor de texto (preferentemente con soporte para Markdown).&lt;/li&gt;
-&lt;li&gt;Git.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Mis primeros intentos implicaron hacer uso de unos cuantos &lt;em&gt;scripts&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;Uno para crear nuevos artículos&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# New article&lt;/span&gt;
-&lt;span class=&#34;nv&#34;&gt;POST_NAME&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$HUGO_BLOG_ROOT&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;/content/blog/&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;$1&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-hugo new &lt;span class=&#34;nv&#34;&gt;$POST_NAME&lt;/span&gt;
-emacsclient &lt;span class=&#34;nv&#34;&gt;$POST_NAME&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Otro para salvarlos y publicar&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Save post and publish&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HUGO_BLOG_ROOT&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;# Remember to build the site&lt;/span&gt;
-hugo --noChmod --noTimes --ignoreCase
-git commit -a -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;Update &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +%Y%M%d&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HUGO_BLOG_ROOT&lt;/span&gt;/publish
-git commit -a -m &lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;Update &lt;/span&gt;&lt;span class=&#34;k&#34;&gt;$(&lt;/span&gt;date +%Y%M%d&lt;span class=&#34;k&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;
-git push origin master
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; ..
-git push origin master
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Y finalmente uno para preview&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-shell&#34; data-lang=&#34;shell&#34;&gt;&lt;span class=&#34;c1&#34;&gt;# Run hugo in watch mode&lt;/span&gt;
-&lt;span class=&#34;nb&#34;&gt;cd&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;$HUGO_BLOG_ROOT&lt;/span&gt;
-hugo serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>Este blog es creado con Hugo y publicado utilizando Github Pages. Cada artículo es creado utilizando Markdown y añadido a un repositorio donde finalmente pasa a formar parte del sitio estático utilizando submódulos de Git.
+Todo este proceso implica utilizar 3 herramientas.
+ La CLI de hugo. Un editor de texto (preferentemente con soporte para Markdown). Git.  Mis primeros intentos implicaron hacer uso de unos cuantos scripts
+Uno para crear nuevos artículos</description>
     </item>
     
     <item>
@@ -57,91 +25,9 @@ hugo serve
       <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/emacs-golang-setup-2019/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://blog.golang.org/go1.12&#34;&gt;Go 1.12&lt;/a&gt; fue lanzado hace un
-mes y entre los cambios más significativos se encuentran varias mejoras
-en el soporte para módulos (que va a ser el método por defecto en la
-versión 1.13).&lt;/p&gt;
-&lt;p&gt;Si eres usuario de &lt;a href=&#34;https://www.gnu.org/software/emacs&#34;&gt;Emacs&lt;/a&gt; y te
-interesa desarrollar utilizando Go, aquí tienes una guía sencilla de
-como habilitar el soporte para el lenguaje.&lt;/p&gt;
-&lt;h2 id=&#34;paso-1-language-server-protocol&#34;&gt;Paso 1. Language server protocol&lt;/h2&gt;
-&lt;p&gt;Si tienes una versión actualizada de
-&lt;a href=&#34;https://github.com/emacs-lsp/lsp-mode&#34;&gt;lsp-mode&lt;/a&gt; ya tienes soporte
-para &lt;a href=&#34;https://github.com/saibing/bingo&#34;&gt;bingo&lt;/a&gt;, una herramienta que
-provee un servidor de lenguajes para Go y que tiene soporte integrado
-para trabajar con módulos&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-mode&lt;/span&gt;
-  &lt;span class=&#34;nb&#34;&gt;:commands&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;company-lsp&lt;/span&gt;
-    &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-to-list&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-lsp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui&lt;/span&gt;
-  &lt;span class=&#34;nb&#34;&gt;:hook&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp-mode&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;.&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;define-key&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-mode-map&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;remap&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;xref-find-definitions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp-ui-peek-find-definitions&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;define-key&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-mode-map&lt;/span&gt;
-	&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;remap&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;xref-find-references&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp-ui-peek-find-references&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;lsp-ui-sideline-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;nil&lt;/span&gt;
-        &lt;span class=&#34;nv&#34;&gt;lsp-ui-doc-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;
-        &lt;span class=&#34;nv&#34;&gt;lsp-ui-flycheck-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;nil&lt;/span&gt;
-        &lt;span class=&#34;nv&#34;&gt;lsp-ui-imenu-enable&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;
-		&lt;span class=&#34;nv&#34;&gt;lsp-ui-sideline-ignore-duplicate&lt;/span&gt; &lt;span class=&#34;no&#34;&gt;t&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;paso-2-go-mode-y-utilidades&#34;&gt;Paso 2. Go mode y utilidades&lt;/h2&gt;
-&lt;p&gt;Como &lt;a href=&#34;https://github.com/emacs-lsp/lsp-mode&#34;&gt;lsp-mode&lt;/a&gt; es un &lt;em&gt;minor mode&lt;/em&gt; necesitamos
-el soporte para el lenguaje (font-lock entre otras cosas). Los pasos necesarios son:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Instalar &lt;a href=&#34;golang.org/x/tools/cmd/goimports&#34;&gt;goimports&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Instalar &lt;a href=&#34;https://github.com/golang/lint&#34;&gt;golint&lt;/a&gt; o
-&lt;a href=&#34;https://golang.org/cmd/gofmt/&#34;&gt;gofmt&lt;/a&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;flycheck&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;go-mode&lt;/span&gt;
-  &lt;span class=&#34;nb&#34;&gt;:config&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;; Use goimports instead of go-fmt&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gofmt-command&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;goimports&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;flycheck-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;;; Call Gofmt before saving&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;gofmt-before-save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;lsp&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;flycheck-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-			     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;local-set-key&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;kbd&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;C-c C-r&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-remove-unused-imports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-			     &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;local-set-key&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;kbd&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;C-c C-g&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-goto-imports&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-			    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;make-local-variable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-			    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;paso-3-comenzar-a-programar-en-go&#34;&gt;Paso 3. Comenzar a programar en Go.&lt;/h2&gt;
-&lt;p&gt;Con la configuración anterior puedes empezar a programar en Go&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Completamiento y referencias cruzadas&lt;/li&gt;
-&lt;li&gt;Revisión de código mientras escribes.&lt;/li&gt;
-&lt;li&gt;Formato automático al salvar.&lt;/li&gt;
-&lt;li&gt;Un efecto aprecido al &lt;em&gt;hover&lt;/em&gt; de &lt;a href=&#34;https://code.visualstudio.com/&#34;&gt;ese editor taaan popular&lt;/a&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h2 id=&#34;paso-4-compilar-y-debug&#34;&gt;Paso 4. Compilar y debug.&lt;/h2&gt;
-&lt;p&gt;Puedes configurar el comando de compilación por defecto que utilizas
-cuando editas archivos Go.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;; Adicionar en la sección :config de `go-mode`&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;#&amp;#39;&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;setup-go-mode-compile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;;; adicionar en el mismo archivo&lt;/span&gt;
-
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;defun&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;setup-go-mode-compile&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;c1&#34;&gt;; Customize compile command to run go build&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;not&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;string-match&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;go&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;compile-command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;set&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;make-local-variable&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;compile-command&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-           &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;go build -v &amp;amp;&amp;amp; go test -v &amp;amp;&amp;amp; go vet&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Si prefieres los &lt;em&gt;debuggers&lt;/em&gt; interactivos debes instalar
-&lt;a href=&#34;https://github.com/go-delve/delve&#34;&gt;delve&lt;/a&gt; y añadir la siguiente línea
-en tu archivo de inicio de Emacs.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;use-package&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;go-dlv&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Los comandos &lt;code&gt;dlv&lt;/code&gt; y &lt;code&gt;dlv-current-func&lt;/code&gt; son los puntos de entrada al debugger.&lt;/p&gt;
-</description>
+      <description>Go 1.12 fue lanzado hace un mes y entre los cambios más significativos se encuentran varias mejoras en el soporte para módulos (que va a ser el método por defecto en la versión 1.13).
+Si eres usuario de Emacs y te interesa desarrollar utilizando Go, aquí tienes una guía sencilla de como habilitar el soporte para el lenguaje.
+Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode ya tienes soporte para bingo, una herramienta que provee un servidor de lenguajes para Go y que tiene soporte integrado para trabajar con módulos</description>
     </item>
     
     <item>
@@ -150,27 +36,8 @@ en tu archivo de inicio de Emacs.&lt;/p&gt;
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/web-scrapping-emacs/</guid>
-      <description>&lt;h1 id=&#34;scrapper-para-dev-desde-emacs&#34;&gt;Scrapper para DEV desde Emacs.&lt;/h1&gt;
-&lt;p&gt;Recién publiqué en
-&lt;a href=&#34;https://dev.to/yorodm/scrapping-dev-with-common-lisp-6j0&#34;&gt;DEV&lt;/a&gt; un artículo
-acerca de como hacer un &lt;a href=&#34;https://es.wikipedia.org/wiki/Web_scraping&#34;&gt;scrapper&lt;/a&gt;
-para obtener los títulos del &lt;a href=&#34;https://dev.to&#34;&gt;feed principal&lt;/a&gt;. El artículo
-surgió de una discusión amistosa acerca de la relevancia de Common Lisp como
-tecnología en la actualidad y quedé muy satisfecho con el resultado.&lt;/p&gt;
-&lt;p&gt;Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que
-decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-elisp&#34; data-lang=&#34;elisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;;; Eval this in the scratch buffer, first make sure to get&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;;; `elquery&amp;#39; from MELPA.&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;;; Eval this in a buffer and get the headlines in *another* buffer&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;;; named *dev*&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;elquery&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;let&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;dev-buffer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;generate-new-buffer&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;*dev*&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;with-current-buffer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;url-retrieve-synchronously&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;https://dev.to&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;;; Feel free to hate this&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;dolist&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;elt&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;mapcar&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;elquery-text&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;elquery-$&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;div.single-article h3&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;
-                                                  &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;elquery-read-string&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;buffer-string&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-      &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;with-current-buffer&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;dev-buffer&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;insert&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nf&#34;&gt;concat&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;elt&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;\n&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+      <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
+Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>
     
     <item>
@@ -179,79 +46,8 @@ decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el sc
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
-      <description>&lt;h1 id=&#34;desarrollando-con-emacs-y-go&#34;&gt;Desarrollando con Emacs y Go.&lt;/h1&gt;
-&lt;p&gt;Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso
-revisar el correo) así que cuando me decidí a iniciar algunos proyectos en
-&lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt; me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para
-el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se
-arme la casa a su manera.&lt;/p&gt;
-&lt;h2 id=&#34;haciendo-un-ide-en-tres-pasos&#34;&gt;Haciendo un IDE en tres pasos.&lt;/h2&gt;
-&lt;p&gt;Convertir &lt;strong&gt;Emacs&lt;/strong&gt; en un entorno de desarrollo para &lt;strong&gt;Go&lt;/strong&gt; es una tarea bastante
-sencilla. Vamos a separarla en tres pasos.&lt;/p&gt;
-&lt;h3 id=&#34;instalar-las-herramientas-necesarias&#34;&gt;Instalar las herramientas necesarias.&lt;/h3&gt;
-&lt;p&gt;Despúes de tener &lt;strong&gt;Go&lt;/strong&gt; y &lt;strong&gt;Git&lt;/strong&gt; instalado, necesitamos un conjunto de herramientas
-(oficiales y de terceros) que nos hacen la vida mucho más sencilla.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;a href=&#34;http://github.com/kisielk/errcheck&#34;&gt;errcheck&lt;/a&gt;: verificar errores de compilación.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://golang.com/x/tools/cmd/guru&#34;&gt;Guru&lt;/a&gt;: obtener información acerca del código.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://github.com/nsf/gocode&#34;&gt;Gocode&lt;/a&gt;: completamiento&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://golang.org/x/tools/cmd/gorename&#34;&gt;Gorename&lt;/a&gt;: refactorizacíon a cierto
-nivel.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://golang.org/x/tools/cmd/goimports&#34;&gt;Goimports&lt;/a&gt;: ayuda a adicionar o
-eliminar paquetes importados (también formatea código).&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Estas herramientas por si solas no nos son de mucha utilidad, están diseñadas
-para que cualquier editor de texto que soporte extensiones pueda integrarlas de
-un modo sencillo.&lt;/p&gt;
-&lt;h3 id=&#34;el-lado-de-emacs&#34;&gt;El lado de Emacs&lt;/h3&gt;
-&lt;p&gt;En mi lista de paquetes (uso nada más que [Melpa estable]
-(&lt;a href=&#34;http://melpa.org/packages/&#34;&gt;http://melpa.org/packages/&lt;/a&gt; )) hay cerca de 15 paquetes que tienen que ver con
-desarrollo en &lt;strong&gt;Go&lt;/strong&gt;. En lo personal no necesito mucho para trabajar en un
-lenguaje. Las funcionalidades que adiciono son:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Lenguaje y completaminto con &lt;strong&gt;go-mode&lt;/strong&gt; y &lt;strong&gt;company-go&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Verificacíon de errores con &lt;strong&gt;go-errcheck&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Ayuda interactiva con &lt;strong&gt;go-eldoc&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Refactorización con &lt;strong&gt;go-rename&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Inspección de código con &lt;strong&gt;go-guru&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Integración con &lt;strong&gt;projectile&lt;/strong&gt; vía &lt;strong&gt;go-projectile&lt;/strong&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Todos los paquetes es recomendable instalarlos vía &lt;strong&gt;package-install&lt;/strong&gt; con la excepción de &lt;strong&gt;company-go&lt;/strong&gt; que está incluido en los fuentes de la herramienta &lt;strong&gt;gocode&lt;/strong&gt; y lo cargo desde ahí para evitar conflictos de versiones.&lt;/p&gt;
-&lt;h3 id=&#34;paso-final&#34;&gt;Paso final.&lt;/h3&gt;
-&lt;p&gt;Con todos los ingredientes estamos a solo 2 minutos de programar en &lt;strong&gt;Go&lt;/strong&gt; como
-campiones, solo queda:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Añadir &lt;code&gt;$GOPATH/bin&lt;/code&gt; al &lt;code&gt;$PATH&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;Modificar el &lt;strong&gt;init.el&lt;/strong&gt; para personalizar los paquetes de &lt;strong&gt;Emacs&lt;/strong&gt;.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Lo primero depende del sistema operativo donde estés, pero de todas formas es
-una tarea trivial. Si eres relativamente nuevo en &lt;strong&gt;Emacs&lt;/strong&gt; hay grandes
-posibilidades de que no sepas como hacer lo segundo, no importa, aquí va mi
-configuración (sin atajos de teclado, que ya eso es cosa muy personal).&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-emacs-lisp&#34; data-lang=&#34;emacs-lisp&#34;&gt;&lt;span class=&#34;c1&#34;&gt;;; Si estás utilizando correctamente tu gestor de paquetes&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;; no tienes que adicionar las lineas de los  &amp;#39;require&amp;#39;&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;; Adicionar el backend de Go a company&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-to-list&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-backends&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;company-go&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;; Activamos go-mode&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;; y toda la familia&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-guru&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-errcheck&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;require&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-projectile&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;; Añadimos un hook para que cuando se active el modo&lt;/span&gt;
-&lt;span class=&#34;c1&#34;&gt;;; se configuren todas estas cosas&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;go-mode-hook&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;lambda&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;company-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;projectile-mode&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;go-eldoc-setup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nv&#34;&gt;add-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;before-save-hook&lt;/span&gt; &lt;span class=&#34;ss&#34;&gt;&amp;#39;gofmt-before-save&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;setq&lt;/span&gt; &lt;span class=&#34;nv&#34;&gt;gofmt-command&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;goimports&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Y&amp;hellip;ya está. Hemos creado un &lt;strong&gt;IDE&lt;/strong&gt; para trabajar en &lt;strong&gt;Go&lt;/strong&gt; sin salir de la
-comodidad de nuestro editor favorito.&lt;/p&gt;
-</description>
+      <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
+Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
     
     <item>
@@ -260,50 +56,8 @@ comodidad de nuestro editor favorito.&lt;/p&gt;
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
-      <description>&lt;h1 id=&#34;hugo-emacs-y-el-nuevo-blog&#34;&gt;Hugo, Emacs y el nuevo blog&lt;/h1&gt;
-&lt;p&gt;Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las
-bondades de &lt;a href=&#34;https://pages.github.com/&#34;&gt;Github Pages&lt;/a&gt; y
-&lt;a href=&#34;http://gohugo.io&#34;&gt;Hugo&lt;/a&gt; como generador de sitios estático. En lo que a
-generador de sitios estáticos se refiere &lt;strong&gt;Hugo&lt;/strong&gt; es bastante sencillo de operar,
-por lo que inicialmente pensé en hacerme unos scripts para organizar el
-&lt;em&gt;workflow&lt;/em&gt; de trabajo de la siguiente manera:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Hacer nuevo post.&lt;/li&gt;
-&lt;li&gt;Previsualizar.&lt;/li&gt;
-&lt;li&gt;Subir a GitHub.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Todo esto organizado, claro está, en una rama &lt;em&gt;develop&lt;/em&gt; para trabajar y una
-&lt;em&gt;master&lt;/em&gt; tanto para el repositorio donde guardo las fuentes del sitio como para
-el que queda publicado.&lt;/p&gt;
-&lt;p&gt;Estaba muy emocionado escribiendo código en &lt;strong&gt;Python&lt;/strong&gt; cuando recordé que &lt;strong&gt;Emacs&lt;/strong&gt;
-trae &lt;em&gt;su propio servidor http&lt;/em&gt; en &lt;strong&gt;simple-httpd.el&lt;/strong&gt; y unos cuantos paquetes
-para interactuar con &lt;strong&gt;Git&lt;/strong&gt;. Así surgió &lt;em&gt;hugo-blog-mode.el&lt;/em&gt;&lt;/p&gt;
-&lt;h2 id=&#34;hugo-en-modo-sencillo&#34;&gt;Hugo en modo sencillo&lt;/h2&gt;
-&lt;p&gt;Antes de arrancar a escribir &lt;strong&gt;Emacs Lisp&lt;/strong&gt; me puse a revisar &lt;strong&gt;MELPA&lt;/strong&gt; a ver si
-alguien había tenido la misma idea que yo y encontré a &lt;em&gt;easy-hugo.el&lt;/em&gt;, que está
-genial, pero viene pensado para personas super publicadoras que tienen varios
-blogs y los actualizan con mucha frecuencia o algo así. En fin, que tiene un
-público objetivo en el cual no me incluyo. La idea siempre fue trasladar el
-flujo de trabajo que ya tenía en mente a dos o tres comanditos, ponerle dos o
-tres atajos de teclado y utilizar &lt;strong&gt;Magit&lt;/strong&gt; lo menos posible en el proceso.&lt;/p&gt;
-&lt;p&gt;El resultado quedo en un archivito de unas 200 líneas de código con tres comandos.&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;hugo-new-post&lt;/strong&gt;, que se explica solito.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;hugo-blog-preview&lt;/strong&gt;, que mueve todo lo que esté haciendo a la rama &lt;em&gt;develop&lt;/em&gt;,
-regenera el sitio utilizando una URL local y lanza el navegador para ver como
-va quedando.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt;, que regenra el sitio utilizando la URL final, hace
-&lt;em&gt;commit&lt;/em&gt; en &lt;em&gt;develop&lt;/em&gt; y me mezcla todo en master.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Como estoy utilizando submódulos de &lt;strong&gt;Git&lt;/strong&gt; para mantener los repositorios así:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sitio/ (fuentes del sitio)
-   |--- content/
-   |--- data/
-   |--- static/
-   |--- themes/
-   |--- public/ (submódulo yorodm.guthub.io)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;strong&gt;hugo-blog-publish&lt;/strong&gt; se encarga de hacer los &lt;em&gt;commits&lt;/em&gt; y los &lt;em&gt;merges&lt;/em&gt; y todo lo que haga falta en los dos repos (de paso, también se encarga de asegurarse de que no haga ningun cambio accidental en master).&lt;/p&gt;
-</description>
+      <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
+ Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
     </item>
     
   </channel>

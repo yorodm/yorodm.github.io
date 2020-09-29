@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>etl on /home/yorodm</title>
@@ -5,124 +6,16 @@
     <description>Recent content in etl on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 12 Mar 2019 10:14:20 -0400</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/etl/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Tue, 12 Mar 2019 10:14:20 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/etl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Plumber: ETL simple para Python</title>
       <link>https://yorodm.github.io/blog/plumber-simple-etl/</link>
       <pubDate>Tue, 12 Mar 2019 10:14:20 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/plumber-simple-etl/</guid>
-      <description>&lt;p&gt;Implementando una feature para uno de los proyectos en los que trabajo terminé
-necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X,
-las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.&lt;/p&gt;
-&lt;p&gt;Ahora, si bien existen frameworks de excelente calidad como
-&lt;a href=&#34;https://petl.readthedocs.io&#34;&gt;petl&lt;/a&gt; y &lt;a href=&#34;https://www.bonobo-project.org&#34;&gt;Bonobo&lt;/a&gt;
-que cubren este campo, me encontré con los siguientes problemas:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Existe mucho código &lt;em&gt;legacy&lt;/em&gt; en  el proyecto.&lt;/li&gt;
-&lt;li&gt;Exceptuando la parte de ETL, la complejidad de proceso es bastante alta,
-incrementarla no sería lo más adecuado.&lt;/li&gt;
-&lt;li&gt;El componente ETL no se ejecutaría por si mismo sino como parte de una solución.&lt;/li&gt;
-&lt;li&gt;La mayoría de los datos que agregamos usan formatos no convencionales.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Aunque en apariencia sencillos, estos cuatro puntos me llevaron a crear mi
-propio &lt;em&gt;miniframework&lt;/em&gt; para componentes ETL que es fácil de integrar con código
-existente y no hace ningún tipo de suposiciones con respecto a la forma de los
-datos, &lt;a href=&#34;https://github.com/yorodm/plumber&#34;&gt;plumber&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;caractersticas-de-plumber&#34;&gt;Características de plumber.&lt;/h2&gt;
-&lt;p&gt;Para el desarrollo del framework me basé mucho en mi experiencia anterior con
-&lt;a href=&#34;https://www.kiba-etl.org&#34;&gt;kiba&lt;/a&gt;, una de esas joyas que siempre vienen desde la
-comunidad de Ruby. Kiba hace uso de las bondades de Ruby para crear DSL&#39;s
-dejando al desarrollador que se centre en los datos de la manera que considere
-correcta. En &lt;a href=&#34;https://github.com/yorodm/plumber&#34;&gt;plumber&lt;/a&gt; esta idea está
-reflejada en cuatro conceptos:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Extractors (que acceden al origen de datos).&lt;/li&gt;
-&lt;li&gt;Transformers (que manipulan los datos obtenidos).&lt;/li&gt;
-&lt;li&gt;Writers (que persisten los datos).&lt;/li&gt;
-&lt;li&gt;Pipes (que controlan todo el proceso).&lt;/li&gt;
-&lt;/ol&gt;
-&lt;h3 id=&#34;extractors&#34;&gt;Extractors.&lt;/h3&gt;
-&lt;p&gt;Un &lt;strong&gt;Extractor&lt;/strong&gt; es una clase o función que emite datos para una tubería (pipe),
-los datos pueden tener cualquier origen y cualquier forma, los extractors son
-independientes del resto del proceso.&lt;/p&gt;
-&lt;p&gt;Aunque es posible utilizar una función como extractor, lo recomendado en la
-mayoría de los casos es heredar de la clase &lt;code&gt;plumber.pipe.Extractor&lt;/code&gt; e
-implementar los métodos &lt;code&gt;read&lt;/code&gt;, &lt;code&gt;setup&lt;/code&gt; y &lt;code&gt;cleanup&lt;/code&gt;. Varios extractors se pueden
-unir para formar uno solo que emita una secuencia (tupla) con los valores de
-cada uno.&lt;/p&gt;
-&lt;h3 id=&#34;transformers&#34;&gt;Transformers.&lt;/h3&gt;
-&lt;p&gt;Un &lt;strong&gt;Transformer&lt;/strong&gt; es cualquier función marcada con &lt;code&gt;@transformer&lt;/code&gt; o una clase
-derivada de &lt;code&gt;plumber.pipe.Transformer&lt;/code&gt;. Es posible unir varios transformers en
-una cadena de procesamiento&lt;/p&gt;
-&lt;h3 id=&#34;writer&#34;&gt;Writer.&lt;/h3&gt;
-&lt;p&gt;Finalmente los &lt;strong&gt;Writers&lt;/strong&gt; heredan de &lt;code&gt;plumber.pipe.Writer&lt;/code&gt;. Como generalmente
-acceden a recursos externos, es requerido que implementen los métodos &lt;code&gt;setup&lt;/code&gt; y
-&lt;code&gt;cleanup&lt;/code&gt; además de &lt;code&gt;write&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Todos los elementos usan anotaciones &lt;a href=&#34;https://www.python.org/dev/peps/pep-0484/&#34;&gt;PEP 484&lt;/a&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;un-ejemplo-sencillo&#34;&gt;Un ejemplo sencillo:&lt;/h2&gt;
-&lt;p&gt;Uno de los casos de uso que motivaron la creación del framework fue obtener una
-lista de registros de un archivo con formato propietario. El contenido del
-archivo es más o menos el siguiente:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Campo identificador de cliente. Comienza en la posición 0, tiene longitud
-entre 1 y 20.&lt;/li&gt;
-&lt;li&gt;Campo identificador de transacción. Comienza en la posición 22. Es numérico y tiene longitud 8.&lt;/li&gt;
-&lt;li&gt;Campo identificador de transacción relacionada. Comienza en la posición 32.
-Tiene longitud 8, es opcional y de no estar se ponen espacios en blanco.&lt;/li&gt;
-&lt;li&gt;Campo motivo de la transacción. Comienza en la posición 42 y longitud entre
-10 y 50. Es de tipo alfanumérico, incluye espacios, no tiene delimitaciones.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Veamos un ejemplo de como procesar estos archivos:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-python&#34; data-lang=&#34;python&#34;&gt;&lt;span class=&#34;kn&#34;&gt;from&lt;/span&gt; &lt;span class=&#34;nn&#34;&gt;plumber&lt;/span&gt; &lt;span class=&#34;kn&#34;&gt;import&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pipe&lt;/span&gt; &lt;span class=&#34;c1&#34;&gt;# API síncrona.&lt;/span&gt;
-
-&lt;span class=&#34;nd&#34;&gt;@pipe.extractor&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;read_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;file_name&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;os&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;environ&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;FILENAME&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;]&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;with&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;file_name&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;as&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;for&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;x&lt;/span&gt; &lt;span class=&#34;ow&#34;&gt;in&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;readlines&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;process_line&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-&lt;span class=&#34;nd&#34;&gt;@pipe.transformer&lt;/span&gt;
-&lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;csvfy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;yield&lt;/span&gt; &lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;join&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;map&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;str&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;element&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-
-&lt;span class=&#34;k&#34;&gt;class&lt;/span&gt; &lt;span class=&#34;nc&#34;&gt;SaveData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;pipe&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Writer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;fm&#34;&gt;__init__&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;filename&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;setup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_file&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nb&#34;&gt;open&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;f&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;w&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;cleanup&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;close&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-    &lt;span class=&#34;k&#34;&gt;def&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;
-        &lt;span class=&#34;bp&#34;&gt;self&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;_file&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;write&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;x&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-
-&lt;span class=&#34;n&#34;&gt;tuberia&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;pipe&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Pipe&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;read_file&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;csvfy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-    &lt;span class=&#34;n&#34;&gt;SaveData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;sa&#34;&gt;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;prueba.csv&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;span class=&#34;n&#34;&gt;tuberia&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;run&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;qe-queda-por-hacer&#34;&gt;¿Qúe queda por hacer?&lt;/h2&gt;
-&lt;p&gt;Ahora que &lt;a href=&#34;https://github.com/yorodm/plumber&#34;&gt;plumber&lt;/a&gt; salió a la luz es hora de
-convertirlo en un framework ETL medianamente decente. Los próximos pasos son:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Adicionar la posibilidad de hacer &lt;strong&gt;Writers&lt;/strong&gt; como funciones con
-administración de contexto integrada.&lt;/li&gt;
-&lt;li&gt;Poder inicializar los &lt;strong&gt;Extractors&lt;/strong&gt; de manera sencilla.&lt;/li&gt;
-&lt;li&gt;Mejorar el tratamiento de errores.&lt;/li&gt;
-&lt;li&gt;Concurrencia y/o paralelismo.&lt;/li&gt;
-&lt;/ol&gt;
-</description>
+      <description>Implementando una feature para uno de los proyectos en los que trabajo terminé necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X, las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.
+Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cubren este campo, me encontré con los siguientes problemas:
+ Existe mucho código legacy en el proyecto.</description>
     </item>
     
   </channel>

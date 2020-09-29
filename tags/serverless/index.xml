@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>serverless on /home/yorodm</title>
@@ -5,73 +6,16 @@
     <description>Recent content in serverless on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Fri, 13 Jul 2018 14:44:56 -0400</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Fri, 13 Jul 2018 14:44:56 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/serverless/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Buenas prácticas con Serverless</title>
       <link>https://yorodm.github.io/blog/practicas-serverless-framework/</link>
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
       <guid>https://yorodm.github.io/blog/practicas-serverless-framework/</guid>
-      <description>&lt;h1 id=&#34;algunas-buenas-practicas-para-serverless-framework&#34;&gt;Algunas buenas practicas para Serverless Framework&lt;/h1&gt;
-&lt;p&gt;Aunque llevo poco tiempo utilizando &lt;a href=&#34;http://serverless.com&#34;&gt;Serverless&lt;/a&gt; he
-intentado ir escribiendo un conjunto de prácticas para escribir plantillas.
-Las comparto aquí para los que como yo están empezando.&lt;/p&gt;
-&lt;h2 id=&#34;reducir-la-dependencia-de-valores-externos&#34;&gt;Reducir la dependencia de valores externos.&lt;/h2&gt;
-&lt;p&gt;En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es
-común utilizar referencias a valores externos por toda la plantilla.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;functions&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;hello&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${env&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;FUNC_PREFIX}-hello&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;handler&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;handler.hello&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;  &lt;/span&gt;world&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${env&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;FUNC_PREFIX}-world&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;handler&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;handler.world&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Aunque esto no es una mala practica en si, hace que nuestras funciones dependan
-de un valor que &lt;strong&gt;solo&lt;/strong&gt; vamos a obtener desde el entorno. ¿Qué tal si mañana
-decidimos que el valor venga [de la salida de otro stack]
-(&lt;a href=&#34;https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs)?&#34;&gt;https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs)?&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Por suerte para nosotros podemos hacer esto:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yaml&#34; data-lang=&#34;yaml&#34;&gt;custom&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;func_prefix&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;c&#34;&gt;# cualquier fuente para el valor&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;functions&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;hello&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;name&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${self&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;custom.func_prefix}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;De esta manera la dependencia al valor externo ocurre en un solo punto y se
-propaga hacia el resto de la plantilla.&lt;/p&gt;
-&lt;h2 id=&#34;usar-plugins&#34;&gt;Usar plugins.&lt;/h2&gt;
-&lt;p&gt;Las plantillas pueden [utilizar plugins]
-(&lt;a href=&#34;https://serverless.com/framework/docs/providers/aws/guide/plugins/&#34;&gt;https://serverless.com/framework/docs/providers/aws/guide/plugins/&lt;/a&gt;) que
-adicionan funcionalidades que van desde nueva sintáxis para algunos aspectos a
-acceso a características especiales del proveedor que estemos utilizando. Antes
-de lanzarte a crear un script o [lastimar a una cabra]
-(&lt;a href=&#34;https://en.wikipedia.org/wiki/Animal_sacrifice&#34;&gt;https://en.wikipedia.org/wiki/Animal_sacrifice&lt;/a&gt;) deberías consultar si alguien a
-&lt;a href=&#34;https://www.npmjs.com/search?q=serverless&#34;&gt;creado un plugin&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&#34;contenido-en-la-plantilla-segn-condiciones&#34;&gt;Contenido en la plantilla según condiciones.&lt;/h2&gt;
-&lt;p&gt;Serverless no tiene soporte para evaluación condicional de plantillas así que si
-pretendes crear contenido basado por ejemplo en el &lt;strong&gt;stage&lt;/strong&gt; del despliegue
-puedes hacer algo como esto:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span class=&#34;c&#34;&gt;# stage_properties-qa.yml&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;functions&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;qa_function&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;handler&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;MyQaHandler&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span class=&#34;c&#34;&gt;# stage_properties-prod.yml&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;functions&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;prod_function&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;        &lt;/span&gt;handler&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;MyProdHandler&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-yml&#34; data-lang=&#34;yml&#34;&gt;&lt;span class=&#34;c&#34;&gt;# serverless.yml&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;custom&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;    &lt;/span&gt;stage&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${opt&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;stage&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;qa&amp;#34;&lt;/span&gt;}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;w&#34;&gt;&lt;/span&gt;functions&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;&lt;span class=&#34;w&#34;&gt; &lt;/span&gt;${file(stage_properties-${self&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;custom.stage}.yml)&lt;span class=&#34;p&#34;&gt;:&lt;/span&gt;functions}&lt;span class=&#34;w&#34;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ahora tienes contenido en &lt;code&gt;functions&lt;/code&gt; acorde al valor del &lt;strong&gt;stage&lt;/strong&gt; si usas
-varios entornos de configuración esta estructura te puede ahorrar mucho trabajo
-y posibles complicaciones.&lt;/p&gt;
-&lt;h2 id=&#34;otras-pistas-o-trucos&#34;&gt;Otras pistas o trucos.&lt;/h2&gt;
-&lt;p&gt;¿Tienes otras pistas o trucos? Por favor compartelas en los comentarios&lt;/p&gt;
-</description>
+      <description>Algunas buenas practicas para Serverless Framework Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
+Reducir la dependencia de valores externos. En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es común utilizar referencias a valores externos por toda la plantilla.
+functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${env:FUNC_PREFIX}-worldhandler:handler.worldAunque esto no es una mala practica en si, hace que nuestras funciones dependan de un valor que solo vamos a obtener desde el entorno.</description>
     </item>
     
   </channel>

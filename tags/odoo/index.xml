@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>odoo on /home/yorodm</title>
@@ -5,175 +6,15 @@
     <description>Recent content in odoo on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 -0500</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/odoo/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/odoo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creando widgets para Odoo (Parte 1)</title>
       <link>https://yorodm.github.io/blog/creando-widgets-odoo/</link>
       <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
-      <description>&lt;h1 id=&#34;creando-widgets-para-odoo-parte-1&#34;&gt;Creando widgets para Odoo (Parte 1).&lt;/h1&gt;
-&lt;p&gt;Después de semanas de inactividad regreso con una de [Odoo 10]
-(&lt;a href=&#34;http://www.odoo.com),&#34;&gt;http://www.odoo.com),&lt;/a&gt; como ya hay bastantes sitios por ahí dedicados a explicar
-causas y razones de lo que se puede hacer con &lt;strong&gt;Python&lt;/strong&gt; desde el &lt;em&gt;backend&lt;/em&gt; voy
-a centrarme en el trabajo con &lt;strong&gt;Javascript&lt;/strong&gt; y el &lt;em&gt;frontend&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;En este artículo vamos a crear un nuevo &lt;em&gt;widget&lt;/em&gt; para manejar campos enteros y
-de coma flotante en la vista (la parte V de MV*). Aunque pueda parecer un
-ejemplo simple, surgió de la necesidad real de proveer campos numéricos limitados
-en un rango de una forma explicita, sencilla y agradable para el usuario.&lt;/p&gt;
-&lt;h2 id=&#34;comenzando-el-proyecto&#34;&gt;Comenzando el proyecto.&lt;/h2&gt;
-&lt;p&gt;Para poder reutilizar el &lt;em&gt;widget&lt;/em&gt;, vamos a crear un &lt;em&gt;addon&lt;/em&gt; que contenga las
-bibliotecas y el código necesario para hacerlo funcionar. Empecemos creando el
-esqueleto del módulo:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;$ odoo-bin scaffold widget-slider
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Añadimos la descripción del &lt;em&gt;addon&lt;/em&gt;, lo definimos como instalable, ponemos una
-categoría válida e incluimos *&lt;em&gt;web&lt;/em&gt; como dependencia. Continuando.&lt;/p&gt;
-&lt;h2 id=&#34;bibliotecas-externas&#34;&gt;Bibliotecas externas&lt;/h2&gt;
-&lt;p&gt;Nuestro &lt;em&gt;widget&lt;/em&gt; tiene una sola dependencia externa: [Bootstrap Slider]
-(&lt;a href=&#34;https://github.com/seiyria/bootstrap-slider/)&#34;&gt;https://github.com/seiyria/bootstrap-slider/)&lt;/a&gt;. Normalmente utilizaríamos
-&lt;strong&gt;Bower&lt;/strong&gt; o &lt;strong&gt;NPM&lt;/strong&gt; para manejar las dependencias de proyectos &lt;strong&gt;Javascript&lt;/strong&gt;,
-pero para algo tan pequeño no es necesario, basta con descargar el &lt;em&gt;release&lt;/em&gt; de
-la biblioteca y los archivos para &lt;em&gt;static/lib&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Para hacer estos archivos disponibles en el &lt;em&gt;backend&lt;/em&gt; extenderemos la plantilla
-&lt;em&gt;web.assets_backend&lt;/em&gt;. Modifiquemos el archivo autogenerado &lt;em&gt;templates.xml&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;   &lt;span class=&#34;nt&#34;&gt;&amp;lt;template&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;assets_backend&amp;#34;&lt;/span&gt;
-       &lt;span class=&#34;na&#34;&gt;name=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;web_widget_slider_assets&amp;#34;&lt;/span&gt;
-       &lt;span class=&#34;na&#34;&gt;inherit_id=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;web.assets_backend&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;xpath&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;expr=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;.&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;position=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;inside&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;&amp;gt;&lt;/span&gt;
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;rel=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt;
-                &lt;span class=&#34;na&#34;&gt;href=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/widget-slider/static/lib/css/bootstrap-slider.css&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
-            &lt;span class=&#34;nt&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;
-                &lt;span class=&#34;na&#34;&gt;src=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/widget-slider/static/lib/js/bootstrap-slider.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
-        &lt;span class=&#34;nt&#34;&gt;&amp;lt;/xpath&amp;gt;&lt;/span&gt;
-    &lt;span class=&#34;nt&#34;&gt;&amp;lt;/template&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h2 id=&#34;javascript-dentro-de-odoo-para-novatos&#34;&gt;Javascript dentro de Odoo (para novatos).&lt;/h2&gt;
-&lt;p&gt;Ya tenemos lo necesario para comenzar con nuestro &lt;em&gt;widget&lt;/em&gt; ahora solo queda
-escribir el código necesario para inicializar el plugin.&lt;/p&gt;
-&lt;p&gt;Lo primero que debes saber para trabajar con &lt;strong&gt;Javascript&lt;/strong&gt; en &lt;strong&gt;Odoo&lt;/strong&gt; es que a
-la versión 10 utiliza un concepto de módulos muy parecido a &lt;strong&gt;requirejs&lt;/strong&gt;.
-Supongamos que tenemos un módulo &lt;em&gt;validar&lt;/em&gt; donde incluimos utilitarios para el
-resto de nuestros &lt;em&gt;addons&lt;/em&gt; y ahí exportamos una función &lt;em&gt;check_int&lt;/em&gt;.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;nx&#34;&gt;odoo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;define&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;validar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;enteros&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;s2&#34;&gt;&amp;#34;use strict&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;!&lt;/span&gt;&lt;span class=&#34;nb&#34;&gt;Number&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isInteger&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;throw&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;new&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;TypeError&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;El valor no es entero&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;k&#34;&gt;else&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;val&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;En otro &lt;em&gt;addon&lt;/em&gt; (o simplemente otro módulo) tendríamos algo parecido a:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;nx&#34;&gt;odoo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;define&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;otro_addon&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;otro_servicio&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;, function(require){
-&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;
-&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;    valida_enteros = require(&amp;#39;&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;web_validar&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;enteros&lt;/span&gt;&lt;span class=&#34;err&#34;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;check_int&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Resto del código
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Si eres más de &lt;em&gt;backend&lt;/em&gt; piensa en todo esto como:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Una versíon &lt;strong&gt;Javascript&lt;/strong&gt; de &lt;em&gt;self.env[&amp;ldquo;modelo&amp;rdquo;]&lt;/em&gt;&lt;/li&gt;
-&lt;li&gt;Una forma fiable de declarar dependencias sin importar el orden en que
-carguen los archivos.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;La desventaja de este sistema es que es la única forma de acceder a los
-componentes que brinda el &lt;em&gt;framework&lt;/em&gt;, lo que lleva a muchas veces tener que
-crear &lt;em&gt;wrappers&lt;/em&gt; aún alrededor de funcionalidades sencillas.&lt;/p&gt;
-&lt;h2 id=&#34;clases-herencia-widgets&#34;&gt;Clases, herencia, widgets&lt;/h2&gt;
-&lt;p&gt;Otro punto a tener en cuenta es la programación orientada a objetos. Conceptos
-tan familiares como clases, objetos y herencia tienen un enfoque &amp;ldquo;alternativo&amp;rdquo;
-en &lt;strong&gt;Javascript&lt;/strong&gt;. Los desarrolladores de &lt;strong&gt;Odoo&lt;/strong&gt; siguieron la idea de
-&lt;strong&gt;BackboneJS&lt;/strong&gt; de implementar el modelo de [herencia de John Resig]
-(&lt;a href=&#34;http://ejohn.org/&#34;&gt;http://ejohn.org/&lt;/a&gt;)&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Las clases se definen heredando de &lt;em&gt;Class&lt;/em&gt; o de alguna de sus hijas.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;extend()&lt;/em&gt; se utiliza para heredar de una clase, como parámetro acepta
-objetos (o diccionarios que es lo mismo).&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;init()&lt;/em&gt; actúa como constructor.&lt;/li&gt;
-&lt;li&gt;&lt;em&gt;include()&lt;/em&gt; permite modificar clases (a lo &lt;em&gt;monkey patch&lt;/em&gt;)&lt;/li&gt;
-&lt;li&gt;Cuando utilizamos &lt;em&gt;extend()&lt;/em&gt; o &lt;em&gt;include()&lt;/em&gt;, cada método que se redefina puede
-utilizar &lt;em&gt;this._super()&lt;/em&gt; para acceder a la implementación original.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Tomando un ejemplo del código de Odoo&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// Definimos una clase Person
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Class&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;isDancing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-     &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dancing&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;isDancing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;dance&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-     &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;dancing&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
- &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-&lt;span class=&#34;c1&#34;&gt;// Y ahora una clase Ninja
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Ninja&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;Person&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;init&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kc&#34;&gt;false&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-  &lt;span class=&#34;nx&#34;&gt;swingSword&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;kc&#34;&gt;true&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-  &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
- &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Siguiendo este modelo, cada &lt;em&gt;widget&lt;/em&gt; es una clase que hereda de &lt;em&gt;web.Widget&lt;/em&gt;
-y algún que otro &lt;em&gt;mixin&lt;/em&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;creando-un-slider-para-valores-enteros&#34;&gt;Creando un slider para valores enteros.&lt;/h2&gt;
-&lt;p&gt;En vez de crear nuestro &lt;em&gt;slider&lt;/em&gt; desde el inicio, aprovechemos que existe una
-clase encargada de manejar campos numéricos y heredemos de ella. Creemos el
-archivo &lt;em&gt;static/src/js/widget_slider.js&lt;/em&gt; con el siguiente contenido.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-js&#34; data-lang=&#34;js&#34;&gt;&lt;span class=&#34;nx&#34;&gt;odoo&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;define&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;web_slider.form&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-    &lt;span class=&#34;s2&#34;&gt;&amp;#34;use strict&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;core&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;web.core&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldFloat&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;require&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;web.form_widgets&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;FieldFloat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-
-    &lt;span class=&#34;c1&#34;&gt;// Heredamos de esta clase para aprovechar toda la
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// maquinaria de inicialización.
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;kd&#34;&gt;var&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldFloat&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;extend&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;c1&#34;&gt;// Método que se invoca cuando se va a mostrar
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;c1&#34;&gt;// el widget
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nx&#34;&gt;initialize_content&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;kd&#34;&gt;function&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;_super&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-            &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wrapped&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;$el&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;options&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-            &lt;span class=&#34;c1&#34;&gt;// Desabilitar el slider si está en modo
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;c1&#34;&gt;// solo lectura
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;            &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;get&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;effective_readonly&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-                &lt;span class=&#34;k&#34;&gt;this&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;wrapped&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;slider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s2&#34;&gt;&amp;#34;disable&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-            &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt;
-
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;c1&#34;&gt;// Registramos nuestro widget como disponible para
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;c1&#34;&gt;// las vistas de formulario
-&lt;/span&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;nx&#34;&gt;core&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;form_widget_registry&lt;/span&gt;
-        &lt;span class=&#34;p&#34;&gt;.&lt;/span&gt;&lt;span class=&#34;nx&#34;&gt;add&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;s1&#34;&gt;&amp;#39;slider&amp;#39;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-    &lt;span class=&#34;k&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
-        &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;:&lt;/span&gt; &lt;span class=&#34;nx&#34;&gt;FieldSlider&lt;/span&gt;
-    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Ahora modifiquemos nuestra plantilla de &lt;em&gt;assets&lt;/em&gt; para que cargue este archivo.&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-xml&#34; data-lang=&#34;xml&#34;&gt;&lt;span class=&#34;nt&#34;&gt;&amp;lt;script&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;type=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;text/javascript&amp;#34;&lt;/span&gt;
-                &lt;span class=&#34;na&#34;&gt;src=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;/widget-slider/static/src/js/widget-slider.js&amp;#34;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;/&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Instalemos el addon, activemos el modo desarrollador y probemos cambiar
-cualquier campo de una vista formulario añadiendo &lt;em&gt;widget=slider&lt;/em&gt; a la
-declaración.&lt;/p&gt;
-&lt;h2 id=&#34;resumiendo&#34;&gt;Resumiendo.&lt;/h2&gt;
-&lt;p&gt;Crear un nuevo &lt;em&gt;widget&lt;/em&gt; no es un proceso complejo, cada componente del
-&lt;em&gt;framework&lt;/em&gt; está diseñado de modo en que extender, modificar o añadir
-funcionalidades sea un proceso sencillo para cualquiera con conocimientos de
-&lt;strong&gt;Javascript&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;Dicho esto, a pesar de que existe [una guía oficial]
-(&lt;a href=&#34;http://www.odoo.com/documentation/10.0/index.html),&#34;&gt;http://www.odoo.com/documentation/10.0/index.html),&lt;/a&gt; no es para nada completa y
-en la mayoría de los casos la única solución a la pregunta &amp;ldquo;qué es lo que hace
-esto&amp;rdquo; es recurrir al código fuente del hasta dar con lo que buscamos.&lt;/p&gt;
-</description>
+      <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de [Odoo 10] (http://www.odoo.com), como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
+En este artículo vamos a crear un nuevo widget para manejar campos enteros y de coma flotante en la vista (la parte V de MV*).</description>
     </item>
     
   </channel>

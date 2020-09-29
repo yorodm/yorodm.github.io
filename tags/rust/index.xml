@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>rust on /home/yorodm</title>
@@ -5,49 +6,16 @@
     <description>Recent content in rust on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 20 Jan 2020 11:50:59 -0500</lastBuildDate>
-    
-        <atom:link href="https://yorodm.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Mon, 20 Jan 2020 11:50:59 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>awstail: AWS Logs a la vieja usanza</title>
       <link>https://yorodm.github.io/blog/awstail/</link>
       <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/awstail/</guid>
-      <description>&lt;p&gt;&lt;a href=&#34;https://github.com/yorodm/awstail&#34;&gt;awstail&lt;/a&gt; es una herramienta muy simple que cumple dos funciones:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Darme la excusa para aprender &lt;strong&gt;Rust&lt;/strong&gt;.&lt;/li&gt;
-&lt;li&gt;Monitorear un grupo de logs en &lt;code&gt;AWS Cloudwatch&lt;/code&gt; desde la terminal.&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Por el momento, estas son las opciones que permite la herramienta:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-console&#34; data-lang=&#34;console&#34;&gt;awstail 0.3.0
-Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt;
-like tail -f for AWS Cloudwatch
-
-USAGE:
-    awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt;
-
-FLAGS:
-    -h, --help       Prints help information
-    -V, --version    Prints version information
-
-OPTIONS:
-    -p &amp;lt;PROFILE&amp;gt;        Profile if using other than &#39;default&#39;
-    -r &amp;lt;REGION&amp;gt;         AWS region (defaults to us-east-1)
-    -s &amp;lt;SINCE&amp;gt;          Take logs since a given time (defaults to 5 minutes)
-    -w &amp;lt;WATCH&amp;gt;          Keep watching for new logs every n seconds (defaults to 10)
-
-ARGS:
-    &amp;lt;LOG_GROUP&amp;gt;    Log group name
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Posibles opciones futuras:&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;Agregar logs de más de un grupo.&lt;/li&gt;
-&lt;li&gt;Color diferenciado para mensajes de error.&lt;/li&gt;
-&lt;li&gt;Listar grupos de logs existentes.&lt;/li&gt;
-&lt;/ol&gt;
-</description>
+      <description>awstail es una herramienta muy simple que cumple dos funciones:
+ Darme la excusa para aprender Rust. Monitorear un grupo de logs en AWS Cloudwatch desde la terminal.  Por el momento, estas son las opciones que permite la herramienta:
+awstail 0.3.0 Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt; like tail -f for AWS Cloudwatch USAGE: awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt; FLAGS: -h, --help Prints help information -V, --version Prints version information OPTIONS: -p &amp;lt;PROFILE&amp;gt; Profile if using other than &#39;default&#39; -r &amp;lt;REGION&amp;gt; AWS region (defaults to us-east-1) -s &amp;lt;SINCE&amp;gt; Take logs since a given time (defaults to 5 minutes) -w &amp;lt;WATCH&amp;gt; Keep watching for new logs every n seconds (defaults to 10) ARGS: &amp;lt;LOG_GROUP&amp;gt; Log group name Posibles opciones futuras:</description>
     </item>
     
   </channel>
