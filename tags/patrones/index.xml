@@ -13,7 +13,7 @@
       <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
       
       <guid>https://yorodm.github.io/blog/rust-pipeline-pattern/</guid>
-      <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas, donde cada etapa toma como entrada la salida de la etapa anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
+      <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
 Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.</description>
     </item>
     

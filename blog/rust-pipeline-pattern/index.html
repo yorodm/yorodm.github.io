@@ -24,7 +24,7 @@
 
 
 <meta name="twitter:title" content="Pipelines en Rust (I)"/>
-<meta name="twitter:description" content="Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas, donde cada etapa toma como entrada la salida de la etapa anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
+<meta name="twitter:description" content="Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
 Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia."/>
 
 <link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
@@ -63,8 +63,8 @@ Go es un lenguaje especialmente capacitado para programar pipelines debido a sus
 5 minuto(s) de lectura.
 <br/><br/>
 <p><strong>Pipeline</strong> es un patrón de diseño muy útil cuando tienes datos que
-deben ser procesados en una secuencia de etapas, donde cada etapa toma
-como entrada la salida de la etapa anterior. En cierta manera un
+deben ser procesados en una secuencia de etapas donde cada etapa toma
+como entrada la salida de la anterior. En cierta manera un
 pipeline es similar a <em>componer funciones</em> pero el nivel de
 complejidad es mucho más elevado debido a factores como <em>backpressure</em>,
 <em>deadlocks</em> o cancelación.</p>
@@ -109,7 +109,7 @@ su valor de entrada por un número dado.</p>
 </span></code></pre></div><h2 id="paso-2-pipeline">Paso 2: Pipeline</h2>
 <p>Ahora solo tenemos que encadenar los pasos para formar un pipeline.
 Ya que tenemos un número variable de pasos y todos implementan el
-mismo <code>trait</code>, podemos guardarlos en un vector de <code>trait object</code></p>
+mismo <code>trait</code>, podemos guardarlos en un vector de <em>trait objects</em></p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">dyn</span><span class="w"> </span><span class="n">Step</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
