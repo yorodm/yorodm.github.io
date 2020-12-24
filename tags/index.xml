@@ -6,7 +6,25 @@
     <description>Recent content in Tags on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Tue, 06 Oct 2020 17:45:15 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 24 Dec 2020 13:27:39 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>patrones</title>
+      <link>https://yorodm.github.io/tags/patrones/</link>
+      <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/patrones/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://yorodm.github.io/tags/rust/</link>
+      <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>emacs</title>
       <link>https://yorodm.github.io/tags/emacs/</link>
@@ -76,15 +94,6 @@
       <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
       <guid>https://yorodm.github.io/tags/cloudwatch-logs/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rust</title>
-      <link>https://yorodm.github.io/tags/rust/</link>
-      <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/rust/</guid>
       <description></description>
     </item>
     

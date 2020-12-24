@@ -20,3 +20,12 @@ h2::after {
   border-bottom: 1px solid;
   margin-top: 5px;
 }
+
+section.footnotes ol {
+	counter-reset: footnotes;
+}
+
+section.footnotes ol li::before {
+    content: counters(footnotes, ".") ". ";
+    counter-increment: footnotes;
+}

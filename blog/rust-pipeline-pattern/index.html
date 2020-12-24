@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>/home/yorodm/blog/rust-pipeline-pattern/</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
+    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
+    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="Pipelines en Rust (I)" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yorodm.github.io/blog/rust-pipeline-pattern/" /><meta property="article:published_time" content="2020-12-24T13:27:39-05:00" />
+
+
+
+<meta name="twitter:title" content="Pipelines en Rust (I)"/>
+<meta name="twitter:description" content="Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas, donde cada etapa toma como entrada la salida de la etapa anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
+Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia."/>
+
+<link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+<link rel="stylesheet" href="https://yorodm.github.io/css/site.css">
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="https://yorodm.github.io/" class="no-style ">/home/yorodm</a>:~# 
+              <a href='https://yorodm.github.io/blog'>blog</a>/<a href='https://yorodm.github.io/blog/rust-pipeline-pattern'>rust-pipeline-pattern</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                <li><a href="https://yorodm.github.io/about/" typeof="ListItem">about/</a></li>
+                
+                <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
+
+    <div class="container animated zoomIn fast">
+        
+<h1>Pipelines en Rust (I)</h1>
+
+<time class="post-date" datetime="2020-12-24T13:27:39-05:00">24 Dic 2020
+</time>
+ 
+
+  <a href="https://yorodm.github.io/tags/rust/">rust</a>, <a href="https://yorodm.github.io/tags/patrones/">patrones</a>
+5 minuto(s) de lectura.
+<br/><br/>
+<p><strong>Pipeline</strong> es un patrón de diseño muy útil cuando tienes datos que
+deben ser procesados en una secuencia de etapas, donde cada etapa toma
+como entrada la salida de la etapa anterior. En cierta manera un
+pipeline es similar a <em>componer funciones</em> pero el nivel de
+complejidad es mucho más elevado debido a factores como <em>backpressure</em>,
+<em>deadlocks</em> o cancelación.</p>
+<p><strong>Go</strong> es un lenguaje especialmente capacitado para programar
+pipelines debido a sus características especiales para el manejo de
+errores y concurrencia. Pero ¿cómo sería usar pipelines en <strong>Rust</strong>?
+En este post vamos a:</p>
+<ol>
+<li>Definir las estructuras necesarias para crear pipelines.</li>
+<li>Hacer uso del sistema de tipos del lenguaje para nuestras ventajas.</li>
+<li>Hablar un poco de concurrencia usando hilos.</li>
+</ol>
+<h2 id="paso-1-el-trait-step">Paso 1: El <code>trait Step</code></h2>
+<p>En el mejor espíritu de <strong>Rust</strong> hagamos un trait que represente la
+capacidad de formar parte de un pipeline. Vamos a llamarle <code>Step</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">trait</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">pub</span><span class="w"> </span><span class="n">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">Self</span>::<span class="n">Item</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Self</span>::<span class="n">Item</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Hecho, hasta la próxima. O&hellip; mejor aún, miremos más de cerca la
+definición de <code>Step</code>.</p>
+<p>Es un <code>trait</code> bastante sencillo. Tiene un tipo asociado <code>Item</code> y una
+función <code>run</code> que acepta y retorna <code>Item</code>. La forma en que la función
+está especificada no permite que <code>Item</code> sea una referencia. Y
+finalmente <code>it</code> no es mutable, por lo que el parámetro de entrada es
+<em>consumido</em> por la función y el valor de retorno es generado por ella.</p>
+<p><code>Step</code> es muy simple de implementar, veamos un ejemplo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">value</span>: <span class="kt">u8</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u8</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="kt">u8</span> <span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">it</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Podemos usar <code>Multiplier</code> para crear pasos que&hellip; bueno, multipliquen
+su valor de entrada por un número dado.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="kd">let</span><span class="w"> </span><span class="n">by2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Multiplier</span><span class="p">{</span><span class="n">value</span>:<span class="mi">2</span><span class="p">};</span><span class="w">
+</span><span class="w"></span><span class="n">println</span><span class="o">!</span><span class="p">(</span><span class="s">&#34;Multiplicado por 2 {0}&#34;</span><span class="p">,</span><span class="w"> </span><span class="n">by2</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="c1">// 10
+</span></code></pre></div><h2 id="paso-2-pipeline">Paso 2: Pipeline</h2>
+<p>Ahora solo tenemos que encadenar los pasos para formar un pipeline.
+Ya que tenemos un número variable de pasos y todos implementan el
+mismo <code>trait</code>, podemos guardarlos en un vector de <code>trait object</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">pub</span><span class="w"> </span><span class="k">struct</span> <span class="nc">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="n">v</span>: <span class="nb">Vec</span><span class="o">&lt;</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">dyn</span><span class="w"> </span><span class="n">Step</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;&gt;&gt;</span><span class="p">,</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>La implementación de <code>Pipeline</code> es extremadamente corta.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">new</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="n">Pipe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span>::<span class="n">new</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">add</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">x</span>: <span class="nc">impl</span><span class="w"> </span><span class="n">Step</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">&#39;static</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">v</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="nb">Box</span>::<span class="n">new</span><span class="p">(</span><span class="n">x</span><span class="p">));</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Un detalle en <code>add</code>: para adicionar un <code>Step</code>, debemos asegurarnos que
+<em>viva</em> lo suficiente<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>, por lo que indicamos con <code>'static</code>. Por
+cuestiones de estilo (y pensando en el futuro) podemos hacer que <code>Pipeline</code>
+se comporte como cualquier otro <code>Step</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="n">todo</span><span class="o">!</span><span class="p">()</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Listo, tenemos la capacidad de hacer <em>subpipelines</em> y sólo nos ha
+costado unas líneas. La operación dentro de <code>run</code> es tan simple como
+hacer un <code>fold</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">T</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="bp">self</span><span class="p">.</span><span class="n">v</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">fold</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="w"> </span><span class="o">|</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">acc</span><span class="p">))</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Hagamos un pequeña prueba<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="cp">#[test]</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">test_pipeline</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pipeline</span>::<span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span>: <span class="mi">2</span><span class="w"> </span><span class="p">});</span><span class="w">
+</span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span>: <span class="mi">5</span><span class="w"> </span><span class="p">});</span><span class="w">
+</span><span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="mi">100</span><span class="p">);</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id="paso-3-pipelines-en-el-mundo-real">Paso 3: Pipelines en el mundo real.</h2>
+<p>Nuestras pipelines funcionan bastante bien en el mundo de las
+multiplicaciones de números pequeños, pero en el resto de los mundos
+existe algo llamado &ldquo;errores&rdquo; y con la definición actual (por muy
+elegante que sea) no tenemos modo de detectar si uno de los pasos
+falla. Es hora de sacar <code>Result</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">error</span>::<span class="n">Error</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">type</span> <span class="nc">StepResult</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Result</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">dyn</span><span class="w"> </span><span class="n">Error</span><span class="o">&gt;&gt;</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">trait</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">Self</span>::<span class="n">Item</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="n">Self</span>::<span class="n">Item</span><span class="o">&gt;</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u8</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">       </span><span class="nb">Ok</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">it</span><span class="p">)</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span></code></pre></div><p>Tener <code>Box&lt;dyn Error&gt;</code> nos da la garantía de poder manejar errores de
+cualquier tipo. La implementación de <code>Pipeline</code> debe tener esto en
+cuenta y <em>propagar</em> el estado de error hasta el resultado final.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">        </span><span class="bp">self</span><span class="p">.</span><span class="n">v</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">fold</span><span class="p">(</span><span class="nb">Ok</span><span class="p">(</span><span class="n">it</span><span class="p">),</span><span class="w"> </span><span class="o">|</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">and_then</span><span class="p">(</span><span class="o">|</span><span class="n">v</span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Hora de ajustar nuestra prueba.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="cp">#[test]</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">test_pipeline_ok</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pipeline</span>::<span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span>: <span class="mi">2</span><span class="w"> </span><span class="p">});</span><span class="w">
+</span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span>: <span class="mi">5</span><span class="w"> </span><span class="p">});</span><span class="w">
+</span><span class="w">    </span><span class="n">assert_eq</span><span class="o">!</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="nb">Ok</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Y crear una nueva para cuando algún <code>Step</code> falla.</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="nc">ErrStep</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ErrStep</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">	</span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u8</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w">	</span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>:<span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">	   </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;This will fail&#34;</span><span class="p">)</span><span class="o">?</span><span class="w">
+</span><span class="w">	</span><span class="p">}</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="k">fn</span> <span class="nf">test_pipeline_ok</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pipeline</span>::<span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span>::<span class="n">new</span><span class="p">();</span><span class="w">
+</span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span>: <span class="mi">2</span><span class="w"> </span><span class="p">});</span><span class="w">
+</span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ErrStep</span><span class="p">{});</span><span class="w">
+</span><span class="w">	</span><span class="n">assert</span><span class="o">!</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="n">is_err</span><span class="p">());</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><h2 id="pensando-en-paralelismo-y-concurrencia">Pensando en paralelismo y concurrencia.</h2>
+<p>Recuento:</p>
+<ol>
+<li>Tenemos la posibilidad de hacer un <code>Pipeline</code> compuesto de
+distintas implementaciones de <code>Step</code>.</li>
+<li>Tenemos la forma de propagar errores en el <code>Pipeline</code></li>
+</ol>
+<p>El próximo paso natural sería intentar usar nuestro diseño actual para
+ejecutar tareas <em>en paralelo</em>. Por desgracia, aún no hemos llegado a
+ese punto.</p>
+<p>Una de las ventajas de <strong>Rust</strong> es la garantía de que el compilador va
+a detectar problemas comunes de seguridad de hilos (ejemplo, acceder
+desde dos hilo distintos a la misma zona de memoria), para esto el la
+biblioteca estándard incluye marcadores como <code>Send</code> y <code>Sync</code>, o tipos
+especiales como <code>Arc</code>.</p>
+<p>Adicionalmente, en el espíritu de <a href="https://blog.golang.org/codelab-share">compartir
+comunicando</a>, los datos entre
+implementaciones de <code>Step</code> deberían pasar usando canales o colas
+concurrentes, esto ayudaría también con otros aspectos que mencionamos
+al inicio del artículo (como <em>backpressure</em>) pero que no tratamos por
+no ser necesarios para una implementación secuencial.</p>
+<h2 id="the-end">The end.</h2>
+<p>Con todos los puntos del plan cumplidos, me retiro hasta la próxima
+aventura. Mientras tanto si estás interesado en el tema de <em>pipelines</em>
+en <strong>Rust</strong> les recomiendo mirar
+<a href="https://crates.io/crates/pipelines">pipelines</a> o
+<a href="https://crates.io/crates/rayon">rayon</a>, ambas con implementaciones
+muy interesantes.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Aunque implementar <code>Step</code> para una referencia o un tipo con
+restricciones de tiempo de vida no es trivial, tampoco es
+imposible. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Las autoridades advierten que hacer pruebas unitarias
+<strong>después</strong> de escribir funcionalidades es malo para la salud. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+
+
+
+<h3>Artículos relacionados</h3>
+<ul>
+  
+  <li><a href="/blog/awstail/">awstail: AWS Logs a la vieja usanza</a></li>
+  
+</ul>
+
+
+        <div class="footer">
+  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(♥)
+  
+  // <a href="http://twitter.com/yorodm">Twitter</a>
+  
+  // <a href="http://github.com/yorodm">GitHub</a>
+  
+</div>
+
+    </div>
+  </body>
+</html>

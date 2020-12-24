@@ -5,14 +5,42 @@
         
         <url>
             <loc>https://yorodm.github.io/</loc>
-            <lastmod>2020-10-06T17:45:15-04:00</lastmod>
+            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/blog/</loc>
-            <lastmod>2020-10-06T17:45:15-04:00</lastmod>
+            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/patrones/</loc>
+            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/blog/rust-pipeline-pattern/</loc>
+            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/rust/</loc>
+            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/</loc>
+            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
         </url>
         
     
@@ -33,13 +61,6 @@
         
         <url>
             <loc>https://yorodm.github.io/tags/hugo/</loc>
-            <lastmod>2020-10-06T17:45:15-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/</loc>
             <lastmod>2020-10-06T17:45:15-04:00</lastmod>
         </url>
         
@@ -103,13 +124,6 @@
         
         <url>
             <loc>https://yorodm.github.io/tags/cloudwatch-logs/</loc>
-            <lastmod>2020-01-20T11:50:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/rust/</loc>
             <lastmod>2020-01-20T11:50:59-05:00</lastmod>
         </url>
         

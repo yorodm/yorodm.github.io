@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>patrones on /home/yorodm</title>
+    <link>https://yorodm.github.io/tags/patrones/</link>
+    <description>Recent content in patrones on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 24 Dec 2020 13:27:39 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/patrones/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pipelines en Rust (I)</title>
+      <link>https://yorodm.github.io/blog/rust-pipeline-pattern/</link>
+      <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern/</guid>
+      <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas, donde cada etapa toma como entrada la salida de la etapa anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
+Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.</description>
+    </item>
+    
+  </channel>
+</rss>
