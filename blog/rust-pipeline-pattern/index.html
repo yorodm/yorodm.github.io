@@ -190,18 +190,18 @@ cuenta y <em>propagar</em> el estado de error hasta el resultado final.</p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">struct</span> <span class="nc">ErrStep</span><span class="p">;</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">impl</span><span class="w"> </span><span class="n">Step</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">ErrStep</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">	</span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u8</span><span class="p">;</span><span class="w">
+</span><span class="w">    </span><span class="k">type</span> <span class="nc">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">u8</span><span class="p">;</span><span class="w">
 </span><span class="w">
-</span><span class="w">	</span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>:<span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">	   </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;This will fail&#34;</span><span class="p">)</span><span class="o">?</span><span class="w">
-</span><span class="w">	</span><span class="p">}</span><span class="w">
+</span><span class="w">    </span><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>:<span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">       </span><span class="nb">Err</span><span class="p">(</span><span class="s">&#34;This will fail&#34;</span><span class="p">)</span><span class="o">?</span><span class="w">
+</span><span class="w">    </span><span class="p">}</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">fn</span> <span class="nf">test_pipeline_ok</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pipeline</span>::<span class="o">&lt;</span><span class="kt">u8</span><span class="o">&gt;</span>::<span class="n">new</span><span class="p">();</span><span class="w">
 </span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Multiplier</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">value</span>: <span class="mi">2</span><span class="w"> </span><span class="p">});</span><span class="w">
 </span><span class="w">    </span><span class="n">p</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ErrStep</span><span class="p">{});</span><span class="w">
-</span><span class="w">	</span><span class="n">assert</span><span class="o">!</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="n">is_err</span><span class="p">());</span><span class="w">
+</span><span class="w">    </span><span class="n">assert</span><span class="o">!</span><span class="p">(</span><span class="n">p</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="n">is_err</span><span class="p">());</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><h2 id="pensando-en-paralelismo-y-concurrencia">Pensando en paralelismo y concurrencia.</h2>
 <p>Recuento:</p>
