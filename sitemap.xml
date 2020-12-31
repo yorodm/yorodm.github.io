@@ -5,14 +5,49 @@
         
         <url>
             <loc>https://yorodm.github.io/</loc>
-            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/blog/</loc>
-            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/blog/copy-queue-linux/</loc>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/copyq/</loc>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/linux/</loc>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/rust/</loc>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/tags/</loc>
+            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
         </url>
         
     
@@ -26,20 +61,6 @@
         
         <url>
             <loc>https://yorodm.github.io/blog/rust-pipeline-pattern/</loc>
-            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/rust/</loc>
-            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/</loc>
             <lastmod>2020-12-24T13:27:39-05:00</lastmod>
         </url>
         
@@ -468,13 +489,6 @@
         <url>
             <loc>https://yorodm.github.io/blog/desarrollo-emacs-go/</loc>
             <lastmod>2017-10-26T15:04:13-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/linux/</loc>
-            <lastmod>2017-10-24T10:55:56-04:00</lastmod>
         </url>
         
     

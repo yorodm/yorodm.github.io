@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>copyq on /home/yorodm</title>
+    <link>https://yorodm.github.io/tags/copyq/</link>
+    <description>Recent content in copyq on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Thu, 31 Dec 2020 00:54:30 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/copyq/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cola de Copia para Linux (I)</title>
+      <link>https://yorodm.github.io/blog/copy-queue-linux/</link>
+      <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/copy-queue-linux/</guid>
+      <description>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
+Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa.</description>
+    </item>
+    
+  </channel>
+</rss>

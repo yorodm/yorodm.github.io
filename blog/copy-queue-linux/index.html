@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>/home/yorodm/blog/copy-queue-linux/</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+    <meta name="googlebot" content="index,follow,snippet,archive">
+    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
+    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
+    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/console.css">
+    
+      <!--[if lt IE 9]>
+          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+       <meta property="og:title" content="Cola de Copia para Linux (I)" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yorodm.github.io/blog/copy-queue-linux/" /><meta property="article:published_time" content="2020-12-31T00:54:30-05:00" />
+
+
+
+<meta name="twitter:title" content="Cola de Copia para Linux (I)"/>
+<meta name="twitter:description" content="¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
+Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa."/>
+
+<link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
+<link rel="stylesheet" href="https://yorodm.github.io/css/site.css">
+</head>
+<body class="terminal">
+    <div class="container">
+        <div class="terminal-nav">
+          <header class="terminal-logo">
+            <div class="logo terminal-prompt">
+              
+              
+              <a href="https://yorodm.github.io/" class="no-style ">/home/yorodm</a>:~# 
+              <a href='https://yorodm.github.io/blog'>blog</a>/<a href='https://yorodm.github.io/blog/copy-queue-linux'>copy-queue-linux</a>/</div></header>
+          <nav class="terminal-menu">
+            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
+                
+                <li><a href="https://yorodm.github.io/about/" typeof="ListItem">about/</a></li>
+                
+                <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
+                
+            </ul>
+          </nav>
+        </div>
+    </div>
+
+    <div class="container animated zoomIn fast">
+        
+<h1>Cola de Copia para Linux (I)</h1>
+
+<time class="post-date" datetime="2020-12-31T00:54:30-05:00">31 Dic 2020
+</time>
+ 
+
+  <a href="https://yorodm.github.io/tags/rust/">rust</a>, <a href="https://yorodm.github.io/tags/linux/">linux</a>, <a href="https://yorodm.github.io/tags/copyq/">copyq</a>
+6 minuto(s) de lectura.
+<br/><br/>
+<p>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el
+casi no he podido atender el blog, por lo que se me ocurrió dejar algo
+interesante a modo de cierre.</p>
+<p>Hace ya unos cuantos meses ya surgió la idea en el <a href="https://t.me/blogswlx">Canal
+SWL-X</a> de hacer una pequeña utilidad en Linux
+para permitir colas de copia de ficheros. Estas utilidades son muy
+populares en otros sistemas operativos y algunos de los usuarios
+buscan migrar hacia tecnologías libres se sentían frustrados al no
+tener una alternativa.</p>
+<p>Después de varios experimentos (resultados variados) decidí volver a
+empezar desde 0 y ya de paso documentar el proceso de creación en el
+blog.</p>
+<p>En esta entrega hablaremos de:</p>
+<ol>
+<li>Copiar archivos en <strong>Linux</strong> usando <strong>libc</strong>.</li>
+<li><em>Buffers</em>.</li>
+<li>Alternativas a <code>read</code> y <code>write</code> de <strong>POSIX</strong></li>
+</ol>
+<h2 id="el-problema">El problema.</h2>
+<p>Para los que llevamos tiempo utilizando cualquier variante <strong>*nix</strong>
+<code>cp</code> es uno de esos comandos que no hay por que mejorar, pero las
+alternativas que proponen los entornos de escritorio dejan mucho que
+desear a aquellos que llegan de entornos <em>más agradables</em> (el lo
+personal estoy encantado con el gestor de ficheros de GNOME 3, pero
+cada cual con lo suyo)</p>
+<p>Otro problema radica en la velocidad de copia, muchas de estas
+herramientas en sistemas privativos anuncian incrementos
+significativos en la velocidad de transferencia de datos y sus
+usuarios juran que es así (nadie me ha mostrado un <em>benchmark</em>, pero
+la experiencia de los usuarios vale).</p>
+<p>Como buenos usuarios de Linux que somos nos lanzamos a buscar
+alternativas posibles (desde scripts hasta herramientas GUI para
+Rsync) hasta que alguien recomendó utilizar la versión Linux de
+<a href="https://github.com/alphaonex86/Ultracopier">Ultracopier</a> e intentar
+crear plugins para integrarla a los entornos de escritorio más populares.</p>
+<p>Aún así los usuarios de <strong>Ultracopier</strong> hablan de bajo rendimiento de
+la herramienta con respecto a su versión en Windows, por lo que varios
+miembros del canal nos lanzamos a la aventura de hacer (o investigar
+cómo se hace) una herramienta para colas de copia de ficheros que
+saque partido de todo lo que Linux tiene para ofrecer.</p>
+<h2 id="como-copiar-archivos-en-linux">Como copiar archivos en Linux.</h2>
+<p>Bueno, después de esta larga introducción vamos al problema que nos toca:
+¿Cómo programamos la copia de archivos en Linux?.</p>
+<p>En su forma más simple, copiar un archivo lleva unas pocas líneas de código <strong>C</strong>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">inputFd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+<span class="n">outputFd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&#34;bar.txt&#34;</span><span class="p">,</span> <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_WRONLY</span> <span class="o">|</span> <span class="n">O_TRUNC</span><span class="p">,</span> <span class="n">S_IRUSR</span> <span class="o">|</span> <span class="n">S_IWUSR</span><span class="p">);</span>
+<span class="c1">// Ignoremos por el momento el valor de BUF_SIZE y el tamaño de buf
+</span><span class="c1"></span><span class="k">while</span> <span class="p">((</span><span class="n">numRead</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">inputFd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">BUF_SIZE</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="n">outputFd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">numRead</span><span class="p">)</span> <span class="o">!=</span> <span class="n">numRead</span><span class="p">)</span>
+		<span class="n">fatal</span><span class="p">(</span><span class="s">&#34;write() returned error or partial write occurred&#34;</span><span class="p">);</span>
+</code></pre></div><p>O como decimos los usuarios de <strong>Rust</strong></p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="n">std</span>::<span class="n">fs</span>::<span class="n">copy</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;bar.txt&#34;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"> </span><span class="c1">// :)
+</span></code></pre></div><p>Pero teniendo en cuenta que queremos optimizar el funcionamiento de la copia
+lo más probable es que utilicemos el <em>crate</em> <code>libc</code> y hagamos nuestra versión
+del ciclo de copia:</p>
+<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">libc</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">input_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">output_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">File</span>::<span class="n">create</span><span class="p">(</span><span class="s">&#34;bar.txt&#34;</span><span class="p">)</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">read</span>: <span class="kt">isize</span> <span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="k">mut</span><span class="w"> </span><span class="n">written</span>: <span class="kt">isize</span> <span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w">
+</span><span class="w"></span><span class="k">loop</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">	 </span><span class="n">read</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">		</span><span class="n">read</span><span class="p">(</span><span class="n">input_fd</span><span class="p">.</span><span class="n">as_raw_fd</span><span class="p">(),</span><span class="n">buf</span><span class="p">.</span><span class="n">as_mut_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">*</span><span class="k">mut</span><span class="w"> </span><span class="n">c_void</span><span class="p">,</span><span class="w"> </span><span class="n">BUF_SIZE</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">isize</span><span class="w">
+</span><span class="w">	</span><span class="p">}</span><span class="w">
+</span><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">		</span><span class="k">break</span><span class="p">;</span><span class="w">
+</span><span class="w">	</span><span class="p">}</span><span class="w">
+</span><span class="w">	</span><span class="kd">let</span><span class="w"> </span><span class="n">written</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">unsafe</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">		</span><span class="n">libc</span>::<span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">.</span><span class="n">as_raw_fd</span><span class="p">(),</span><span class="w"> </span><span class="n">buf</span><span class="p">.</span><span class="n">as_mut_ptr</span><span class="p">()</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="o">*</span><span class="k">mut</span><span class="w"> </span><span class="n">libc</span>::<span class="n">c_void</span><span class="p">,</span><span class="w"> </span><span class="n">BUF_SIZE</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">usize</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="kt">isize</span><span class="w">
+</span><span class="w">	</span><span class="p">};</span><span class="w">
+</span><span class="w">	</span><span class="k">if</span><span class="w"> </span><span class="n">written</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">read</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="w">		</span><span class="k">break</span><span class="w">
+</span><span class="w">	</span><span class="p">}</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="p">}</span><span class="w">
+</span></code></pre></div><p>Si hacemos un diagrama sencillo de como fluyen los datos en esta
+variante sería algo como esto</p>
+<pre><code>          read      +------+    write
+      +------------&gt;+buffer+------------+
+      |             +------+            |
+      |                                 V
+  +---+---+                         +---+--+
+  |entrada|                         |salida|
+  +-------+                         +------+
+</code></pre><h2 id="qué-hay-de-importante-en-un-buffer">Qué hay de importante en un buffer.</h2>
+<p>Nuestro sencillo (pero genial) diagrama nos muestra algo interesante:
+el tamaño del <em>buffer</em> afecta la velocidad de todo el proceso.</p>
+<p>Si tenemos un archivo de 50mb y nuestro <em>buffer</em> es de 1mb
+necesitaremos ejecutar el ciclo de copia 50 veces. Si subimos el
+tamaño a 50mb tendremos una iteración. Podemos concluir entonces
+que 50mb es el tamaño especial para nuestro <em>buffer</em>.</p>
+<p>Para probar nuestra teoría veamos que tal funciona <code>cp</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ strace -s <span class="m">8</span> -xx cp /dev/urandom /dev/null <span class="p">|</span> grep <span class="nb">read</span>
+...
+read<span class="o">(</span>3, <span class="s2">&#34;\x61\xca\xf8\xff\x1a\xd6\x83\x8b&#34;</span>..., 131072<span class="o">)</span> <span class="o">=</span> <span class="m">131072</span>
+read<span class="o">(</span>3, <span class="s2">&#34;\xd7\x47\x8f\x09\xb2\x3d\x47\x9f&#34;</span>..., 131072<span class="o">)</span> <span class="o">=</span> <span class="m">131072</span>
+read<span class="o">(</span>3, <span class="s2">&#34;\x12\x67\x90\x66\xb7\xed\x0a\xf5&#34;</span>..., 131072<span class="o">)</span> <span class="o">=</span> <span class="m">131072</span>
+read<span class="o">(</span>3, <span class="s2">&#34;\x9e\x35\x34\x4f\x9d\x71\x19\x6d&#34;</span>..., 131072<span class="o">)</span> <span class="o">=</span> <span class="m">131072</span>
+</code></pre></div><p>Pues&hellip; 131072 bytes, básicamente 128kb, un aproximado de 400
+iteraciones para nuestro ciclo de copia. ¡Imagina copiar un archivo de
+5GB, o varios archivos igual de grandes!</p>
+<p>Antes de que reine el pánico tengo una confesión que hacer: el
+diagrama genial no cuenta toda la verdad. El proceso de lectura y
+escritura de archivos no ocurre en las funciones <code>read</code> y <code>write</code>,
+ocurre en el <strong>kernel</strong>.</p>
+<pre><code>          read      +------+    write
+      +------------&gt;+buffer+------------+
+      |             +------+            |
+      |                                 V
+  +---+---+                         +---+--+
+  |entrada|                         |salida|
+  +-------+                         +------+
+      |                                |
+      V                                V
+  +---+--------------------------------+---+
+  |             magia del kernel           |
+  +----------------------------------------+
+
+</code></pre><p>El trabajo real de lectura/escritura ocurre en el <strong>kernel</strong> del
+sistema operativo, esto implica que existe una transferencia de datos
+entre nuestra aplicación (ejecutándose en <em>user space</em>) y el núcleo
+(<em>kernel space</em>), con la corresponiente latencia en cada operación.</p>
+<p>Una vez que entramos en terrenos del <strong>kernel</strong> podemos pasar horas
+discutiendo sobre el <em>cache</em> de paginado, tamaño de bloques del
+sistema de archivos, sectores de disco y así sucesivamente <a href="https://en.wikipedia.org/wiki/Turtles_all_the_way_down">hasta
+encontrar la primera
+tortuga</a>, pero
+no tenemos tiempo para eso así que usaremos la sabiduría de los
+antiguos para establecer el tamaño del buffer en 4096 bytes. Aunque
+pueda parecer aleatorio este número está <a href="https://stackoverflow.com">respaldado por la
+ciencia</a> y por el momento, parece una
+apuesta segura<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
+<h2 id="más-allá-del-read-y-el-write">Más allá del read y el write.</h2>
+<p>Ahora que tenemos una idea de lo básico, podemos buscar alternativas
+más eficientes al ciclo <code>read/write</code>. Las opciones que nos brinda
+<strong>Linux</strong> son:</p>
+<ol>
+<li>Utilizar acceso directo mediante el flag <code>O_DIRECT</code> para acceder a
+los archivos para evitar el <em>cache</em> del sistema operativo.</li>
+<li>Usar <code>posix_fadvise</code> para que el sistema optimice el modo en que
+accedemos al archivo.</li>
+<li>Utilizar la <strong>API</strong> asíncrona para acceso a datos.</li>
+<li>La función <code>copy_file_range</code> que nos permite copiar datos desde un
+archivo a otro <em>sin</em> tener que intercambiar datos con el proceso en
+espacio usuario.</li>
+</ol>
+<p>Cada una de estas técnicas tiene sus pro y sus contra (incluso se
+pueden usar combinaciones entre ellas), pero como bien pueden imaginar
+no son un tema a tratar a la ligera así que explorar su factibilidad
+queda para otra aventura (con suerte en el Enero de este año nuevo).</p>
+<h2 id="the-end">The end.</h2>
+<p>Nada más que decir que desearles un año nuevo en el que puedan crecer
+como desarrolladores y como personas. Nuevo año, nuevas metas y ¡salud!.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>En el libro <em>The Linux Programming Interface</em>, capítulo 13 se
+pueden ver <em>benchmarks</em> con distintos tamaños de buffer así como una
+discusión más profunda sobre el tema. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+
+
+
+<h3>Artículos relacionados</h3>
+<ul>
+  
+  <li><a href="/blog/rust-pipeline-pattern/">Pipelines en Rust (I)</a></li>
+  
+  <li><a href="/blog/awstail/">awstail: AWS Logs a la vieja usanza</a></li>
+  
+  <li><a href="/blog/zfs-problema-memoria/">ZFS y el problema de la memoria</a></li>
+  
+</ul>
+
+
+        <div class="footer">
+  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(♥)
+  
+  // <a href="http://twitter.com/yorodm">Twitter</a>
+  
+  // <a href="http://github.com/yorodm">GitHub</a>
+  
+</div>
+
+    </div>
+  </body>
+</html>
