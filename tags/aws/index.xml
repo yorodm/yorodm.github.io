@@ -15,7 +15,7 @@
       <guid>https://yorodm.github.io/blog/awstail/</guid>
       <description>awstail es una herramienta muy simple que cumple dos funciones:
  Darme la excusa para aprender Rust. Monitorear un grupo de logs en AWS Cloudwatch desde la terminal.  Por el momento, estas son las opciones que permite la herramienta:
-awstail 0.3.0 Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt; like tail -f for AWS Cloudwatch USAGE: awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt; FLAGS: -h, --help Prints help information -V, --version Prints version information OPTIONS: -p &amp;lt;PROFILE&amp;gt; Profile if using other than &#39;default&#39; -r &amp;lt;REGION&amp;gt; AWS region (defaults to us-east-1) -s &amp;lt;SINCE&amp;gt; Take logs since a given time (defaults to 5 minutes) -w &amp;lt;WATCH&amp;gt; Keep watching for new logs every n seconds (defaults to 10) ARGS: &amp;lt;LOG_GROUP&amp;gt; Log group name Posibles opciones futuras:</description>
+awstail 0.3.0Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt;like tail -f for AWS CloudwatchUSAGE:awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt;FLAGS:-h, --help Prints help information-V, --version Prints version informationOPTIONS:-p &amp;lt;PROFILE&amp;gt; Profile if using other than &#39;default&#39;-r &amp;lt;REGION&amp;gt; AWS region (defaults to us-east-1)-s &amp;lt;SINCE&amp;gt; Take logs since a given time (defaults to 5 minutes)-w &amp;lt;WATCH&amp;gt; Keep watching for new logs every n seconds (defaults to 10)ARGS:&amp;lt;LOG_GROUP&amp;gt; Log group namePosibles opciones futuras:</description>
     </item>
     
     <item>
