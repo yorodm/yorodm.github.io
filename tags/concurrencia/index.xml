@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>concurrencia on /home/yorodm</title>
+    <link>https://yorodm.github.io/tags/concurrencia/</link>
+    <description>Recent content in concurrencia on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Wed, 17 Feb 2021 19:21:46 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/concurrencia/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Desarrollo en Golang: Futures/Promises</title>
+      <link>https://yorodm.github.io/blog/futures-go/</link>
+      <pubDate>Wed, 17 Feb 2021 19:21:46 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/futures-go/</guid>
+      <description>Entre las cosas que pienso adicionar al workshop de Go está un capítulo sobre patrones y técnicas para programación concurrente.
+Future es un objeto que representa el resultado de un cálculo que se ejecuta de forma concurrente. Las futures se utilizan cuando tenemos un valor que es costoso de obtener pero sabemos de antemano como calcularlo.
+Las facilidades de Go para manejar concurrencia hacen la implementación de futures en el lenguaje bastante sencilla.</description>
+    </item>
+    
+  </channel>
+</rss>

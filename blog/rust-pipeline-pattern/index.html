@@ -116,7 +116,7 @@ mismo <code>trait</code>, podemos guardarlos en un vector de <em>trait objects</
 </span></code></pre></div><p>La implementación de <code>Pipeline</code> es extremadamente corta.</p>
 <div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="k">fn</span> <span class="nf">new</span><span class="p">()</span><span class="w"> </span>-&gt; <span class="nc">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="w">        </span><span class="n">Pipe</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span>::<span class="n">new</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="w">        </span><span class="n">Pipeline</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">v</span>: <span class="nb">Vec</span>::<span class="n">new</span><span class="p">()</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="w">    </span><span class="p">}</span><span class="w">
 </span><span class="w">
 </span><span class="w">    </span><span class="k">fn</span> <span class="nf">add</span><span class="p">(</span><span class="o">&amp;</span><span class="k">mut</span><span class="w"> </span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">x</span>: <span class="nc">impl</span><span class="w"> </span><span class="n">Step</span><span class="o">&lt;</span><span class="n">Item</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">&#39;static</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -252,6 +252,8 @@ imposible. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21
 <h3>Artículos relacionados</h3>
 <ul>
   
+  <li><a href="/blog/futures-go/">Desarrollo en Golang: Futures/Promises</a></li>
+  
   <li><a href="/blog/copy-queue-linux/">Cola de Copia para Linux (I)</a></li>
   
   <li><a href="/blog/awstail/">awstail: AWS Logs a la vieja usanza</a></li>
@@ -269,7 +271,7 @@ imposible. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21
 
 
         <div class="footer">
-  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(♥)
+  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(❤)
   
   // <a href="http://twitter.com/yorodm">Twitter</a>
   
