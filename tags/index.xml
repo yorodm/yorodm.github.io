@@ -6,7 +6,43 @@
     <description>Recent content in Tags on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Wed, 17 Feb 2021 19:21:46 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>async</title>
+      <link>https://yorodm.github.io/tags/async/</link>
+      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/async/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patrones</title>
+      <link>https://yorodm.github.io/tags/patrones/</link>
+      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/patrones/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pipelines</title>
+      <link>https://yorodm.github.io/tags/pipelines/</link>
+      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/pipelines/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://yorodm.github.io/tags/rust/</link>
+      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>concurrencia</title>
       <link>https://yorodm.github.io/tags/concurrencia/</link>
@@ -26,15 +62,6 @@
     </item>
     
     <item>
-      <title>patrones</title>
-      <link>https://yorodm.github.io/tags/patrones/</link>
-      <pubDate>Wed, 17 Feb 2021 19:21:46 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/patrones/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>copyq</title>
       <link>https://yorodm.github.io/tags/copyq/</link>
       <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
@@ -49,15 +76,6 @@
       <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
       
       <guid>https://yorodm.github.io/tags/linux/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rust</title>
-      <link>https://yorodm.github.io/tags/rust/</link>
-      <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/rust/</guid>
       <description></description>
     </item>
     
