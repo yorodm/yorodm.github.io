@@ -52,7 +52,7 @@ Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herr
     <item>
       <title>Generadores y referencias</title>
       <link>https://yorodm.github.io/blog/generadores-referencias-python/</link>
-      <pubDate>Fri, 15 Dec 2017 00:00:00 -0500</pubDate>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/blog/generadores-referencias-python/</guid>
       <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
@@ -62,7 +62,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
     <item>
       <title>Pruebas funcionales con factory_boy y faker</title>
       <link>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</link>
-      <pubDate>Wed, 13 Dec 2017 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</guid>
       <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>

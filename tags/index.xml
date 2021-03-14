@@ -6,7 +6,34 @@
     <description>Recent content in Tags on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>oop</title>
+      <link>https://yorodm.github.io/tags/oop/</link>
+      <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/oop/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>patrones</title>
+      <link>https://yorodm.github.io/tags/patrones/</link>
+      <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/patrones/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rust</title>
+      <link>https://yorodm.github.io/tags/rust/</link>
+      <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
+      
+      <guid>https://yorodm.github.io/tags/rust/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>async</title>
       <link>https://yorodm.github.io/tags/async/</link>
@@ -17,29 +44,11 @@
     </item>
     
     <item>
-      <title>patrones</title>
-      <link>https://yorodm.github.io/tags/patrones/</link>
-      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/patrones/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>pipelines</title>
       <link>https://yorodm.github.io/tags/pipelines/</link>
       <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
       
       <guid>https://yorodm.github.io/tags/pipelines/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>rust</title>
-      <link>https://yorodm.github.io/tags/rust/</link>
-      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
-      
-      <guid>https://yorodm.github.io/tags/rust/</guid>
       <description></description>
     </item>
     
@@ -316,7 +325,7 @@
     <item>
       <title>javascript</title>
       <link>https://yorodm.github.io/tags/javascript/</link>
-      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/tags/javascript/</guid>
       <description></description>
@@ -325,7 +334,7 @@
     <item>
       <title>odoo</title>
       <link>https://yorodm.github.io/tags/odoo/</link>
-      <pubDate>Mon, 22 Jan 2018 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/tags/odoo/</guid>
       <description></description>
@@ -334,7 +343,7 @@
     <item>
       <title>testing</title>
       <link>https://yorodm.github.io/tags/testing/</link>
-      <pubDate>Wed, 13 Dec 2017 00:00:00 -0500</pubDate>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/tags/testing/</guid>
       <description></description>
@@ -343,7 +352,7 @@
     <item>
       <title>java</title>
       <link>https://yorodm.github.io/tags/java/</link>
-      <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/tags/java/</guid>
       <description></description>
@@ -352,7 +361,7 @@
     <item>
       <title>microframeworks</title>
       <link>https://yorodm.github.io/tags/microframeworks/</link>
-      <pubDate>Mon, 04 Dec 2017 00:00:00 -0500</pubDate>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 +0200</pubDate>
       
       <guid>https://yorodm.github.io/tags/microframeworks/</guid>
       <description></description>

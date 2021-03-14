@@ -6,7 +6,17 @@
     <description>Recent content in patrones on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/patrones/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/tags/patrones/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Mediator en Rust (I)</title>
+      <link>https://yorodm.github.io/blog/type-safe-mediator-rust/</link>
+      <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/type-safe-mediator-rust/</guid>
+      <description>Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
+MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .NET. Entre sus características más utilizadas está la posibilidad de comunicación entre componentes (in process) de forma sencilla.</description>
+    </item>
+    
     <item>
       <title>Pipelines en Rust (II)</title>
       <link>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</link>
