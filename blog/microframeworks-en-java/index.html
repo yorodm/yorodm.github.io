@@ -118,7 +118,7 @@ simple que nos permita adicionar, consultar y eliminar solicitudes de servicio
 <h3 id="paso-1-configurar-maven">Paso 1. Configurar Maven.</h3>
 <p>Como soy usuario de <strong>Maven</strong> y <strong>Eclipse</strong> me voy a crear un nuevo proyecto y
 adicionar la siguiente dependencia</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="nt">&lt;dependency&gt;</span>
     <span class="nt">&lt;groupId&gt;</span>org.rapidoid<span class="nt">&lt;/groupId&gt;</span>
     <span class="nt">&lt;artifactId&gt;</span>rapidoid-quick<span class="nt">&lt;/artifactId&gt;</span>
     <span class="nt">&lt;version&gt;</span>5.4.6<span class="nt">&lt;/version&gt;</span>
@@ -126,7 +126,7 @@ adicionar la siguiente dependencia</p>
 </code></pre></div><h3 id="paso-2-crear-mis-entidades">Paso 2. Crear mis entidades.</h3>
 <p><strong>Rapidoid Quick</strong> incluye <strong>Hibernate</strong>, <strong>JPA</strong> preconfigurados, así que no
 necesitamos mucho para crear entidades</p>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.yorodm.rapidoid_example.models</span><span class="o">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kn">package</span> <span class="nn">com.github.yorodm.rapidoid_example.models</span><span class="o">;</span>
 
 <span class="kn">import</span> <span class="nn">javax.persistence.Entity</span><span class="o">;</span>
 <span class="kn">import</span> <span class="nn">javax.persistence.GeneratedValue</span><span class="o">;</span>
@@ -147,7 +147,7 @@ necesitamos mucho para crear entidades</p>
     <span class="kd">public</span> <span class="n">String</span> <span class="n">description</span><span class="o">;</span>
 <span class="o">}</span>
 </code></pre></div><h3 id="paso-3-creando-mi-aplicación-y-rutas">Paso 3. Creando mi aplicación y rutas</h3>
-<div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
 
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
         <span class="n">App</span><span class="o">.</span><span class="na">bootstrap</span><span class="o">(</span><span class="n">args</span><span class="o">).</span><span class="na">auth</span><span class="o">()</span>
@@ -174,7 +174,7 @@ necesitamos mucho para crear entidades</p>
 <span class="o">}</span>
 </code></pre></div><h3 id="paso-4-configurando">Paso 4. Configurando.</h3>
 <p>Para la configuracion utilizamos <strong>YAML</strong> en <code>src/resources/config.yml</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">users</span><span class="p">:</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">users</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">root</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">roles</span><span class="p">:</span><span class="w">
 </span><span class="w">      </span>- <span class="l">administrator</span><span class="w">
@@ -183,7 +183,7 @@ necesitamos mucho para crear entidades</p>
 </span></code></pre></div><h3 id="paso-5-creando-un-jar-para-despliegue">Paso 5. Creando un jar para despliegue.</h3>
 <p>Vamos a configurar el plugin <code>shade</code> de <strong>Maven</strong> para crear un <em>uberjar</em> y
 hacernos la vida más fácil.</p>
-<div class="highlight"><pre class="chroma"><code class="language-xml" data-lang="xml">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml">
 <span class="nt">&lt;build&gt;</span>
   <span class="nt">&lt;plugins&gt;</span>
     <span class="nt">&lt;plugin&gt;</span>

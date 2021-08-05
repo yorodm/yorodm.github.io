@@ -60,7 +60,7 @@ Manos al Emacs. Una de las ventajas de Emacs es su extensibilidad, con un poco d
  
 
   <a href="https://yorodm.github.io/tags/emacs/">emacs</a>, <a href="https://yorodm.github.io/tags/hugo/">hugo</a>
-4 minuto(s) de lectura.
+3 minuto(s) de lectura.
 <br/><br/>
 <p>En el <a href="/blog/hugo-mode-emacs/">artículo anterior</a> (hace
 unos cuantos meses ya) estuve hablando sobre como comencé
@@ -80,7 +80,7 @@ comandos<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref
 <li>Visualizar en el entorno local cualquier cambio que se produzca.</li>
 </ul>
 <p>Con esto en mente podemos crear el esqueleto de las funciones</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">hugo-blog-new</span> <span class="p">(</span><span class="nv">path</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">hugo-blog-new</span> <span class="p">(</span><span class="nv">path</span><span class="p">)</span>
 	<span class="s">&#34;Create new content in PATH.&#34;</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">hugo-blog-publish</span> <span class="p">()</span>
 	<span class="s">&#34;Generate the site and commit everything.&#34;</span><span class="p">)</span>
@@ -94,7 +94,7 @@ comandos<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref
 <li>La raiz del proyecto del blog.</li>
 <li>El nombre del <em>buffer</em> que usaremos para interactuar con el comando.</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defgroup</span> <span class="nv">hugo-blog</span> <span class="no">nil</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defgroup</span> <span class="nv">hugo-blog</span> <span class="no">nil</span>
   <span class="s">&#34;Hugo blog mode customizations&#34;</span>
   <span class="nb">:group</span> <span class="ss">&#39;tools</span><span class="p">)</span>
 
@@ -122,7 +122,7 @@ del shell. La forma simple sería ejecutar los <em>scripts</em> de shell que
 tenemos definidos, pero es mucho más interesante reproducir la
 funcionalidad en Elisp. Veamos por ejemplo como podemos ejecutar
 <code>hugo</code> y capturar la salida en busca de mensajes de error.</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">hugo-blog-run-command</span> <span class="p">(</span><span class="nv">command</span> <span class="nv">parameters</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">defun</span> <span class="nv">hugo-blog-run-command</span> <span class="p">(</span><span class="nv">command</span> <span class="nv">parameters</span><span class="p">)</span>
   <span class="s">&#34;Run COMMAND with PARAMETERS with </span><span class="ss">`hugo-blog-project&#39;</span><span class="s"> as working directory.
 </span><span class="s">Returns the command&#39;s output as a string&#34;</span>
   <span class="p">(</span><span class="nv">cd</span> <span class="nv">hugo-blog-project</span><span class="p">)</span>
@@ -138,7 +138,7 @@ funcionalidad en Elisp. Veamos por ejemplo como podemos ejecutar
 </code></pre></div><p>La función retorna <code>nil</code> en caso de error o el mensaje resultado de la
 llamada en otro caso</p>
 <p>Así mismo podemos definir el resto de las funciones necesarias.</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;git</span><span class="p">)</span> <span class="c1">;; git related functions</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;git</span><span class="p">)</span> <span class="c1">;; git related functions</span>
 
 <span class="p">(</span><span class="nb">defmacro</span> <span class="nv">with-git-repo</span> <span class="p">(</span><span class="nv">repo</span> <span class="kp">&amp;rest</span> <span class="nv">body</span><span class="p">)</span>
   <span class="s">&#34;Run BODY using git repository REPO.&#34;</span>
@@ -172,7 +172,7 @@ llamada en otro caso</p>
 necesarios.  Es importante notar que todas las funciones están
 marcadas como <code>autoload</code> e <code>interactive</code> así estarán disponibles como
 comandos en el editor y sería más fácil distribuirlas en un paquete.</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp">
 <span class="c1">;;;###autoload</span>
 <span class="p">(</span><span class="nb">defun</span> <span class="nv">hugo-blog-new</span> <span class="p">(</span><span class="nv">path</span><span class="p">)</span>
   <span class="s">&#34;Create new content in PATH.&#34;</span>
@@ -216,11 +216,11 @@ comandos en el editor y sería más fácil distribuirlas en un paquete.</p>
 <li id="fn:1" role="doc-endnote">
 <p>Los modos de son conjuntos de funcionalidades que extienden el
 editor en distintas maneras, muchos incluso hacen cambios en la
-forma en que interactuamos con Emacs <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+forma en que interactuamos con Emacs&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 <li id="fn:2" role="doc-endnote">
 <p>Los comandos son funcionalidades específicas que no tienen por
-que estar relacionadas con ningún modo en particular. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+que estar relacionadas con ningún modo en particular.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>

@@ -59,7 +59,7 @@
  
 
   <a href="https://yorodm.github.io/tags/python/">python</a>, <a href="https://yorodm.github.io/tags/etl/">etl</a>
-4 minuto(s) de lectura.
+3 minuto(s) de lectura.
 <br/><br/>
 <p>Implementando una feature para uno de los proyectos en los que trabajo terminé
 necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X,
@@ -123,16 +123,16 @@ Tiene longitud 8, es opcional y de no estar se ponen espacios en blanco.</li>
 10 y 50. Es de tipo alfanumérico, incluye espacios, no tiene delimitaciones.</li>
 </ol>
 <p>Veamos un ejemplo de como procesar estos archivos:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">plumber</span> <span class="kn">import</span> <span class="n">pipe</span> <span class="c1"># API síncrona.</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">plumber</span> <span class="kn">import</span> <span class="n">pipe</span> <span class="c1"># API síncrona.</span>
 
-<span class="nd">@pipe.extractor</span>
+<span class="nd">@pipe</span><span class="o">.</span><span class="n">extractor</span>
 <span class="k">def</span> <span class="nf">read_file</span><span class="p">():</span>
     <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;FILENAME&#39;</span><span class="p">]</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
         <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">f</span><span class="o">.</span><span class="n">readlines</span><span class="p">():</span>
             <span class="k">yield</span> <span class="n">process_line</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 
-<span class="nd">@pipe.transformer</span>
+<span class="nd">@pipe</span><span class="o">.</span><span class="n">transformer</span>
 <span class="k">def</span> <span class="nf">csvfy</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
     <span class="k">yield</span> <span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">element</span><span class="p">))</span>
 

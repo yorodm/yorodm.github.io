@@ -75,7 +75,7 @@ que documentar el módulo o función que va a obtener los argumentos de la líne
 de comandos. Veamos un ejemplo de una herramienta que utilizo para subscribir
 ahorrarme tener que subscribir a un conjunto de usuarios cuando creo un
 repositorio.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;Subscriber.
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;&#34;&#34;Subscriber.
 </span><span class="s2">
 </span><span class="s2">Usage:
 </span><span class="s2">  subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;
@@ -112,23 +112,23 @@ Usage:
 nuevo</strong> pero de una simpleza y claridad que dan ganas de usarlo. En lugar de
 documentación utilizamos decoradores para declarar nuestra <strong>CLI</strong>. El autor nos
 muestra como ejemplo un clon de <code>cp</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/env python3</span>
 <span class="kn">import</span> <span class="nn">lazycli</span>
 <span class="kn">import</span> <span class="nn">shutil</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 
 
-<span class="nd">@lazycli.script</span>
-<span class="k">def</span> <span class="nf">cp</span><span class="p">(</span><span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="bp">False</span><span class="p">):</span>
+<span class="nd">@lazycli</span><span class="o">.</span><span class="n">script</span>
+<span class="k">def</span> <span class="nf">cp</span><span class="p">(</span><span class="o">*</span><span class="n">src</span><span class="p">,</span> <span class="n">dst</span><span class="p">,</span> <span class="n">recursive</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
     <span class="s2">&#34;&#34;&#34;copy around files&#34;&#34;&#34;</span>
     <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">src</span><span class="p">:</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="n">shutil</span><span class="o">.</span><span class="n">copy2</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
-        <span class="k">except</span> <span class="n">IsADirectoryError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
+        <span class="k">except</span> <span class="ne">IsADirectoryError</span> <span class="k">as</span> <span class="n">err</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">recursive</span><span class="p">:</span>
                 <span class="n">shutil</span><span class="o">.</span><span class="n">copytree</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">dst</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
-                <span class="k">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="nb">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="n">err</span><span class="p">,</span> <span class="n">file</span><span class="o">=</span><span class="n">sys</span><span class="o">.</span><span class="n">stderr</span><span class="p">)</span>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>

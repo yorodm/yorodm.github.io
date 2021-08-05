@@ -59,7 +59,7 @@
  
 
   <a href="https://yorodm.github.io/tags/serverless/">serverless</a>, <a href="https://yorodm.github.io/tags/yaml/">yaml</a>
-2 minuto(s) de lectura.
+1 minuto(s) de lectura.
 <br/><br/>
 <h1 id="algunas-buenas-practicas-para-serverless-framework">Algunas buenas practicas para Serverless Framework</h1>
 <p>Aunque llevo poco tiempo utilizando <a href="http://serverless.com">Serverless</a> he
@@ -68,7 +68,7 @@ Las comparto aquí para los que como yo están empezando.</p>
 <h2 id="reducir-la-dependencia-de-valores-externos">Reducir la dependencia de valores externos.</h2>
 <p>En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es
 común utilizar referencias a valores externos por toda la plantilla.</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">functions</span><span class="p">:</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">functions</span><span class="p">:</span><span class="w">
 </span><span class="w">  </span><span class="nt">hello</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">${env:FUNC_PREFIX}-hello</span><span class="w">
 </span><span class="w">    </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l">handler.hello</span><span class="w">
@@ -80,7 +80,7 @@ de un valor que <strong>solo</strong> vamos a obtener desde el entorno. ¿Qué t
 decidimos que el valor venga [de la salida de otro stack]
 (<a href="https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs)?">https://serverless.com/framework/docs/providers/aws/guide/variables#reference-cloudformation-outputs)?</a></p>
 <p>Por suerte para nosotros podemos hacer esto:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">custom</span><span class="p">:</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">custom</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">func_prefix</span><span class="p">:</span><span class="w"> </span><span class="c"># cualquier fuente para el valor</span><span class="w">
 </span><span class="w"></span><span class="nt">functions</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">hello</span><span class="p">:</span><span class="w">
@@ -99,15 +99,15 @@ de lanzarte a crear un script o [lastimar a una cabra]
 <p>Serverless no tiene soporte para evaluación condicional de plantillas así que si
 pretendes crear contenido basado por ejemplo en el <strong>stage</strong> del despliegue
 puedes hacer algo como esto:</p>
-<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-qa.yml</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-qa.yml</span><span class="w">
 </span><span class="w"></span><span class="nt">functions</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">qa_function</span><span class="p">:</span><span class="w">
 </span><span class="w">        </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l">MyQaHandler</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-prod.yml</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># stage_properties-prod.yml</span><span class="w">
 </span><span class="w"></span><span class="nt">functions</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">prod_function</span><span class="p">:</span><span class="w">
 </span><span class="w">        </span><span class="nt">handler</span><span class="p">:</span><span class="w"> </span><span class="l">MyProdHandler</span><span class="w">
-</span></code></pre></div><div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># serverless.yml</span><span class="w">
+</span></code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="c"># serverless.yml</span><span class="w">
 </span><span class="w"></span><span class="nt">custom</span><span class="p">:</span><span class="w">
 </span><span class="w">    </span><span class="nt">stage</span><span class="p">:</span><span class="w"> </span><span class="l">${opt:stage, &#34;qa&#34;}</span><span class="w">
 </span><span class="w"></span><span class="nt">functions</span><span class="p">:</span><span class="w"> </span><span class="l">${file(stage_properties-${self:custom.stage}.yml):functions}</span><span class="w">

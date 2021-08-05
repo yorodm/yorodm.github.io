@@ -59,7 +59,7 @@
  
 
   <a href="https://yorodm.github.io/tags/go/">go</a>, <a href="https://yorodm.github.io/tags/golang/">golang</a>, <a href="https://yorodm.github.io/tags/xml/">xml</a>
-3 minuto(s) de lectura.
+2 minuto(s) de lectura.
 <br/><br/>
 <h1 id="parser-tipo-sax-para-golang">Parser tipo SAX para Golang</h1>
 <h2 id="el-problema">El problema</h2>
@@ -91,7 +91,7 @@ el próximo token <strong>XML</strong> que encuentra. La función retorna <code>
 <p>Esto es bastante parecido a <strong>SAX</strong> es decir, podríamos hacer una interfaz
 <strong>Handler</strong> con un método por cada tipo y una función (o método de otra clase) que
 recibiera algo que implementara a handler y llamara a cada uno de los métodos.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// En este caso hipotético Parser tiene embebido un xml.Decoder
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// En este caso hipotético Parser tiene embebido un xml.Decoder
 </span><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">self</span> <span class="o">*</span><span class="nx">Parser</span><span class="p">)</span> <span class="nf">Parse</span><span class="p">(</span><span class="nx">document</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span> <span class="nx">handler</span> <span class="nx">Handler</span><span class="p">)</span> <span class="kt">error</span> <span class="p">{</span>
     <span class="k">for</span> <span class="p">{</span>
         <span class="nx">token</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">self</span><span class="p">.</span><span class="nf">Token</span><span class="p">()</span>
@@ -117,7 +117,7 @@ escribir métodos vacíos para <code>xml.Comment</code> y <code>xml.Directive</c
 interesa procesarlos pero son necesarios para la interfaz.</p>
 <p>Por razones como esta, los eventos en <strong>Go</strong> se manejan mejor utilizando
 canales:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">ParserError</span> <span class="kd">struct</span><span class="p">{}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">ParserError</span> <span class="kd">struct</span><span class="p">{}</span>
 
 <span class="kd">func</span> <span class="nf">parse</span><span class="p">(</span><span class="nx">document</span> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span><span class="p">,</span> <span class="nx">elm</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="nx">xml</span><span class="p">.</span><span class="nx">Token</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">defer</span> <span class="nb">close</span><span class="p">(</span><span class="nx">elm</span><span class="p">)</span>
@@ -139,7 +139,7 @@ canales:</p>
 productor y el consumidor de los eventos. El consumidor puede elegir que eventos
 le resultan interesantes y descartar el resto</p>
 <p>Veamos un ejemplo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
     <span class="nx">fd</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="s">&#34;settings.xml&#34;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
         <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>

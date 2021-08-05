@@ -69,7 +69,7 @@ estabilización de la API para ejecutar servicios en segundo plano o
 <p>Si eres desarrollador de ASP.NET Core debes estar familiarizado con el
 paquete <code>Microsoft.AspNetCore.Hosting</code> y las clases<code>WebHostBuilder</code> y
 <code>WebHost</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
 <span class="p">{</span>
     <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
     <span class="p">{</span>
@@ -98,7 +98,7 @@ segundo plano utilizando <code>IHostedService</code>.</p>
 ASP.NET Core, lo cual hace posible crear aplicaciones de consola que
 hagan uso de las bondades a las que estamos adaptados.</p>
 <p>Veamos un ejemplo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"> <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"> <span class="k">public</span> <span class="k">class</span> <span class="nc">Program</span>
     <span class="p">{</span>
         <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="n">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
         <span class="p">{</span>
@@ -149,12 +149,12 @@ hagan uso de las bondades a las que estamos adaptados.</p>
 </ol>
 <p>La clase <code>Worker</code> hereda de <code>BackgroundService</code> y es la encargada de
 ejecutar la lógica de nuestro microservicio</p>
-<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Worker</span><span class="p">:</span> <span class="n">BackgroundService</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"><span class="k">public</span> <span class="k">class</span> <span class="nc">Worker</span><span class="p">:</span> <span class="n">BackgroundService</span> <span class="p">{</span>
 
 	 <span class="k">public</span> <span class="n">Worker</span><span class="p">(</span><span class="n">ILogger</span><span class="p">&lt;</span><span class="n">Worker</span><span class="p">&gt;</span> <span class="n">logger</span><span class="p">,</span> <span class="n">IAmazonSQS</span> <span class="n">sqs</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="n">_logger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
-            <span class="n">_sqs</span> <span class="p">=</span> <span class="n">sqs</span><span class="p">;</span>
+            <span class="m">_l</span><span class="n">ogger</span> <span class="p">=</span> <span class="n">logger</span><span class="p">;</span>
+            <span class="m">_</span><span class="n">sqs</span> <span class="p">=</span> <span class="n">sqs</span><span class="p">;</span>
 	    <span class="p">}</span>
 
 	 <span class="k">protected</span>  <span class="k">async</span> <span class="n">Task</span> <span class="n">ExecuteAsync</span><span class="p">(</span><span class="kt">int</span> <span class="n">number</span><span class="p">,</span> <span class="n">CancellationToken</span> <span class="n">cancel</span><span class="p">)</span>
@@ -172,11 +172,11 @@ operativo.</p>
 <p>Para integrarse como servicio a Windows se puede utilizar las
 extensiones en <code>Microsoft.Extensions.Hosting.WindowsService</code> para
 inicializar nuestro programa.</p>
-<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs"> <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs"> <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
         <span class="p">.</span><span class="n">UseWindowsService</span><span class="p">()</span>
 </code></pre></div><p>En el casos de Linux sólo están soportadas las distribuciones que incluyen
 <code>Systemd</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-cs" data-lang="cs">  <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-cs" data-lang="cs">  <span class="n">Host</span><span class="p">.</span><span class="n">CreateDefaultBuilder</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
         <span class="p">.</span><span class="n">UseSystemd</span><span class="p">()</span>
 </code></pre></div>
 

@@ -64,14 +64,14 @@
 <h2 id="truco-1-recursividad-asíncrona">Truco 1: Recursividad asíncrona.</h2>
 <p>A veces queremos garantizar que una lambda se ejecute siempre de forma
 asíncrona.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">event</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;async&#39;</span><span class="p">):</span>
         <span class="n">invoke_self_async</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
         <span class="k">return</span>
 
 <span class="k">def</span> <span class="nf">invoke_self_async</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="n">new_event</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;async&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+        <span class="s1">&#39;async&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
         <span class="s1">&#39;data&#39;</span><span class="p">:</span> <span class="n">event</span>
     <span class="p">}</span>
     <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">invoke_async</span><span class="p">(</span>
@@ -82,7 +82,7 @@ asíncrona.</p>
 mismo es enviado por vías alternativas (ej. usando <strong>SNS</strong>)</p>
 <h2 id="truco-2-planificación-dinámica">Truco 2: Planificación dinámica.</h2>
 <p>A veces la planificación de un servicio debe ser alterada en dependencia de ciertas condiciones.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="n">reschedule_event</span><span class="p">()</span>
     <span class="n">keep_working</span><span class="p">()</span>
 
@@ -111,7 +111,7 @@ mismo es enviado por vías alternativas (ej. usando <strong>SNS</strong>)</p>
 <blockquote>
 <p>Nunca uses un cañón para matar un mosquito</p>
 </blockquote>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">lambda_handler</span><span class="p">(</span><span class="n">event</span><span class="p">,</span> <span class="n">context</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">dispatch_workflow</span><span class="p">(</span><span class="n">event</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">dispatch_workflow</span><span class="p">(</span><span class="n">activity</span><span class="p">):</span>
@@ -121,7 +121,7 @@ mismo es enviado por vías alternativas (ej. usando <strong>SNS</strong>)</p>
         <span class="n">state</span> <span class="o">=</span> <span class="n">get_saved_state</span><span class="p">(</span><span class="n">event</span><span class="p">[</span><span class="s1">&#39;workflow_id&#39;</span><span class="p">])</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">workflow_id</span> <span class="o">=</span> <span class="n">create_workflow_id</span><span class="p">()</span> <span class="c1"># uuid maybe</span>
-        <span class="n">state</span> <span class="o">=</span> <span class="bp">None</span>
+        <span class="n">state</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">workflow</span> <span class="o">=</span> <span class="n">Workflow</span><span class="p">(</span><span class="n">workflow_id</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">workflow</span><span class="p">(</span><span class="n">state</span><span class="p">,</span><span class="n">events</span><span class="p">)</span> <span class="c1"># Workflow is a callable</span>
 </code></pre></div>

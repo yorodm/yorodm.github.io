@@ -65,7 +65,7 @@
 abstracciones del lenguaje para concurrencia. Hoy por ejemplo
 necesitaba hacer una cola de tareas en <strong>Python</strong> utilizando
 <strong>AsyncIO</strong>.  En <strong>Go</strong> esto sigue una estructura sencilla:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Este es la gorutina que procesa los trabajos
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="c1">// Este es la gorutina que procesa los trabajos
 </span><span class="c1"></span><span class="kd">func</span> <span class="nf">worker</span><span class="p">(</span><span class="nx">jobChan</span> <span class="o">&lt;-</span><span class="kd">chan</span> <span class="nx">Job</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">for</span> <span class="nx">job</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">jobChan</span> <span class="p">{</span>
         <span class="nf">process</span><span class="p">(</span><span class="nx">job</span><span class="p">)</span>
@@ -81,11 +81,11 @@ necesitaba hacer una cola de tareas en <strong>Python</strong> utilizando
 <span class="c1">//Indicamos que ya no vamos a procesar más datos
 </span><span class="c1"></span><span class="nb">close</span><span class="p">(</span><span class="nx">jobChan</span><span class="p">)</span>
 </code></pre></div><p>Veamos si podemos lograr un equivalente en Python:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Primer intento</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># Primer intento</span>
 <span class="kn">import</span> <span class="nn">asyncio</span>
-<span class="n">async</span> <span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
-    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
-		<span class="n">process</span><span class="p">(</span><span class="n">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">worker</span><span class="p">(</span><span class="n">queue</span><span class="p">):</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+		<span class="n">process</span><span class="p">(</span><span class="k">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">get</span><span class="p">())</span>
 		<span class="c1"># Indicamos que se procesó el trabajo</span>
 		<span class="n">queue</span><span class="o">.</span><span class="n">task_done</span><span class="p">()</span>
 
@@ -94,7 +94,7 @@ necesitaba hacer una cola de tareas en <strong>Python</strong> utilizando
 <span class="c1"># arrancamos el worker</span>
 <span class="n">worker_task</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">create_task</span><span class="p">(</span><span class="n">worker</span><span class="p">(</span><span class="n">queue</span><span class="p">))</span>
 <span class="c1"># Enviamos mensajes a la cola</span>
-<span class="n">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </code></pre></div><p>Hasta acá todo parece bien, pero: ¿Cómo indicamos que no se van a
 procesar más datos?</p>
 <p>En <strong>Go</strong> la operación <code>close</code> sobre un canal hace que el ciclo
@@ -105,7 +105,7 @@ tareas se queden en la cola. Por otro lado, la corutina <code>join()</code> de
 <code>asyncio.Queue</code> nos permite esperar a que ya no existan elementos en
 la cola, aunque no garantiza que <code>worker</code> se detenga.</p>
 <p>La solución es utilizar una mezcla de los dos:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># Esperar a que se procesen los pendientes</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">await</span> <span class="n">queue</span><span class="o">.</span><span class="n">join</span><span class="p">()</span> <span class="c1"># Esperar a que se procesen los pendientes</span>
 <span class="n">worker_task</span><span class="o">.</span><span class="n">cancel</span><span class="p">()</span> <span class="c1"># Cancelar la tarea</span>
 </code></pre></div>
 

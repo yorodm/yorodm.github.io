@@ -72,7 +72,7 @@ calcularlo.</p>
 implementación de <em>futures</em> en el lenguaje bastante sencilla.</p>
 <h2 id="interfaz">Interfaz</h2>
 <p>Nuestro primer paso es crear una interfaz.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Value</span> <span class="kd">interface</span><span class="p">{}</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Value</span> <span class="kd">interface</span><span class="p">{}</span>
 
 <span class="kd">type</span> <span class="nx">Future</span> <span class="kd">interface</span> <span class="p">{</span>
 	<span class="nf">Get</span><span class="p">(</span><span class="nx">c</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
@@ -83,7 +83,7 @@ representar cualquier valor de retorno.</p>
 <h2 id="implementación">Implementación</h2>
 <p>Para la implementación crearemos estructura que contenga el resultado
 de la operación y otra con un canal para transmitir el valor.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">result</span> <span class="kd">struct</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">result</span> <span class="kd">struct</span> <span class="p">{</span>
 	<span class="nx">value</span> <span class="nx">Value</span>
 	<span class="nx">err</span>   <span class="kt">error</span>
 <span class="p">}</span>
@@ -99,7 +99,7 @@ subrutina.</li>
 <li>La <em>gorutine</em> es encargada de notificar el completamientoa los
 interesados.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewFuture</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">()</span> <span class="p">(</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">error</span><span class="p">))</span> <span class="nx">Future</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="nf">NewFuture</span><span class="p">(</span><span class="nx">f</span> <span class="kd">func</span><span class="p">()</span> <span class="p">(</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">error</span><span class="p">))</span> <span class="nx">Future</span> <span class="p">{</span>
 	<span class="nx">fut</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">futureImpl</span> <span class="p">{</span>
 		<span class="nx">result</span><span class="p">:</span> <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="o">*</span><span class="nx">result</span><span class="p">)</span>
 	<span class="p">}</span>
@@ -113,7 +113,7 @@ interesados.</li>
 </code></pre></div><p>Ahora solo necesitamos implementar <code>Get</code>, en este caso tenemos que
 tener en cuenta la posible cancelación del <em>future</em> o casos de
 <em>timeout</em>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">futureImpl</span><span class="p">)</span> <span class="nf">Get</span><span class="p">(</span><span class="nx">c</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="o">*</span><span class="nx">futureImpl</span><span class="p">)</span> <span class="nf">Get</span><span class="p">(</span><span class="nx">c</span> <span class="nx">context</span><span class="p">.</span><span class="nx">Context</span><span class="p">)</span> <span class="p">(</span><span class="nx">Value</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
 	<span class="k">select</span> <span class="p">{</span>
 		<span class="k">case</span> <span class="o">&lt;-</span><span class="nx">ctx</span><span class="p">.</span><span class="nf">Done</span><span class="p">():</span>
 			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">ctx</span><span class="p">.</span><span class="nf">Err</span><span class="p">()</span>
@@ -123,7 +123,7 @@ tener en cuenta la posible cancelación del <em>future</em> o casos de
 <span class="p">}</span>
 </code></pre></div><h2 id="the-end">The End.</h2>
 <p>Veamos un ejemplo ficticio:</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go">
 <span class="kd">func</span> <span class="nf">takeFinalSteps</span><span class="p">(</span><span class="nx">f</span> <span class="nx">Future</span><span class="p">)</span> <span class="kt">error</span><span class="p">{</span>
 	<span class="nf">prepareTheSteps</span><span class="p">()</span>
 	<span class="nx">value</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="nx">context</span><span class="p">.</span><span class="nf">TODO</span><span class="p">())</span>
@@ -140,7 +140,7 @@ tener en cuenta la posible cancelación del <em>future</em> o casos de
 		<span class="k">return</span> <span class="nf">doSomeDataProcessing</span><span class="p">(</span><span class="nx">cleaned</span><span class="p">)</span>
 	<span class="p">})</span>
 	<span class="nf">createAuxiliaryResources</span><span class="p">();</span>
-	<span class="nx">_</span> <span class="o">:=</span> <span class="nf">takeFinalSteps</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+	<span class="nx">_</span> <span class="o">:=</span> <span class="nf">takeFinalSteps</span><span class="p">(</span><span class="nx">fut</span><span class="p">)</span>
 <span class="p">}</span>
 </code></pre></div><p>Aunque parezca sencillo, un <code>Future</code> es una abstracción poderosa que
 nos permite diferir la obtención de un valor para el momento en el que

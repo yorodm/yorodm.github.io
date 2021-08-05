@@ -84,7 +84,7 @@ protocolos.</p>
 <code>Calculate</code></li>
 <li>Servicio que nos notifica cuando <code>Calculate</code> termina, al que llamamos <code>Notify</code>.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.rpc</span> <span class="kn">import</span> <span class="n">rpc</span><span class="p">,</span> <span class="n">RpcProxy</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.rpc</span> <span class="kn">import</span> <span class="n">rpc</span><span class="p">,</span> <span class="n">RpcProxy</span>
 <span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="k">class</span> <span class="nc">Compute</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
@@ -106,11 +106,10 @@ protocolos.</p>
     <span class="k">def</span> <span class="nf">send</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">message</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">message</span><span class="p">)</span>
 </code></pre></div><p>Salvemos el archivo como <code>services.py</code> y ya estamos listos para ejecutar los servicios</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ nameko run --broker pyamqp://guest:guest@localhost services
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ nameko run --broker pyamqp://guest:guest@localhost services
 </code></pre></div><p>Si accedemos a la consola web de <strong>RabbitMQ</strong> podemos ver las colas de mensaje
 creadas para los servicios. Eso confirma que se están funcionando correctamente.</p>
-<figure>
-    <img src="/images/nameko-microservicios/rabbit-queues.png"/> 
+<figure><img src="/images/nameko-microservicios/rabbit-queues.png"/>
 </figure>
 
 <h2 id="accediendo-a-los-servicios">Accediendo a los servicios.</h2>
@@ -132,11 +131,11 @@ Broker: pyamqp://guest:guest@192.168.184.142
 &gt;&gt;&gt;
 </code></pre><p>Perfecto, funcionan tanto las llamadas síncronas como las asíncronas, con esto en mano
 podemos utilizar los servicios desde, por ejemplo, un modelo en <strong>Odoo</strong>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.standalone.rpc</span> <span class="kn">import</span> <span class="n">ClusterRpcProxy</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.standalone.rpc</span> <span class="kn">import</span> <span class="n">ClusterRpcProxy</span>
 <span class="n">BROKER</span> <span class="o">=</span><span class="s1">&#39;pyamqp://guest:guest@192.168.184.142&#39;</span>
 
 <span class="c1"># Todas las cosas del modelo....</span>
-    <span class="nd">@api.multi</span>
+    <span class="nd">@api</span><span class="o">.</span><span class="n">multi</span>
     <span class="k">def</span> <span class="nf">action_suma</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">val1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">campo_1</span>
         <span class="n">val2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">campo_2</span>
@@ -152,7 +151,7 @@ sysadmin se queja de que no tiene forma de monitorear el estado de los mismos.
 Aunque estamos absolutamente seguros de que nuestros servicios tienen un 100% de
 disponibilidad, para complacerlos adicionamos un <strong>hearbeat</strong> que se ejecute
 cada un tiempo configurable en cada una de las instancias.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.timer</span> <span class="kn">import</span> <span class="n">timer</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">nameko.timer</span> <span class="kn">import</span> <span class="n">timer</span>
 <span class="c1"># Método ficticio que envía un mensaje a la plataforma</span>
 <span class="c1"># de monitoreo.</span>
 <span class="kn">from</span> <span class="nn">monitoring</span> <span class="kn">import</span> <span class="n">ping</span>

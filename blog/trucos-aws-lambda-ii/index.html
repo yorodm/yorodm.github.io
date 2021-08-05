@@ -71,7 +71,7 @@
 <li>Distinción entre mayúsculas y minúsculas para llaves y valores.</li>
 </ol>
 <p>Basicamente todo lo que necesitamos para hacernos un caché:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">lambda_cient</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">lambda_cient</span> <span class="o">=</span> <span class="n">boto3</span><span class="o">.</span><span class="n">client</span><span class="p">(</span><span class="s1">&#39;lambda&#39;</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">save_cache</span><span class="p">(</span><span class="n">tags</span><span class="p">):</span> <span class="c1"># tags is a dict of string:string</span>
     <span class="n">lambda_client</span><span class="o">.</span><span class="n">tag_resource</span><span class="p">(</span>
         <span class="n">Resource</span><span class="o">=</span><span class="n">self_arn</span><span class="p">,</span> <span class="c1"># get it from handler context</span>

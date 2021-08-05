@@ -69,7 +69,7 @@ experimentando para enviar información desde un servicio desarrollado en
 me di cuenta que hacerlo con el paquete <strong>net/rpc/jsonrpc</strong> era todo un dolor de
 cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia
 implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="kn">import</span> <span class="p">(</span>
     <span class="s">&#34;errors&#34;</span>
     <span class="s">&#34;fmt&#34;</span>
     <span class="s">&#34;io/ioutil&#34;</span>
@@ -146,7 +146,7 @@ implementación. La respuesta es 32 minutos (tuve que leer mucha documentación)
 <span class="p">}</span>
 </code></pre></div><p>Como pueden ver utilizo la biblioteca estándar para crear un nuevo <em>codec</em> que
 pueda utilizarse con <strong>net/rpc</strong>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="nx">codec</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">JsonCodec</span><span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="nx">codec</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">JsonCodec</span><span class="p">{</span>
         <span class="nx">url</span><span class="p">:</span>        <span class="nx">u</span><span class="p">,</span> <span class="o">/</span><span class="nx">net</span><span class="p">.</span><span class="nx">url</span><span class="p">.</span><span class="nx">Url</span>
         <span class="nx">httpClient</span><span class="p">:</span> <span class="nx">httpClient</span><span class="p">,</span> <span class="c1">// net.http.Client
 </span><span class="c1"></span>        <span class="nx">ready</span><span class="p">:</span>      <span class="nb">make</span><span class="p">(</span><span class="kd">chan</span> <span class="kt">uint64</span><span class="p">),</span>

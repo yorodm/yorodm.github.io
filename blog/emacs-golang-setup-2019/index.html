@@ -74,7 +74,7 @@ como habilitar el soporte para el lenguaje.</p>
 para <a href="https://github.com/saibing/bingo">bingo</a>, una herramienta que
 provee un servidor de lenguajes para Go y que tiene soporte integrado
 para trabajar con módulos</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">lsp-mode</span>
   <span class="nb">:commands</span> <span class="p">(</span><span class="nv">lsp</span><span class="p">)</span>
   <span class="nb">:config</span>
   <span class="p">(</span><span class="nb">use-package</span> <span class="nv">company-lsp</span>
@@ -101,7 +101,7 @@ el soporte para el lenguaje (font-lock entre otras cosas). Los pasos necesarios 
 <li>Instalar <a href="https://github.com/golang/lint">golint</a> o
 <a href="https://golang.org/cmd/gofmt/">gofmt</a>.</li>
 </ol>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">flycheck</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">flycheck</span><span class="p">)</span>
 <span class="p">(</span><span class="nb">use-package</span> <span class="nv">go-mode</span>
   <span class="nb">:config</span>
   <span class="c1">; Use goimports instead of go-fmt</span>
@@ -130,7 +130,7 @@ el soporte para el lenguaje (font-lock entre otras cosas). Los pasos necesarios 
 <h2 id="paso-4-compilar-y-debug">Paso 4. Compilar y debug.</h2>
 <p>Puedes configurar el comando de compilación por defecto que utilizas
 cuando editas archivos Go.</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="c1">;; Adicionar en la sección :config de `go-mode`</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="c1">;; Adicionar en la sección :config de `go-mode`</span>
 <span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;go-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">setup-go-mode-compile</span><span class="p">)</span>
 
 <span class="c1">;; adicionar en el mismo archivo</span>
@@ -143,7 +143,7 @@ cuando editas archivos Go.</p>
 </code></pre></div><p>Si prefieres los <em>debuggers</em> interactivos debes instalar
 <a href="https://github.com/go-delve/delve">delve</a> y añadir la siguiente línea
 en tu archivo de inicio de Emacs.</p>
-<div class="highlight"><pre class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">go-dlv</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">go-dlv</span><span class="p">)</span>
 </code></pre></div><p>Los comandos <code>dlv</code> y <code>dlv-current-func</code> son los puntos de entrada al debugger.</p>
 
 

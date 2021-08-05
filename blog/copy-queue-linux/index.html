@@ -60,7 +60,7 @@ Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una peq
  
 
   <a href="https://yorodm.github.io/tags/rust/">rust</a>, <a href="https://yorodm.github.io/tags/linux/">linux</a>, <a href="https://yorodm.github.io/tags/copyq/">copyq</a>
-6 minuto(s) de lectura.
+5 minuto(s) de lectura.
 <br/><br/>
 <p>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el
 casi no he podido atender el blog, por lo que se me ocurrió dejar algo
@@ -106,18 +106,18 @@ saque partido de todo lo que Linux tiene para ofrecer.</p>
 <p>Bueno, después de esta larga introducción vamos al problema que nos toca:
 ¿Cómo programamos la copia de archivos en Linux?.</p>
 <p>En su forma más simple, copiar un archivo lleva unas pocas líneas de código <strong>C</strong>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="n">inputFd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="n">inputFd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">,</span> <span class="n">O_RDONLY</span><span class="p">);</span>
 <span class="n">outputFd</span> <span class="o">=</span> <span class="n">open</span><span class="p">(</span><span class="s">&#34;bar.txt&#34;</span><span class="p">,</span> <span class="n">O_CREAT</span> <span class="o">|</span> <span class="n">O_WRONLY</span> <span class="o">|</span> <span class="n">O_TRUNC</span><span class="p">,</span> <span class="n">S_IRUSR</span> <span class="o">|</span> <span class="n">S_IWUSR</span><span class="p">);</span>
 <span class="c1">// Ignoremos por el momento el valor de BUF_SIZE y el tamaño de buf
 </span><span class="c1"></span><span class="k">while</span> <span class="p">((</span><span class="n">numRead</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">inputFd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">BUF_SIZE</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
 	<span class="k">if</span> <span class="p">(</span><span class="n">write</span><span class="p">(</span><span class="n">outputFd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">numRead</span><span class="p">)</span> <span class="o">!=</span> <span class="n">numRead</span><span class="p">)</span>
 		<span class="n">fatal</span><span class="p">(</span><span class="s">&#34;write() returned error or partial write occurred&#34;</span><span class="p">);</span>
 </code></pre></div><p>O como decimos los usuarios de <strong>Rust</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="n">std</span>::<span class="n">fs</span>::<span class="n">copy</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;bar.txt&#34;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"> </span><span class="c1">// :)
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="n">std</span>::<span class="n">fs</span>::<span class="n">copy</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">,</span><span class="w"> </span><span class="s">&#34;bar.txt&#34;</span><span class="p">)</span><span class="o">?</span><span class="p">;</span><span class="w"> </span><span class="c1">// :)
 </span></code></pre></div><p>Pero teniendo en cuenta que queremos optimizar el funcionamiento de la copia
 lo más probable es que utilicemos el <em>crate</em> <code>libc</code> y hagamos nuestra versión
 del ciclo de copia:</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">libc</span>::<span class="o">*</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">libc</span>::<span class="o">*</span><span class="p">;</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">input_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">File</span>::<span class="n">open</span><span class="p">(</span><span class="s">&#34;foo.txt&#34;</span><span class="p">)</span><span class="w">
 </span><span class="w"></span><span class="kd">let</span><span class="w"> </span><span class="n">output_fd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span>::<span class="n">fs</span>::<span class="n">File</span>::<span class="n">create</span><span class="p">(</span><span class="s">&#34;bar.txt&#34;</span><span class="p">)</span><span class="w">
@@ -155,7 +155,7 @@ necesitaremos ejecutar el ciclo de copia 50 veces. Si subimos el
 tamaño a 50mb tendremos una iteración. Podemos concluir entonces
 que 50mb es el tamaño especial para nuestro <em>buffer</em>.</p>
 <p>Para probar nuestra teoría veamos que tal funciona <code>cp</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">$ strace -s <span class="m">8</span> -xx cp /dev/urandom /dev/null <span class="p">|</span> grep <span class="nb">read</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ strace -s <span class="m">8</span> -xx cp /dev/urandom /dev/null <span class="p">|</span> grep <span class="nb">read</span>
 ...
 read<span class="o">(</span>3, <span class="s2">&#34;\x61\xca\xf8\xff\x1a\xd6\x83\x8b&#34;</span>..., 131072<span class="o">)</span> <span class="o">=</span> <span class="m">131072</span>
 read<span class="o">(</span>3, <span class="s2">&#34;\xd7\x47\x8f\x09\xb2\x3d\x47\x9f&#34;</span>..., 131072<span class="o">)</span> <span class="o">=</span> <span class="m">131072</span>
@@ -222,7 +222,7 @@ como desarrolladores y como personas. Nuevo año, nuevas metas y ¡salud!.</p>
 <li id="fn:1" role="doc-endnote">
 <p>En el libro <em>The Linux Programming Interface</em>, capítulo 13 se
 pueden ver <em>benchmarks</em> con distintos tamaños de buffer así como una
-discusión más profunda sobre el tema. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+discusión más profunda sobre el tema.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>

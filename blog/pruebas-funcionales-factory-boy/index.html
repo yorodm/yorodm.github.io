@@ -59,7 +59,7 @@
  
 
   <a href="https://yorodm.github.io/tags/testing/">testing</a>, <a href="https://yorodm.github.io/tags/python/">python</a>
-4 minuto(s) de lectura.
+3 minuto(s) de lectura.
 <br/><br/>
 <h1 id="pruebas-funcionales-con-factory_boy">Pruebas funcionales con factory_boy.</h1>
 <p>Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales
@@ -82,7 +82,7 @@ hablar idiomas) de manera sencilla. Desde hace unas cuantas versiones se integra
 con otra biblioteca llamada <a href="https://github.com/joke2k/faker">faker</a> que provee
 datos aleatorios (de nuevo, basada en algo del mundo <strong>Ruby</strong>). Veamos un
 ejemplo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="s2">&#34;&#34;&#34;
 </span><span class="s2">    Modelo persona de toda la vida
 </span><span class="s2">    &#34;&#34;&#34;</span>
@@ -104,13 +104,13 @@ ejemplo:</p>
     <span class="n">lastname</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s1">&#39;last_name&#39;</span><span class="p">)</span>
 </code></pre></div><p>Pues tenemos una clase <strong>Person</strong> y una clase <strong>PersonFactory</strong>
 (¿<strong>PeopleFactory</strong>?), vamos a utilizarlas para crear 9 nombres.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">fullname</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">factory</span><span class="o">.</span><span class="n">build_batch</span><span class="p">(</span><span class="n">PersonFactory</span><span class="p">,</span><span class="mi">9</span><span class="p">)]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">[</span><span class="n">x</span><span class="o">.</span><span class="n">fullname</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">factory</span><span class="o">.</span><span class="n">build_batch</span><span class="p">(</span><span class="n">PersonFactory</span><span class="p">,</span><span class="mi">9</span><span class="p">)]</span>
 <span class="p">[</span><span class="s1">&#39;Keith Best&#39;</span><span class="p">,</span> <span class="s1">&#39;Michelle Wilson&#39;</span><span class="p">,</span> <span class="s1">&#39;David Stewart&#39;</span><span class="p">,</span>
 <span class="s1">&#39;Robert Garza&#39;</span><span class="p">,</span> <span class="s1">&#39;Sharon Brandt&#39;</span><span class="p">,</span> <span class="s1">&#39;Erica Joseph&#39;</span><span class="p">,</span>
 <span class="s1">&#39;Katelyn Washington&#39;</span><span class="p">,</span> <span class="s1">&#39;Stacy Byrd&#39;</span><span class="p">,</span> <span class="s1">&#39;Jeanne Harrison&#39;</span><span class="p">]</span>
 </code></pre></div><p>Vale, funciona. Vamos a extender la idea y hacer un catálogo de frases famosas que incluya
 el nombre del autor</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Quote</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">Quote</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">author</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">text</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">author</span> <span class="o">=</span> <span class="n">author</span>
@@ -121,7 +121,7 @@ el nombre del autor</p>
     <span class="n">text</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">Faker</span><span class="p">(</span><span class="s2">&#34;sentence&#34;</span><span class="p">)</span>
     <span class="n">author</span> <span class="o">=</span> <span class="n">factory</span><span class="o">.</span><span class="n">SubFactory</span><span class="p">(</span><span class="n">Person</span><span class="p">)</span>
 </code></pre></div><p>Y de nuevo hacemos una prueba de concepto: tres citas famosas con sus autores.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">fullname</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">&gt;&gt;&gt;</span> <span class="p">[(</span><span class="n">x</span><span class="o">.</span><span class="n">text</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">author</span><span class="o">.</span><span class="n">fullname</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">factory</span><span class="o">.</span><span class="n">build_batch</span><span class="p">(</span><span class="n">QuoteFactory</span><span class="p">,</span><span class="mi">3</span><span class="p">)]</span>
 <span class="p">[(</span><span class="s1">&#39;Voluptas fugit culpa libero.&#39;</span><span class="p">,</span> <span class="s1">&#39;Terri Clements&#39;</span><span class="p">),</span>
 <span class="p">(</span><span class="s1">&#39;Molestiae perspiciatis eius odit.&#39;</span><span class="p">,</span> <span class="s1">&#39;Betty Clark&#39;</span><span class="p">),</span>
@@ -140,7 +140,7 @@ populares y separar las funcionalidades en clases específicas.</p>
 </ul>
 <p>Cada clase incluye además facilidades para interactuar con el <strong>ORM</strong>. Vean una
 versión de <strong>Person</strong> llevada a <strong>SQLAlchemy</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">,</span> <span class="n">create_engine</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">Column</span><span class="p">,</span> <span class="n">Integer</span><span class="p">,</span> <span class="n">Unicode</span><span class="p">,</span> <span class="n">create_engine</span>
 <span class="kn">from</span> <span class="nn">sqlalchemy.ext.declarative</span> <span class="kn">import</span> <span class="n">declarative_base</span>
 <span class="kn">from</span> <span class="nn">sqlalchmey.orm</span> <span class="kn">import</span> <span class="n">scoped_seesion</span><span class="p">,</span> <span class="n">sessionmaker</span>
 <span class="kn">import</span> <span class="nn">factory</span>
@@ -152,7 +152,7 @@ versión de <strong>Person</strong> llevada a <strong>SQLAlchemy</strong></p>
 
 <span class="k">class</span> <span class="nc">Person</span><span class="p">(</span><span class="n">Base</span><span class="p">):</span>
     <span class="c1"># Para el ejemplo</span>
-    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">(),</span> <span class="n">primary_key</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Integer</span><span class="p">(),</span> <span class="n">primary_key</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">firstname</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
     <span class="n">lastname</span> <span class="o">=</span> <span class="n">Column</span><span class="p">(</span><span class="n">Unicode</span><span class="p">(</span><span class="mi">30</span><span class="p">))</span>
 

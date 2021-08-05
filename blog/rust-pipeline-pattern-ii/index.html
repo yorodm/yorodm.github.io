@@ -61,7 +61,7 @@ Async Step La primera tarea es convertir nuestra implementación de Step a algo 
  
 
   <a href="https://yorodm.github.io/tags/rust/">rust</a>, <a href="https://yorodm.github.io/tags/async/">async</a>, <a href="https://yorodm.github.io/tags/pipelines/">pipelines</a>, <a href="https://yorodm.github.io/tags/patrones/">patrones</a>
-3 minuto(s) de lectura.
+2 minuto(s) de lectura.
 <br/><br/>
 <p>En el <a href="/blog/rust-pipeline-pattern/">artículo anterior</a>
 hablamos sobre la creación de pipelines <em>extremadamente sencillas</em> en
@@ -73,7 +73,7 @@ mejor idea sería poder usar nuestros pipelines de forma <em>concurrente</em>.</
 <h2 id="async-step">Async Step</h2>
 <p>La primera tarea es convertir nuestra implementación de <code>Step</code> a algo
 que sea usable de forma asíncrona.</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// Todos estos serán necesarios más adelante
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="c1">// Todos estos serán necesarios más adelante
 </span><span class="c1"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">collections</span>::<span class="n">VecDeque</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">error</span>::<span class="n">Error</span><span class="p">;</span><span class="w">
 </span><span class="w"></span><span class="k">use</span><span class="w"> </span><span class="n">std</span>::<span class="n">fmt</span>::<span class="n">Display</span><span class="p">;</span><span class="w">
@@ -104,14 +104,14 @@ que sea usable de forma asíncrona.</p>
 </span></code></pre></div><p>Como <strong>Rust</strong> todavía no permite usar <code>async</code> en <code>traits</code> vamos a
 devolver un <code>Future</code>. El alias <code>Output</code> lo creamos por un problema de
 ergonomía.</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">type</span> <span class="nc">Output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pin</span><span class="o">&lt;</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">dyn</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">=</span><span class="n">StepResult</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">&#39;static</span><span class="o">&gt;&gt;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">type</span> <span class="nc">Output</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Pin</span><span class="o">&lt;</span><span class="nb">Box</span><span class="o">&lt;</span><span class="n">dyn</span><span class="w"> </span><span class="n">Future</span><span class="o">&lt;</span><span class="n">Output</span><span class="o">=</span><span class="n">StepResult</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">&#39;static</span><span class="o">&gt;&gt;</span><span class="w">
 </span></code></pre></div><p>En resumen, nuestro valor de retorno es un <em>trait object</em> que
 representa un <code>Future</code> que al resolverse nos da un <code>StepResult</code>. El
 <code>Pin</code> es necesario <a href="https://rust-lang.github.io/async-book/04_pinning/01_chapter.html">por cuestiones que no voy a explicar
 aquí</a>.</p>
 <p>Para retornar este tipo de valor podemos usar <code>Box::pin</code> y bloques
 <code>async</code>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Output</span><span class="o">&lt;</span><span class="n">Self</span>::<span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="kt">u8</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">Output</span><span class="o">&lt;</span><span class="n">Self</span>::<span class="n">Item</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Ok</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">it</span><span class="p">);</span><span class="w">
 </span><span class="w">    </span><span class="nb">Box</span>::<span class="n">pin</span><span class="p">(</span><span class="k">async</span><span class="w"> </span><span class="k">move</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">        </span><span class="n">x</span><span class="w">
@@ -120,7 +120,7 @@ aquí</a>.</p>
 </span></code></pre></div><h2 id="async-pipeline">Async Pipeline</h2>
 <p>Nuestra implementación de <code>Step</code> para <code>Pipeline</code> utilizaba un simple
 <code>fold</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">fn</span> <span class="nf">run</span><span class="p">(</span><span class="o">&amp;</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">it</span>: <span class="nc">T</span><span class="p">)</span><span class="w"> </span>-&gt; <span class="nc">StepResult</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="bp">self</span><span class="p">.</span><span class="n">v</span><span class="p">.</span><span class="n">iter</span><span class="p">().</span><span class="n">fold</span><span class="p">(</span><span class="nb">Ok</span><span class="p">(</span><span class="n">it</span><span class="p">),</span><span class="w"> </span><span class="o">|</span><span class="n">acc</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">|</span><span class="w"> </span><span class="n">acc</span><span class="p">.</span><span class="n">and_then</span><span class="p">(</span><span class="o">|</span><span class="n">v</span><span class="o">|</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="n">v</span><span class="p">)))</span><span class="w">
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><p>Aunque parezca que es posible reutilizar este mecanismo, la solución
@@ -141,7 +141,7 @@ valores de forma <em>asíncrona</em>. El módulo <code>futures:stream</code> inc
 función <code>iter</code> que nos permite convertir un <code>Iterator</code> en un <code>Stream</code>.</p>
 <p>En el trait <code>futures::stream::StreamExt</code> tenemos versiones <code>async</code> de
 las API de <code>Iterator</code></p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">futures</span>::<span class="n">stream</span>::<span class="p">{</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">StreamExt</span><span class="p">};</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">futures</span>::<span class="n">stream</span>::<span class="p">{</span><span class="bp">self</span><span class="p">,</span><span class="w"> </span><span class="n">StreamExt</span><span class="p">};</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">impl</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="n">Pipeline</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">
@@ -164,7 +164,7 @@ la función.</p>
 <p>Con todo a mano podemos ejecutar nuestro <code>Pipeline</code>. Para <em>runtime</em>
 prefiero <code>tokio</code> pero la implementación es agnóstica por lo que si
 eres partidario de <code>async-std</code> o <code>smol</code> puedes utilizarlos igual.</p>
-<div class="highlight"><pre class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">tokio</span><span class="p">;</span><span class="w">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-rust" data-lang="rust"><span class="k">use</span><span class="w"> </span><span class="n">tokio</span><span class="p">;</span><span class="w">
 </span><span class="w">
 </span><span class="w"></span><span class="k">fn</span> <span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="n">rt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tokio</span>::<span class="n">runtime</span>::<span class="n">Runtime</span>::<span class="n">new</span><span class="p">().</span><span class="n">unwrap</span><span class="p">();</span><span class="w">

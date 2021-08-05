@@ -74,12 +74,12 @@ pasa a formar parte del sitio estático utilizando submódulos de <code>Git</cod
 </ol>
 <p>Mis primeros intentos implicaron hacer uso de unos cuantos <em>scripts</em></p>
 <p>Uno para crear nuevos artículos</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># New article</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># New article</span>
 <span class="nv">POST_NAME</span><span class="o">=</span><span class="s2">&#34;</span><span class="nv">$HUGO_BLOG_ROOT</span><span class="s2">/content/blog/</span><span class="nv">$1</span><span class="s2">&#34;</span>
 hugo new <span class="nv">$POST_NAME</span>
 emacsclient <span class="nv">$POST_NAME</span>
 </code></pre></div><p>Otro para salvarlos y publicar</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Save post and publish</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Save post and publish</span>
 <span class="nb">cd</span> <span class="nv">$HUGO_BLOG_ROOT</span>
 <span class="c1"># Remember to build the site</span>
 hugo --noChmod --noTimes --ignoreCase
@@ -90,7 +90,7 @@ git push origin master
 <span class="nb">cd</span> ..
 git push origin master
 </code></pre></div><p>Y finalmente uno para preview</p>
-<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Run hugo in watch mode</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="c1"># Run hugo in watch mode</span>
 <span class="nb">cd</span> <span class="nv">$HUGO_BLOG_ROOT</span>
 hugo serve
 </code></pre></div>
