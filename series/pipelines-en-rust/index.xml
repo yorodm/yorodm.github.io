@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pipelines en Rust on /home/yorodm</title>
+    <link>https://yorodm.github.io/series/pipelines-en-rust/</link>
+    <description>Recent content in Pipelines en Rust on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-US</language>
+    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/series/pipelines-en-rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pipelines en Rust (II)</title>
+      <link>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</link>
+      <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</guid>
+      <description>En el artículo anterior hablamos sobre la creación de pipelines extremadamente sencillas en Rust.
+Si recuerdan, la implementación se ejecutaba de forma secuencial lo que en el momento pudo parecer suficiente, pero si lo pensamos mejor nos damos cuenta que limita mucho la aplicabilidad del modelo. Una mejor idea sería poder usar nuestros pipelines de forma concurrente.
+Async Step La primera tarea es convertir nuestra implementación de Step a algo que sea usable de forma asíncrona.</description>
+    </item>
+    
+    <item>
+      <title>Pipelines en Rust (I)</title>
+      <link>https://yorodm.github.io/blog/rust-pipeline-pattern/</link>
+      <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
+      
+      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern/</guid>
+      <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
+Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.</description>
+    </item>
+    
+  </channel>
+</rss>

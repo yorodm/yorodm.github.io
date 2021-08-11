@@ -8,7 +8,7 @@
     <language>en-US</language>
     <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Mediator en Rust (I)</title>
+      <title>Mediator en Rust</title>
       <link>https://yorodm.github.io/blog/type-safe-mediator-rust/</link>
       <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
       
@@ -256,7 +256,7 @@ Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
     <item>
       <title>Creando widgets para Odoo (Parte 1)</title>
       <link>https://yorodm.github.io/blog/creando-widgets-odoo/</link>
-      <pubDate>Mon, 22 Jan 2018 00:00:00 +0200</pubDate>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
       <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de [Odoo 10] (http://www.odoo.com), como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
@@ -276,7 +276,7 @@ En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
     <item>
       <title>Generadores y referencias</title>
       <link>https://yorodm.github.io/blog/generadores-referencias-python/</link>
-      <pubDate>Fri, 15 Dec 2017 00:00:00 +0200</pubDate>
+      <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/generadores-referencias-python/</guid>
       <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
@@ -286,7 +286,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
     <item>
       <title>Pruebas funcionales con factory_boy y faker</title>
       <link>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</link>
-      <pubDate>Wed, 13 Dec 2017 00:00:00 +0200</pubDate>
+      <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</guid>
       <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
@@ -295,7 +295,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
     <item>
       <title>Microframeworks en Java</title>
       <link>https://yorodm.github.io/blog/microframeworks-en-java/</link>
-      <pubDate>Mon, 04 Dec 2017 00:00:00 +0200</pubDate>
+      <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/microframeworks-en-java/</guid>
       <description>Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.

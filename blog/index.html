@@ -47,6 +47,8 @@
                 
                 <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
                 
+                <li><a href="https://yorodm.github.io/series/" typeof="ListItem">series/</a></li>
+                
             </ul>
           </nav>
         </div>
@@ -62,11 +64,8 @@
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2021-03-14T20:38:14&#43;02:00">14 Mar 2021
-			</time>
-		  </div>
-            <h1><a href="https://yorodm.github.io/blog/type-safe-mediator-rust/" title="Mediator en Rust (I)">Mediator en Rust (I)</a></h1>
+            <div class="date">Mar. 14, 2021</div>    
+            <h1><a href="https://yorodm.github.io/blog/type-safe-mediator-rust/" title="Mediator en Rust">Mediator en Rust</a></h1>
             UPDATE 2021-03-15T22:46:50+02:00. Un lector (pues si, tengo lectores) me comentó sobre un error en Mediator::send. Cosas que pasan cuando transcribes y experimentas desde el playground.
  Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
 MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .
@@ -75,10 +74,7 @@ MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementació
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2021-02-22T16:03:13-05:00">22 Feb 2021
-			</time>
-		  </div>
+            <div class="date">Feb. 22, 2021</div>    
             <h1><a href="https://yorodm.github.io/blog/rust-pipeline-pattern-ii/" title="Pipelines en Rust (II)">Pipelines en Rust (II)</a></h1>
             En el artículo anterior hablamos sobre la creación de pipelines extremadamente sencillas en Rust.
 Si recuerdan, la implementación se ejecutaba de forma secuencial lo que en el momento pudo parecer suficiente, pero si lo pensamos mejor nos damos cuenta que limita mucho la aplicabilidad del modelo. Una mejor idea sería poder usar nuestros pipelines de forma concurrente.
@@ -88,10 +84,7 @@ Async Step La primera tarea es convertir nuestra implementación de Step a algo 
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2021-02-17T19:21:46-05:00">17 Feb 2021
-			</time>
-		  </div>
+            <div class="date">Feb. 17, 2021</div>    
             <h1><a href="https://yorodm.github.io/blog/futures-go/" title="Desarrollo en Golang: Futures/Promises">Desarrollo en Golang: Futures/Promises</a></h1>
             Entre las cosas que pienso adicionar al workshop de Go está un capítulo sobre patrones y técnicas para programación concurrente.
 Future es un objeto que representa el resultado de un cálculo que se ejecuta de forma concurrente. Las futures se utilizan cuando tenemos un valor que es costoso de obtener pero sabemos de antemano como calcularlo.
@@ -101,10 +94,7 @@ Las facilidades de Go para manejar concurrencia hacen la implementación de futu
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2020-12-31T00:54:30-05:00">31 Dic 2020
-			</time>
-		  </div>
+            <div class="date">Dec. 31, 2020</div>    
             <h1><a href="https://yorodm.github.io/blog/copy-queue-linux/" title="Cola de Copia para Linux (I)">Cola de Copia para Linux (I)</a></h1>
             ¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
 Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa.
@@ -113,10 +103,7 @@ Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una peq
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2020-12-24T13:27:39-05:00">24 Dic 2020
-			</time>
-		  </div>
+            <div class="date">Dec. 24, 2020</div>    
             <h1><a href="https://yorodm.github.io/blog/rust-pipeline-pattern/" title="Pipelines en Rust (I)">Pipelines en Rust (I)</a></h1>
             Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
 Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.
@@ -125,10 +112,7 @@ Go es un lenguaje especialmente capacitado para programar pipelines debido a sus
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2020-10-06T17:45:15-04:00">6 Oct 2020
-			</time>
-		  </div>
+            <div class="date">Oct. 6, 2020</div>    
             <h1><a href="https://yorodm.github.io/blog/hugo-mode-emacs-ii/" title="Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (II)">Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (II)</a></h1>
             En el artículo anterior (hace unos cuantos meses ya) estuve hablando sobre como comencé automatizando el flujo de publicación del blog usando scripts. En este les mostraré como llevamos esos scripts a un modo de Emacs.
 Manos al Emacs. Una de las ventajas de Emacs es su extensibilidad, con un poco de código Elisp podemos adicionar nuevas funcionalidades al editor. Aunque sería posible hacer un modo1 para crear toda una experiencia relacionada con el manejo de blogs, es mucho más sencillo crear comandos2.
@@ -137,10 +121,7 @@ Manos al Emacs. Una de las ventajas de Emacs es su extensibilidad, con un poco d
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2020-09-07T12:17:58-04:00">7 Sep 2020
-			</time>
-		  </div>
+            <div class="date">Sep. 7, 2020</div>    
             <h1><a href="https://yorodm.github.io/blog/programming-myths/" title="Mitos que los programadores creemos">Mitos que los programadores creemos</a></h1>
             Conversando con un amigo se nos ocurrió hacer una lista de mitos que nos encontramos en nuestra profesión.
  Multihilo/multiproceso/concurrente es siempre más rápido. Multiplataforma significa que las funcionalidades se comportan igual en distintos OS La codificacíon del texto va a ser siempre X. El caracter de fin de línea va a ser siempre X. Los caracteres ocupan 1 byte de memoria. Las fechas siempre tienen el mismo formato. Las denominaciones de moneda no cambian.
@@ -149,10 +130,7 @@ Manos al Emacs. Una de las ventajas de Emacs es su extensibilidad, con un poco d
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2020-03-06T15:06:47-05:00">6 Mar 2020
-			</time>
-		  </div>
+            <div class="date">Mar. 6, 2020</div>    
             <h1><a href="https://yorodm.github.io/blog/microservices-dotnet-3/" title="Microservicios en .NET Core 3.1">Microservicios en .NET Core 3.1</a></h1>
             La nueva versión LTS de .NET Core trae consigo muchas ventajas para el los desarrolladores de microservicios. Una de las más esperadas es la estabilización de la API para ejecutar servicios en segundo plano o workers utilizando Microsoft.Extensions.Hosting
 ¿Qué son los workers? Si eres desarrollador de ASP.NET Core debes estar familiarizado con el paquete Microsoft.AspNetCore.Hosting y las clasesWebHostBuilder y WebHost.
@@ -162,10 +140,7 @@ public class Program { public static void Main(string[] args) { var config = new
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2020-01-20T11:50:59-05:00">20 Ene 2020
-			</time>
-		  </div>
+            <div class="date">Jan. 20, 2020</div>    
             <h1><a href="https://yorodm.github.io/blog/awstail/" title="awstail: AWS Logs a la vieja usanza">awstail: AWS Logs a la vieja usanza</a></h1>
             awstail es una herramienta muy simple que cumple dos funciones:
  Darme la excusa para aprender Rust. Monitorear un grupo de logs en AWS Cloudwatch desde la terminal.  Por el momento, estas son las opciones que permite la herramienta:
@@ -175,10 +150,7 @@ awstail 0.3.0 Yoandy Rodriguez &lt;yoandy.rmartinez@gmail.com&gt; like tail -f f
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2019-11-04T13:01:46-05:00">4 Nov 2019
-			</time>
-		  </div>
+            <div class="date">Nov. 4, 2019</div>    
             <h1><a href="https://yorodm.github.io/blog/python-work-queue/" title="Cola de tareas en Python (I)">Cola de tareas en Python (I)</a></h1>
             Después de unos meses trabajando en Go se llegan a extrañar las abstracciones del lenguaje para concurrencia. Hoy por ejemplo necesitaba hacer una cola de tareas en Python utilizando AsyncIO. En Go esto sigue una estructura sencilla:
 // Este es la gorutina que procesa los trabajos func worker(jobChan &lt;-chan Job) { for job := range jobChan { process(job) } } // Creamos un canal a donde enviar los datos jobChan := make(chan Job, 10) // Arrancamos la gorutina go worker(jobChan) // Enviamos datos para un trabajo, esto puede ser desde cualquier // gorutina jobChan &lt;- job //Indicamos que ya no vamos a procesar más datos close(jobChan) Veamos si podemos lograr un equivalente en Python:
@@ -187,10 +159,7 @@ awstail 0.3.0 Yoandy Rodriguez &lt;yoandy.rmartinez@gmail.com&gt; like tail -f f
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2019-07-07T11:03:33-04:00">7 Jul 2019
-			</time>
-		  </div>
+            <div class="date">Jul. 7, 2019</div>    
             <h1><a href="https://yorodm.github.io/blog/hugo-mode-emacs/" title="Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)">Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)</a></h1>
             Este blog es creado con Hugo y publicado utilizando Github Pages. Cada artículo es creado utilizando Markdown y añadido a un repositorio donde finalmente pasa a formar parte del sitio estático utilizando submódulos de Git.
 Todo este proceso implica utilizar 3 herramientas.
@@ -201,10 +170,7 @@ Uno para crear nuevos artículos
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2019-03-25T15:34:27-04:00">25 Mar 2019
-			</time>
-		  </div>
+            <div class="date">Mar. 25, 2019</div>    
             <h1><a href="https://yorodm.github.io/blog/emacs-golang-setup-2019/" title="Emacs &#43; Golang. Edición 2019">Emacs &#43; Golang. Edición 2019</a></h1>
             Go 1.12 fue lanzado hace un mes y entre los cambios más significativos se encuentran varias mejoras en el soporte para módulos (que va a ser el método por defecto en la versión 1.13).
 Si eres usuario de Emacs y te interesa desarrollar utilizando Go, aquí tienes una guía sencilla de como habilitar el soporte para el lenguaje.
@@ -214,10 +180,7 @@ Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode 
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2019-03-12T10:14:20-04:00">12 Mar 2019
-			</time>
-		  </div>
+            <div class="date">Mar. 12, 2019</div>    
             <h1><a href="https://yorodm.github.io/blog/plumber-simple-etl/" title="Plumber: ETL simple para Python">Plumber: ETL simple para Python</a></h1>
             Implementando una feature para uno de los proyectos en los que trabajo terminé necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X, las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.
 Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cubren este campo, me encontré con los siguientes problemas:
@@ -227,10 +190,7 @@ Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cu
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2019-01-15T22:11:42-05:00">15 Ene 2019
-			</time>
-		  </div>
+            <div class="date">Jan. 15, 2019</div>    
             <h1><a href="https://yorodm.github.io/blog/decoradores-stdlib/" title="Python: Decoradores estándar y su uso">Python: Decoradores estándar y su uso</a></h1>
             Entre las baterías includas de Python, vienen varios decoradores que nos facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su uso.
 Decoradores para OOP property Uno de los más usados. Convierte un conjunto de métodos en un descriptor que hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de lógica a propiedades de la clase.
@@ -240,10 +200,7 @@ class C: def __init__(self): self._x = None def getx(self): return self.
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-11-20T17:28:59-05:00">20 Nov 2018
-			</time>
-		  </div>
+            <div class="date">Nov. 20, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/web-scrapping-emacs/" title="Scrapper para DEV desde Emacs">Scrapper para DEV desde Emacs</a></h1>
             Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
 Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&hellip; TL;DR, aquí está el scrapper 😍.
@@ -252,10 +209,7 @@ Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas q
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-11-18T12:39:59-05:00">18 Nov 2018
-			</time>
-		  </div>
+            <div class="date">Nov. 18, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/trucos-aws-lambda-ii/" title="Trucos Aws Lambda (parte 2)">Trucos Aws Lambda (parte 2)</a></h1>
             Trucos con AWS Lambda (II). Truco 1. Utiliza las tags. Los tags en AWS nos permiten:
  Tener asociados un máximo de 50 a cada recurso. Llaves de hasta 128 caracteres Unicode. Valores de hasta 256 caracteres Unicode. Distinción entre mayúsculas y minúsculas para llaves y valores.  Basicamente todo lo que necesitamos para hacernos un caché:
@@ -265,10 +219,7 @@ lambda_cient = boto3.client(&#39;lambda&#39;) def save_cache(tags): # tags is a 
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-10-29T09:45:07-04:00">29 Oct 2018
-			</time>
-		  </div>
+            <div class="date">Oct. 29, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/python-simple-cli/" title="Interfaces de comandos con Python">Interfaces de comandos con Python</a></h1>
             Interfaces de comandos sencillas con Python. Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
 Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herramientas de líneas de comandos que existe y tiene además la ventaja de no ser exclusiva de Python, para utilizarla solo tienes que documentar el módulo o función que va a obtener los argumentos de la línea de comandos.
@@ -277,10 +228,7 @@ Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herr
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-10-25T12:45:05-04:00">25 Oct 2018
-			</time>
-		  </div>
+            <div class="date">Oct. 25, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/aws-lambda-tricks/" title="Trucos con AWS Lambda. (Parte 1)">Trucos con AWS Lambda. (Parte 1)</a></h1>
             Truco 1: Recursividad asíncrona. A veces queremos garantizar que una lambda se ejecute siempre de forma asíncrona.
 def lambda_handler(event, context): if not event.get(&#39;async&#39;): invoke_self_async(event, context) return def invoke_self_async(event, context): new_event = { &#39;async&#39;: True, &#39;data&#39;: event } boto3.client(&#39;lambda&#39;).invoke_async( FunctionName=context.invoked_function_arn, InvokeArgs=json.dumps(new_event) ) Este truco es muy útil cuando no nos interesa el resultado de la ejecución o el mismo es enviado por vías alternativas (ej. usando SNS)
@@ -290,10 +238,7 @@ Truco 2: Planificación dinámica. A veces la planificación de un servicio debe
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-08-20T10:50:39-04:00">20 Ago 2018
-			</time>
-		  </div>
+            <div class="date">Aug. 20, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/cementerio-proyectos-github/" title="Cementerio Proyectos Github">Cementerio Proyectos Github</a></h1>
             Siguiendo uno de los trending topics aquí en DEV voy a publicar mi propio listado de proyectos difuntos en Github. Para ver los otros listados puedes seguir el tag
 CL-Rx Lenguaje: Common Lisp
@@ -305,10 +250,7 @@ En el momento estaba empezando a utilizar RxJava y alguno de los conceptos no me
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-07-13T14:44:56-04:00">13 Jul 2018
-			</time>
-		  </div>
+            <div class="date">Jul. 13, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/practicas-serverless-framework/" title="Buenas prácticas con Serverless">Buenas prácticas con Serverless</a></h1>
             Algunas buenas practicas para Serverless Framework Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
 Reducir la dependencia de valores externos. En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es común utilizar referencias a valores externos por toda la plantilla.
@@ -318,10 +260,7 @@ functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${e
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-05-09T11:45:31-04:00">9 May 2018
-			</time>
-		  </div>
+            <div class="date">May. 9, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/json-rpc-golang/" title="Implementando JSON-RPC en Go">Implementando JSON-RPC en Go</a></h1>
             Implementando JSON-RPC en Go JSON-RPC es mi método favorito para comunicarme con Odoo desde el &ldquo;exterior&rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).
         </div>
@@ -329,10 +268,7 @@ functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${e
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-04-25T11:37:30-04:00">25 Abr 2018
-			</time>
-		  </div>
+            <div class="date">Apr. 25, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/ruby-on-rails-for-professionals/" title="Libro: Ruby on Rails Notes for Professionals">Libro: Ruby on Rails Notes for Professionals</a></h1>
             Libro: Ruby on Rails for Professionals Un excelente libro producto del trabajo y conocimiento de cientos de usuarios de Stack Overflow. Como tantos otros libros disponibles en GoalKicker este es gratis, bajo licencia Creative Commons BY-SA y una de las cosas que debes leer si trabajas o estás interesado en aprender Ruby On Rails
 El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde la instalación y arranque de un nuevo proyecto hasta el despliegue utilizando Docker.
@@ -341,10 +277,7 @@ El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-04-11T14:56:57-04:00">11 Abr 2018
-			</time>
-		  </div>
+            <div class="date">Apr. 11, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/cambios-plantilla-blog/" title="De vuelta, cambios y anuncios">De vuelta, cambios y anuncios</a></h1>
             De vuelta, cambios y anuncios. Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
 Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
@@ -354,10 +287,7 @@ Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2018-01-22T00:00:00&#43;02:00">22 Ene 2018
-			</time>
-		  </div>
+            <div class="date">Jan. 22, 2018</div>    
             <h1><a href="https://yorodm.github.io/blog/creando-widgets-odoo/" title="Creando widgets para Odoo (Parte 1)">Creando widgets para Odoo (Parte 1)</a></h1>
             Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de [Odoo 10] (http://www.odoo.com), como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
 En este artículo vamos a crear un nuevo widget para manejar campos enteros y de coma flotante en la vista (la parte V de MV*).
@@ -366,10 +296,7 @@ En este artículo vamos a crear un nuevo widget para manejar campos enteros y de
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-12-23T10:14:28-05:00">23 Dic 2017
-			</time>
-		  </div>
+            <div class="date">Dec. 23, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/comentarios-via-disqus/" title="Comentarios vía disqus y felices fiestas">Comentarios vía disqus y felices fiestas</a></h1>
             Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
 En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!
@@ -378,10 +305,7 @@ En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-12-15T00:00:00&#43;02:00">15 Dic 2017
-			</time>
-		  </div>
+            <div class="date">Dec. 15, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/generadores-referencias-python/" title="Generadores y referencias">Generadores y referencias</a></h1>
             Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
 def funcionx(*args): ctx = dict() for x in args: ctx[&#39;run&#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.
@@ -390,10 +314,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&#39;run&#39;] = x yield ct
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-12-13T00:00:00&#43;02:00">13 Dic 2017
-			</time>
-		  </div>
+            <div class="date">Dec. 13, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/" title="Pruebas funcionales con factory_boy y faker">Pruebas funcionales con factory_boy y faker</a></h1>
             Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.
         </div>
@@ -401,10 +322,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&#39;run&#39;] = x yield ct
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-12-04T00:00:00&#43;02:00">4 Dic 2017
-			</time>
-		  </div>
+            <div class="date">Dec. 4, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/microframeworks-en-java/" title="Microframeworks en Java">Microframeworks en Java</a></h1>
             Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &ldquo;microframeworks&rdquo;.
 Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor Web basado en Netty y un DSL para manejar rutas (muy a lo Rack+ Sinatra) y una fuerte integración con Groovy .
@@ -413,10 +331,7 @@ Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor 
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-11-09T11:13:09-05:00">9 Nov 2017
-			</time>
-		  </div>
+            <div class="date">Nov. 9, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/nameko-microservicios-python/" title="Desarrollando microservicios con Nameko">Desarrollando microservicios con Nameko</a></h1>
             Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
 Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
@@ -426,10 +341,7 @@ Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-11-02T00:00:00Z">2 Nov 2017
-			</time>
-		  </div>
+            <div class="date">Nov. 2, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/golang-xml-sax/" title="Parser SAX en Golang">Parser SAX en Golang</a></h1>
             Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej. las que salen en los ejemplos) están orientadas más hacia la serialización y deserialización de XML que a andar recorriendo documentos.
@@ -438,10 +350,7 @@ Una mirada por encima a encoding/xml me dejo bien claro que no existía un parse
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-10-26T15:04:13-04:00">26 Oct 2017
-			</time>
-		  </div>
+            <div class="date">Oct. 26, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/desarrollo-emacs-go/" title="Desarrollando con Emacs y Go">Desarrollando con Emacs y Go</a></h1>
             Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &ldquo;oficial&rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.
@@ -450,10 +359,7 @@ Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para 
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-10-24T10:55:56-04:00">24 Oct 2017
-			</time>
-		  </div>
+            <div class="date">Oct. 24, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/zfs-problema-memoria/" title="ZFS y el problema de la memoria">ZFS y el problema de la memoria</a></h1>
             ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
 Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.
@@ -462,10 +368,7 @@ Después de notar que en la mayoría de los casos, los aconsejados regresaban al
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-10-19T15:26:34-04:00">19 Oct 2017
-			</time>
-		  </div>
+            <div class="date">Oct. 19, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/hugo-y-emacs/" title="Hugo y Emacs">Hugo y Emacs</a></h1>
             Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
  Hacer nuevo post. Previsualizar. Subir a GitHub.
@@ -474,10 +377,7 @@ Después de notar que en la mayoría de los casos, los aconsejados regresaban al
 
     
         <div class="post">
-          <div class="date">
-			<time class="post-date" datetime="2017-10-16T00:00:00Z">16 Oct 2017
-			</time>
-		  </div>
+            <div class="date">Oct. 16, 2017</div>    
             <h1><a href="https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/" title="Nuevo blog">Nuevo blog</a></h1>
             ¡Hola! ¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y actualizar regularmente) un blog. En esta ocasión decidí alejarme de plataformas más complejas para probar GitHub Pages, Hugo como generador de sitios estáticos, Markdown y claro está Emacs.
 Como siempre hablaré de temas relacionados con el desarrollo de software, software libre, lenguajes de programación y mis experiencias (buenas o malas) interactuando con el mundo del software.

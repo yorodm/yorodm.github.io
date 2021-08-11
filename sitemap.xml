@@ -67,7 +67,21 @@
     
         
         <url>
+            <loc>https://yorodm.github.io/series/pipelines-en-rust/</loc>
+            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
             <loc>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</loc>
+            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+        </url>
+        
+    
+        
+        <url>
+            <loc>https://yorodm.github.io/series/</loc>
             <lastmod>2021-02-22T16:03:13-05:00</lastmod>
         </url>
         
@@ -432,21 +446,21 @@
         
         <url>
             <loc>https://yorodm.github.io/blog/creando-widgets-odoo/</loc>
-            <lastmod>2018-01-22T00:00:00+02:00</lastmod>
+            <lastmod>2018-01-22T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/tags/javascript/</loc>
-            <lastmod>2018-01-22T00:00:00+02:00</lastmod>
+            <lastmod>2018-01-22T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/tags/odoo/</loc>
-            <lastmod>2018-01-22T00:00:00+02:00</lastmod>
+            <lastmod>2018-01-22T00:00:00+00:00</lastmod>
         </url>
         
     
@@ -460,42 +474,42 @@
         
         <url>
             <loc>https://yorodm.github.io/blog/generadores-referencias-python/</loc>
-            <lastmod>2017-12-15T00:00:00+02:00</lastmod>
+            <lastmod>2017-12-15T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</loc>
-            <lastmod>2017-12-13T00:00:00+02:00</lastmod>
+            <lastmod>2017-12-13T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/tags/testing/</loc>
-            <lastmod>2017-12-13T00:00:00+02:00</lastmod>
+            <lastmod>2017-12-13T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/tags/java/</loc>
-            <lastmod>2017-12-04T00:00:00+02:00</lastmod>
+            <lastmod>2017-12-04T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/tags/microframeworks/</loc>
-            <lastmod>2017-12-04T00:00:00+02:00</lastmod>
+            <lastmod>2017-12-04T00:00:00+00:00</lastmod>
         </url>
         
     
         
         <url>
             <loc>https://yorodm.github.io/blog/microframeworks-en-java/</loc>
-            <lastmod>2017-12-04T00:00:00+02:00</lastmod>
+            <lastmod>2017-12-04T00:00:00+00:00</lastmod>
         </url>
         
     

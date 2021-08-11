@@ -6,11 +6,11 @@
     <description>Recent content in odoo on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
-    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/tags/odoo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://yorodm.github.io/tags/odoo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creando widgets para Odoo (Parte 1)</title>
       <link>https://yorodm.github.io/blog/creando-widgets-odoo/</link>
-      <pubDate>Mon, 22 Jan 2018 00:00:00 +0200</pubDate>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
       <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de [Odoo 10] (http://www.odoo.com), como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.

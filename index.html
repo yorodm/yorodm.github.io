@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-	<meta name="generator" content="Hugo 0.86.0" />
+	<meta name="generator" content="Hugo 0.87.0" />
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>/home/yorodm/</title>
@@ -48,6 +48,8 @@
                 
                 <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
                 
+                <li><a href="https://yorodm.github.io/series/" typeof="ListItem">series/</a></li>
+                
             </ul>
           </nav>
         </div>
@@ -63,7 +65,7 @@
     
     <div class="post">
       <div class="date">Mar. 14, 2021</div>
-      <h1><a href="https://yorodm.github.io/blog/type-safe-mediator-rust/" title="Mediator en Rust (I)">Mediator en Rust (I)</a></h1>
+      <h1><a href="https://yorodm.github.io/blog/type-safe-mediator-rust/" title="Mediator en Rust">Mediator en Rust</a></h1>
       UPDATE 2021-03-15T22:46:50+02:00. Un lector (pues si, tengo lectores) me comentó sobre un error en Mediator::send. Cosas que pasan cuando transcribes y experimentas desde el playground.
  Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
 MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .
@@ -83,6 +85,20 @@ Async Step La primera tarea es convertir nuestra implementación de Step a algo 
       Entre las cosas que pienso adicionar al workshop de Go está un capítulo sobre patrones y técnicas para programación concurrente.
 Future es un objeto que representa el resultado de un cálculo que se ejecuta de forma concurrente. Las futures se utilizan cuando tenemos un valor que es costoso de obtener pero sabemos de antemano como calcularlo.
 Las facilidades de Go para manejar concurrencia hacen la implementación de futures en el lenguaje bastante sencilla.
+    </div>
+    
+    <div class="post">
+      <div class="date">Dec. 31, 2020</div>
+      <h1><a href="https://yorodm.github.io/blog/copy-queue-linux/" title="Cola de Copia para Linux (I)">Cola de Copia para Linux (I)</a></h1>
+      ¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
+Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa.
+    </div>
+    
+    <div class="post">
+      <div class="date">Dec. 24, 2020</div>
+      <h1><a href="https://yorodm.github.io/blog/rust-pipeline-pattern/" title="Pipelines en Rust (I)">Pipelines en Rust (I)</a></h1>
+      Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
+Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.
     </div>
     
 	
