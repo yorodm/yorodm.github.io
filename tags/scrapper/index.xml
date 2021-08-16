@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>scrapper on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/scrapper/</link>
+    <link>https://yorodm.is-a.dev/tags/scrapper/</link>
     <description>Recent content in scrapper on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 20 Nov 2018 17:28:59 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/scrapper/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 20 Nov 2018 17:28:59 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/scrapper/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Scrapper para DEV desde Emacs</title>
-      <link>https://yorodm.github.io/blog/web-scrapping-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</link>
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/web-scrapping-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</guid>
       <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
 Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>

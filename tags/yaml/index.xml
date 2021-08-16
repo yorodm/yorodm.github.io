@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>yaml on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/yaml/</link>
+    <link>https://yorodm.is-a.dev/tags/yaml/</link>
     <description>Recent content in yaml on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 13 Jul 2018 14:44:56 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/yaml/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 13 Jul 2018 14:44:56 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/yaml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Buenas prácticas con Serverless</title>
-      <link>https://yorodm.github.io/blog/practicas-serverless-framework/</link>
+      <link>https://yorodm.is-a.dev/blog/practicas-serverless-framework/</link>
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/practicas-serverless-framework/</guid>
+      <guid>https://yorodm.is-a.dev/blog/practicas-serverless-framework/</guid>
       <description>Algunas buenas practicas para Serverless Framework Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
 Reducir la dependencia de valores externos. En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es común utilizar referencias a valores externos por toda la plantilla.
 functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${env:FUNC_PREFIX}-worldhandler:handler.worldAunque esto no es una mala practica en si, hace que nuestras funciones dependan de un valor que solo vamos a obtener desde el entorno.</description>

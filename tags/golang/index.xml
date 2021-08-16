@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>golang on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/golang/</link>
+    <link>https://yorodm.is-a.dev/tags/golang/</link>
     <description>Recent content in golang on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 25 Mar 2019 15:34:27 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/golang/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 25 Mar 2019 15:34:27 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/golang/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs &#43; Golang. Edición 2019</title>
-      <link>https://yorodm.github.io/blog/emacs-golang-setup-2019/</link>
+      <link>https://yorodm.is-a.dev/blog/emacs-golang-setup-2019/</link>
       <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/emacs-golang-setup-2019/</guid>
+      <guid>https://yorodm.is-a.dev/blog/emacs-golang-setup-2019/</guid>
       <description>Go 1.12 fue lanzado hace un mes y entre los cambios más significativos se encuentran varias mejoras en el soporte para módulos (que va a ser el método por defecto en la versión 1.13).
 Si eres usuario de Emacs y te interesa desarrollar utilizando Go, aquí tienes una guía sencilla de como habilitar el soporte para el lenguaje.
 Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode ya tienes soporte para bingo, una herramienta que provee un servidor de lenguajes para Go y que tiene soporte integrado para trabajar con módulos</description>
@@ -21,29 +21,29 @@ Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode 
     
     <item>
       <title>Implementando JSON-RPC en Go</title>
-      <link>https://yorodm.github.io/blog/json-rpc-golang/</link>
+      <link>https://yorodm.is-a.dev/blog/json-rpc-golang/</link>
       <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/json-rpc-golang/</guid>
+      <guid>https://yorodm.is-a.dev/blog/json-rpc-golang/</guid>
       <description>Implementando JSON-RPC en Go JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
     </item>
     
     <item>
       <title>Parser SAX en Golang</title>
-      <link>https://yorodm.github.io/blog/golang-xml-sax/</link>
+      <link>https://yorodm.is-a.dev/blog/golang-xml-sax/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/golang-xml-sax/</guid>
+      <guid>https://yorodm.is-a.dev/blog/golang-xml-sax/</guid>
       <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej. las que salen en los ejemplos) están orientadas más hacia la serialización y deserialización de XML que a andar recorriendo documentos.</description>
     </item>
     
     <item>
       <title>Desarrollando con Emacs y Go</title>
-      <link>https://yorodm.github.io/blog/desarrollo-emacs-go/</link>
+      <link>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</link>
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
+      <guid>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</guid>
       <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>

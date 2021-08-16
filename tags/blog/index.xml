@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>blog on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/blog/</link>
+    <link>https://yorodm.is-a.dev/tags/blog/</link>
     <description>Recent content in blog on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 11 Apr 2018 14:56:57 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Apr 2018 14:56:57 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>De vuelta, cambios y anuncios</title>
-      <link>https://yorodm.github.io/blog/cambios-plantilla-blog/</link>
+      <link>https://yorodm.is-a.dev/blog/cambios-plantilla-blog/</link>
       <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/cambios-plantilla-blog/</guid>
+      <guid>https://yorodm.is-a.dev/blog/cambios-plantilla-blog/</guid>
       <description>De vuelta, cambios y anuncios. Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
 Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
  Emacs para desarrolladores de frontend (Vue, Angular, Typescript). Emacs para desarrolladores de backend (SQL, Python, Ruby, PHP).</description>
@@ -21,20 +21,20 @@ Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
     
     <item>
       <title>Comentarios vía disqus y felices fiestas</title>
-      <link>https://yorodm.github.io/blog/comentarios-via-disqus/</link>
+      <link>https://yorodm.is-a.dev/blog/comentarios-via-disqus/</link>
       <pubDate>Sat, 23 Dec 2017 10:14:28 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/comentarios-via-disqus/</guid>
+      <guid>https://yorodm.is-a.dev/blog/comentarios-via-disqus/</guid>
       <description>Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
 En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
     </item>
     
     <item>
       <title>Hugo y Emacs</title>
-      <link>https://yorodm.github.io/blog/hugo-y-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-y-emacs/</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-y-emacs/</guid>
       <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
  Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
     </item>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>patrones on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/patrones/</link>
+    <link>https://yorodm.is-a.dev/tags/patrones/</link>
     <description>Recent content in patrones on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/tags/patrones/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/patrones/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mediator en Rust</title>
-      <link>https://yorodm.github.io/blog/type-safe-mediator-rust/</link>
+      <link>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</link>
       <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
       
-      <guid>https://yorodm.github.io/blog/type-safe-mediator-rust/</guid>
+      <guid>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</guid>
       <description>UPDATE 2021-03-15T22:46:50+02:00. Un lector (pues si, tengo lectores) me comentó sobre un error en Mediator::send. Cosas que pasan cuando transcribes y experimentas desde el playground.
  Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
 MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .</description>
@@ -21,10 +21,10 @@ MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementació
     
     <item>
       <title>Pipelines en Rust (II)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</link>
       <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</guid>
       <description>En el artículo anterior hablamos sobre la creación de pipelines extremadamente sencillas en Rust.
 Si recuerdan, la implementación se ejecutaba de forma secuencial lo que en el momento pudo parecer suficiente, pero si lo pensamos mejor nos damos cuenta que limita mucho la aplicabilidad del modelo. Una mejor idea sería poder usar nuestros pipelines de forma concurrente.
 Async Step La primera tarea es convertir nuestra implementación de Step a algo que sea usable de forma asíncrona.</description>
@@ -32,10 +32,10 @@ Async Step La primera tarea es convertir nuestra implementación de Step a algo 
     
     <item>
       <title>Desarrollo en Golang: Futures/Promises</title>
-      <link>https://yorodm.github.io/blog/futures-go/</link>
+      <link>https://yorodm.is-a.dev/blog/futures-go/</link>
       <pubDate>Wed, 17 Feb 2021 19:21:46 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/futures-go/</guid>
+      <guid>https://yorodm.is-a.dev/blog/futures-go/</guid>
       <description>Entre las cosas que pienso adicionar al workshop de Go está un capítulo sobre patrones y técnicas para programación concurrente.
 Future es un objeto que representa el resultado de un cálculo que se ejecuta de forma concurrente. Las futures se utilizan cuando tenemos un valor que es costoso de obtener pero sabemos de antemano como calcularlo.
 Las facilidades de Go para manejar concurrencia hacen la implementación de futures en el lenguaje bastante sencilla.</description>
@@ -43,10 +43,10 @@ Las facilidades de Go para manejar concurrencia hacen la implementación de futu
     
     <item>
       <title>Pipelines en Rust (I)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</link>
       <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</guid>
       <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
 Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.</description>
     </item>

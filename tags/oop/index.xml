@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>oop on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/oop/</link>
+    <link>https://yorodm.is-a.dev/tags/oop/</link>
     <description>Recent content in oop on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/tags/oop/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/oop/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mediator en Rust</title>
-      <link>https://yorodm.github.io/blog/type-safe-mediator-rust/</link>
+      <link>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</link>
       <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
       
-      <guid>https://yorodm.github.io/blog/type-safe-mediator-rust/</guid>
+      <guid>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</guid>
       <description>UPDATE 2021-03-15T22:46:50+02:00. Un lector (pues si, tengo lectores) me comentó sobre un error en Mediator::send. Cosas que pasan cuando transcribes y experimentas desde el playground.
  Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
 MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .</description>

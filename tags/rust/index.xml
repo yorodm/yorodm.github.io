@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>rust on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/rust/</link>
+    <link>https://yorodm.is-a.dev/tags/rust/</link>
     <description>Recent content in rust on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mediator en Rust</title>
-      <link>https://yorodm.github.io/blog/type-safe-mediator-rust/</link>
+      <link>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</link>
       <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
       
-      <guid>https://yorodm.github.io/blog/type-safe-mediator-rust/</guid>
+      <guid>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</guid>
       <description>UPDATE 2021-03-15T22:46:50+02:00. Un lector (pues si, tengo lectores) me comentó sobre un error en Mediator::send. Cosas que pasan cuando transcribes y experimentas desde el playground.
  Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
 MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .</description>
@@ -21,10 +21,10 @@ MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementació
     
     <item>
       <title>Pipelines en Rust (II)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</link>
       <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</guid>
       <description>En el artículo anterior hablamos sobre la creación de pipelines extremadamente sencillas en Rust.
 Si recuerdan, la implementación se ejecutaba de forma secuencial lo que en el momento pudo parecer suficiente, pero si lo pensamos mejor nos damos cuenta que limita mucho la aplicabilidad del modelo. Una mejor idea sería poder usar nuestros pipelines de forma concurrente.
 Async Step La primera tarea es convertir nuestra implementación de Step a algo que sea usable de forma asíncrona.</description>
@@ -32,30 +32,30 @@ Async Step La primera tarea es convertir nuestra implementación de Step a algo 
     
     <item>
       <title>Cola de Copia para Linux (I)</title>
-      <link>https://yorodm.github.io/blog/copy-queue-linux/</link>
+      <link>https://yorodm.is-a.dev/blog/copy-queue-linux/</link>
       <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/copy-queue-linux/</guid>
+      <guid>https://yorodm.is-a.dev/blog/copy-queue-linux/</guid>
       <description>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
 Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa.</description>
     </item>
     
     <item>
       <title>Pipelines en Rust (I)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</link>
       <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</guid>
       <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
 Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.</description>
     </item>
     
     <item>
       <title>awstail: AWS Logs a la vieja usanza</title>
-      <link>https://yorodm.github.io/blog/awstail/</link>
+      <link>https://yorodm.is-a.dev/blog/awstail/</link>
       <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/awstail/</guid>
+      <guid>https://yorodm.is-a.dev/blog/awstail/</guid>
       <description>awstail es una herramienta muy simple que cumple dos funciones:
  Darme la excusa para aprender Rust. Monitorear un grupo de logs en AWS Cloudwatch desde la terminal.  Por el momento, estas son las opciones que permite la herramienta:
 awstail 0.3.0 Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt; like tail -f for AWS Cloudwatch USAGE: awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt; FLAGS: -h, --help Prints help information -V, --version Prints version information OPTIONS: -p &amp;lt;PROFILE&amp;gt; Profile if using other than &#39;default&#39; -r &amp;lt;REGION&amp;gt; AWS region (defaults to us-east-1) -s &amp;lt;SINCE&amp;gt; Take logs since a given time (defaults to 5 minutes) -w &amp;lt;WATCH&amp;gt; Keep watching for new logs every n seconds (defaults to 10) ARGS: &amp;lt;LOG_GROUP&amp;gt; Log group name Posibles opciones futuras:</description>

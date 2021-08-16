@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>lambda on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/lambda/</link>
+    <link>https://yorodm.is-a.dev/tags/lambda/</link>
     <description>Recent content in lambda on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 18 Nov 2018 12:39:59 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Nov 2018 12:39:59 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/lambda/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Trucos Aws Lambda (parte 2)</title>
-      <link>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/trucos-aws-lambda-ii/</link>
       <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/trucos-aws-lambda-ii/</guid>
       <description>Trucos con AWS Lambda (II). Truco 1. Utiliza las tags. Los tags en AWS nos permiten:
  Tener asociados un máximo de 50 a cada recurso. Llaves de hasta 128 caracteres Unicode. Valores de hasta 256 caracteres Unicode. Distinción entre mayúsculas y minúsculas para llaves y valores.  Basicamente todo lo que necesitamos para hacernos un caché:
 lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # tags is a dict of string:string lambda_client.tag_resource( Resource=self_arn, # get it from handler context Tags=json.</description>
@@ -21,10 +21,10 @@ lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # ta
     
     <item>
       <title>Trucos con AWS Lambda. (Parte 1)</title>
-      <link>https://yorodm.github.io/blog/aws-lambda-tricks/</link>
+      <link>https://yorodm.is-a.dev/blog/aws-lambda-tricks/</link>
       <pubDate>Thu, 25 Oct 2018 12:45:05 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/aws-lambda-tricks/</guid>
+      <guid>https://yorodm.is-a.dev/blog/aws-lambda-tricks/</guid>
       <description>Truco 1: Recursividad asíncrona. A veces queremos garantizar que una lambda se ejecute siempre de forma asíncrona.
 def lambda_handler(event, context): if not event.get(&amp;#39;async&amp;#39;): invoke_self_async(event, context) return def invoke_self_async(event, context): new_event = { &amp;#39;async&amp;#39;: True, &amp;#39;data&amp;#39;: event } boto3.client(&amp;#39;lambda&amp;#39;).invoke_async( FunctionName=context.invoked_function_arn, InvokeArgs=json.dumps(new_event) ) Este truco es muy útil cuando no nos interesa el resultado de la ejecución o el mismo es enviado por vías alternativas (ej. usando SNS)
 Truco 2: Planificación dinámica. A veces la planificación de un servicio debe ser alterada en dependencia de ciertas condiciones.</description>

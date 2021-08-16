@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>nameko on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/nameko/</link>
+    <link>https://yorodm.is-a.dev/tags/nameko/</link>
     <description>Recent content in nameko on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 09 Nov 2017 11:13:09 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/nameko/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Nov 2017 11:13:09 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/nameko/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Desarrollando microservicios con Nameko</title>
-      <link>https://yorodm.github.io/blog/nameko-microservicios-python/</link>
+      <link>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</link>
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/nameko-microservicios-python/</guid>
+      <guid>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</guid>
       <description>Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
 Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
  Python 2 (creo que no hay versiones para Python 3).</description>

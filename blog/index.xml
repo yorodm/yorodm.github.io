@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blog on /home/yorodm</title>
-    <link>https://yorodm.github.io/blog/</link>
+    <link>https://yorodm.is-a.dev/blog/</link>
     <description>Recent content in Blog on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate><atom:link href="https://yorodm.is-a.dev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Mediator en Rust</title>
-      <link>https://yorodm.github.io/blog/type-safe-mediator-rust/</link>
+      <link>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</link>
       <pubDate>Sun, 14 Mar 2021 20:38:14 +0200</pubDate>
       
-      <guid>https://yorodm.github.io/blog/type-safe-mediator-rust/</guid>
+      <guid>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</guid>
       <description>UPDATE 2021-03-15T22:46:50+02:00. Un lector (pues si, tengo lectores) me comentó sobre un error en Mediator::send. Cosas que pasan cuando transcribes y experimentas desde el playground.
  Un Rustacean en tierras de Dotnet. Un amigo me hace una pregunta mientras conversábamos sobre las ventajas de MediatR. ¿Qué te haces en Rust si quieres un mediator? Y de ahí salió la excusa para este artículo.
 MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementación sencilla del patrón mediator para .</description>
@@ -21,10 +21,10 @@ MediatR para Rustaceans. MediatR es (en sus propias palabras) una implementació
     
     <item>
       <title>Pipelines en Rust (II)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</link>
       <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</guid>
       <description>En el artículo anterior hablamos sobre la creación de pipelines extremadamente sencillas en Rust.
 Si recuerdan, la implementación se ejecutaba de forma secuencial lo que en el momento pudo parecer suficiente, pero si lo pensamos mejor nos damos cuenta que limita mucho la aplicabilidad del modelo. Una mejor idea sería poder usar nuestros pipelines de forma concurrente.
 Async Step La primera tarea es convertir nuestra implementación de Step a algo que sea usable de forma asíncrona.</description>
@@ -32,10 +32,10 @@ Async Step La primera tarea es convertir nuestra implementación de Step a algo 
     
     <item>
       <title>Desarrollo en Golang: Futures/Promises</title>
-      <link>https://yorodm.github.io/blog/futures-go/</link>
+      <link>https://yorodm.is-a.dev/blog/futures-go/</link>
       <pubDate>Wed, 17 Feb 2021 19:21:46 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/futures-go/</guid>
+      <guid>https://yorodm.is-a.dev/blog/futures-go/</guid>
       <description>Entre las cosas que pienso adicionar al workshop de Go está un capítulo sobre patrones y técnicas para programación concurrente.
 Future es un objeto que representa el resultado de un cálculo que se ejecuta de forma concurrente. Las futures se utilizan cuando tenemos un valor que es costoso de obtener pero sabemos de antemano como calcularlo.
 Las facilidades de Go para manejar concurrencia hacen la implementación de futures en el lenguaje bastante sencilla.</description>
@@ -43,50 +43,50 @@ Las facilidades de Go para manejar concurrencia hacen la implementación de futu
     
     <item>
       <title>Cola de Copia para Linux (I)</title>
-      <link>https://yorodm.github.io/blog/copy-queue-linux/</link>
+      <link>https://yorodm.is-a.dev/blog/copy-queue-linux/</link>
       <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/copy-queue-linux/</guid>
+      <guid>https://yorodm.is-a.dev/blog/copy-queue-linux/</guid>
       <description>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
 Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa.</description>
     </item>
     
     <item>
       <title>Pipelines en Rust (I)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</link>
       <pubDate>Thu, 24 Dec 2020 13:27:39 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</guid>
       <description>Pipeline es un patrón de diseño muy útil cuando tienes datos que deben ser procesados en una secuencia de etapas donde cada etapa toma como entrada la salida de la anterior. En cierta manera un pipeline es similar a componer funciones pero el nivel de complejidad es mucho más elevado debido a factores como backpressure, deadlocks o cancelación.
 Go es un lenguaje especialmente capacitado para programar pipelines debido a sus características especiales para el manejo de errores y concurrencia.</description>
     </item>
     
     <item>
       <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (II)</title>
-      <link>https://yorodm.github.io/blog/hugo-mode-emacs-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-mode-emacs-ii/</link>
       <pubDate>Tue, 06 Oct 2020 17:45:15 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-mode-emacs-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-mode-emacs-ii/</guid>
       <description>En el artículo anterior (hace unos cuantos meses ya) estuve hablando sobre como comencé automatizando el flujo de publicación del blog usando scripts. En este les mostraré como llevamos esos scripts a un modo de Emacs.
 Manos al Emacs. Una de las ventajas de Emacs es su extensibilidad, con un poco de código Elisp podemos adicionar nuevas funcionalidades al editor. Aunque sería posible hacer un modo1 para crear toda una experiencia relacionada con el manejo de blogs, es mucho más sencillo crear comandos2.</description>
     </item>
     
     <item>
       <title>Mitos que los programadores creemos</title>
-      <link>https://yorodm.github.io/blog/programming-myths/</link>
+      <link>https://yorodm.is-a.dev/blog/programming-myths/</link>
       <pubDate>Mon, 07 Sep 2020 12:17:58 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/programming-myths/</guid>
+      <guid>https://yorodm.is-a.dev/blog/programming-myths/</guid>
       <description>Conversando con un amigo se nos ocurrió hacer una lista de mitos que nos encontramos en nuestra profesión.
  Multihilo/multiproceso/concurrente es siempre más rápido. Multiplataforma significa que las funcionalidades se comportan igual en distintos OS La codificacíon del texto va a ser siempre X. El caracter de fin de línea va a ser siempre X. Los caracteres ocupan 1 byte de memoria. Las fechas siempre tienen el mismo formato. Las denominaciones de moneda no cambian.</description>
     </item>
     
     <item>
       <title>Microservicios en .NET Core 3.1</title>
-      <link>https://yorodm.github.io/blog/microservices-dotnet-3/</link>
+      <link>https://yorodm.is-a.dev/blog/microservices-dotnet-3/</link>
       <pubDate>Fri, 06 Mar 2020 15:06:47 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/microservices-dotnet-3/</guid>
+      <guid>https://yorodm.is-a.dev/blog/microservices-dotnet-3/</guid>
       <description>La nueva versión LTS de .NET Core trae consigo muchas ventajas para el los desarrolladores de microservicios. Una de las más esperadas es la estabilización de la API para ejecutar servicios en segundo plano o workers utilizando Microsoft.Extensions.Hosting
 ¿Qué son los workers? Si eres desarrollador de ASP.NET Core debes estar familiarizado con el paquete Microsoft.AspNetCore.Hosting y las clasesWebHostBuilder y WebHost.
 public class Program { public static void Main(string[] args) { var config = new ConfigurationBuilder() .</description>
@@ -94,10 +94,10 @@ public class Program { public static void Main(string[] args) { var config = new
     
     <item>
       <title>awstail: AWS Logs a la vieja usanza</title>
-      <link>https://yorodm.github.io/blog/awstail/</link>
+      <link>https://yorodm.is-a.dev/blog/awstail/</link>
       <pubDate>Mon, 20 Jan 2020 11:50:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/awstail/</guid>
+      <guid>https://yorodm.is-a.dev/blog/awstail/</guid>
       <description>awstail es una herramienta muy simple que cumple dos funciones:
  Darme la excusa para aprender Rust. Monitorear un grupo de logs en AWS Cloudwatch desde la terminal.  Por el momento, estas son las opciones que permite la herramienta:
 awstail 0.3.0 Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt; like tail -f for AWS Cloudwatch USAGE: awstail.exe [OPTIONS] &amp;lt;LOG_GROUP&amp;gt; FLAGS: -h, --help Prints help information -V, --version Prints version information OPTIONS: -p &amp;lt;PROFILE&amp;gt; Profile if using other than &#39;default&#39; -r &amp;lt;REGION&amp;gt; AWS region (defaults to us-east-1) -s &amp;lt;SINCE&amp;gt; Take logs since a given time (defaults to 5 minutes) -w &amp;lt;WATCH&amp;gt; Keep watching for new logs every n seconds (defaults to 10) ARGS: &amp;lt;LOG_GROUP&amp;gt; Log group name Posibles opciones futuras:</description>
@@ -105,20 +105,20 @@ awstail 0.3.0 Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt; like t
     
     <item>
       <title>Cola de tareas en Python (I)</title>
-      <link>https://yorodm.github.io/blog/python-work-queue/</link>
+      <link>https://yorodm.is-a.dev/blog/python-work-queue/</link>
       <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/python-work-queue/</guid>
+      <guid>https://yorodm.is-a.dev/blog/python-work-queue/</guid>
       <description>Después de unos meses trabajando en Go se llegan a extrañar las abstracciones del lenguaje para concurrencia. Hoy por ejemplo necesitaba hacer una cola de tareas en Python utilizando AsyncIO. En Go esto sigue una estructura sencilla:
 // Este es la gorutina que procesa los trabajos func worker(jobChan &amp;lt;-chan Job) { for job := range jobChan { process(job) } } // Creamos un canal a donde enviar los datos jobChan := make(chan Job, 10) // Arrancamos la gorutina go worker(jobChan) // Enviamos datos para un trabajo, esto puede ser desde cualquier // gorutina jobChan &amp;lt;- job //Indicamos que ya no vamos a procesar más datos close(jobChan) Veamos si podemos lograr un equivalente en Python:</description>
     </item>
     
     <item>
       <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)</title>
-      <link>https://yorodm.github.io/blog/hugo-mode-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-mode-emacs/</link>
       <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-mode-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-mode-emacs/</guid>
       <description>Este blog es creado con Hugo y publicado utilizando Github Pages. Cada artículo es creado utilizando Markdown y añadido a un repositorio donde finalmente pasa a formar parte del sitio estático utilizando submódulos de Git.
 Todo este proceso implica utilizar 3 herramientas.
  La CLI de hugo. Un editor de texto (preferentemente con soporte para Markdown). Git.  Mis primeros intentos implicaron hacer uso de unos cuantos scripts
@@ -127,10 +127,10 @@ Uno para crear nuevos artículos</description>
     
     <item>
       <title>Emacs &#43; Golang. Edición 2019</title>
-      <link>https://yorodm.github.io/blog/emacs-golang-setup-2019/</link>
+      <link>https://yorodm.is-a.dev/blog/emacs-golang-setup-2019/</link>
       <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/emacs-golang-setup-2019/</guid>
+      <guid>https://yorodm.is-a.dev/blog/emacs-golang-setup-2019/</guid>
       <description>Go 1.12 fue lanzado hace un mes y entre los cambios más significativos se encuentran varias mejoras en el soporte para módulos (que va a ser el método por defecto en la versión 1.13).
 Si eres usuario de Emacs y te interesa desarrollar utilizando Go, aquí tienes una guía sencilla de como habilitar el soporte para el lenguaje.
 Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode ya tienes soporte para bingo, una herramienta que provee un servidor de lenguajes para Go y que tiene soporte integrado para trabajar con módulos</description>
@@ -138,10 +138,10 @@ Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode 
     
     <item>
       <title>Plumber: ETL simple para Python</title>
-      <link>https://yorodm.github.io/blog/plumber-simple-etl/</link>
+      <link>https://yorodm.is-a.dev/blog/plumber-simple-etl/</link>
       <pubDate>Tue, 12 Mar 2019 10:14:20 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/plumber-simple-etl/</guid>
+      <guid>https://yorodm.is-a.dev/blog/plumber-simple-etl/</guid>
       <description>Implementando una feature para uno de los proyectos en los que trabajo terminé necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X, las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.
 Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cubren este campo, me encontré con los siguientes problemas:
  Existe mucho código legacy en el proyecto.</description>
@@ -149,10 +149,10 @@ Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cu
     
     <item>
       <title>Python: Decoradores estándar y su uso</title>
-      <link>https://yorodm.github.io/blog/decoradores-stdlib/</link>
+      <link>https://yorodm.is-a.dev/blog/decoradores-stdlib/</link>
       <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/decoradores-stdlib/</guid>
+      <guid>https://yorodm.is-a.dev/blog/decoradores-stdlib/</guid>
       <description>Entre las baterías includas de Python, vienen varios decoradores que nos facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su uso.
 Decoradores para OOP property Uno de los más usados. Convierte un conjunto de métodos en un descriptor que hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de lógica a propiedades de la clase.
 class C: def __init__(self): self._x = None def getx(self): return self.</description>
@@ -160,20 +160,20 @@ class C: def __init__(self): self._x = None def getx(self): return self.</descri
     
     <item>
       <title>Scrapper para DEV desde Emacs</title>
-      <link>https://yorodm.github.io/blog/web-scrapping-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</link>
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/web-scrapping-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</guid>
       <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
 Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>
     
     <item>
       <title>Trucos Aws Lambda (parte 2)</title>
-      <link>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/trucos-aws-lambda-ii/</link>
       <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/trucos-aws-lambda-ii/</guid>
       <description>Trucos con AWS Lambda (II). Truco 1. Utiliza las tags. Los tags en AWS nos permiten:
  Tener asociados un máximo de 50 a cada recurso. Llaves de hasta 128 caracteres Unicode. Valores de hasta 256 caracteres Unicode. Distinción entre mayúsculas y minúsculas para llaves y valores.  Basicamente todo lo que necesitamos para hacernos un caché:
 lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # tags is a dict of string:string lambda_client.tag_resource( Resource=self_arn, # get it from handler context Tags=json.</description>
@@ -181,20 +181,20 @@ lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # ta
     
     <item>
       <title>Interfaces de comandos con Python</title>
-      <link>https://yorodm.github.io/blog/python-simple-cli/</link>
+      <link>https://yorodm.is-a.dev/blog/python-simple-cli/</link>
       <pubDate>Mon, 29 Oct 2018 09:45:07 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/python-simple-cli/</guid>
+      <guid>https://yorodm.is-a.dev/blog/python-simple-cli/</guid>
       <description>Interfaces de comandos sencillas con Python. Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
 Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herramientas de líneas de comandos que existe y tiene además la ventaja de no ser exclusiva de Python, para utilizarla solo tienes que documentar el módulo o función que va a obtener los argumentos de la línea de comandos.</description>
     </item>
     
     <item>
       <title>Trucos con AWS Lambda. (Parte 1)</title>
-      <link>https://yorodm.github.io/blog/aws-lambda-tricks/</link>
+      <link>https://yorodm.is-a.dev/blog/aws-lambda-tricks/</link>
       <pubDate>Thu, 25 Oct 2018 12:45:05 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/aws-lambda-tricks/</guid>
+      <guid>https://yorodm.is-a.dev/blog/aws-lambda-tricks/</guid>
       <description>Truco 1: Recursividad asíncrona. A veces queremos garantizar que una lambda se ejecute siempre de forma asíncrona.
 def lambda_handler(event, context): if not event.get(&amp;#39;async&amp;#39;): invoke_self_async(event, context) return def invoke_self_async(event, context): new_event = { &amp;#39;async&amp;#39;: True, &amp;#39;data&amp;#39;: event } boto3.client(&amp;#39;lambda&amp;#39;).invoke_async( FunctionName=context.invoked_function_arn, InvokeArgs=json.dumps(new_event) ) Este truco es muy útil cuando no nos interesa el resultado de la ejecución o el mismo es enviado por vías alternativas (ej. usando SNS)
 Truco 2: Planificación dinámica. A veces la planificación de un servicio debe ser alterada en dependencia de ciertas condiciones.</description>
@@ -202,10 +202,10 @@ Truco 2: Planificación dinámica. A veces la planificación de un servicio debe
     
     <item>
       <title>Cementerio Proyectos Github</title>
-      <link>https://yorodm.github.io/blog/cementerio-proyectos-github/</link>
+      <link>https://yorodm.is-a.dev/blog/cementerio-proyectos-github/</link>
       <pubDate>Mon, 20 Aug 2018 10:50:39 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/cementerio-proyectos-github/</guid>
+      <guid>https://yorodm.is-a.dev/blog/cementerio-proyectos-github/</guid>
       <description>Siguiendo uno de los trending topics aquí en DEV voy a publicar mi propio listado de proyectos difuntos en Github. Para ver los otros listados puedes seguir el tag
 CL-Rx Lenguaje: Common Lisp
 Resúmen: Mi propia implementación de reactive para Common Lisp.
@@ -215,10 +215,10 @@ En el momento estaba empezando a utilizar RxJava y alguno de los conceptos no me
     
     <item>
       <title>Buenas prácticas con Serverless</title>
-      <link>https://yorodm.github.io/blog/practicas-serverless-framework/</link>
+      <link>https://yorodm.is-a.dev/blog/practicas-serverless-framework/</link>
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/practicas-serverless-framework/</guid>
+      <guid>https://yorodm.is-a.dev/blog/practicas-serverless-framework/</guid>
       <description>Algunas buenas practicas para Serverless Framework Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
 Reducir la dependencia de valores externos. En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es común utilizar referencias a valores externos por toda la plantilla.
 functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${env:FUNC_PREFIX}-worldhandler:handler.worldAunque esto no es una mala practica en si, hace que nuestras funciones dependan de un valor que solo vamos a obtener desde el entorno.</description>
@@ -226,29 +226,29 @@ functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${e
     
     <item>
       <title>Implementando JSON-RPC en Go</title>
-      <link>https://yorodm.github.io/blog/json-rpc-golang/</link>
+      <link>https://yorodm.is-a.dev/blog/json-rpc-golang/</link>
       <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/json-rpc-golang/</guid>
+      <guid>https://yorodm.is-a.dev/blog/json-rpc-golang/</guid>
       <description>Implementando JSON-RPC en Go JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
     </item>
     
     <item>
       <title>Libro: Ruby on Rails Notes for Professionals</title>
-      <link>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</link>
+      <link>https://yorodm.is-a.dev/blog/ruby-on-rails-for-professionals/</link>
       <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</guid>
+      <guid>https://yorodm.is-a.dev/blog/ruby-on-rails-for-professionals/</guid>
       <description>Libro: Ruby on Rails for Professionals Un excelente libro producto del trabajo y conocimiento de cientos de usuarios de Stack Overflow. Como tantos otros libros disponibles en GoalKicker este es gratis, bajo licencia Creative Commons BY-SA y una de las cosas que debes leer si trabajas o estás interesado en aprender Ruby On Rails
 El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde la instalación y arranque de un nuevo proyecto hasta el despliegue utilizando Docker.</description>
     </item>
     
     <item>
       <title>De vuelta, cambios y anuncios</title>
-      <link>https://yorodm.github.io/blog/cambios-plantilla-blog/</link>
+      <link>https://yorodm.is-a.dev/blog/cambios-plantilla-blog/</link>
       <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/cambios-plantilla-blog/</guid>
+      <guid>https://yorodm.is-a.dev/blog/cambios-plantilla-blog/</guid>
       <description>De vuelta, cambios y anuncios. Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
 Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
  Emacs para desarrolladores de frontend (Vue, Angular, Typescript). Emacs para desarrolladores de backend (SQL, Python, Ruby, PHP).</description>
@@ -256,59 +256,59 @@ Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
     
     <item>
       <title>Creando widgets para Odoo (Parte 1)</title>
-      <link>https://yorodm.github.io/blog/creando-widgets-odoo/</link>
+      <link>https://yorodm.is-a.dev/blog/creando-widgets-odoo/</link>
       <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
+      <guid>https://yorodm.is-a.dev/blog/creando-widgets-odoo/</guid>
       <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de [Odoo 10] (http://www.odoo.com), como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
 En este artículo vamos a crear un nuevo widget para manejar campos enteros y de coma flotante en la vista (la parte V de MV*).</description>
     </item>
     
     <item>
       <title>Comentarios vía disqus y felices fiestas</title>
-      <link>https://yorodm.github.io/blog/comentarios-via-disqus/</link>
+      <link>https://yorodm.is-a.dev/blog/comentarios-via-disqus/</link>
       <pubDate>Sat, 23 Dec 2017 10:14:28 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/comentarios-via-disqus/</guid>
+      <guid>https://yorodm.is-a.dev/blog/comentarios-via-disqus/</guid>
       <description>Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
 En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
     </item>
     
     <item>
       <title>Generadores y referencias</title>
-      <link>https://yorodm.github.io/blog/generadores-referencias-python/</link>
+      <link>https://yorodm.is-a.dev/blog/generadores-referencias-python/</link>
       <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/generadores-referencias-python/</guid>
+      <guid>https://yorodm.is-a.dev/blog/generadores-referencias-python/</guid>
       <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
 def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.</description>
     </item>
     
     <item>
       <title>Pruebas funcionales con factory_boy y faker</title>
-      <link>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</link>
+      <link>https://yorodm.is-a.dev/blog/pruebas-funcionales-factory-boy/</link>
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</guid>
+      <guid>https://yorodm.is-a.dev/blog/pruebas-funcionales-factory-boy/</guid>
       <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
     </item>
     
     <item>
       <title>Microframeworks en Java</title>
-      <link>https://yorodm.github.io/blog/microframeworks-en-java/</link>
+      <link>https://yorodm.is-a.dev/blog/microframeworks-en-java/</link>
       <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/microframeworks-en-java/</guid>
+      <guid>https://yorodm.is-a.dev/blog/microframeworks-en-java/</guid>
       <description>Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
 Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor Web basado en Netty y un DSL para manejar rutas (muy a lo Rack+ Sinatra) y una fuerte integración con Groovy .</description>
     </item>
     
     <item>
       <title>Desarrollando microservicios con Nameko</title>
-      <link>https://yorodm.github.io/blog/nameko-microservicios-python/</link>
+      <link>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</link>
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/nameko-microservicios-python/</guid>
+      <guid>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</guid>
       <description>Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
 Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
  Python 2 (creo que no hay versiones para Python 3).</description>
@@ -316,50 +316,50 @@ Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
     
     <item>
       <title>Parser SAX en Golang</title>
-      <link>https://yorodm.github.io/blog/golang-xml-sax/</link>
+      <link>https://yorodm.is-a.dev/blog/golang-xml-sax/</link>
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/golang-xml-sax/</guid>
+      <guid>https://yorodm.is-a.dev/blog/golang-xml-sax/</guid>
       <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej. las que salen en los ejemplos) están orientadas más hacia la serialización y deserialización de XML que a andar recorriendo documentos.</description>
     </item>
     
     <item>
       <title>Desarrollando con Emacs y Go</title>
-      <link>https://yorodm.github.io/blog/desarrollo-emacs-go/</link>
+      <link>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</link>
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
+      <guid>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</guid>
       <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
     
     <item>
       <title>ZFS y el problema de la memoria</title>
-      <link>https://yorodm.github.io/blog/zfs-problema-memoria/</link>
+      <link>https://yorodm.is-a.dev/blog/zfs-problema-memoria/</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/zfs-problema-memoria/</guid>
+      <guid>https://yorodm.is-a.dev/blog/zfs-problema-memoria/</guid>
       <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
 Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
     </item>
     
     <item>
       <title>Hugo y Emacs</title>
-      <link>https://yorodm.github.io/blog/hugo-y-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-y-emacs/</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-y-emacs/</guid>
       <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
  Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
     </item>
     
     <item>
       <title>Nuevo blog</title>
-      <link>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</link>
+      <link>https://yorodm.is-a.dev/blog/creando-un-nuevo-blog-con-hugo/</link>
       <pubDate>Mon, 16 Oct 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</guid>
+      <guid>https://yorodm.is-a.dev/blog/creando-un-nuevo-blog-con-hugo/</guid>
       <description>¡Hola! ¡Hola! Bienvenidos a mi más reciente (esperemos que último) intento de crear (y actualizar regularmente) un blog. En esta ocasión decidí alejarme de plataformas más complejas para probar GitHub Pages, Hugo como generador de sitios estáticos, Markdown y claro está Emacs.
 Como siempre hablaré de temas relacionados con el desarrollo de software, software libre, lenguajes de programación y mis experiencias (buenas o malas) interactuando con el mundo del software.</description>
     </item>

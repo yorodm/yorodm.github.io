@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>decorators on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/decorators/</link>
+    <link>https://yorodm.is-a.dev/tags/decorators/</link>
     <description>Recent content in decorators on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 15 Jan 2019 22:11:42 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/decorators/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 15 Jan 2019 22:11:42 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/decorators/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python: Decoradores estándar y su uso</title>
-      <link>https://yorodm.github.io/blog/decoradores-stdlib/</link>
+      <link>https://yorodm.is-a.dev/blog/decoradores-stdlib/</link>
       <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/decoradores-stdlib/</guid>
+      <guid>https://yorodm.is-a.dev/blog/decoradores-stdlib/</guid>
       <description>Entre las baterías includas de Python, vienen varios decoradores que nos facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su uso.
 Decoradores para OOP property Uno de los más usados. Convierte un conjunto de métodos en un descriptor que hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de lógica a propiedades de la clase.
 class C: def __init__(self): self._x = None def getx(self): return self.</description>

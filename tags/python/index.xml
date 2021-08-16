@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>python on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/python/</link>
+    <link>https://yorodm.is-a.dev/tags/python/</link>
     <description>Recent content in python on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 04 Nov 2019 13:01:46 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Nov 2019 13:01:46 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cola de tareas en Python (I)</title>
-      <link>https://yorodm.github.io/blog/python-work-queue/</link>
+      <link>https://yorodm.is-a.dev/blog/python-work-queue/</link>
       <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/python-work-queue/</guid>
+      <guid>https://yorodm.is-a.dev/blog/python-work-queue/</guid>
       <description>Después de unos meses trabajando en Go se llegan a extrañar las abstracciones del lenguaje para concurrencia. Hoy por ejemplo necesitaba hacer una cola de tareas en Python utilizando AsyncIO. En Go esto sigue una estructura sencilla:
 // Este es la gorutina que procesa los trabajos func worker(jobChan &amp;lt;-chan Job) { for job := range jobChan { process(job) } } // Creamos un canal a donde enviar los datos jobChan := make(chan Job, 10) // Arrancamos la gorutina go worker(jobChan) // Enviamos datos para un trabajo, esto puede ser desde cualquier // gorutina jobChan &amp;lt;- job //Indicamos que ya no vamos a procesar más datos close(jobChan) Veamos si podemos lograr un equivalente en Python:</description>
     </item>
     
     <item>
       <title>Plumber: ETL simple para Python</title>
-      <link>https://yorodm.github.io/blog/plumber-simple-etl/</link>
+      <link>https://yorodm.is-a.dev/blog/plumber-simple-etl/</link>
       <pubDate>Tue, 12 Mar 2019 10:14:20 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/plumber-simple-etl/</guid>
+      <guid>https://yorodm.is-a.dev/blog/plumber-simple-etl/</guid>
       <description>Implementando una feature para uno de los proyectos en los que trabajo terminé necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X, las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.
 Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cubren este campo, me encontré con los siguientes problemas:
  Existe mucho código legacy en el proyecto.</description>
@@ -31,10 +31,10 @@ Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cu
     
     <item>
       <title>Python: Decoradores estándar y su uso</title>
-      <link>https://yorodm.github.io/blog/decoradores-stdlib/</link>
+      <link>https://yorodm.is-a.dev/blog/decoradores-stdlib/</link>
       <pubDate>Tue, 15 Jan 2019 22:11:42 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/decoradores-stdlib/</guid>
+      <guid>https://yorodm.is-a.dev/blog/decoradores-stdlib/</guid>
       <description>Entre las baterías includas de Python, vienen varios decoradores que nos facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su uso.
 Decoradores para OOP property Uno de los más usados. Convierte un conjunto de métodos en un descriptor que hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de lógica a propiedades de la clase.
 class C: def __init__(self): self._x = None def getx(self): return self.</description>
@@ -42,39 +42,39 @@ class C: def __init__(self): self._x = None def getx(self): return self.</descri
     
     <item>
       <title>Interfaces de comandos con Python</title>
-      <link>https://yorodm.github.io/blog/python-simple-cli/</link>
+      <link>https://yorodm.is-a.dev/blog/python-simple-cli/</link>
       <pubDate>Mon, 29 Oct 2018 09:45:07 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/python-simple-cli/</guid>
+      <guid>https://yorodm.is-a.dev/blog/python-simple-cli/</guid>
       <description>Interfaces de comandos sencillas con Python. Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
 Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herramientas de líneas de comandos que existe y tiene además la ventaja de no ser exclusiva de Python, para utilizarla solo tienes que documentar el módulo o función que va a obtener los argumentos de la línea de comandos.</description>
     </item>
     
     <item>
       <title>Generadores y referencias</title>
-      <link>https://yorodm.github.io/blog/generadores-referencias-python/</link>
+      <link>https://yorodm.is-a.dev/blog/generadores-referencias-python/</link>
       <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/generadores-referencias-python/</guid>
+      <guid>https://yorodm.is-a.dev/blog/generadores-referencias-python/</guid>
       <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
 def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.</description>
     </item>
     
     <item>
       <title>Pruebas funcionales con factory_boy y faker</title>
-      <link>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</link>
+      <link>https://yorodm.is-a.dev/blog/pruebas-funcionales-factory-boy/</link>
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</guid>
+      <guid>https://yorodm.is-a.dev/blog/pruebas-funcionales-factory-boy/</guid>
       <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
     </item>
     
     <item>
       <title>Desarrollando microservicios con Nameko</title>
-      <link>https://yorodm.github.io/blog/nameko-microservicios-python/</link>
+      <link>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</link>
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/nameko-microservicios-python/</guid>
+      <guid>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</guid>
       <description>Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
 Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
  Python 2 (creo que no hay versiones para Python 3).</description>

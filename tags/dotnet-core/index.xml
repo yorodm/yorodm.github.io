@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>dotnet core on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/dotnet-core/</link>
+    <link>https://yorodm.is-a.dev/tags/dotnet-core/</link>
     <description>Recent content in dotnet core on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 06 Mar 2020 15:06:47 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/dotnet-core/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 06 Mar 2020 15:06:47 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/dotnet-core/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Microservicios en .NET Core 3.1</title>
-      <link>https://yorodm.github.io/blog/microservices-dotnet-3/</link>
+      <link>https://yorodm.is-a.dev/blog/microservices-dotnet-3/</link>
       <pubDate>Fri, 06 Mar 2020 15:06:47 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/microservices-dotnet-3/</guid>
+      <guid>https://yorodm.is-a.dev/blog/microservices-dotnet-3/</guid>
       <description>La nueva versión LTS de .NET Core trae consigo muchas ventajas para el los desarrolladores de microservicios. Una de las más esperadas es la estabilización de la API para ejecutar servicios en segundo plano o workers utilizando Microsoft.Extensions.Hosting
 ¿Qué son los workers? Si eres desarrollador de ASP.NET Core debes estar familiarizado con el paquete Microsoft.AspNetCore.Hosting y las clasesWebHostBuilder y WebHost.
 public class Program { public static void Main(string[] args) { var config = new ConfigurationBuilder() .</description>

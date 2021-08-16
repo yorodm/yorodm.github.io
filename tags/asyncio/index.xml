@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>asyncio on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/asyncio/</link>
+    <link>https://yorodm.is-a.dev/tags/asyncio/</link>
     <description>Recent content in asyncio on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 04 Nov 2019 13:01:46 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/asyncio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 04 Nov 2019 13:01:46 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/asyncio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cola de tareas en Python (I)</title>
-      <link>https://yorodm.github.io/blog/python-work-queue/</link>
+      <link>https://yorodm.is-a.dev/blog/python-work-queue/</link>
       <pubDate>Mon, 04 Nov 2019 13:01:46 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/python-work-queue/</guid>
+      <guid>https://yorodm.is-a.dev/blog/python-work-queue/</guid>
       <description>Después de unos meses trabajando en Go se llegan a extrañar las abstracciones del lenguaje para concurrencia. Hoy por ejemplo necesitaba hacer una cola de tareas en Python utilizando AsyncIO. En Go esto sigue una estructura sencilla:
 // Este es la gorutina que procesa los trabajos func worker(jobChan &amp;lt;-chan Job) { for job := range jobChan { process(job) } } // Creamos un canal a donde enviar los datos jobChan := make(chan Job, 10) // Arrancamos la gorutina go worker(jobChan) // Enviamos datos para un trabajo, esto puede ser desde cualquier // gorutina jobChan &amp;lt;- job //Indicamos que ya no vamos a procesar más datos close(jobChan) Veamos si podemos lograr un equivalente en Python:</description>
     </item>

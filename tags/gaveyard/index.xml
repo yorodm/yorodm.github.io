@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>gaveyard on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/gaveyard/</link>
+    <link>https://yorodm.is-a.dev/tags/gaveyard/</link>
     <description>Recent content in gaveyard on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 20 Aug 2018 10:50:39 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/gaveyard/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Aug 2018 10:50:39 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/gaveyard/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cementerio Proyectos Github</title>
-      <link>https://yorodm.github.io/blog/cementerio-proyectos-github/</link>
+      <link>https://yorodm.is-a.dev/blog/cementerio-proyectos-github/</link>
       <pubDate>Mon, 20 Aug 2018 10:50:39 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/cementerio-proyectos-github/</guid>
+      <guid>https://yorodm.is-a.dev/blog/cementerio-proyectos-github/</guid>
       <description>Siguiendo uno de los trending topics aquí en DEV voy a publicar mi propio listado de proyectos difuntos en Github. Para ver los otros listados puedes seguir el tag
 CL-Rx Lenguaje: Common Lisp
 Resúmen: Mi propia implementación de reactive para Common Lisp.

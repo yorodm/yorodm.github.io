@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>emacs on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/emacs/</link>
+    <link>https://yorodm.is-a.dev/tags/emacs/</link>
     <description>Recent content in emacs on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 06 Oct 2020 17:45:15 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 06 Oct 2020 17:45:15 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (II)</title>
-      <link>https://yorodm.github.io/blog/hugo-mode-emacs-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-mode-emacs-ii/</link>
       <pubDate>Tue, 06 Oct 2020 17:45:15 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-mode-emacs-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-mode-emacs-ii/</guid>
       <description>En el artículo anterior (hace unos cuantos meses ya) estuve hablando sobre como comencé automatizando el flujo de publicación del blog usando scripts. En este les mostraré como llevamos esos scripts a un modo de Emacs.
 Manos al Emacs. Una de las ventajas de Emacs es su extensibilidad, con un poco de código Elisp podemos adicionar nuevas funcionalidades al editor. Aunque sería posible hacer un modo1 para crear toda una experiencia relacionada con el manejo de blogs, es mucho más sencillo crear comandos2.</description>
     </item>
     
     <item>
       <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)</title>
-      <link>https://yorodm.github.io/blog/hugo-mode-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-mode-emacs/</link>
       <pubDate>Sun, 07 Jul 2019 11:03:33 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-mode-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-mode-emacs/</guid>
       <description>Este blog es creado con Hugo y publicado utilizando Github Pages. Cada artículo es creado utilizando Markdown y añadido a un repositorio donde finalmente pasa a formar parte del sitio estático utilizando submódulos de Git.
 Todo este proceso implica utilizar 3 herramientas.
  La CLI de hugo. Un editor de texto (preferentemente con soporte para Markdown). Git.  Mis primeros intentos implicaron hacer uso de unos cuantos scripts
@@ -32,10 +32,10 @@ Uno para crear nuevos artículos</description>
     
     <item>
       <title>Emacs &#43; Golang. Edición 2019</title>
-      <link>https://yorodm.github.io/blog/emacs-golang-setup-2019/</link>
+      <link>https://yorodm.is-a.dev/blog/emacs-golang-setup-2019/</link>
       <pubDate>Mon, 25 Mar 2019 15:34:27 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/emacs-golang-setup-2019/</guid>
+      <guid>https://yorodm.is-a.dev/blog/emacs-golang-setup-2019/</guid>
       <description>Go 1.12 fue lanzado hace un mes y entre los cambios más significativos se encuentran varias mejoras en el soporte para módulos (que va a ser el método por defecto en la versión 1.13).
 Si eres usuario de Emacs y te interesa desarrollar utilizando Go, aquí tienes una guía sencilla de como habilitar el soporte para el lenguaje.
 Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode ya tienes soporte para bingo, una herramienta que provee un servidor de lenguajes para Go y que tiene soporte integrado para trabajar con módulos</description>
@@ -43,30 +43,30 @@ Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode 
     
     <item>
       <title>Scrapper para DEV desde Emacs</title>
-      <link>https://yorodm.github.io/blog/web-scrapping-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</link>
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/web-scrapping-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</guid>
       <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
 Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>
     
     <item>
       <title>Desarrollando con Emacs y Go</title>
-      <link>https://yorodm.github.io/blog/desarrollo-emacs-go/</link>
+      <link>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</link>
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/desarrollo-emacs-go/</guid>
+      <guid>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</guid>
       <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
     
     <item>
       <title>Hugo y Emacs</title>
-      <link>https://yorodm.github.io/blog/hugo-y-emacs/</link>
+      <link>https://yorodm.is-a.dev/blog/hugo-y-emacs/</link>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/hugo-y-emacs/</guid>
+      <guid>https://yorodm.is-a.dev/blog/hugo-y-emacs/</guid>
       <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
  Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
     </item>

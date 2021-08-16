@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>ruby on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/ruby/</link>
+    <link>https://yorodm.is-a.dev/tags/ruby/</link>
     <description>Recent content in ruby on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 25 Apr 2018 11:37:30 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 25 Apr 2018 11:37:30 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/ruby/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Libro: Ruby on Rails Notes for Professionals</title>
-      <link>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</link>
+      <link>https://yorodm.is-a.dev/blog/ruby-on-rails-for-professionals/</link>
       <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</guid>
+      <guid>https://yorodm.is-a.dev/blog/ruby-on-rails-for-professionals/</guid>
       <description>Libro: Ruby on Rails for Professionals Un excelente libro producto del trabajo y conocimiento de cientos de usuarios de Stack Overflow. Como tantos otros libros disponibles en GoalKicker este es gratis, bajo licencia Creative Commons BY-SA y una de las cosas que debes leer si trabajas o estás interesado en aprender Ruby On Rails
 El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde la instalación y arranque de un nuevo proyecto hasta el despliegue utilizando Docker.</description>
     </item>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>etl on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/etl/</link>
+    <link>https://yorodm.is-a.dev/tags/etl/</link>
     <description>Recent content in etl on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 12 Mar 2019 10:14:20 -0400</lastBuildDate><atom:link href="https://yorodm.github.io/tags/etl/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 12 Mar 2019 10:14:20 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/etl/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Plumber: ETL simple para Python</title>
-      <link>https://yorodm.github.io/blog/plumber-simple-etl/</link>
+      <link>https://yorodm.is-a.dev/blog/plumber-simple-etl/</link>
       <pubDate>Tue, 12 Mar 2019 10:14:20 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/plumber-simple-etl/</guid>
+      <guid>https://yorodm.is-a.dev/blog/plumber-simple-etl/</guid>
       <description>Implementando una feature para uno de los proyectos en los que trabajo terminé necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X, las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.
 Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cubren este campo, me encontré con los siguientes problemas:
  Existe mucho código legacy en el proyecto.</description>

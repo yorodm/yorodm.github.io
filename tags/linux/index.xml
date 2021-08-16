@@ -2,28 +2,28 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>linux on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/linux/</link>
+    <link>https://yorodm.is-a.dev/tags/linux/</link>
     <description>Recent content in linux on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 31 Dec 2020 00:54:30 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 31 Dec 2020 00:54:30 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Cola de Copia para Linux (I)</title>
-      <link>https://yorodm.github.io/blog/copy-queue-linux/</link>
+      <link>https://yorodm.is-a.dev/blog/copy-queue-linux/</link>
       <pubDate>Thu, 31 Dec 2020 00:54:30 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/copy-queue-linux/</guid>
+      <guid>https://yorodm.is-a.dev/blog/copy-queue-linux/</guid>
       <description>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
 Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa.</description>
     </item>
     
     <item>
       <title>ZFS y el problema de la memoria</title>
-      <link>https://yorodm.github.io/blog/zfs-problema-memoria/</link>
+      <link>https://yorodm.is-a.dev/blog/zfs-problema-memoria/</link>
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/blog/zfs-problema-memoria/</guid>
+      <guid>https://yorodm.is-a.dev/blog/zfs-problema-memoria/</guid>
       <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
 Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
     </item>

@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>async on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/async/</link>
+    <link>https://yorodm.is-a.dev/tags/async/</link>
     <description>Recent content in async on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/tags/async/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/async/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pipelines en Rust (II)</title>
-      <link>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</link>
+      <link>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</link>
       <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</guid>
+      <guid>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</guid>
       <description>En el artículo anterior hablamos sobre la creación de pipelines extremadamente sencillas en Rust.
 Si recuerdan, la implementación se ejecutaba de forma secuencial lo que en el momento pudo parecer suficiente, pero si lo pensamos mejor nos damos cuenta que limita mucho la aplicabilidad del modelo. Una mejor idea sería poder usar nuestros pipelines de forma concurrente.
 Async Step La primera tarea es convertir nuestra implementación de Step a algo que sea usable de forma asíncrona.</description>

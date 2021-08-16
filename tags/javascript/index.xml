@@ -2,18 +2,18 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>javascript on /home/yorodm</title>
-    <link>https://yorodm.github.io/tags/javascript/</link>
+    <link>https://yorodm.is-a.dev/tags/javascript/</link>
     <description>Recent content in javascript on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://yorodm.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Jan 2018 00:00:00 +0000</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Creando widgets para Odoo (Parte 1)</title>
-      <link>https://yorodm.github.io/blog/creando-widgets-odoo/</link>
+      <link>https://yorodm.is-a.dev/blog/creando-widgets-odoo/</link>
       <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://yorodm.github.io/blog/creando-widgets-odoo/</guid>
+      <guid>https://yorodm.is-a.dev/blog/creando-widgets-odoo/</guid>
       <description>Creando widgets para Odoo (Parte 1). Después de semanas de inactividad regreso con una de [Odoo 10] (http://www.odoo.com), como ya hay bastantes sitios por ahí dedicados a explicar causas y razones de lo que se puede hacer con Python desde el backend voy a centrarme en el trabajo con Javascript y el frontend.
 En este artículo vamos a crear un nuevo widget para manejar campos enteros y de coma flotante en la vista (la parte V de MV*).</description>
     </item>

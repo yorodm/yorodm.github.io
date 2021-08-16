@@ -2,27 +2,27 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on /home/yorodm</title>
-    <link>https://yorodm.github.io/series/</link>
+    <link>https://yorodm.is-a.dev/series/</link>
     <description>Recent content in Series on /home/yorodm</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-US</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.github.io/series/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Feb 2021 16:03:13 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Pipelines en Rust</title>
-      <link>https://yorodm.github.io/series/pipelines-en-rust/</link>
+      <link>https://yorodm.is-a.dev/series/pipelines-en-rust/</link>
       <pubDate>Mon, 22 Feb 2021 16:03:13 -0500</pubDate>
       
-      <guid>https://yorodm.github.io/series/pipelines-en-rust/</guid>
+      <guid>https://yorodm.is-a.dev/series/pipelines-en-rust/</guid>
       <description></description>
     </item>
     
     <item>
       <title>hugo-mode</title>
-      <link>https://yorodm.github.io/series/hugo-mode/</link>
+      <link>https://yorodm.is-a.dev/series/hugo-mode/</link>
       <pubDate>Tue, 06 Oct 2020 17:45:15 -0400</pubDate>
       
-      <guid>https://yorodm.github.io/series/hugo-mode/</guid>
+      <guid>https://yorodm.is-a.dev/series/hugo-mode/</guid>
       <description></description>
     </item>
     
