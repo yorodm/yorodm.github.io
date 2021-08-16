@@ -1,144 +1,135 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>/home/yorodm/tags/python/</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <meta name="googlebot" content="index,follow,snippet,archive">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/console.css">
-    
-      <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       
-      <link href="https://yorodm.github.io/tags/python/index.xml" rel="alternate" type="application/rss+xml" title="/home/yorodm" />
-    <meta property="og:title" content="python" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="python">
+<meta itemprop="description" content=""><meta property="og:title" content="python" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://yorodm.github.io/tags/python/" />
 
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="python"/>
 <meta name="twitter:description" content=""/>
 
-<link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
-<link rel="stylesheet" href="https://yorodm.github.io/css/site.css">
-<link rel="alternate" type="application/rss+xml" href="https://yorodm.github.io/tags/python/index.xml" title="/home/yorodm" />
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>python</title>
+	<link rel="alternate" type="application/rss+xml" href="https://yorodm.github.io/tags/python/index.xml" title="python" />
+	<link rel="stylesheet" href="https://yorodm.github.io/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
 </head>
-<body class="terminal">
-    <div class="container">
-        <div class="terminal-nav">
-          <header class="terminal-logo">
-            <div class="logo terminal-prompt">
-              
-              
-              <a href="https://yorodm.github.io/" class="no-style ">/home/yorodm</a>:~# 
-              <a href='https://yorodm.github.io/tags'>tags</a>/<a href='https://yorodm.github.io/tags/python'>python</a>/</div></header>
-          <nav class="terminal-menu">
-            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
-                
-                <li><a href="https://yorodm.github.io/about/" typeof="ListItem">about/</a></li>
-                
-                <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
-                
-                <li><a href="https://yorodm.github.io/series/" typeof="ListItem">series/</a></li>
-                
-            </ul>
-          </nav>
-        </div>
-    </div>
 
-    <div class="container animated zoomIn fast">
-        
-<h1>python</h1>
-<br/>
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://yorodm.github.io/">/home/yorodm</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://yorodm.github.io/blog/">/blog/</a>
+				<a href="https://yorodm.github.io/series/">/series/</a>
 
-
-<div class="posts-list">
-
-    
-        <div class="post">
-            <div class="date">Nov. 4, 2019</div>    
-            <h1><a href="https://yorodm.github.io/blog/python-work-queue/" title="Cola de tareas en Python (I)">Cola de tareas en Python (I)</a></h1>
-            Después de unos meses trabajando en Go se llegan a extrañar las abstracciones del lenguaje para concurrencia. Hoy por ejemplo necesitaba hacer una cola de tareas en Python utilizando AsyncIO. En Go esto sigue una estructura sencilla:
-// Este es la gorutina que procesa los trabajos func worker(jobChan &lt;-chan Job) { for job := range jobChan { process(job) } } // Creamos un canal a donde enviar los datos jobChan := make(chan Job, 10) // Arrancamos la gorutina go worker(jobChan) // Enviamos datos para un trabajo, esto puede ser desde cualquier // gorutina jobChan &lt;- job //Indicamos que ya no vamos a procesar más datos close(jobChan) Veamos si podemos lograr un equivalente en Python:
-        </div>
-    
-
-    
-        <div class="post">
-            <div class="date">Mar. 12, 2019</div>    
-            <h1><a href="https://yorodm.github.io/blog/plumber-simple-etl/" title="Plumber: ETL simple para Python">Plumber: ETL simple para Python</a></h1>
-            Implementando una feature para uno de los proyectos en los que trabajo terminé necesitando hacer el típico proceso ETL que tomara las cosas de una fuente X, las pasara por 1 o varios filtros y las cargara en nuestra base de datos documental.
-Ahora, si bien existen frameworks de excelente calidad como petl y Bonobo que cubren este campo, me encontré con los siguientes problemas:
- Existe mucho código legacy en el proyecto.
-        </div>
-    
-
-    
-        <div class="post">
-            <div class="date">Jan. 15, 2019</div>    
-            <h1><a href="https://yorodm.github.io/blog/decoradores-stdlib/" title="Python: Decoradores estándar y su uso">Python: Decoradores estándar y su uso</a></h1>
-            Entre las baterías includas de Python, vienen varios decoradores que nos facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su uso.
-Decoradores para OOP property Uno de los más usados. Convierte un conjunto de métodos en un descriptor que hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de lógica a propiedades de la clase.
-class C: def __init__(self): self._x = None def getx(self): return self.
-        </div>
-    
-
-    
-        <div class="post">
-            <div class="date">Oct. 29, 2018</div>    
-            <h1><a href="https://yorodm.github.io/blog/python-simple-cli/" title="Interfaces de comandos con Python">Interfaces de comandos con Python</a></h1>
-            Interfaces de comandos sencillas con Python. Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
-Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herramientas de líneas de comandos que existe y tiene además la ventaja de no ser exclusiva de Python, para utilizarla solo tienes que documentar el módulo o función que va a obtener los argumentos de la línea de comandos.
-        </div>
-    
-
-    
-        <div class="post">
-            <div class="date">Dec. 15, 2017</div>    
-            <h1><a href="https://yorodm.github.io/blog/generadores-referencias-python/" title="Generadores y referencias">Generadores y referencias</a></h1>
-            Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
-def funcionx(*args): ctx = dict() for x in args: ctx[&#39;run&#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.
-        </div>
-    
-
-    
-        <div class="post">
-            <div class="date">Dec. 13, 2017</div>    
-            <h1><a href="https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/" title="Pruebas funcionales con factory_boy y faker">Pruebas funcionales con factory_boy y faker</a></h1>
-            Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.
-        </div>
-    
-
-    
-        <div class="post">
-            <div class="date">Nov. 9, 2017</div>    
-            <h1><a href="https://yorodm.github.io/blog/nameko-microservicios-python/" title="Desarrollando microservicios con Nameko">Desarrollando microservicios con Nameko</a></h1>
-            Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
-Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
- Python 2 (creo que no hay versiones para Python 3).
-        </div>
-    
-
-</div>
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="http://twitter.com/yorodm" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="http://github.com/yorodm" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://yorodm.github.io/blog/">/blog/</a></li>
+			<li><a href="https://yorodm.github.io/series/">/series/</a></li>
+		</ul>
+	</div>
 
 
-        <div class="footer">
-  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(❤)
-  
-  // <a href="http://twitter.com/yorodm">Twitter</a>
-  
-  // <a href="http://github.com/yorodm">GitHub</a>
-  
-</div>
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>python</h1>
+		<div class="posts-group">
+			<div class="post-year" id="2019">2019</div>
+			<ul class="posts-list">
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/python-work-queue/">
+						<span class="post-title">Cola de tareas en Python (I)</span>
+						<span class="post-day">Nov 4</span>
+					</a>
+				</li>
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/plumber-simple-etl/">
+						<span class="post-title">Plumber: ETL simple para Python</span>
+						<span class="post-day">Mar 12</span>
+					</a>
+				</li>
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/decoradores-stdlib/">
+						<span class="post-title">Python: Decoradores estándar y su uso</span>
+						<span class="post-day">Jan 15</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="posts-group">
+			<div class="post-year" id="2018">2018</div>
+			<ul class="posts-list">
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/python-simple-cli/">
+						<span class="post-title">Interfaces de comandos con Python</span>
+						<span class="post-day">Oct 29</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+		<div class="posts-group">
+			<div class="post-year" id="2017">2017</div>
+			<ul class="posts-list">
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/generadores-referencias-python/">
+						<span class="post-title">Generadores y referencias</span>
+						<span class="post-day">Dec 15</span>
+					</a>
+				</li>
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/">
+						<span class="post-title">Pruebas funcionales con factory_boy y faker</span>
+						<span class="post-day">Dec 13</span>
+					</a>
+				</li>
+				<li class="post-item">
+					<a href="https://yorodm.github.io/blog/nameko-microservicios-python/">
+						<span class="post-title">Desarrollando microservicios con Nameko</span>
+						<span class="post-day">Nov 9</span>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</main>
 
-    </div>
-  </body>
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2021 <a href="https://yorodm.github.io/"></a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>
+	Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> and Emacs(❤) &#183; <a href="https://yorodm.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+  </p>
+</footer>
+
+
+
+	<script src="https://yorodm.github.io/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
 </html>

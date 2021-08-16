@@ -1,70 +1,74 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>/home/yorodm/blog/copy-queue-linux/</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <meta name="googlebot" content="index,follow,snippet,archive">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/console.css">
-    
-      <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <meta property="og:title" content="Cola de Copia para Linux (I)" />
-<meta property="og:description" content="" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Cola de Copia para Linux (I)">
+<meta itemprop="description" content="¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
+Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa."><meta itemprop="datePublished" content="2020-12-31T00:54:30-05:00" />
+<meta itemprop="dateModified" content="2020-12-31T00:54:30-05:00" />
+<meta itemprop="wordCount" content="1019">
+<meta itemprop="keywords" content="rust,linux,copyq," /><meta property="og:title" content="Cola de Copia para Linux (I)" />
+<meta property="og:description" content="¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
+Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yorodm.github.io/blog/copy-queue-linux/" /><meta property="article:published_time" content="2020-12-31T00:54:30-05:00" />
+<meta property="og:url" content="https://yorodm.github.io/blog/copy-queue-linux/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2020-12-31T00:54:30-05:00" />
+<meta property="article:modified_time" content="2020-12-31T00:54:30-05:00" />
 
-
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Cola de Copia para Linux (I)"/>
 <meta name="twitter:description" content="¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el casi no he podido atender el blog, por lo que se me ocurrió dejar algo interesante a modo de cierre.
 Hace ya unos cuantos meses ya surgió la idea en el Canal SWL-X de hacer una pequeña utilidad en Linux para permitir colas de copia de ficheros. Estas utilidades son muy populares en otros sistemas operativos y algunos de los usuarios buscan migrar hacia tecnologías libres se sentían frustrados al no tener una alternativa."/>
 
-<link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
-<link rel="stylesheet" href="https://yorodm.github.io/css/site.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Cola de Copia para Linux (I)</title>
+	<link rel="stylesheet" href="https://yorodm.github.io/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	
 </head>
-<body class="terminal">
-    <div class="container">
-        <div class="terminal-nav">
-          <header class="terminal-logo">
-            <div class="logo terminal-prompt">
-              
-              
-              <a href="https://yorodm.github.io/" class="no-style ">/home/yorodm</a>:~# 
-              <a href='https://yorodm.github.io/blog'>blog</a>/<a href='https://yorodm.github.io/blog/copy-queue-linux'>copy-queue-linux</a>/</div></header>
-          <nav class="terminal-menu">
-            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
-                
-                <li><a href="https://yorodm.github.io/about/" typeof="ListItem">about/</a></li>
-                
-                <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
-                
-                <li><a href="https://yorodm.github.io/series/" typeof="ListItem">series/</a></li>
-                
-            </ul>
-          </nav>
-        </div>
-    </div>
 
-    <div class="container animated zoomIn fast">
-        
-<h1>Cola de Copia para Linux (I)</h1>
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://yorodm.github.io/">/home/yorodm</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://yorodm.github.io/blog/">/blog/</a>
+				<a href="https://yorodm.github.io/series/">/series/</a>
 
-<time class="post-date" datetime="2020-12-31T00:54:30-05:00">31 Dic 2020
-</time>
- 
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="http://twitter.com/yorodm" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="http://github.com/yorodm" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://yorodm.github.io/blog/">/blog/</a></li>
+			<li><a href="https://yorodm.github.io/series/">/series/</a></li>
+		</ul>
+	</div>
 
-<a href="https://yorodm.github.io/tags/rust/">rust</a>, <a href="https://yorodm.github.io/tags/linux/">linux</a>, <a href="https://yorodm.github.io/tags/copyq/">copyq</a>
-5 minuto(s) de lectura.
-<br/><br/>
-<p>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>Cola de Copia para Linux (I)</h1>
+		<div class="content">
+			<p>¡Ultimo artículo del 2020! Este ha sido un año muy turbulento en el
 casi no he podido atender el blog, por lo que se me ocurrió dejar algo
 interesante a modo de cierre.</p>
 <p>Hace ya unos cuantos meses ya surgió la idea en el <a href="https://t.me/blogswlx">Canal
@@ -82,7 +86,7 @@ blog.</p>
 <li><em>Buffers</em>.</li>
 <li>Alternativas a <code>read</code> y <code>write</code> de <strong>POSIX</strong></li>
 </ol>
-<h2 id="el-problema">El problema.</h2>
+<h2 id="el-problema">El problema.<a href="#el-problema" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Para los que llevamos tiempo utilizando cualquier variante <strong>*nix</strong>
 <code>cp</code> es uno de esos comandos que no hay por que mejorar, pero las
 alternativas que proponen los entornos de escritorio dejan mucho que
@@ -104,7 +108,7 @@ la herramienta con respecto a su versión en Windows, por lo que varios
 miembros del canal nos lanzamos a la aventura de hacer (o investigar
 cómo se hace) una herramienta para colas de copia de ficheros que
 saque partido de todo lo que Linux tiene para ofrecer.</p>
-<h2 id="como-copiar-archivos-en-linux">Como copiar archivos en Linux.</h2>
+<h2 id="como-copiar-archivos-en-linux">Como copiar archivos en Linux.<a href="#como-copiar-archivos-en-linux" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Bueno, después de esta larga introducción vamos al problema que nos toca:
 ¿Cómo programamos la copia de archivos en Linux?.</p>
 <p>En su forma más simple, copiar un archivo lleva unas pocas líneas de código <strong>C</strong>.</p>
@@ -149,7 +153,7 @@ variante sería algo como esto</p>
   +---+---+                         +---+--+
   |entrada|                         |salida|
   +-------+                         +------+
-</code></pre><h2 id="qué-hay-de-importante-en-un-buffer">Qué hay de importante en un buffer.</h2>
+</code></pre><h2 id="qué-hay-de-importante-en-un-buffer">Qué hay de importante en un buffer.<a href="#qué-hay-de-importante-en-un-buffer" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Nuestro sencillo (pero genial) diagrama nos muestra algo interesante:
 el tamaño del <em>buffer</em> afecta la velocidad de todo el proceso.</p>
 <p>Si tenemos un archivo de 50mb y nuestro <em>buffer</em> es de 1mb
@@ -197,7 +201,7 @@ antiguos para establecer el tamaño del buffer en 4096 bytes. Aunque
 pueda parecer aleatorio este número está <a href="https://stackoverflow.com">respaldado por la
 ciencia</a> y por el momento, parece una
 apuesta segura<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
-<h2 id="más-allá-del-read-y-el-write">Más allá del read y el write.</h2>
+<h2 id="más-allá-del-read-y-el-write">Más allá del read y el write.<a href="#más-allá-del-read-y-el-write" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Ahora que tenemos una idea de lo básico, podemos buscar alternativas
 más eficientes al ciclo <code>read/write</code>. Las opciones que nos brinda
 <strong>Linux</strong> son:</p>
@@ -215,7 +219,7 @@ espacio usuario.</li>
 pueden usar combinaciones entre ellas), pero como bien pueden imaginar
 no son un tema a tratar a la ligera así que explorar su factibilidad
 queda para otra aventura (con suerte en el Enero de este año nuevo).</p>
-<h2 id="the-end">The end.</h2>
+<h2 id="the-end">The end.<a href="#the-end" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Nada más que decir que desearles un año nuevo en el que puedan crecer
 como desarrolladores y como personas. Nuevo año, nuevas metas y ¡salud!.</p>
 <section class="footnotes" role="doc-endnotes">
@@ -229,29 +233,21 @@ discusión más profunda sobre el tema.&#160;<a href="#fnref:1" class="footnote-
 </ol>
 </section>
 
+		</div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2021 <a href="https://yorodm.github.io/"></a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>
+	Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> and Emacs(❤) &#183; <a href="https://yorodm.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+  </p>
+</footer>
 
 
 
-<hr/>
-<script src="https://utteranc.es/client.js"
-        repo="yorodm/yorodm-site"
-        issue-term="title"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
+	<script src="https://yorodm.github.io/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
 
+</body>
 
-        <div class="footer">
-  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(❤)
-  
-  // <a href="http://twitter.com/yorodm">Twitter</a>
-  
-  // <a href="http://github.com/yorodm">GitHub</a>
-  
-</div>
-
-    </div>
-  </body>
 </html>

@@ -1,628 +1,275 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/type-safe-mediator-rust/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/oop/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/patrones/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/rust/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/</loc>
-            <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/async/</loc>
-            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/pipelines/</loc>
-            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/series/pipelines-en-rust/</loc>
-            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</loc>
-            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/series/</loc>
-            <lastmod>2021-02-22T16:03:13-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/concurrencia/</loc>
-            <lastmod>2021-02-17T19:21:46-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/futures-go/</loc>
-            <lastmod>2021-02-17T19:21:46-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/go/</loc>
-            <lastmod>2021-02-17T19:21:46-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/copy-queue-linux/</loc>
-            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/copyq/</loc>
-            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/linux/</loc>
-            <lastmod>2020-12-31T00:54:30-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/rust-pipeline-pattern/</loc>
-            <lastmod>2020-12-24T13:27:39-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/emacs/</loc>
-            <lastmod>2020-10-06T17:45:15-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/hugo-mode-emacs-ii/</loc>
-            <lastmod>2020-10-06T17:45:15-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/hugo/</loc>
-            <lastmod>2020-10-06T17:45:15-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/cultura/</loc>
-            <lastmod>2020-09-07T12:17:58-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/programming-myths/</loc>
-            <lastmod>2020-09-07T12:17:58-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/dotnet-core/</loc>
-            <lastmod>2020-03-06T15:06:47-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/hostbuilder/</loc>
-            <lastmod>2020-03-06T15:06:47-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/microservices/</loc>
-            <lastmod>2020-03-06T15:06:47-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/microservices-dotnet-3/</loc>
-            <lastmod>2020-03-06T15:06:47-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/aws/</loc>
-            <lastmod>2020-01-20T11:50:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/awstail/</loc>
-            <lastmod>2020-01-20T11:50:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/cloudwatch-logs/</loc>
-            <lastmod>2020-01-20T11:50:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/asyncio/</loc>
-            <lastmod>2019-11-04T13:01:46-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/python-work-queue/</loc>
-            <lastmod>2019-11-04T13:01:46-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/python/</loc>
-            <lastmod>2019-11-04T13:01:46-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/hugo-mode-emacs/</loc>
-            <lastmod>2019-07-07T11:03:33-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/emacs-golang-setup-2019/</loc>
-            <lastmod>2019-03-25T15:34:27-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/golang/</loc>
-            <lastmod>2019-03-25T15:34:27-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/etl/</loc>
-            <lastmod>2019-03-12T10:14:20-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/plumber-simple-etl/</loc>
-            <lastmod>2019-03-12T10:14:20-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/builtins/</loc>
-            <lastmod>2019-01-15T22:11:42-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/decorators/</loc>
-            <lastmod>2019-01-15T22:11:42-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/decoradores-stdlib/</loc>
-            <lastmod>2019-01-15T22:11:42-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/scrapper/</loc>
-            <lastmod>2018-11-20T17:28:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/web-scrapping-emacs/</loc>
-            <lastmod>2018-11-20T17:28:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/lambda/</loc>
-            <lastmod>2018-11-18T12:39:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</loc>
-            <lastmod>2018-11-18T12:39:59-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/python-simple-cli/</loc>
-            <lastmod>2018-10-29T09:45:07-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/aws-lambda-tricks/</loc>
-            <lastmod>2018-10-25T12:45:05-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/cementerio-proyectos-github/</loc>
-            <lastmod>2018-08-20T10:50:39-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/gaveyard/</loc>
-            <lastmod>2018-08-20T10:50:39-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/practicas-serverless-framework/</loc>
-            <lastmod>2018-07-13T14:44:56-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/serverless/</loc>
-            <lastmod>2018-07-13T14:44:56-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/yaml/</loc>
-            <lastmod>2018-07-13T14:44:56-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/desaf%C3%ADo/</loc>
-            <lastmod>2018-05-09T11:45:31-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/json-rpc-golang/</loc>
-            <lastmod>2018-05-09T11:45:31-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/jsonrpc/</loc>
-            <lastmod>2018-05-09T11:45:31-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/snippets/</loc>
-            <lastmod>2018-05-09T11:45:31-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</loc>
-            <lastmod>2018-04-25T11:37:30-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/libros/</loc>
-            <lastmod>2018-04-25T11:37:30-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/rails/</loc>
-            <lastmod>2018-04-25T11:37:30-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/ruby/</loc>
-            <lastmod>2018-04-25T11:37:30-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/blog/</loc>
-            <lastmod>2018-04-11T14:56:57-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/cambios-plantilla-blog/</loc>
-            <lastmod>2018-04-11T14:56:57-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/creando-widgets-odoo/</loc>
-            <lastmod>2018-01-22T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/javascript/</loc>
-            <lastmod>2018-01-22T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/odoo/</loc>
-            <lastmod>2018-01-22T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/comentarios-via-disqus/</loc>
-            <lastmod>2017-12-23T10:14:28-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/generadores-referencias-python/</loc>
-            <lastmod>2017-12-15T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</loc>
-            <lastmod>2017-12-13T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/testing/</loc>
-            <lastmod>2017-12-13T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/java/</loc>
-            <lastmod>2017-12-04T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/microframeworks/</loc>
-            <lastmod>2017-12-04T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/microframeworks-en-java/</loc>
-            <lastmod>2017-12-04T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/nameko-microservicios-python/</loc>
-            <lastmod>2017-11-09T11:13:09-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/microservicios/</loc>
-            <lastmod>2017-11-09T11:13:09-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/nameko/</loc>
-            <lastmod>2017-11-09T11:13:09-05:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/golang-xml-sax/</loc>
-            <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/xml/</loc>
-            <lastmod>2017-11-02T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/desarrollo-emacs-go/</loc>
-            <lastmod>2017-10-26T15:04:13-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/proxmox/</loc>
-            <lastmod>2017-10-24T10:55:56-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/zfs/</loc>
-            <lastmod>2017-10-24T10:55:56-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/zfs-problema-memoria/</loc>
-            <lastmod>2017-10-24T10:55:56-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/categories/</loc>
-            <lastmod>2017-10-19T15:26:34-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/categories/emacs/</loc>
-            <lastmod>2017-10-19T15:26:34-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/tags/herramientas/</loc>
-            <lastmod>2017-10-19T15:26:34-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/categories/hugo/</loc>
-            <lastmod>2017-10-19T15:26:34-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/hugo-y-emacs/</loc>
-            <lastmod>2017-10-19T15:26:34-04:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</loc>
-            <lastmod>2017-10-16T00:00:00+00:00</lastmod>
-        </url>
-        
-    
-        
-        <url>
-            <loc>https://yorodm.github.io/about/</loc>
-            <priority>0</priority>
-        </url>
-        
-    
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://yorodm.github.io/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/type-safe-mediator-rust/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/oop/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/patrones/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/rust/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/</loc>
+    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/async/</loc>
+    <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/pipelines/</loc>
+    <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/series/pipelines-en-rust/</loc>
+    <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/rust-pipeline-pattern-ii/</loc>
+    <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/series/</loc>
+    <lastmod>2021-02-22T16:03:13-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/concurrencia/</loc>
+    <lastmod>2021-02-17T19:21:46-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/futures-go/</loc>
+    <lastmod>2021-02-17T19:21:46-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/go/</loc>
+    <lastmod>2021-02-17T19:21:46-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/copy-queue-linux/</loc>
+    <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/copyq/</loc>
+    <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/linux/</loc>
+    <lastmod>2020-12-31T00:54:30-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/rust-pipeline-pattern/</loc>
+    <lastmod>2020-12-24T13:27:39-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/emacs/</loc>
+    <lastmod>2020-10-06T17:45:15-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/hugo-mode-emacs-ii/</loc>
+    <lastmod>2020-10-06T17:45:15-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/hugo/</loc>
+    <lastmod>2020-10-06T17:45:15-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/series/hugo-mode/</loc>
+    <lastmod>2020-10-06T17:45:15-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/cultura/</loc>
+    <lastmod>2020-09-07T12:17:58-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/programming-myths/</loc>
+    <lastmod>2020-09-07T12:17:58-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/dotnet-core/</loc>
+    <lastmod>2020-03-06T15:06:47-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/hostbuilder/</loc>
+    <lastmod>2020-03-06T15:06:47-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/microservices/</loc>
+    <lastmod>2020-03-06T15:06:47-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/microservices-dotnet-3/</loc>
+    <lastmod>2020-03-06T15:06:47-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/aws/</loc>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/awstail/</loc>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/cloudwatch-logs/</loc>
+    <lastmod>2020-01-20T11:50:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/asyncio/</loc>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/python-work-queue/</loc>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/python/</loc>
+    <lastmod>2019-11-04T13:01:46-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/hugo-mode-emacs/</loc>
+    <lastmod>2019-07-07T11:03:33-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/emacs-golang-setup-2019/</loc>
+    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/golang/</loc>
+    <lastmod>2019-03-25T15:34:27-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/etl/</loc>
+    <lastmod>2019-03-12T10:14:20-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/plumber-simple-etl/</loc>
+    <lastmod>2019-03-12T10:14:20-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/builtins/</loc>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/decorators/</loc>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/decoradores-stdlib/</loc>
+    <lastmod>2019-01-15T22:11:42-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/scrapper/</loc>
+    <lastmod>2018-11-20T17:28:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/web-scrapping-emacs/</loc>
+    <lastmod>2018-11-20T17:28:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/lambda/</loc>
+    <lastmod>2018-11-18T12:39:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/trucos-aws-lambda-ii/</loc>
+    <lastmod>2018-11-18T12:39:59-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/python-simple-cli/</loc>
+    <lastmod>2018-10-29T09:45:07-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/aws-lambda-tricks/</loc>
+    <lastmod>2018-10-25T12:45:05-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/cementerio-proyectos-github/</loc>
+    <lastmod>2018-08-20T10:50:39-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/gaveyard/</loc>
+    <lastmod>2018-08-20T10:50:39-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/practicas-serverless-framework/</loc>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/serverless/</loc>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/yaml/</loc>
+    <lastmod>2018-07-13T14:44:56-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/desaf%C3%ADo/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/json-rpc-golang/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/jsonrpc/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/snippets/</loc>
+    <lastmod>2018-05-09T11:45:31-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/ruby-on-rails-for-professionals/</loc>
+    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/libros/</loc>
+    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/rails/</loc>
+    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/ruby/</loc>
+    <lastmod>2018-04-25T11:37:30-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/blog/</loc>
+    <lastmod>2018-04-11T14:56:57-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/cambios-plantilla-blog/</loc>
+    <lastmod>2018-04-11T14:56:57-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/creando-widgets-odoo/</loc>
+    <lastmod>2018-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/javascript/</loc>
+    <lastmod>2018-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/odoo/</loc>
+    <lastmod>2018-01-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/comentarios-via-disqus/</loc>
+    <lastmod>2017-12-23T10:14:28-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/generadores-referencias-python/</loc>
+    <lastmod>2017-12-15T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/pruebas-funcionales-factory-boy/</loc>
+    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/testing/</loc>
+    <lastmod>2017-12-13T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/java/</loc>
+    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/microframeworks/</loc>
+    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/microframeworks-en-java/</loc>
+    <lastmod>2017-12-04T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/nameko-microservicios-python/</loc>
+    <lastmod>2017-11-09T11:13:09-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/microservicios/</loc>
+    <lastmod>2017-11-09T11:13:09-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/nameko/</loc>
+    <lastmod>2017-11-09T11:13:09-05:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/golang-xml-sax/</loc>
+    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/xml/</loc>
+    <lastmod>2017-11-02T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/desarrollo-emacs-go/</loc>
+    <lastmod>2017-10-26T15:04:13-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/proxmox/</loc>
+    <lastmod>2017-10-24T10:55:56-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/zfs/</loc>
+    <lastmod>2017-10-24T10:55:56-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/zfs-problema-memoria/</loc>
+    <lastmod>2017-10-24T10:55:56-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/categories/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/categories/emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/tags/herramientas/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/categories/hugo/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/hugo-y-emacs/</loc>
+    <lastmod>2017-10-19T15:26:34-04:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/blog/creando-un-nuevo-blog-con-hugo/</loc>
+    <lastmod>2017-10-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.github.io/about/</loc>
+    <priority>0</priority>
+  </url>
 </urlset>

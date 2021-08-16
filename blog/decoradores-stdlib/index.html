@@ -1,73 +1,75 @@
 <!DOCTYPE html>
 <html lang="en-US">
+
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>/home/yorodm/blog/decoradores-stdlib/</title>
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="robots" content="all,follow">
-    <meta name="googlebot" content="index,follow,snippet,archive">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/terminal-0.7.1.min.css">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/animate-3.7.2.min.css">
-    <link rel="stylesheet" href="https://yorodm.github.io/hugo-theme-console/css/console.css">
-    
-      <!--[if lt IE 9]>
-          <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-          <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-       <meta property="og:title" content="Python: Decoradores estándar y su uso" />
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Python: Decoradores estándar y su uso">
+<meta itemprop="description" content="Decoradores de la biblioteca estándar de Python y cómo utilizarlos"><meta itemprop="datePublished" content="2019-01-15T22:11:42-05:00" />
+<meta itemprop="dateModified" content="2019-01-15T22:11:42-05:00" />
+<meta itemprop="wordCount" content="650">
+<meta itemprop="keywords" content="python,decorators,builtins," /><meta property="og:title" content="Python: Decoradores estándar y su uso" />
 <meta property="og:description" content="Decoradores de la biblioteca estándar de Python y cómo utilizarlos" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://yorodm.github.io/blog/decoradores-stdlib/" /><meta property="article:published_time" content="2019-01-15T22:11:42-05:00" />
+<meta property="og:url" content="https://yorodm.github.io/blog/decoradores-stdlib/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2019-01-15T22:11:42-05:00" />
+<meta property="article:modified_time" content="2019-01-15T22:11:42-05:00" />
 
-
-
+<meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python: Decoradores estándar y su uso"/>
 <meta name="twitter:description" content="Decoradores de la biblioteca estándar de Python y cómo utilizarlos"/>
 
-<link rel="stylesheet" href="https://yorodm.github.io/css/syntax.css">
-<link rel="stylesheet" href="https://yorodm.github.io/css/site.css">
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Python: Decoradores estándar y su uso</title>
+	<link rel="stylesheet" href="https://yorodm.github.io/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	
 </head>
-<body class="terminal">
-    <div class="container">
-        <div class="terminal-nav">
-          <header class="terminal-logo">
-            <div class="logo terminal-prompt">
-              
-              
-              <a href="https://yorodm.github.io/" class="no-style ">/home/yorodm</a>:~# 
-              <a href='https://yorodm.github.io/blog'>blog</a>/<a href='https://yorodm.github.io/blog/decoradores-stdlib'>decoradores-stdlib</a>/</div></header>
-          <nav class="terminal-menu">
-            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
-                
-                <li><a href="https://yorodm.github.io/about/" typeof="ListItem">about/</a></li>
-                
-                <li><a href="https://yorodm.github.io/blog/" typeof="ListItem">blog/</a></li>
-                
-                <li><a href="https://yorodm.github.io/series/" typeof="ListItem">series/</a></li>
-                
-            </ul>
-          </nav>
-        </div>
-    </div>
 
-    <div class="container animated zoomIn fast">
-        
-<h1>Python: Decoradores estándar y su uso</h1>
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://yorodm.github.io/">/home/yorodm</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://yorodm.github.io/blog/">/blog/</a>
+				<a href="https://yorodm.github.io/series/">/series/</a>
 
-<time class="post-date" datetime="2019-01-15T22:11:42-05:00">15 Ene 2019
-</time>
- 
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="http://twitter.com/yorodm" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="http://github.com/yorodm" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://yorodm.github.io/blog/">/blog/</a></li>
+			<li><a href="https://yorodm.github.io/series/">/series/</a></li>
+		</ul>
+	</div>
 
-<a href="https://yorodm.github.io/tags/python/">python</a>, <a href="https://yorodm.github.io/tags/decorators/">decorators</a>, <a href="https://yorodm.github.io/tags/builtins/">builtins</a>
-3 minuto(s) de lectura.
-<br/><br/>
-<p>Entre las <em>baterías includas</em> de Python, vienen varios decoradores que nos
+
+	<main class="site-main section-inner thin animated fadeIn faster">
+		<h1>Python: Decoradores estándar y su uso</h1>
+		<div class="content">
+			<p>Entre las <em>baterías includas</em> de Python, vienen varios decoradores que nos
 facilitan la vida. Aquí una lista de algunos y breve explicación acerca de su
 uso.</p>
-<h2 id="decoradores-para-oop">Decoradores para OOP</h2>
-<h3 id="property">property</h3>
+<h2 id="decoradores-para-oop">Decoradores para OOP<a href="#decoradores-para-oop" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="property">property<a href="#property" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Uno de los más usados. Convierte un conjunto de métodos en un <strong>descriptor</strong> que
 hace las funciones de propiedad. Útil cuando queremos adicionar algún tipo de
 lógica a propiedades de la clase.</p>
@@ -87,7 +89,7 @@ lógica a propiedades de la clase.</p>
         <span class="n">request</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="s1">&#39;http://mydata.com/x&#39;</span><span class="p">)</span>
 
     <span class="n">x</span> <span class="o">=</span> <span class="nb">property</span><span class="p">(</span><span class="n">getx</span><span class="p">,</span> <span class="n">setx</span><span class="p">,</span> <span class="n">delx</span><span class="p">,</span> <span class="s2">&#34;x como proxy a servicio REST.&#34;</span><span class="p">)</span>
-</code></pre></div><h3 id="staticmethod">staticmethod</h3>
+</code></pre></div><h3 id="staticmethod">staticmethod<a href="#staticmethod" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Define métodos estáticos<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. Pueden ser llamados tanto desde la clase o una de sus instancias</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">C</span><span class="p">:</span>
 
@@ -95,7 +97,7 @@ lógica a propiedades de la clase.</p>
     <span class="k">def</span> <span class="nf">calculo_externo</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">val2</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">val</span> <span class="o">+</span> <span class="n">val2</span>
 </code></pre></div><p>Nótese la falta del parámetro implicito inicial.</p>
-<h3 id="classmethod">classmethod</h3>
+<h3 id="classmethod">classmethod<a href="#classmethod" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Convierte un método normal a un método de clase. Los métodos de clase reciben la
 clase como parámetro implícito en vez de una de las instancias. Uno de los casos
 de uso más comunes es crear formas alternativas de instanciar la clase.</p>
@@ -109,7 +111,7 @@ de uso más comunes es crear formas alternativas de instanciar la clase.</p>
     <span class="nd">@classmethod</span>
     <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>
-</code></pre></div><h3 id="abcabstractmethod">abc.abstractmethod</h3>
+</code></pre></div><h3 id="abcabstractmethod">abc.abstractmethod<a href="#abcabstractmethod" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Métodos que tienen que ser implementados <strong>obligatoriamente</strong> por las subclases.
 El equivalente a <em>interfaces</em> o <em>clases abstractas</em> que tanto encuentras en
 otros lenguajes.</p>
@@ -132,7 +134,7 @@ otros lenguajes.</p>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&#34;Mugido&#34;</span><span class="p">)</span>
 </code></pre></div><p>Se puede utilizar en conjunción con <em>@property</em> o <em>staticmethod</em> para crear
 propiedades o métodos estáticos abstractos.</p>
-<h3 id="functoolstotal_ordering">functools.total_ordering</h3>
+<h3 id="functoolstotal_ordering">functools.total_ordering<a href="#functoolstotal_ordering" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Nos permite crear clases que soporten operadores de comparación. Solo tenemos
 que proveer el método <em><strong>eq</strong></em> y uno de los seis métodos predefinidos de orden.
 La documentación de la bilioteca estándar advierte que este decorador puede
@@ -152,7 +154,7 @@ tener impactos en el rendimiento.</p>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
         <span class="k">return</span> <span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">())</span> <span class="o">&lt;</span>
                 <span class="p">(</span><span class="n">other</span><span class="o">.</span><span class="n">lastname</span><span class="o">.</span><span class="n">lower</span><span class="p">(),</span> <span class="n">other</span><span class="o">.</span><span class="n">firstname</span><span class="o">.</span><span class="n">lower</span><span class="p">()))</span>
-</code></pre></div><h3 id="dataclassesdataclass">dataclasses.dataclass</h3>
+</code></pre></div><h3 id="dataclassesdataclass">dataclasses.dataclass<a href="#dataclassesdataclass" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Nos permite omitir la declaración de <em><strong>init</strong></em> y <em><strong>repr</strong></em> en la declaración
 de clases en las que solo vamos a manejar datos. El uso puede ser extendido a
 subclases</p>
@@ -179,15 +181,15 @@ subclases</p>
         <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
             <span class="n">dx</span><span class="o">+</span><span class="n">dy</span><span class="o">+</span><span class="n">dz</span>
         <span class="p">)</span>
-</code></pre></div><h2 id="decoradores-para-funciones">Decoradores para funciones</h2>
-<h3 id="functoolslru_cache">functools.lru_cache</h3>
+</code></pre></div><h2 id="decoradores-para-funciones">Decoradores para funciones<a href="#decoradores-para-funciones" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="functoolslru_cache">functools.lru_cache<a href="#functoolslru_cache" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Caché de las últimas <em>n</em> llamadas a una función. Los parametros tienen que poder
 ser utilizados como llaves de un diccionario.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">lru_cache</span>
 <span class="nd">@lru_cache</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">get_exchange</span><span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">foreign</span><span class="p">):</span>
     <span class="n">exchange_service</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">local</span><span class="p">,</span> <span class="n">foreign</span><span class="p">)</span>
-</code></pre></div><h3 id="asynciocoroutine">asyncio.coroutine</h3>
+</code></pre></div><h3 id="asynciocoroutine">asyncio.coroutine<a href="#asynciocoroutine" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Convierte corutinas basadas en generadores para que sean compatibles con el
 nuevo modelo <em>async/await</em>. Usar solamente en código que necesita ser portado</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">asyncio</span> <span class="kn">import</span> <span class="n">coroutine</span>
@@ -199,7 +201,7 @@ nuevo modelo <em>async/await</em>. Usar solamente en código que necesita ser po
 
 <span class="k">async</span> <span class="k">def</span> <span class="nf">hanlde_get</span><span class="p">(</span><span class="n">route</span><span class="p">):</span>
     <span class="k">await</span> <span class="n">render_view</span><span class="p">(</span><span class="n">route</span><span class="o">.</span><span class="n">view</span><span class="p">,</span> <span class="n">route</span><span class="o">.</span><span class="n">params</span><span class="p">)</span>
-</code></pre></div><h3 id="contextlibcontextmanager">contextlib.contextmanager</h3>
+</code></pre></div><h3 id="contextlibcontextmanager">contextlib.contextmanager<a href="#contextlibcontextmanager" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Convierte una función en un <em>contextmanager</em>. Puede ser usado de dos formas:</p>
 <ol>
 <li>Utilizando una sentencia <em>with</em></li>
@@ -220,8 +222,8 @@ la clase <em>ContextDecorator</em>.</p>
 
 <span class="k">with</span> <span class="n">acquire_lock</span><span class="p">(</span><span class="s1">&#39;my secret api key&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">lock</span><span class="p">:</span>
     <span class="n">use_critical_resource</span><span class="p">(</span><span class="n">lock</span><span class="p">)</span>
-</code></pre></div><h2 id="decoradores-extra">Decoradores extra</h2>
-<h3 id="functoolswraps">functools.wraps</h3>
+</code></pre></div><h2 id="decoradores-extra">Decoradores extra<a href="#decoradores-extra" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<h3 id="functoolswraps">functools.wraps<a href="#functoolswraps" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Decorador para crear decoradores. Útil para hacer que las funciones conserven
 propiedades como <em><strong>name</strong></em> y <em><strong>doc</strong></em></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
@@ -237,7 +239,7 @@ propiedades como <em><strong>name</strong></em> y <em><strong>doc</strong></em><
 </span><span class="s2">    Esta es la doc
 </span><span class="s2">    &#34;&#34;&#34;</span>
     <span class="k">pass</span>
-</code></pre></div><h3 id="functoolssingledispatch">functools.singledispatch</h3>
+</code></pre></div><h3 id="functoolssingledispatch">functools.singledispatch<a href="#functoolssingledispatch" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h3>
 <p>Permite crear funciones sobrecargadas a partir del tipo del primer parámetro.
 Hace uso de las anotaciones de tipos.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python">
@@ -267,29 +269,21 @@ Hace uso de las anotaciones de tipos.</p>
 </ol>
 </section>
 
+		</div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2021 <a href="https://yorodm.github.io/"></a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>
+	Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> and Emacs(❤) &#183; <a href="https://yorodm.github.io/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+  </p>
+</footer>
 
 
 
-<hr/>
-<script src="https://utteranc.es/client.js"
-        repo="yorodm/yorodm-site"
-        issue-term="title"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-</script>
+	<script src="https://yorodm.github.io/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
 
+</body>
 
-        <div class="footer">
-  Powered by <a href="https://gohugo.io/">Hugo</a> and Emacs(❤)
-  
-  // <a href="http://twitter.com/yorodm">Twitter</a>
-  
-  // <a href="http://github.com/yorodm">GitHub</a>
-  
-</div>
-
-    </div>
-  </body>
 </html>
