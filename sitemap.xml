@@ -3,10 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yorodm.is-a.dev/</loc>
-    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
   </url><url>
     <loc>https://yorodm.is-a.dev/blog/</loc>
-    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/blog/nix-development-emacs/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/tags/direnv/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/tags/emacs/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/series/emacs-nix-y-todo-lo-dem%C3%A1s/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/tags/nix/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/series/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
+  </url><url>
+    <loc>https://yorodm.is-a.dev/tags/</loc>
+    <lastmod>2021-08-17T13:48:16+03:00</lastmod>
   </url><url>
     <loc>https://yorodm.is-a.dev/blog/type-safe-mediator-rust/</loc>
     <lastmod>2021-03-14T20:38:14+02:00</lastmod>
@@ -20,9 +41,6 @@
     <loc>https://yorodm.is-a.dev/tags/rust/</loc>
     <lastmod>2021-03-14T20:38:14+02:00</lastmod>
   </url><url>
-    <loc>https://yorodm.is-a.dev/tags/</loc>
-    <lastmod>2021-03-14T20:38:14+02:00</lastmod>
-  </url><url>
     <loc>https://yorodm.is-a.dev/tags/async/</loc>
     <lastmod>2021-02-22T16:03:13-05:00</lastmod>
   </url><url>
@@ -33,9 +51,6 @@
     <lastmod>2021-02-22T16:03:13-05:00</lastmod>
   </url><url>
     <loc>https://yorodm.is-a.dev/blog/rust-pipeline-pattern-ii/</loc>
-    <lastmod>2021-02-22T16:03:13-05:00</lastmod>
-  </url><url>
-    <loc>https://yorodm.is-a.dev/series/</loc>
     <lastmod>2021-02-22T16:03:13-05:00</lastmod>
   </url><url>
     <loc>https://yorodm.is-a.dev/tags/concurrencia/</loc>
@@ -58,9 +73,6 @@
   </url><url>
     <loc>https://yorodm.is-a.dev/blog/rust-pipeline-pattern/</loc>
     <lastmod>2020-12-24T13:27:39-05:00</lastmod>
-  </url><url>
-    <loc>https://yorodm.is-a.dev/tags/emacs/</loc>
-    <lastmod>2020-10-06T17:45:15-04:00</lastmod>
   </url><url>
     <loc>https://yorodm.is-a.dev/blog/hugo-mode-emacs-ii/</loc>
     <lastmod>2020-10-06T17:45:15-04:00</lastmod>

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="theme-color" content="#494f5c">
+	<meta name="msapplication-TileColor" content="#494f5c">
+<meta itemprop="name" content="Desarrollando con Nix y Emacs">
+<meta itemprop="description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux."><meta itemprop="datePublished" content="2021-08-17T13:48:16+03:00" />
+<meta itemprop="dateModified" content="2021-08-17T13:48:16+03:00" />
+<meta itemprop="wordCount" content="783">
+<meta itemprop="keywords" content="emacs,nix,direnv," /><meta property="og:title" content="Desarrollando con Nix y Emacs" />
+<meta property="og:description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://yorodm.is-a.dev/blog/nix-development-emacs/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2021-08-17T13:48:16+03:00" />
+<meta property="article:modified_time" content="2021-08-17T13:48:16+03:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Desarrollando con Nix y Emacs"/>
+<meta name="twitter:description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux."/>
+
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+	<link rel="manifest" href="/site.webmanifest">
+	<link rel="mask-icon" href="/safari-pinned-tab.svg" color="">
+	<link rel="shortcut icon" href="/favicon.ico">
+
+	<title>Desarrollando con Nix y Emacs</title>
+	<link rel="stylesheet" href="https://yorodm.is-a.dev/css/style.min.037b6ee8f8c1baab6a3d0a9da11c3ff18a7552471f16c59fd98538d5ce99208b.css" integrity="sha256-A3tu6PjBuqtqPQqdoRw/8Yp1UkcfFsWf2YU41c6ZIIs=" crossorigin="anonymous">
+	
+</head>
+
+<body id="page">
+	
+	<header id="site-header" class="animated slideInUp">
+		<div class="hdr-wrapper section-inner">
+			<div class="hdr-left">
+				<div class="site-branding">
+					<a href="https://yorodm.is-a.dev">/home/yorodm</a>
+				</div>
+				<nav class="site-nav hide-in-mobile">
+					
+				<a href="https://yorodm.is-a.dev/blog/">/blog/</a>
+				<a href="https://yorodm.is-a.dev/series/">/series/</a>
+
+				</nav>
+			</div>
+			<div class="hdr-right hdr-icons">
+				<span class="hdr-social hide-in-mobile"><a href="http://twitter.com/yorodm" target="_blank" rel="noopener me" title="Twitter"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg></a><a href="http://github.com/yorodm" target="_blank" rel="noopener me" title="Github"><svg xmlns="http://www.w3.org/2000/svg" class="feather" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg></a></span><button id="menu-btn" class="hdr-btn" title="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button>
+			</div>
+		</div>
+	</header>
+	<div id="mobile-menu" class="animated fast">
+		<ul>
+			<li><a href="https://yorodm.is-a.dev/blog/">/blog/</a></li>
+			<li><a href="https://yorodm.is-a.dev/series/">/series/</a></li>
+		</ul>
+	</div>
+
+
+	<main class="site-main section-inner animated fadeIn faster">
+		<article class="thin">
+			<header class="post-header">
+				<div class="post-meta"><span>Aug 17, 2021</span></div>
+				<h1>Desarrollando con Nix y Emacs</h1>
+			</header>
+			<div class="content">
+				<p>Si eres usuario de <a href="https://code.visualstudio.com/">Visual Studio
+Code</a> es muy probable que hayas
+utilizado Remote Containers y <a href="https://docker.com">Docker</a> para
+desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin
+tener que modificar nuestro sistema. Aunque la idea de usar de usar
+entornos aislados para desarrollar no es nueva (los desarrolladores de
+Python conocen <a href="https://virtualenv.pypa.io/en/latest/">varias</a>
+<a href="https://docs.python.org/3/library/venv.html">alternativas</a>)</p>
+<h2 id="nix-en-pocas-palabras">Nix en pocas palabras<a href="#nix-en-pocas-palabras" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Tanto <a href="https://nixos.org">Nix como NixOS</a> vienen dando que hablar
+desde hace un tiempo en el mundo de Linux. Su filosofía se basa en
+crear un sistema que cumpla las siguientes características.</p>
+<ol>
+<li>Reproducible: Si un paquete funciona en la máquina X, debe
+funcionar en la máquina Y.</li>
+<li>Declarativo: El entorno se describe usando el lenguaje <strong>Nix</strong>.</li>
+<li>Fiable: instalar o actualizar un paquete no puede hacer fallar la
+configuración existente.</li>
+</ol>
+<p>¿Pero no es esto lo mismo que nos promete <strong>Docker</strong>?. En teoría si, en
+la práctica es una de esas cuestiones de <em>filosofía a</em> vs <em>filosofía
+b</em> que se escapa un poco del alcance de este artículo por lo que no
+voy a ponerme a debatir sobre ella. Solo basta decir que hay más
+diferencias que similitudes entre una <em>derivación</em> de <strong>Nix</strong> y un
+<em>Dockerfile</em>*.</p>
+<h2 id="instalando-nix">Instalando Nix.<a href="#instalando-nix" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Instalar <strong>Nix</strong> es bastante sencillo . El sitio oficicial incluye una
+<a href="https://nixos.org/learn.html">guía rápida</a> y bastante documentación
+sobre como dar los primeros pasos. Aunque el esto de la guía es densa
+y plagada de términos técnicos que no son muy amigables para los
+recién llegados, existen otros recursos más accesibles (Dejo una lista
+en la sección de referencias)</p>
+<p>Por suerte, si usas <a href="https://archlinux.org/">Archlinux</a> puedes seguir
+la guía en la <a href="https://wiki.archlinux.org/title/Nix">wiki</a> y tener
+<strong>Nix</strong> disponible en pocos pasos.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ sudo pacman -S archlinux-nix
+$ sudo archlinux-nix setup-build-group
+$ sudo archlinux-nix bootstrap
+$ nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+$ nix-channel --update
+$ nix-env -u
+
+</code></pre></div><p>Podemos iniciar un <em>shell</em> de <strong>Nix</strong> nuevo utilizando el comando
+<code>nix-shell</code>. Probemos arrancar un entorno con
+<a href="https://deno.land/">Deno</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ nix-shell -p deno --pure
+</code></pre></div><p>Con el comando anterior creamos un entorno temporal <em>puro</em> donde solo
+tenemos lo necesario para operar (las <strong>coreutils</strong>) y <strong>Deno</strong> con
+sus dependencias. Todo esto totalmente aislado del sistema (por eso la
+parte de <em>puro</em>).</p>
+<p>Ahora veamos cómo utilizar esto para hacer entornos de desarrollo.</p>
+<h2 id="nix--direnv--emacs--">Nix + Direnv + Emacs = (❤)<a href="#nix--direnv--emacs--" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Lo primero que necesitamos es una forma de indicarle al <code>nix-shell</code>
+que queremos tener en nuestro entorno. Para eso creamos el archivo
+<code>shell.nix</code> con el siguiente contenido</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"><span class="k">let</span>
+  <span class="n">pkgs</span> <span class="o">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
+<span class="k">in</span>
+<span class="n">pkgs</span><span class="o">.</span><span class="n">mkShell</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span><span class="s2">&#34;deno-env&#34;</span><span class="p">;</span>
+  <span class="n">buildInputs</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="p">[</span>
+	<span class="n">deno</span>
+	<span class="n">python38</span>
+  <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div><p>Ahora solo necesitamos entrar al directorio donde se encuentra el
+archivo y ejecutar <code>nix-shell --pure</code> y tenemos <strong>Deno</strong> y <strong>Python
+3.8</strong> a nuestra disposición. ¿Qué tal si soy un fan de
+<a href="https://golang.org">Golang</a>?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"> <span class="n">pkgs</span> <span class="err">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
+<span class="n">in</span>
+<span class="n">pkgs</span><span class="o">.</span><span class="n">mkShell</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;go-env&#34;</span><span class="p">;</span>
+  <span class="n">buildInputs</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="p">[</span>
+    <span class="n">go</span>
+    <span class="n">gosec</span>
+    <span class="n">golangci-lint</span>
+    <span class="n">gopls</span>
+    <span class="n">delve</span>
+  <span class="p">];</span>
+
+  <span class="n">shellHook</span> <span class="o">=</span> <span class="s1">&#39;&#39;
+</span><span class="s1">    unset GOPATH GOROOT
+</span><span class="s1">    export GO111MODULE=on
+</span><span class="s1">  &#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Bueno, se entiende la idea. Podemos buscar cualquier paquete necesario
+en <a href="https://search.nixos.org/packages">el repo oficial de Nixos</a> o en
+<a href="https://nur.nix-community.org/">NUR</a> e incluirlo en la lista de los
+<em>inputs</em> necesarios para la derivación. Incluso podemos declarar o
+sobrescribir variables de entorno.</p>
+<p>Nuestro segundo objetivo es evitar escribir <code>nix-shell</code> cada vez que
+queremos activar la configuración. <a href="https://direnv.net/">Direnv</a> es
+una herramienta que nos permite cargar variables de entorno cada vez
+que entramos a un directorio o sus hijos.</p>
+<p><strong>Direnv</strong> funciona mediante uso de <em>hooks</em> en el shell y requiere un
+archivo <code>.envrc</code> donde el usuario define las variables usando la
+sintaxis <code>VAR=VALUE</code>, aunque en nuestro caso haremos uso de la función
+estándar <code>use_nix</code>. Es tan sencillo como ejecutar los siguientes pasos</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$  <span class="nb">echo</span> <span class="s2">&#34;use_nix&#34;</span> &gt;&gt; .envrc
+$  direnv allow .
+</code></pre></div><p>La función <code>use_nix</code> ejecuta y obtiene el entorno de <code>nix-shell</code> y lo
+inyecta en el <em>shell</em> regular.</p>
+<blockquote>
+<p>Si has prestado atención hasta ahora o simplemente experimentaste
+con los <em>snippets</em> debes haber notado que al usar este método no
+creas un entorno <em>puro</em>. Aunque parezca contraproducente, esto no
+afecta el modo en que</p>
+</blockquote>
+<p>El paso final es integrar todo con <strong>Emacs</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">direnv</span>
+  <span class="nb">:pin</span> <span class="nv">melpa</span>
+  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
+</code></pre></div><p>El paquete <strong>direnv</strong> nos brinda un conjunto de funciones para
+utilizar <strong>direnv</strong> desde el editor. Utilizarlo es tan sencillo como
+navegar hasta el directorio usando <em>dired</em> y ejecutar <em>direnv-allow</em> o
+activar el modo menor <em>direnv-mode</em>.</p>
+<h2 id="the-end">The end?<a href="#the-end" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<p>Con estos simples pasos podemos replicar (parcialmente) la
+funcionalidad de <em>Remote Containers</em>, creando entornos de desarrollo
+<em>ad-hoc</em> o incluso manteniendo versiones incompatibles de un
+compilador o SDK sin que esto afecte el resto del sistema.</p>
+<p>En próximas entregas veremos como expandir este <em>setup</em> y utilizar
+<strong>Nix</strong> para:</p>
+<ol>
+<li>Compilar y empaquetar nuestro proyecto.</li>
+<li>Crear imágenes de <strong>Docker</strong>.</li>
+<li><em>Cross-compiling</em>.</li>
+<li>Otros trucos que todavía no se me han ocurrido.</li>
+</ol>
+<h2 id="referencias">Referencias<a href="#referencias" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
+<ul>
+<li>Nix Pills: <a href="https://nixos.org/nixos/nix-pills/">https://nixos.org/nixos/nix-pills/</a></li>
+<li>Nix Shorts: <a href="https://github.com/justinwoo/nix-shorts">https://github.com/justinwoo/nix-shorts</a></li>
+<li>NixOS: For Developers: <a href="https://myme.no/posts/2020-01-26-nixos-for-development.html">https://myme.no/posts/2020-01-26-nixos-for-development.html</a></li>
+<li>Nix Pills: <a href="https://nixos.org/guides/nix-pills/">https://nixos.org/guides/nix-pills/</a></li>
+</ul>
+
+			</div>
+
+<div class="related-posts thin">
+	<h2>Relacionados…</h2>
+	<ul>
+	
+	<li><a href="/blog/hugo-mode-emacs-ii/">Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (II)</a></li>
+	
+	<li><a href="/blog/hugo-mode-emacs/">Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (I)</a></li>
+	
+	<li><a href="/blog/emacs-golang-setup-2019/">Emacs &#43; Golang. Edición 2019</a></li>
+	
+	<li><a href="/blog/web-scrapping-emacs/">Scrapper para DEV desde Emacs</a></li>
+	
+	<li><a href="/blog/desarrollo-emacs-go/">Desarrollando con Emacs y Go</a></li>
+	
+	</ul>
+</div>
+
+			<hr class="post-end">
+			<footer class="post-info">
+				<p>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://yorodm.is-a.dev/tags/emacs">emacs</a></span><span class="tag"><a href="https://yorodm.is-a.dev/tags/nix">nix</a></span><span class="tag"><a href="https://yorodm.is-a.dev/tags/direnv">direnv</a></span>
+				</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>783 palabras</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-17 13:48 &#43;0300</p>
+			</footer>
+		</article>
+		<div class="post-nav thin">
+			<a class="prev-post" href="https://yorodm.is-a.dev/blog/type-safe-mediator-rust/">
+				<span class="post-nav-label">Anterior&nbsp;<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span><br><span>Mediator en Rust</span>
+			</a>
+		</div>
+		<div id="comments" class="thin"><script src="https://utteranc.es/client.js"
+        repo="yorodm/yorodm-site"
+        issue-term="pathname"
+        label="comment"
+        theme="github-dark"
+        crossorigin="anonymous"
+        async>
+</script>
+</div>
+	</main>
+
+<footer id="site-footer" class="section-inner thin animated fadeIn faster">
+  <p>&copy; 2021 <a href="https://yorodm.is-a.dev"></a> &#183; <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">CC BY-NC 4.0</a></p>
+  <p>
+	Made with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> &#183; Theme <a href="https://github.com/Track3/hermit" target="_blank" rel="noopener">Hermit</a> and Emacs(❤) &#183; <a href="https://yorodm.is-a.dev/posts/index.xml" target="_blank" title="rss"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></a>
+  </p>
+</footer>
+
+
+
+	<script src="https://yorodm.is-a.dev/js/bundle.min.7d8545daa55d62427355498dd8da13f98ff79a7938ce7d2a5e2ae1ec0de3beb8.js" integrity="sha256-fYVF2qVdYkJzVUmN2NoT+Y/3mnk4zn0qXirh7A3jvrg=" crossorigin="anonymous"></script>
+	
+
+</body>
+
+</html>

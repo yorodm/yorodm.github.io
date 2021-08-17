@@ -7,7 +7,17 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>es-ES</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 06 Oct 2020 17:45:15 -0400</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Aug 2021 13:48:16 +0300</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/emacs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Desarrollando con Nix y Emacs</title>
+      <link>https://yorodm.is-a.dev/blog/nix-development-emacs/</link>
+      <pubDate>Tue, 17 Aug 2021 13:48:16 +0300</pubDate>
+      
+      <guid>https://yorodm.is-a.dev/blog/nix-development-emacs/</guid>
+      <description>Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux.</description>
+    </item>
+    
     <item>
       <title>Emacs &#43; Hugo: Haciendo `hugo-blog-mode` (II)</title>
       <link>https://yorodm.is-a.dev/blog/hugo-mode-emacs-ii/</link>

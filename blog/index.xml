@@ -6,8 +6,156 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>es-ES</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Sun, 14 Mar 2021 20:38:14 +0200</lastBuildDate>
+		<lastBuildDate>Tue, 17 Aug 2021 13:48:16 +0300</lastBuildDate>
 		<atom:link href="https://yorodm.is-a.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Desarrollando con Nix y Emacs</title>
+			<link>https://yorodm.is-a.dev/blog/nix-development-emacs/</link>
+			<pubDate>Tue, 17 Aug 2021 13:48:16 +0300</pubDate>
+			
+			<guid>https://yorodm.is-a.dev/blog/nix-development-emacs/</guid>
+			<description>Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux.</description>
+			<content type="html"><![CDATA[<p>Si eres usuario de <a href="https://code.visualstudio.com/">Visual Studio
+Code</a> es muy probable que hayas
+utilizado Remote Containers y <a href="https://docker.com">Docker</a> para
+desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin
+tener que modificar nuestro sistema. Aunque la idea de usar de usar
+entornos aislados para desarrollar no es nueva (los desarrolladores de
+Python conocen <a href="https://virtualenv.pypa.io/en/latest/">varias</a>
+<a href="https://docs.python.org/3/library/venv.html">alternativas</a>)</p>
+<h2 id="nix-en-pocas-palabras">Nix en pocas palabras</h2>
+<p>Tanto <a href="https://nixos.org">Nix como NixOS</a> vienen dando que hablar
+desde hace un tiempo en el mundo de Linux. Su filosofía se basa en
+crear un sistema que cumpla las siguientes características.</p>
+<ol>
+<li>Reproducible: Si un paquete funciona en la máquina X, debe
+funcionar en la máquina Y.</li>
+<li>Declarativo: El entorno se describe usando el lenguaje <strong>Nix</strong>.</li>
+<li>Fiable: instalar o actualizar un paquete no puede hacer fallar la
+configuración existente.</li>
+</ol>
+<p>¿Pero no es esto lo mismo que nos promete <strong>Docker</strong>?. En teoría si, en
+la práctica es una de esas cuestiones de <em>filosofía a</em> vs <em>filosofía
+b</em> que se escapa un poco del alcance de este artículo por lo que no
+voy a ponerme a debatir sobre ella. Solo basta decir que hay más
+diferencias que similitudes entre una <em>derivación</em> de <strong>Nix</strong> y un
+<em>Dockerfile</em>*.</p>
+<h2 id="instalando-nix">Instalando Nix.</h2>
+<p>Instalar <strong>Nix</strong> es bastante sencillo . El sitio oficicial incluye una
+<a href="https://nixos.org/learn.html">guía rápida</a> y bastante documentación
+sobre como dar los primeros pasos. Aunque el esto de la guía es densa
+y plagada de términos técnicos que no son muy amigables para los
+recién llegados, existen otros recursos más accesibles (Dejo una lista
+en la sección de referencias)</p>
+<p>Por suerte, si usas <a href="https://archlinux.org/">Archlinux</a> puedes seguir
+la guía en la <a href="https://wiki.archlinux.org/title/Nix">wiki</a> y tener
+<strong>Nix</strong> disponible en pocos pasos.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ sudo pacman -S archlinux-nix
+$ sudo archlinux-nix setup-build-group
+$ sudo archlinux-nix bootstrap
+$ nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+$ nix-channel --update
+$ nix-env -u
+
+</code></pre></div><p>Podemos iniciar un <em>shell</em> de <strong>Nix</strong> nuevo utilizando el comando
+<code>nix-shell</code>. Probemos arrancar un entorno con
+<a href="https://deno.land/">Deno</a></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$ nix-shell -p deno --pure
+</code></pre></div><p>Con el comando anterior creamos un entorno temporal <em>puro</em> donde solo
+tenemos lo necesario para operar (las <strong>coreutils</strong>) y <strong>Deno</strong> con
+sus dependencias. Todo esto totalmente aislado del sistema (por eso la
+parte de <em>puro</em>).</p>
+<p>Ahora veamos cómo utilizar esto para hacer entornos de desarrollo.</p>
+<h2 id="nix--direnv--emacs--">Nix + Direnv + Emacs = (❤)</h2>
+<p>Lo primero que necesitamos es una forma de indicarle al <code>nix-shell</code>
+que queremos tener en nuestro entorno. Para eso creamos el archivo
+<code>shell.nix</code> con el siguiente contenido</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"><span class="k">let</span>
+  <span class="n">pkgs</span> <span class="o">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
+<span class="k">in</span>
+<span class="n">pkgs</span><span class="o">.</span><span class="n">mkShell</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span><span class="s2">&#34;deno-env&#34;</span><span class="p">;</span>
+  <span class="n">buildInputs</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="p">[</span>
+	<span class="n">deno</span>
+	<span class="n">python38</span>
+  <span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div><p>Ahora solo necesitamos entrar al directorio donde se encuentra el
+archivo y ejecutar <code>nix-shell --pure</code> y tenemos <strong>Deno</strong> y <strong>Python
+3.8</strong> a nuestra disposición. ¿Qué tal si soy un fan de
+<a href="https://golang.org">Golang</a>?</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"> <span class="n">pkgs</span> <span class="err">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
+<span class="n">in</span>
+<span class="n">pkgs</span><span class="o">.</span><span class="n">mkShell</span> <span class="p">{</span>
+  <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;go-env&#34;</span><span class="p">;</span>
+  <span class="n">buildInputs</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="p">[</span>
+    <span class="n">go</span>
+    <span class="n">gosec</span>
+    <span class="n">golangci-lint</span>
+    <span class="n">gopls</span>
+    <span class="n">delve</span>
+  <span class="p">];</span>
+
+  <span class="n">shellHook</span> <span class="o">=</span> <span class="s1">&#39;&#39;
+</span><span class="s1">    unset GOPATH GOROOT
+</span><span class="s1">    export GO111MODULE=on
+</span><span class="s1">  &#39;&#39;</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Bueno, se entiende la idea. Podemos buscar cualquier paquete necesario
+en <a href="https://search.nixos.org/packages">el repo oficial de Nixos</a> o en
+<a href="https://nur.nix-community.org/">NUR</a> e incluirlo en la lista de los
+<em>inputs</em> necesarios para la derivación. Incluso podemos declarar o
+sobrescribir variables de entorno.</p>
+<p>Nuestro segundo objetivo es evitar escribir <code>nix-shell</code> cada vez que
+queremos activar la configuración. <a href="https://direnv.net/">Direnv</a> es
+una herramienta que nos permite cargar variables de entorno cada vez
+que entramos a un directorio o sus hijos.</p>
+<p><strong>Direnv</strong> funciona mediante uso de <em>hooks</em> en el shell y requiere un
+archivo <code>.envrc</code> donde el usuario define las variables usando la
+sintaxis <code>VAR=VALUE</code>, aunque en nuestro caso haremos uso de la función
+estándar <code>use_nix</code>. Es tan sencillo como ejecutar los siguientes pasos</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell">$  <span class="nb">echo</span> <span class="s2">&#34;use_nix&#34;</span> &gt;&gt; .envrc
+$  direnv allow .
+</code></pre></div><p>La función <code>use_nix</code> ejecuta y obtiene el entorno de <code>nix-shell</code> y lo
+inyecta en el <em>shell</em> regular.</p>
+<blockquote>
+<p>Si has prestado atención hasta ahora o simplemente experimentaste
+con los <em>snippets</em> debes haber notado que al usar este método no
+creas un entorno <em>puro</em>. Aunque parezca contraproducente, esto no
+afecta el modo en que</p>
+</blockquote>
+<p>El paso final es integrar todo con <strong>Emacs</strong>.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">direnv</span>
+  <span class="nb">:pin</span> <span class="nv">melpa</span>
+  <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
+</code></pre></div><p>El paquete <strong>direnv</strong> nos brinda un conjunto de funciones para
+utilizar <strong>direnv</strong> desde el editor. Utilizarlo es tan sencillo como
+navegar hasta el directorio usando <em>dired</em> y ejecutar <em>direnv-allow</em> o
+activar el modo menor <em>direnv-mode</em>.</p>
+<h2 id="the-end">The end?</h2>
+<p>Con estos simples pasos podemos replicar (parcialmente) la
+funcionalidad de <em>Remote Containers</em>, creando entornos de desarrollo
+<em>ad-hoc</em> o incluso manteniendo versiones incompatibles de un
+compilador o SDK sin que esto afecte el resto del sistema.</p>
+<p>En próximas entregas veremos como expandir este <em>setup</em> y utilizar
+<strong>Nix</strong> para:</p>
+<ol>
+<li>Compilar y empaquetar nuestro proyecto.</li>
+<li>Crear imágenes de <strong>Docker</strong>.</li>
+<li><em>Cross-compiling</em>.</li>
+<li>Otros trucos que todavía no se me han ocurrido.</li>
+</ol>
+<h2 id="referencias">Referencias</h2>
+<ul>
+<li>Nix Pills: <a href="https://nixos.org/nixos/nix-pills/">https://nixos.org/nixos/nix-pills/</a></li>
+<li>Nix Shorts: <a href="https://github.com/justinwoo/nix-shorts">https://github.com/justinwoo/nix-shorts</a></li>
+<li>NixOS: For Developers: <a href="https://myme.no/posts/2020-01-26-nixos-for-development.html">https://myme.no/posts/2020-01-26-nixos-for-development.html</a></li>
+<li>Nix Pills: <a href="https://nixos.org/guides/nix-pills/">https://nixos.org/guides/nix-pills/</a></li>
+</ul>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Mediator en Rust</title>

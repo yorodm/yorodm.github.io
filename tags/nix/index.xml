@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>nix on /home/yorodm</title>
+    <link>https://yorodm.is-a.dev/tags/nix/</link>
+    <description>Recent content in nix on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-ES</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 17 Aug 2021 13:48:16 +0300</lastBuildDate><atom:link href="https://yorodm.is-a.dev/tags/nix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Desarrollando con Nix y Emacs</title>
+      <link>https://yorodm.is-a.dev/blog/nix-development-emacs/</link>
+      <pubDate>Tue, 17 Aug 2021 13:48:16 +0300</pubDate>
+      
+      <guid>https://yorodm.is-a.dev/blog/nix-development-emacs/</guid>
+      <description>Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux.</description>
+    </item>
+    
+  </channel>
+</rss>
