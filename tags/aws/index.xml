@@ -31,7 +31,7 @@ lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # ta
     </item>
     
     <item>
-      <title>Trucos con AWS Lambda. (Parte 1)</title>
+      <title></title>
       <link>https://yorodm.is-a.dev/blog/aws-lambda-tricks/</link>
       <pubDate>Thu, 25 Oct 2018 12:45:05 -0400</pubDate>
       

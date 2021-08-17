@@ -14,7 +14,7 @@
       <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/microframeworks-en-java/</guid>
-      <description>Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
+      <description>¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
 Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor Web basado en Netty y un DSL para manejar rutas (muy a lo Rack+ Sinatra) y una fuerte integración con Groovy .</description>
     </item>
     

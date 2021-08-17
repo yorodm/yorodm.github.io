@@ -14,7 +14,7 @@
       <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/json-rpc-golang/</guid>
-      <description>Implementando JSON-RPC en Go JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
+      <description>JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
     </item>
     
   </channel>

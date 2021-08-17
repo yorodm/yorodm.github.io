@@ -14,8 +14,8 @@
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/hugo-y-emacs/</guid>
-      <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
- Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
+      <description>Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
+ Hacer nuevo post. Previsualizar. Subir a GitHub.  Todo esto organizado, claro está, en una rama develop para trabajar y una master tanto para el repositorio donde guardo las fuentes del sitio como para el que queda publicado.</description>
     </item>
     
   </channel>

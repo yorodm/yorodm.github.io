@@ -14,7 +14,7 @@
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</guid>
-      <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
+      <description>Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
 Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>
     

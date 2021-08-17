@@ -35,5 +35,23 @@
       <description></description>
     </item>
     
+    <item>
+      <title>Trucos con AWS Lambda</title>
+      <link>https://yorodm.is-a.dev/series/trucos-con-aws-lambda/</link>
+      <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
+      
+      <guid>https://yorodm.is-a.dev/series/trucos-con-aws-lambda/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Creando widgets con Odoo</title>
+      <link>https://yorodm.is-a.dev/series/creando-widgets-con-odoo/</link>
+      <pubDate>Mon, 22 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://yorodm.is-a.dev/series/creando-widgets-con-odoo/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

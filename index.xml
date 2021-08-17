@@ -174,7 +174,7 @@ class C: def __init__(self): self._x = None def getx(self): return self.</descri
       <pubDate>Tue, 20 Nov 2018 17:28:59 -0500</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/web-scrapping-emacs/</guid>
-      <description>Scrapper para DEV desde Emacs. Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
+      <description>Recién publiqué en DEV un artículo acerca de como hacer un scrapper para obtener los títulos del feed principal. El artículo surgió de una discusión amistosa acerca de la relevancia de Common Lisp como tecnología en la actualidad y quedé muy satisfecho con el resultado.
 Me llamó tanto la atención la simpleza detrás de las bibliotecas utilizadas que decidí ver si había una para Emacs Lisp y&amp;hellip; TL;DR, aquí está el scrapper 😍.</description>
     </item>
     
@@ -195,12 +195,12 @@ lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # ta
       <pubDate>Mon, 29 Oct 2018 09:45:07 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/python-simple-cli/</guid>
-      <description>Interfaces de comandos sencillas con Python. Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
+      <description>Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
 Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herramientas de líneas de comandos que existe y tiene además la ventaja de no ser exclusiva de Python, para utilizarla solo tienes que documentar el módulo o función que va a obtener los argumentos de la línea de comandos.</description>
     </item>
     
     <item>
-      <title>Trucos con AWS Lambda. (Parte 1)</title>
+      <title></title>
       <link>https://yorodm.is-a.dev/blog/aws-lambda-tricks/</link>
       <pubDate>Thu, 25 Oct 2018 12:45:05 -0400</pubDate>
       
@@ -229,7 +229,7 @@ En el momento estaba empezando a utilizar RxJava y alguno de los conceptos no me
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/practicas-serverless-framework/</guid>
-      <description>Algunas buenas practicas para Serverless Framework Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
+      <description>Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
 Reducir la dependencia de valores externos. En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es común utilizar referencias a valores externos por toda la plantilla.
 functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${env:FUNC_PREFIX}-worldhandler:handler.worldAunque esto no es una mala practica en si, hace que nuestras funciones dependan de un valor que solo vamos a obtener desde el entorno.</description>
     </item>
@@ -240,7 +240,7 @@ functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${e
       <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/json-rpc-golang/</guid>
-      <description>Implementando JSON-RPC en Go JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
+      <description>JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
     </item>
     
     <item>
@@ -249,7 +249,7 @@ functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${e
       <pubDate>Wed, 25 Apr 2018 11:37:30 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/ruby-on-rails-for-professionals/</guid>
-      <description>Libro: Ruby on Rails for Professionals Un excelente libro producto del trabajo y conocimiento de cientos de usuarios de Stack Overflow. Como tantos otros libros disponibles en GoalKicker este es gratis, bajo licencia Creative Commons BY-SA y una de las cosas que debes leer si trabajas o estás interesado en aprender Ruby On Rails
+      <description>Un excelente libro producto del trabajo y conocimiento de cientos de usuarios de Stack Overflow. Como tantos otros libros disponibles en GoalKicker este es gratis, bajo licencia Creative Commons BY-SA y una de las cosas que debes leer si trabajas o estás interesado en aprender Ruby On Rails
 El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde la instalación y arranque de un nuevo proyecto hasta el despliegue utilizando Docker.</description>
     </item>
     
@@ -259,9 +259,9 @@ El libro cuenta con 72 capítulos (más bien pequeñas recetas) que cubren desde
       <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/cambios-plantilla-blog/</guid>
-      <description>De vuelta, cambios y anuncios. Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
+      <description>Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
 Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
- Emacs para desarrolladores de frontend (Vue, Angular, Typescript). Emacs para desarrolladores de backend (SQL, Python, Ruby, PHP).</description>
+ Emacs para desarrolladores de frontend (Vue, Angular, Typescript). Emacs para desarrolladores de backend (SQL, Python, Ruby, PHP). Integrando Odoo a las redes sociales.</description>
     </item>
     
     <item>
@@ -280,7 +280,7 @@ En este artículo vamos a crear un nuevo widget para manejar campos enteros y de
       <pubDate>Sat, 23 Dec 2017 10:14:28 -0500</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/comentarios-via-disqus/</guid>
-      <description>Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
+      <description>Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
 En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
     </item>
     
@@ -290,7 +290,7 @@ En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
       <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/generadores-referencias-python/</guid>
-      <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
+      <description>Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
 def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.</description>
     </item>
     
@@ -300,7 +300,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/pruebas-funcionales-factory-boy/</guid>
-      <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
+      <description>Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
     </item>
     
     <item>
@@ -309,7 +309,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
       <pubDate>Mon, 04 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/microframeworks-en-java/</guid>
-      <description>Microframeworks que deberías revisar. ¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
+      <description>¡Hola! Después de unas semanas de inactivdad continúo con el tema de los frameworks para microservicios, ahora con Java que es otro de mis lengajes favoritos. Ya que todo el mundo conoce a los jugadores fuertes como Dropwizard, Spring y Swarm voy a hablar de los llamados &amp;ldquo;microframeworks&amp;rdquo;.
 Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor Web basado en Netty y un DSL para manejar rutas (muy a lo Rack+ Sinatra) y una fuerte integración con Groovy .</description>
     </item>
     
@@ -319,7 +319,7 @@ Ratpack En primer lugar tenemos Ratpack, que nos brinda basicamente un servidor 
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</guid>
-      <description>Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
+      <description>Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
 Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
  Python 2 (creo que no hay versiones para Python 3).</description>
     </item>
@@ -330,7 +330,7 @@ Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/golang-xml-sax/</guid>
-      <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
+      <description>El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej. las que salen en los ejemplos) están orientadas más hacia la serialización y deserialización de XML que a andar recorriendo documentos.</description>
     </item>
     
@@ -340,7 +340,7 @@ Una mirada por encima a encoding/xml me dejo bien claro que no existía un parse
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</guid>
-      <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
+      <description>Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
     
@@ -350,7 +350,7 @@ Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para 
       <pubDate>Tue, 24 Oct 2017 10:55:56 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/zfs-problema-memoria/</guid>
-      <description>ZFS y el problema de la memoria ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
+      <description>ZFS lleva ya unos años en tierras de Linux y cada vez que tengo un chance lo recomiendo a alguno de mis amigos sysadmins junto con un grupito de notas que he tomado acerca de como trabajar con el filesystem, optimizar alguna que otra feature y algunos casos de estudio.
 Después de notar que en la mayoría de los casos, los aconsejados regresaban al castigo de LVM me dediqué a investigar las causas del rechazo y como enmendarlas.</description>
     </item>
     
@@ -360,8 +360,8 @@ Después de notar que en la mayoría de los casos, los aconsejados regresaban al
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/hugo-y-emacs/</guid>
-      <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
- Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
+      <description>Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
+ Hacer nuevo post. Previsualizar. Subir a GitHub.  Todo esto organizado, claro está, en una rama develop para trabajar y una master tanto para el repositorio donde guardo las fuentes del sitio como para el que queda publicado.</description>
     </item>
     
     <item>

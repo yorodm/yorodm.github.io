@@ -14,9 +14,9 @@
       <pubDate>Wed, 11 Apr 2018 14:56:57 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/cambios-plantilla-blog/</guid>
-      <description>De vuelta, cambios y anuncios. Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
+      <description>Despúes de casi 3 meses sin actualizar el blog (muuuuuuucho trabajo) estoy de vuelta con nuevos cambios para la plantilla (ahora el RSS muestra el contenido completo) y sindicaciones para dev y pronto en Medium.
 Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
- Emacs para desarrolladores de frontend (Vue, Angular, Typescript). Emacs para desarrolladores de backend (SQL, Python, Ruby, PHP).</description>
+ Emacs para desarrolladores de frontend (Vue, Angular, Typescript). Emacs para desarrolladores de backend (SQL, Python, Ruby, PHP). Integrando Odoo a las redes sociales.</description>
     </item>
     
     <item>
@@ -25,7 +25,7 @@ Les dejo un roadmap de los próximos temas que pienso tratar en el blog:
       <pubDate>Sat, 23 Dec 2017 10:14:28 -0500</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/comentarios-via-disqus/</guid>
-      <description>Comentarios vía Disqus y Felices Fiestas Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
+      <description>Ya están habilitados los comentarios en el blog. Un poco complicado porque ya saben, el bloqueo y etc. Espero tener más feedback ahora.
 En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
     </item>
     
@@ -35,8 +35,8 @@ En otra nota: ¡Felices Fiestas y un muy Feliz Año Nuevo!</description>
       <pubDate>Thu, 19 Oct 2017 15:26:34 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/hugo-y-emacs/</guid>
-      <description>Hugo, Emacs y el nuevo blog Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
- Hacer nuevo post. Previsualizar. Subir a GitHub.</description>
+      <description>Como comentaba en el primer post, decidí comenzar desde cero, aprovechando las bondades de Github Pages y Hugo como generador de sitios estático. En lo que a generador de sitios estáticos se refiere Hugo es bastante sencillo de operar, por lo que inicialmente pensé en hacerme unos scripts para organizar el workflow de trabajo de la siguiente manera:
+ Hacer nuevo post. Previsualizar. Subir a GitHub.  Todo esto organizado, claro está, en una rama develop para trabajar y una master tanto para el repositorio donde guardo las fuentes del sitio como para el que queda publicado.</description>
     </item>
     
   </channel>

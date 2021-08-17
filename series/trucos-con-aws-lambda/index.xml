@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Trucos con AWS Lambda on /home/yorodm</title>
+    <link>https://yorodm.is-a.dev/series/trucos-con-aws-lambda/</link>
+    <description>Recent content in Trucos con AWS Lambda on /home/yorodm</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>es-ES</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Sun, 18 Nov 2018 12:39:59 -0500</lastBuildDate><atom:link href="https://yorodm.is-a.dev/series/trucos-con-aws-lambda/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Trucos Aws Lambda (parte 2)</title>
+      <link>https://yorodm.is-a.dev/blog/trucos-aws-lambda-ii/</link>
+      <pubDate>Sun, 18 Nov 2018 12:39:59 -0500</pubDate>
+      
+      <guid>https://yorodm.is-a.dev/blog/trucos-aws-lambda-ii/</guid>
+      <description>Trucos con AWS Lambda (II). Truco 1. Utiliza las tags. Los tags en AWS nos permiten:
+ Tener asociados un máximo de 50 a cada recurso. Llaves de hasta 128 caracteres Unicode. Valores de hasta 256 caracteres Unicode. Distinción entre mayúsculas y minúsculas para llaves y valores.  Basicamente todo lo que necesitamos para hacernos un caché:
+lambda_cient = boto3.client(&amp;#39;lambda&amp;#39;) def save_cache(tags): # tags is a dict of string:string lambda_client.tag_resource( Resource=self_arn, # get it from handler context Tags=json.</description>
+    </item>
+    
+  </channel>
+</rss>

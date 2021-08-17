@@ -46,7 +46,7 @@ class C: def __init__(self): self._x = None def getx(self): return self.</descri
       <pubDate>Mon, 29 Oct 2018 09:45:07 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/python-simple-cli/</guid>
-      <description>Interfaces de comandos sencillas con Python. Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
+      <description>Entre las muchas cosas para las que uso Python está escribir pequeñas herramientas de líneas de comandos que me ayudan en el día a día (especialmente cuando toca trabajar de devops). Aunque en la biblioteca estándar existe argparse y muchos están contentos con eso, personalmente me gustan alternativas que me hagan la vida más fácil.
 Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herramientas de líneas de comandos que existe y tiene además la ventaja de no ser exclusiva de Python, para utilizarla solo tienes que documentar el módulo o función que va a obtener los argumentos de la línea de comandos.</description>
     </item>
     
@@ -56,7 +56,7 @@ Docopt. Docopt Es (en mi opinión) uno de los mejores frameworks para crear herr
       <pubDate>Fri, 15 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/generadores-referencias-python/</guid>
-      <description>Generadores y referencias Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
+      <description>Las referencias en Python son un tema que a menudo se pasa por alto, incluso por los que ya no somos tan novatos. Hagamos un experimento, toma a diez desarrolladores que conozcas y pregúntales qué hay de malo en esta función.
 def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x yield ctx Vale, es una pregunta con truco y la respuesta es todo o nada en dependencia de como utilices la función generadora.</description>
     </item>
     
@@ -66,7 +66,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
       <pubDate>Wed, 13 Dec 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/pruebas-funcionales-factory-boy/</guid>
-      <description>Pruebas funcionales con factory_boy. Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
+      <description>Una de las primeras cosas que aprendí cuando comencé a hacer pruebas funcionales (allá en los lejanos tiempos de la universidad) fue la necesidad de crear juegos de datos con el mayor nivel de realidad posible. En ese entonces era práctica común entre compañeros de equipo guardar un archivo CSV con nuestra información personal (nombre, número de identidad, etc) e incluso hubo alguna que otra base de datos llena de información ficticia creada por los más minuciosos.</description>
     </item>
     
     <item>
@@ -75,7 +75,7 @@ def funcionx(*args): ctx = dict() for x in args: ctx[&amp;#39;run&amp;#39;] = x 
       <pubDate>Thu, 09 Nov 2017 11:13:09 -0500</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/nameko-microservicios-python/</guid>
-      <description>Desarrollando microservicios con Nameko Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
+      <description>Nameko es una biblioteca para el desarrollo de microservicios en Python. A diferencia de otros frameworks como Django, Flask y Hug que tienen como principal objetivo utilizar HTTP para la comunicación con los clientes, Nameko viene con soporte integrado para AMQP y Websockets y nos permite adicionar nuestros propios protocolos.
 Manos a la obra. Para hacer servicios con Nameko necesitamos algunas cosas:
  Python 2 (creo que no hay versiones para Python 3).</description>
     </item>

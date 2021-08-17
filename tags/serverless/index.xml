@@ -14,7 +14,7 @@
       <pubDate>Fri, 13 Jul 2018 14:44:56 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/practicas-serverless-framework/</guid>
-      <description>Algunas buenas practicas para Serverless Framework Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
+      <description>Aunque llevo poco tiempo utilizando Serverless he intentado ir escribiendo un conjunto de prácticas para escribir plantillas. Las comparto aquí para los que como yo están empezando.
 Reducir la dependencia de valores externos. En varios de los ejemplos que he encontrado (incluso en el sitio oficial) es común utilizar referencias a valores externos por toda la plantilla.
 functions:hello:name:${env:FUNC_PREFIX}-hellohandler:handler.helloworld:name:${env:FUNC_PREFIX}-worldhandler:handler.worldAunque esto no es una mala practica en si, hace que nuestras funciones dependan de un valor que solo vamos a obtener desde el entorno.</description>
     </item>

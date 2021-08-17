@@ -25,7 +25,7 @@ Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode 
       <pubDate>Wed, 09 May 2018 11:45:31 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/json-rpc-golang/</guid>
-      <description>Implementando JSON-RPC en Go JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
+      <description>JSON-RPC es mi método favorito para comunicarme con Odoo desde el &amp;ldquo;exterior&amp;rdquo;, en estos días estaba experimentando para enviar información desde un servicio desarrollado en Go hacia el ERP y utilizar Odoo como dashboard y me di cuenta que hacerlo con el paquete net/rpc/jsonrpc era todo un dolor de cabeza por lo que me pregunté cuánto tiempo me tomaría hacerme mi propia implementación. La respuesta es 32 minutos (tuve que leer mucha documentación).</description>
     </item>
     
     <item>
@@ -34,7 +34,7 @@ Paso 1. Language server protocol Si tienes una versión actualizada de lsp-mode 
       <pubDate>Thu, 02 Nov 2017 00:00:00 +0000</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/golang-xml-sax/</guid>
-      <description>Parser tipo SAX para Golang El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
+      <description>El problema Tratando de migrar unas cosas del trabajo a Go me tropecé con la necesidad de procesar unos archivos XML (cada día doy más gracias por TOML y JSON) de tamaño considerable.
 Una mirada por encima a encoding/xml me dejo bien claro que no existía un parser tipo xml.dom.minidom (el de la biblioteca estándar de Python) o algo como Expat. Las principales funciones (ej. las que salen en los ejemplos) están orientadas más hacia la serialización y deserialización de XML que a andar recorriendo documentos.</description>
     </item>
     
@@ -44,7 +44,7 @@ Una mirada por encima a encoding/xml me dejo bien claro que no existía un parse
       <pubDate>Thu, 26 Oct 2017 15:04:13 -0400</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/desarrollo-emacs-go/</guid>
-      <description>Desarrollando con Emacs y Go. Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
+      <description>Tengo la muy sana costumbre de utilizar Emacs para todo lo que pueda (incluso revisar el correo) así que cuando me decidí a iniciar algunos proyectos en Go me alegró mucho que no existiera un IDE &amp;ldquo;oficial&amp;rdquo; para el lenguaje y si muchas herramientas, utilidades y plugins para que cada cual se arme la casa a su manera.
 Haciendo un IDE en tres pasos. Convertir Emacs en un entorno de desarrollo para Go es una tarea bastante sencilla.</description>
     </item>
     
