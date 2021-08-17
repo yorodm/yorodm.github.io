@@ -41,12 +41,12 @@ la práctica es una de esas cuestiones de <em>filosofía a</em> vs <em>filosofí
 b</em> que se escapa un poco del alcance de este artículo por lo que no
 voy a ponerme a debatir sobre ella. Solo basta decir que hay más
 diferencias que similitudes entre una <em>derivación</em> de <strong>Nix</strong> y un
-<em>Dockerfile</em>*.</p>
+<em>Dockerfile</em>.</p>
 <h2 id="instalando-nix">Instalando Nix.</h2>
 <p>Instalar <strong>Nix</strong> es bastante sencillo . El sitio oficicial incluye una
 <a href="https://nixos.org/learn.html">guía rápida</a> y bastante documentación
-sobre como dar los primeros pasos. Aunque el esto de la guía es densa
-y plagada de términos técnicos que no son muy amigables para los
+sobre como dar los primeros pasos. Aunque el resto del sitio es denso
+y plagado de términos técnicos que no son muy amigables para los
 recién llegados, existen otros recursos más accesibles (Dejo una lista
 en la sección de referencias)</p>
 <p>Por suerte, si usas <a href="https://archlinux.org/">Archlinux</a> puedes seguir
@@ -124,9 +124,10 @@ inyecta en el <em>shell</em> regular.</p>
 <p>Si has prestado atención hasta ahora o simplemente experimentaste
 con los <em>snippets</em> debes haber notado que al usar este método no
 creas un entorno <em>puro</em>. Aunque parezca contraproducente, esto no
-afecta el modo en que</p>
+afecta el modo en que la versión final del entorno de desarrollo
+va a funcionar.</p>
 </blockquote>
-<p>El paso final es integrar todo con <strong>Emacs</strong>.</p>
+<p>Último paso es integrar todo con <strong>Emacs</strong>.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-elisp" data-lang="elisp"><span class="p">(</span><span class="nb">use-package</span> <span class="nv">direnv</span>
   <span class="nb">:pin</span> <span class="nv">melpa</span>
   <span class="nb">:ensure</span> <span class="no">t</span><span class="p">)</span>
