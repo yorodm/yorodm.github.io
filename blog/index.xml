@@ -15,15 +15,15 @@
 			<pubDate>Tue, 17 Aug 2021 13:48:16 +0300</pubDate>
 			
 			<guid>https://yorodm.is-a.dev/blog/nix-development-emacs/</guid>
-			<description>Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
-Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux.</description>
+			<description>Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux. Su filosofía se basa en crear un sistema que cumpla las siguientes características.</description>
 			<content type="html"><![CDATA[<p>Si eres usuario de <a href="https://code.visualstudio.com/">Visual Studio
 Code</a> es muy probable que hayas
 utilizado Remote Containers y <a href="https://docker.com">Docker</a> para
 desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin
-tener que modificar nuestro sistema. Aunque la idea de usar de usar
-entornos aislados para desarrollar no es nueva (los desarrolladores de
-Python conocen <a href="https://virtualenv.pypa.io/en/latest/">varias</a>
+tener que modificar nuestro sistema. Aunque la idea de entornos
+aislados para desarrollar no es nueva (los desarrolladores de Python
+conocen <a href="https://virtualenv.pypa.io/en/latest/">varias</a>
 <a href="https://docs.python.org/3/library/venv.html">alternativas</a>)</p>
 <h2 id="nix-en-pocas-palabras">Nix en pocas palabras</h2>
 <p>Tanto <a href="https://nixos.org">Nix como NixOS</a> vienen dando que hablar
@@ -86,8 +86,9 @@ que queremos tener en nuestro entorno. Para eso creamos el archivo
 archivo y ejecutar <code>nix-shell --pure</code> y tenemos <strong>Deno</strong> y <strong>Python
 3.8</strong> a nuestra disposición. ¿Qué tal si soy un fan de
 <a href="https://golang.org">Golang</a>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"> <span class="n">pkgs</span> <span class="err">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
-<span class="n">in</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"><span class="k">let</span>
+ <span class="n">pkgs</span> <span class="o">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
+<span class="k">in</span>
 <span class="n">pkgs</span><span class="o">.</span><span class="n">mkShell</span> <span class="p">{</span>
   <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;go-env&#34;</span><span class="p">;</span>
   <span class="n">buildInputs</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="p">[</span>

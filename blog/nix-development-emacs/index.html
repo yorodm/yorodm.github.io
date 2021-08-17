@@ -8,13 +8,13 @@
 	<meta name="theme-color" content="#494f5c">
 	<meta name="msapplication-TileColor" content="#494f5c">
 <meta itemprop="name" content="Desarrollando con Nix y Emacs">
-<meta itemprop="description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
-Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux."><meta itemprop="datePublished" content="2021-08-17T13:48:16+03:00" />
+<meta itemprop="description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux. Su filosofía se basa en crear un sistema que cumpla las siguientes características."><meta itemprop="datePublished" content="2021-08-17T13:48:16+03:00" />
 <meta itemprop="dateModified" content="2021-08-17T13:48:16+03:00" />
-<meta itemprop="wordCount" content="791">
+<meta itemprop="wordCount" content="789">
 <meta itemprop="keywords" content="emacs,nix,direnv," /><meta property="og:title" content="Desarrollando con Nix y Emacs" />
-<meta property="og:description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
-Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux." />
+<meta property="og:description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux. Su filosofía se basa en crear un sistema que cumpla las siguientes características." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://yorodm.is-a.dev/blog/nix-development-emacs/" /><meta property="article:section" content="blog" />
 <meta property="article:published_time" content="2021-08-17T13:48:16+03:00" />
@@ -23,8 +23,8 @@ Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Desarrollando con Nix y Emacs"/>
-<meta name="twitter:description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de usar de usar entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
-Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux."/>
+<meta name="twitter:description" content="Si eres usuario de Visual Studio Code es muy probable que hayas utilizado Remote Containers y Docker para desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin tener que modificar nuestro sistema. Aunque la idea de entornos aislados para desarrollar no es nueva (los desarrolladores de Python conocen varias alternativas)
+Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un tiempo en el mundo de Linux. Su filosofía se basa en crear un sistema que cumpla las siguientes características."/>
 
 	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
@@ -77,9 +77,9 @@ Nix en pocas palabras Tanto Nix como NixOS vienen dando que hablar desde hace un
 Code</a> es muy probable que hayas
 utilizado Remote Containers y <a href="https://docker.com">Docker</a> para
 desarrollar o simplemente probar algún nuevo lenguaje/tecnología sin
-tener que modificar nuestro sistema. Aunque la idea de usar de usar
-entornos aislados para desarrollar no es nueva (los desarrolladores de
-Python conocen <a href="https://virtualenv.pypa.io/en/latest/">varias</a>
+tener que modificar nuestro sistema. Aunque la idea de entornos
+aislados para desarrollar no es nueva (los desarrolladores de Python
+conocen <a href="https://virtualenv.pypa.io/en/latest/">varias</a>
 <a href="https://docs.python.org/3/library/venv.html">alternativas</a>)</p>
 <h2 id="nix-en-pocas-palabras">Nix en pocas palabras<a href="#nix-en-pocas-palabras" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
 <p>Tanto <a href="https://nixos.org">Nix como NixOS</a> vienen dando que hablar
@@ -142,8 +142,9 @@ que queremos tener en nuestro entorno. Para eso creamos el archivo
 archivo y ejecutar <code>nix-shell --pure</code> y tenemos <strong>Deno</strong> y <strong>Python
 3.8</strong> a nuestra disposición. ¿Qué tal si soy un fan de
 <a href="https://golang.org">Golang</a>?</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"> <span class="n">pkgs</span> <span class="err">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
-<span class="n">in</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-nix" data-lang="nix"><span class="k">let</span>
+ <span class="n">pkgs</span> <span class="o">=</span> <span class="kn">import</span> <span class="sr">&lt;nixpkgs&gt;</span> <span class="p">{};</span>
+<span class="k">in</span>
 <span class="n">pkgs</span><span class="o">.</span><span class="n">mkShell</span> <span class="p">{</span>
   <span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;go-env&#34;</span><span class="p">;</span>
   <span class="n">buildInputs</span> <span class="o">=</span> <span class="k">with</span> <span class="n">pkgs</span><span class="p">;</span> <span class="p">[</span>
@@ -236,7 +237,7 @@ compilador o SDK sin que esto afecte el resto del sistema.</p>
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://yorodm.is-a.dev/tags/emacs">emacs</a></span><span class="tag"><a href="https://yorodm.is-a.dev/tags/nix">nix</a></span><span class="tag"><a href="https://yorodm.is-a.dev/tags/direnv">direnv</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>791 palabras</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>789 palabras</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2021-08-17 13:48 &#43;0300</p>
 			</footer>
 		</article>
