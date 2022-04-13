@@ -14,7 +14,7 @@
       <pubDate>Wed, 13 Apr 2022 12:52:28 +0300</pubDate>
       
       <guid>https://yorodm.is-a.dev/blog/nix-shell-services/</guid>
-      <description>En el post anterior tocaba el tema de crear entornos de desarrollo reproduciles con Nix e incluso dejé algunos ejemplos de configuraciones para algunos lenguajes.
+      <description>En el post anterior tocaba el tema de crear entornos de desarrollo reproducibles con Nix e incluso dejé algunos casos de uso para lenguajes en específico.
 Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea de probar Easypodcasts en modo desarollador y de paso refrescar un poco de Elixir. Easypodcasts está desarrollado utilizando Phoenix LiveView y entre otras cosas necesita PostgreSQL como fuente de datos. En el pasado (léase antes de usar Nix) esto lo habría resuelto usando un Dockerfile para configurar y lanzar el servicio, pero ahora tenemos otra alternativa.</description>
     </item>
     
