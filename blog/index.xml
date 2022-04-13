@@ -6,8 +6,81 @@
 		<generator>Hugo -- gohugo.io</generator>
 		<language>es-ES</language>
 		<copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-		<lastBuildDate>Tue, 17 Aug 2021 13:48:16 +0300</lastBuildDate>
+		<lastBuildDate>Wed, 13 Apr 2022 12:52:28 +0300</lastBuildDate>
 		<atom:link href="https://yorodm.is-a.dev/blog/index.xml" rel="self" type="application/rss+xml" />
+		
+		<item>
+			<title>Usando servicios con Nix Shell</title>
+			<link>https://yorodm.is-a.dev/blog/nix-shell-services/</link>
+			<pubDate>Wed, 13 Apr 2022 12:52:28 +0300</pubDate>
+			
+			<guid>https://yorodm.is-a.dev/blog/nix-shell-services/</guid>
+			<description>En el post anterior tocaba el tema de crear entornos de desarrollo reproduciles con Nix e incluso dejé algunos ejemplos de configuraciones para algunos lenguajes.
+Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea de probar Easypodcasts en modo desarollador y de paso refrescar un poco de Elixir. Easypodcasts está desarrollado utilizando Phoenix LiveView y entre otras cosas necesita PostgreSQL como fuente de datos. En el pasado (léase antes de usar Nix) esto lo habría resuelto usando un Dockerfile para configurar y lanzar el servicio, pero ahora tenemos otra alternativa.</description>
+			<content type="html"><![CDATA[<p>En el <a href="https://yorodm.is-a.dev/blog/nix-development-emacs/">post anterior</a> tocaba el
+tema de crear entornos de desarrollo reproduciles con <code>Nix</code> e incluso
+dejé algunos ejemplos de configuraciones para algunos lenguajes.</p>
+<p>Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea
+de probar
+<a href="https://github.com/easypodcasts/easy_podcasts">Easypodcasts</a> en modo
+desarollador y de paso refrescar un poco de <code>Elixir</code>. <code>Easypodcasts</code>
+está desarrollado utilizando <a href="https://github.com/phoenixframework/phoenix_live_view">Phoenix
+LiveView</a> y
+entre otras cosas necesita <code>PostgreSQL</code> como fuente de datos. En el
+pasado (léase antes de usar <code>Nix</code>) esto lo habría resuelto usando un
+<code>Dockerfile</code> para configurar y lanzar el servicio, pero ahora tenemos
+otra alternativa.</p>
+<h2 id="creando-shellhooks-para-nuestro-entorno">Creando <code>shellHooks</code> para nuestro entorno.</h2>
+<p>Buscando en la documentacíon de <code>Nix</code> podemos ver lo siguiente:</p>
+<blockquote>
+<p>Si una derivación <code>mkShell</code> define la variable especial <code>shellHooks</code>
+el contenido de esta será ejecutado despúes de <code>$stdenv/setup</code></p>
+</blockquote>
+<p>Traduciendo: podemos crear un script arbitrario que se va a aplicar
+cada vez que instanciemos la derivación.</p>
+<p>Esto nos abre la puerta a otro conjunto de posibilidades.</p>
+<h2 id="manos-a-la-obra">Manos a la obra</h2>
+<p>Ahora que sabemos que podemos inyectar nuestro propio script dentro del <code>shell.nix</code> pongamos manos a la obra. Los objetivos son:</p>
+<ol>
+<li>Configurar el servidor el arranque del servidor <code>PostgreSQL</code>.</li>
+<li>Crear un usuario y contraseña para el entorno de desarrollo.</li>
+<li>Exportar la configuración utilizando variables de entorno que sean
+visibles desde nuestro proyecto <code>Elixir</code>.</li>
+</ol>
+<p>Definamos primero las variables de entorno.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s1">&#39;Setting database&#39;</span>
+<span class="nb">export</span> <span class="nv">PGDATA</span><span class="o">=</span><span class="nv">$PWD</span>/postgres_data
+<span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span><span class="nv">$PWD</span>/postgres
+<span class="nb">export</span> <span class="nv">LOG_PATH</span><span class="o">=</span><span class="nv">$PWD</span>/postgres/LOG
+<span class="nb">export</span> <span class="nv">PGDATABASE</span><span class="o">=</span>postgres
+<span class="nb">export</span> <span class="nv">PGSOCKET</span><span class="o">=</span><span class="nv">$PWD</span>/sockets
+</code></pre></div><p>Listo, ejecutaremos <code>PostgresSQL</code> usando un directorio local para guardar el estado del servicio y exportamos el directorio donde vivirá el <em>socket</em> necesario para la comunicación. Este último paso es en extremo importante, si utilizamos sockets en vez de comunicación TCP podemos ejecutar varias instancias de nuestra base de datos sin tener que preocuparnos por cosas molestas como puertos o permisos.</p>
+<p>Continuando con nuestro script ahora necesitamos arrancar el servicio de base de datos</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">mkdir <span class="nv">$PGSOCKET</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PGHOST</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    mkdir -p <span class="nv">$PGHOST</span>
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PGDATA</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s1">&#39;Initializing postgresql database...&#39;</span>
+    initdb <span class="nv">$PGDATA</span> --auth<span class="o">=</span>trust &gt;/dev/null
+<span class="k">fi</span>
+pg_ctl start -l <span class="nv">$LOG_PATH</span> -o <span class="s2">&#34;-c listen_addresses= -c unix_socket_directories=</span><span class="nv">$PGSOCKET</span><span class="s2">&#34;</span>
+createuser -d -h <span class="nv">$PGSOCKET</span> postgres
+psql -h <span class="nv">$PGSOCKET</span> -c <span class="s2">&#34;ALTER USER postgres PASSWORD &#39;postgres&#39;;&#34;</span>
+</code></pre></div><p>¡Perfecto! Al ejecutar <code>nix-shell</code> tenemos todo listo para conectarnos a nuestra instancia local de la base de datos y comenzar a desarrollar, solo queda un pequeño detalle. ¿Cómo detenemos el servidor una vez hayamos terminado con el?</p>
+<p>La forma más sencilla es definir una rutina de limpieza para cuando salgamos del <code>nix-shell</code></p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="k">function</span> cleanup <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&#34;Shutting down the database...&#34;</span>
+    pg_ctl stop
+    <span class="nb">echo</span> <span class="s2">&#34;Removing directories...&#34;</span>
+    rm -rf <span class="nv">$PGDATA</span> <span class="nv">$PGHOST</span> <span class="nv">$PGSOCKET</span>
+<span class="o">}</span>
+<span class="nb">trap</span> end EXIT
+</code></pre></div><p>Usando el comando <code>trap</code> de <code>Bash</code> podemos capturar la señal <code>EXIT</code> (que no es una verdadera señal de POSIX) para ejecutar la función <code>cleanup</code> y detener nuestra instancia de <code>PostgreSQL</code>. En este caso además elimino todos los datos temporales creados en la sesíon de desarrollo, de ese modo arrancamos desde 0 cada vez (lo mismo si haces un <code>docker run</code> y no defines algún modo para que tu contenedor persista su estado).</p>
+<h2 id="the-end">The end?</h2>
+<p>Las posibilidad de ejecutar un script arbitrario en nuestra derivación expande el rango de cosas que podemos hacer con nuestros <code>shell.nix</code>. En el caso de <code>Easypodcasts</code> además de lanzar la base de datos, el script se asegura de que el entorno de Elixir esté correctamente configurado</p>
+]]></content>
+		</item>
 		
 		<item>
 			<title>Desarrollando con Nix y Emacs</title>
@@ -634,7 +707,7 @@ del ciclo de copia:</p>
 </span><span class="w"></span><span class="p">}</span><span class="w">
 </span></code></pre></div><p>Si hacemos un diagrama sencillo de como fluyen los datos en esta
 variante sería algo como esto</p>
-<pre><code>          read      +------+    write
+<pre tabindex="0"><code>          read      +------+    write
       +------------&gt;+buffer+------------+
       |             +------+            |
       |                                 V
@@ -662,7 +735,7 @@ iteraciones para nuestro ciclo de copia. ¡Imagina copiar un archivo de
 diagrama genial no cuenta toda la verdad. El proceso de lectura y
 escritura de archivos no ocurre en las funciones <code>read</code> y <code>write</code>,
 ocurre en el <strong>kernel</strong>.</p>
-<pre><code>          read      +------+    write
+<pre tabindex="0"><code>          read      +------+    write
       +------------&gt;+buffer+------------+
       |             +------+            |
       |                                 V
@@ -1295,7 +1368,7 @@ awstail 0.3.0 Yoandy Rodriguez &amp;lt;yoandy.rmartinez@gmail.com&amp;gt; like t
 <li>Monitorear un grupo de logs en <code>AWS Cloudwatch</code> desde la terminal.</li>
 </ol>
 <p>Por el momento, estas son las opciones que permite la herramienta:</p>
-<pre><code class="language-console" data-lang="console">awstail 0.3.0
+<pre tabindex="0"><code class="language-console" data-lang="console">awstail 0.3.0
 Yoandy Rodriguez &lt;yoandy.rmartinez@gmail.com&gt;
 like tail -f for AWS Cloudwatch
 
@@ -1978,12 +2051,12 @@ repositorio.</p>
     <span class="n">arguments</span> <span class="o">=</span> <span class="n">docopt</span><span class="p">(</span><span class="vm">__doc__</span><span class="p">)</span>
     <span class="n">main</span><span class="p">(</span><span class="n">arguments</span><span class="p">)</span>
 </code></pre></div><p>Al invocar la herramienta sin parámetros obtenemos el siguiente mensaje de ayuda:</p>
-<pre><code class="language-console" data-lang="console">$ python subscriber.py
+<pre tabindex="0"><code class="language-console" data-lang="console">$ python subscriber.py
 Usage:
   subscriber.py repo &lt;reponame&gt; group &lt;groupname&gt;
 
 </code></pre><p>Para utilizarla simplemente podemos</p>
-<pre><code class="language-console" data-lang="console">$ python subscriber.py repo https://my.repo.cu group developers
+<pre tabindex="0"><code class="language-console" data-lang="console">$ python subscriber.py repo https://my.repo.cu group developers
 </code></pre><p>Ventajas:</p>
 <ol>
 <li>El código extra es mínimo (casi todo es documentación).</li>
@@ -2021,7 +2094,7 @@ muestra como ejemplo un clon de <code>cp</code></p>
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">cp</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </code></pre></div><p>Si invocamos la herramienta obtenemos lo siguiente:</p>
-<pre><code class="language-console" data-lang="console">$ python cp.py -h
+<pre tabindex="0"><code class="language-console" data-lang="console">$ python cp.py -h
 usage: cp.py [-h] [-r] [src [src ...]] dst
 
 copy around files
@@ -2412,7 +2485,7 @@ en un rango de una forma explicita, sencilla y agradable para el usuario.</p>
 <p>Para poder reutilizar el <em>widget</em>, vamos a crear un <em>addon</em> que contenga las
 bibliotecas y el código necesario para hacerlo funcionar. Empecemos creando el
 esqueleto del módulo:</p>
-<pre><code class="language-console" data-lang="console">$ odoo-bin scaffold widget-slider
+<pre tabindex="0"><code class="language-console" data-lang="console">$ odoo-bin scaffold widget-slider
 </code></pre><p>Añadimos la descripción del <em>addon</em>, lo definimos como instalable, ponemos una
 categoría válida e incluimos *<em>web</em> como dependencia. Continuando.</p>
 <h2 id="bibliotecas-externas">Bibliotecas externas</h2>
@@ -2944,7 +3017,7 @@ hacernos la vida más fácil.</p>
 <span class="nt">&lt;/build&gt;</span>
 </code></pre></div><h3 id="paso-6-ejecutando-la-aplicación">Paso 6. Ejecutando la aplicación</h3>
 <p>Empaquetamos y ejecutamos:</p>
-<pre><code class="language-console" data-lang="console">$ mvn package
+<pre tabindex="0"><code class="language-console" data-lang="console">$ mvn package
 $ cd target
 $ java -jar rapidoid-example-0.0.1-SNAPSHOT.jar profiles=dev,default
 </code></pre><p>Después de unos cuantos logs tenemos el servicio disponible en <a href="http://localhost:8080/tickets">nuestro
@@ -3019,7 +3092,7 @@ verificar que las interfaces hagan lo planeado (este concepto de suma es
 aparentemente muy complicado).</p>
 <p>Por suerte <strong>Nameko</strong> nos proporciona un <strong>REPL</strong> mediante el comando <code>shell</code>
 que nos permite interactuar con los servicios desde código <strong>Python</strong>.</p>
-<pre><code class="language-terminal" data-lang="terminal">nameko shell --broker  pyamqp://guest:guest@192.168.184.142
+<pre tabindex="0"><code class="language-terminal" data-lang="terminal">nameko shell --broker  pyamqp://guest:guest@192.168.184.142
 Nameko Python 2.7.13 [MSC v.1500 64 bit (AMD64)] shell
 Broker: pyamqp://guest:guest@192.168.184.142
 &gt;&gt;&gt; n.rpc.compute.method(99999,99999)
@@ -3306,10 +3379,10 @@ pesar de esto raras veces es <strong>necesario</strong> configurar algo de aquí
 memoria se muestra como ocupada (por ejemplo al utilizar <strong>free</strong>) es un caché y
 si existiera la necesidad sería liberada por el kernel. En caso de que no sepas
 como está configurado tu <strong>ARC</strong> puedes simplemente:</p>
-<pre><code>cat /sys/module/zfs/parameters/zfs_arc_max
+<pre tabindex="0"><code>cat /sys/module/zfs/parameters/zfs_arc_max
 </code></pre><p>Un valor de 0 indica que la mitad de la <strong>RAM</strong> disponible se utilizará para
 caché. Para cambiar este valor puedes hacer lo siguiente:</p>
-<pre><code># Configura la cantidad de memoria máxima disponible para ARC
+<pre tabindex="0"><code># Configura la cantidad de memoria máxima disponible para ARC
 echo &lt;numero en bytes&gt; &gt;&gt; /sys/module/zfs/parameters/zfs_arc_max
 # fuerza al kernel a vaciar la información de caché
 echo 3 &gt; /proc/sys/vm/drop_caches
@@ -3372,7 +3445,7 @@ va quedando.</li>
 <em>commit</em> en <em>develop</em> y me mezcla todo en master.</li>
 </ol>
 <p>Como estoy utilizando submódulos de <strong>Git</strong> para mantener los repositorios así:</p>
-<pre><code>sitio/ (fuentes del sitio)
+<pre tabindex="0"><code>sitio/ (fuentes del sitio)
    |--- content/
    |--- data/
    |--- static/
