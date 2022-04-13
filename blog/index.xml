@@ -31,16 +31,17 @@ pasado (léase antes de usar <code>Nix</code>) esto lo habría resuelto usando u
 <code>Dockerfile</code> para configurar y lanzar el servicio, pero ahora tenemos
 otra alternativa.</p>
 <h2 id="creando-shellhooks-para-nuestro-entorno">Creando <code>shellHooks</code> para nuestro entorno.</h2>
-<p>Buscando en la documentacíon de <code>Nix</code> podemos ver lo siguiente:</p>
+<p>Buscando en la documentación de <code>Nix</code> podemos ver lo siguiente:</p>
 <blockquote>
 <p>Si una derivación <code>mkShell</code> define la variable especial <code>shellHooks</code>
 el contenido de esta será ejecutado despúes de <code>$stdenv/setup</code></p>
 </blockquote>
-<p>Traduciendo: podemos crear un script arbitrario que se va a aplicar
-cada vez que instanciemos la derivación.</p>
+<p>Traduciendo: es posible inyectar un script arbitrario que se ejcuta
+con cada instancia de la derivación</p>
 <p>Esto nos abre la puerta a otro conjunto de posibilidades.</p>
 <h2 id="manos-a-la-obra">Manos a la obra</h2>
-<p>Ahora que sabemos que podemos inyectar nuestro propio script dentro del <code>shell.nix</code> pongamos manos a la obra. Los objetivos son:</p>
+<p>Ahora que sabemos que podemos alterar el funcionamiento del
+<code>shell.nix</code> pongamos manos a la obra. Los objetivos son:</p>
 <ol>
 <li>Configurar el servidor el arranque del servidor <code>PostgreSQL</code>.</li>
 <li>Crear un usuario y contraseña para el entorno de desarrollo.</li>
