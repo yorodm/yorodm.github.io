@@ -11,7 +11,7 @@
 <meta itemprop="description" content="En el post anterior tocaba el tema de crear entornos de desarrollo reproducibles con Nix e incluso dejé algunos casos de uso para lenguajes en específico.
 Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea de probar Easypodcasts en modo desarollador y de paso refrescar un poco de Elixir. Easypodcasts es un proyecto basado en Phoenix LiveView y entre otras cosas necesita PostgreSQL como fuente de datos."><meta itemprop="datePublished" content="2022-04-13T12:52:28+03:00" />
 <meta itemprop="dateModified" content="2022-04-13T12:52:28+03:00" />
-<meta itemprop="wordCount" content="548">
+<meta itemprop="wordCount" content="569">
 <meta itemprop="keywords" content="nix,bash," /><meta property="og:title" content="Usando servicios con Nix Shell" />
 <meta property="og:description" content="En el post anterior tocaba el tema de crear entornos de desarrollo reproducibles con Nix e incluso dejé algunos casos de uso para lenguajes en específico.
 Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea de probar Easypodcasts en modo desarollador y de paso refrescar un poco de Elixir. Easypodcasts es un proyecto basado en Phoenix LiveView y entre otras cosas necesita PostgreSQL como fuente de datos." />
@@ -95,7 +95,7 @@ el contenido de esta será ejecutado despúes de <code>$stdenv/setup</code></p>
 con cada instancia de la derivación</p>
 <p>Esto nos abre la puerta a otro conjunto de posibilidades.</p>
 <h2 id="manos-a-la-obra">Manos a la obra<a href="#manos-a-la-obra" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Ahora que sabemos que podemos alterar el funcionamiento del
+<p>Ahora que sabemos que es posible alterar el funcionamiento del
 <code>shell.nix</code> pongamos manos a la obra. Los objetivos son:</p>
 <ol>
 <li>Configurar el servidor el arranque del servidor <code>PostgreSQL</code>.</li>
@@ -103,15 +103,22 @@ con cada instancia de la derivación</p>
 <li>Exportar la configuración utilizando variables de entorno que sean
 visibles desde nuestro proyecto <code>Elixir</code>.</li>
 </ol>
-<p>Definamos primero las variables de entorno.</p>
+<p>Primero las variables de entorno.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s1">&#39;Setting database&#39;</span>
 <span class="nb">export</span> <span class="nv">PGDATA</span><span class="o">=</span><span class="nv">$PWD</span>/postgres_data
 <span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span><span class="nv">$PWD</span>/postgres
 <span class="nb">export</span> <span class="nv">LOG_PATH</span><span class="o">=</span><span class="nv">$PWD</span>/postgres/LOG
 <span class="nb">export</span> <span class="nv">PGDATABASE</span><span class="o">=</span>postgres
 <span class="nb">export</span> <span class="nv">PGSOCKET</span><span class="o">=</span><span class="nv">$PWD</span>/sockets
-</code></pre></div><p>Listo, ejecutaremos <code>PostgresSQL</code> usando un directorio local para guardar el estado del servicio y exportamos el directorio donde vivirá el <em>socket</em> necesario para la comunicación. Este último paso es en extremo importante, si utilizamos sockets en vez de comunicación TCP podemos ejecutar varias instancias de nuestra base de datos sin tener que preocuparnos por cosas molestas como puertos o permisos.</p>
-<p>Continuando con nuestro script ahora necesitamos arrancar el servicio de base de datos</p>
+</code></pre></div><p>Listo, <code>PostgresSQL</code> usará un directorio local para guardar el estado
+del servicio y exportamos el directorio donde vivirá el <em>socket</em>
+necesario para la comunicación.</p>
+<p>Este último paso es en extremo importante, utilizar sockets en vez de
+comunicación TCP nos posibilita ejecutar varias instancias de nuestra
+base de datos sin tener que preocuparnos por cosas molestas como
+puertos o permisos.</p>
+<p>Continuando con nuestro script ahora necesitamos arrancar el servicio
+de base de datos</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">mkdir <span class="nv">$PGSOCKET</span>
 <span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PGHOST</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     mkdir -p <span class="nv">$PGHOST</span>
@@ -123,8 +130,12 @@ visibles desde nuestro proyecto <code>Elixir</code>.</li>
 pg_ctl start -l <span class="nv">$LOG_PATH</span> -o <span class="s2">&#34;-c listen_addresses= -c unix_socket_directories=</span><span class="nv">$PGSOCKET</span><span class="s2">&#34;</span>
 createuser -d -h <span class="nv">$PGSOCKET</span> postgres
 psql -h <span class="nv">$PGSOCKET</span> -c <span class="s2">&#34;ALTER USER postgres PASSWORD &#39;postgres&#39;;&#34;</span>
-</code></pre></div><p>¡Perfecto! Al ejecutar <code>nix-shell</code> tenemos todo listo para conectarnos a nuestra instancia local de la base de datos y comenzar a desarrollar, solo queda un pequeño detalle. ¿Cómo detenemos el servidor una vez hayamos terminado con el?</p>
-<p>La forma más sencilla es definir una rutina de limpieza para cuando salgamos del <code>nix-shell</code></p>
+</code></pre></div><p>¡Perfecto! Al ejecutar <code>nix-shell</code> tenemos todo listo para utilizar
+nuestra instancia local de la base de datos, solo queda un pequeño
+detalle. ¿Cómo detenemos el servidor una vez hayamos terminado con
+el?</p>
+<p>La forma más sencilla es definir una rutina de limpieza para cuando
+salgamos del <code>nix-shell</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="k">function</span> cleanup <span class="o">{</span>
     <span class="nb">echo</span> <span class="s2">&#34;Shutting down the database...&#34;</span>
     pg_ctl stop
@@ -132,9 +143,21 @@ psql -h <span class="nv">$PGSOCKET</span> -c <span class="s2">&#34;ALTER USER po
     rm -rf <span class="nv">$PGDATA</span> <span class="nv">$PGHOST</span> <span class="nv">$PGSOCKET</span>
 <span class="o">}</span>
 <span class="nb">trap</span> end EXIT
-</code></pre></div><p>Usando el comando <code>trap</code> de <code>Bash</code> podemos capturar la señal <code>EXIT</code> (que no es una verdadera señal de POSIX) para ejecutar la función <code>cleanup</code> y detener nuestra instancia de <code>PostgreSQL</code>. En este caso además elimino todos los datos temporales creados en la sesíon de desarrollo, de ese modo arrancamos desde 0 cada vez (lo mismo si haces un <code>docker run</code> y no defines algún modo para que tu contenedor persista su estado).</p>
+</code></pre></div><p>Usando el comando <code>trap</code> de <code>Bash</code> podemos capturar la señal <code>EXIT</code>
+(que no es una verdadera señal de POSIX) para ejecutar la función
+<code>cleanup</code> y detener nuestra instancia de <code>PostgreSQL</code>. En este caso
+además elimino todos los datos temporales creados en la sesíon de
+desarrollo, de ese modo arrancamos desde 0 cada vez (lo mismo si haces
+un <code>docker run</code> y no defines algún modo para que tu contenedor
+persista su estado).</p>
 <h2 id="the-end">The end?<a href="#the-end" class="anchor" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 7h3a5 5 0 0 1 5 5 5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5 5 5 0 0 1 5-5h3"></path><line x1="8" y1="12" x2="16" y2="12"></line></svg></a></h2>
-<p>Las posibilidad de ejecutar un script arbitrario en nuestra derivación expande el rango de cosas que podemos hacer con nuestros <code>shell.nix</code>. En el caso de <code>Easypodcasts</code> además de lanzar la base de datos, el script se asegura de que el entorno de Elixir esté correctamente configurado</p>
+<p>Hay pocas tareas que no se pueden ejecuta con <code>shellHooks</code> En el caso de
+<code>Easypodcasts</code> además de lanzar la base de datos, el script se asegura
+de que el entorno de Elixir esté correctamente configurado y que tanto
+<code>hex</code> como <code>rebar</code> se encuentren en el entorno.</p>
+<p>Como nota de advertencia: Recuerden que los archivos <code>shell.nix</code>
+pueden ejecutar código shell arbitrario. Verifiquen que el contenido
+es seguro antes de de crear un entorno nuevo.</p>
 
 			</div>
 
@@ -152,7 +175,7 @@ psql -h <span class="nv">$PGSOCKET</span> -c <span class="s2">&#34;ALTER USER po
 				<p>
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag meta-icon"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7" y2="7"></line></svg><span class="tag"><a href="https://yorodm.is-a.dev/tags/nix">nix</a></span><span class="tag"><a href="https://yorodm.is-a.dev/tags/bash">bash</a></span>
 				</p>
-				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>548 palabras</p>
+				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file-text"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>569 palabras</p>
 				<p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>2022-04-13 12:52 &#43;0300</p>
 			</footer>
 		</article>

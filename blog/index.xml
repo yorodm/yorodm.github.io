@@ -40,7 +40,7 @@ el contenido de esta será ejecutado despúes de <code>$stdenv/setup</code></p>
 con cada instancia de la derivación</p>
 <p>Esto nos abre la puerta a otro conjunto de posibilidades.</p>
 <h2 id="manos-a-la-obra">Manos a la obra</h2>
-<p>Ahora que sabemos que podemos alterar el funcionamiento del
+<p>Ahora que sabemos que es posible alterar el funcionamiento del
 <code>shell.nix</code> pongamos manos a la obra. Los objetivos son:</p>
 <ol>
 <li>Configurar el servidor el arranque del servidor <code>PostgreSQL</code>.</li>
@@ -48,15 +48,22 @@ con cada instancia de la derivación</p>
 <li>Exportar la configuración utilizando variables de entorno que sean
 visibles desde nuestro proyecto <code>Elixir</code>.</li>
 </ol>
-<p>Definamos primero las variables de entorno.</p>
+<p>Primero las variables de entorno.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="nb">echo</span> <span class="s1">&#39;Setting database&#39;</span>
 <span class="nb">export</span> <span class="nv">PGDATA</span><span class="o">=</span><span class="nv">$PWD</span>/postgres_data
 <span class="nb">export</span> <span class="nv">PGHOST</span><span class="o">=</span><span class="nv">$PWD</span>/postgres
 <span class="nb">export</span> <span class="nv">LOG_PATH</span><span class="o">=</span><span class="nv">$PWD</span>/postgres/LOG
 <span class="nb">export</span> <span class="nv">PGDATABASE</span><span class="o">=</span>postgres
 <span class="nb">export</span> <span class="nv">PGSOCKET</span><span class="o">=</span><span class="nv">$PWD</span>/sockets
-</code></pre></div><p>Listo, ejecutaremos <code>PostgresSQL</code> usando un directorio local para guardar el estado del servicio y exportamos el directorio donde vivirá el <em>socket</em> necesario para la comunicación. Este último paso es en extremo importante, si utilizamos sockets en vez de comunicación TCP podemos ejecutar varias instancias de nuestra base de datos sin tener que preocuparnos por cosas molestas como puertos o permisos.</p>
-<p>Continuando con nuestro script ahora necesitamos arrancar el servicio de base de datos</p>
+</code></pre></div><p>Listo, <code>PostgresSQL</code> usará un directorio local para guardar el estado
+del servicio y exportamos el directorio donde vivirá el <em>socket</em>
+necesario para la comunicación.</p>
+<p>Este último paso es en extremo importante, utilizar sockets en vez de
+comunicación TCP nos posibilita ejecutar varias instancias de nuestra
+base de datos sin tener que preocuparnos por cosas molestas como
+puertos o permisos.</p>
+<p>Continuando con nuestro script ahora necesitamos arrancar el servicio
+de base de datos</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">mkdir <span class="nv">$PGSOCKET</span>
 <span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$PGHOST</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
     mkdir -p <span class="nv">$PGHOST</span>
@@ -68,8 +75,12 @@ visibles desde nuestro proyecto <code>Elixir</code>.</li>
 pg_ctl start -l <span class="nv">$LOG_PATH</span> -o <span class="s2">&#34;-c listen_addresses= -c unix_socket_directories=</span><span class="nv">$PGSOCKET</span><span class="s2">&#34;</span>
 createuser -d -h <span class="nv">$PGSOCKET</span> postgres
 psql -h <span class="nv">$PGSOCKET</span> -c <span class="s2">&#34;ALTER USER postgres PASSWORD &#39;postgres&#39;;&#34;</span>
-</code></pre></div><p>¡Perfecto! Al ejecutar <code>nix-shell</code> tenemos todo listo para conectarnos a nuestra instancia local de la base de datos y comenzar a desarrollar, solo queda un pequeño detalle. ¿Cómo detenemos el servidor una vez hayamos terminado con el?</p>
-<p>La forma más sencilla es definir una rutina de limpieza para cuando salgamos del <code>nix-shell</code></p>
+</code></pre></div><p>¡Perfecto! Al ejecutar <code>nix-shell</code> tenemos todo listo para utilizar
+nuestra instancia local de la base de datos, solo queda un pequeño
+detalle. ¿Cómo detenemos el servidor una vez hayamos terminado con
+el?</p>
+<p>La forma más sencilla es definir una rutina de limpieza para cuando
+salgamos del <code>nix-shell</code></p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="k">function</span> cleanup <span class="o">{</span>
     <span class="nb">echo</span> <span class="s2">&#34;Shutting down the database...&#34;</span>
     pg_ctl stop
@@ -77,9 +88,21 @@ psql -h <span class="nv">$PGSOCKET</span> -c <span class="s2">&#34;ALTER USER po
     rm -rf <span class="nv">$PGDATA</span> <span class="nv">$PGHOST</span> <span class="nv">$PGSOCKET</span>
 <span class="o">}</span>
 <span class="nb">trap</span> end EXIT
-</code></pre></div><p>Usando el comando <code>trap</code> de <code>Bash</code> podemos capturar la señal <code>EXIT</code> (que no es una verdadera señal de POSIX) para ejecutar la función <code>cleanup</code> y detener nuestra instancia de <code>PostgreSQL</code>. En este caso además elimino todos los datos temporales creados en la sesíon de desarrollo, de ese modo arrancamos desde 0 cada vez (lo mismo si haces un <code>docker run</code> y no defines algún modo para que tu contenedor persista su estado).</p>
+</code></pre></div><p>Usando el comando <code>trap</code> de <code>Bash</code> podemos capturar la señal <code>EXIT</code>
+(que no es una verdadera señal de POSIX) para ejecutar la función
+<code>cleanup</code> y detener nuestra instancia de <code>PostgreSQL</code>. En este caso
+además elimino todos los datos temporales creados en la sesíon de
+desarrollo, de ese modo arrancamos desde 0 cada vez (lo mismo si haces
+un <code>docker run</code> y no defines algún modo para que tu contenedor
+persista su estado).</p>
 <h2 id="the-end">The end?</h2>
-<p>Las posibilidad de ejecutar un script arbitrario en nuestra derivación expande el rango de cosas que podemos hacer con nuestros <code>shell.nix</code>. En el caso de <code>Easypodcasts</code> además de lanzar la base de datos, el script se asegura de que el entorno de Elixir esté correctamente configurado</p>
+<p>Hay pocas tareas que no se pueden ejecuta con <code>shellHooks</code> En el caso de
+<code>Easypodcasts</code> además de lanzar la base de datos, el script se asegura
+de que el entorno de Elixir esté correctamente configurado y que tanto
+<code>hex</code> como <code>rebar</code> se encuentren en el entorno.</p>
+<p>Como nota de advertencia: Recuerden que los archivos <code>shell.nix</code>
+pueden ejecutar código shell arbitrario. Verifiquen que el contenido
+es seguro antes de de crear un entorno nuevo.</p>
 ]]></content>
 		</item>
 		
