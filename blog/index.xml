@@ -16,7 +16,7 @@
 			
 			<guid>https://yorodm.is-a.dev/blog/nix-shell-services/</guid>
 			<description>En el post anterior tocaba el tema de crear entornos de desarrollo reproducibles con Nix e incluso dejé algunos casos de uso para lenguajes en específico.
-Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea de probar Easypodcasts en modo desarollador y de paso refrescar un poco de Elixir. Easypodcasts está desarrollado utilizando Phoenix LiveView y entre otras cosas necesita PostgreSQL como fuente de datos. En el pasado (léase antes de usar Nix) esto lo habría resuelto usando un Dockerfile para configurar y lanzar el servicio, pero ahora tenemos otra alternativa.</description>
+Justo cuando pensaba que todo iba de maravilla se me ocurrió la idea de probar Easypodcasts en modo desarollador y de paso refrescar un poco de Elixir. Easypodcasts es un proyecto basado en Phoenix LiveView y entre otras cosas necesita PostgreSQL como fuente de datos.</description>
 			<content type="html"><![CDATA[<p>En el <a href="https://yorodm.is-a.dev/blog/nix-development-emacs/">post anterior</a> tocaba el
 tema de crear entornos de desarrollo reproducibles con <code>Nix</code> e incluso
 dejé algunos casos de uso para lenguajes en específico.</p>
@@ -24,7 +24,7 @@ dejé algunos casos de uso para lenguajes en específico.</p>
 de probar
 <a href="https://github.com/easypodcasts/easy_podcasts">Easypodcasts</a> en modo
 desarollador y de paso refrescar un poco de <code>Elixir</code>. <code>Easypodcasts</code>
-está desarrollado utilizando <a href="https://github.com/phoenixframework/phoenix_live_view">Phoenix
+es un proyecto basado en <a href="https://github.com/phoenixframework/phoenix_live_view">Phoenix
 LiveView</a> y
 entre otras cosas necesita <code>PostgreSQL</code> como fuente de datos. En el
 pasado (léase antes de usar <code>Nix</code>) esto lo habría resuelto usando un
